@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6715_7489
 {
-    
+
     class Bus
     {
         private string id;
         public string Id
         {
             get { return id; }
-            set { id = value; }
+            private set { id = value; }
         }
         public DateTime StartDate;
         public DateTime LastTreatDate;
@@ -34,23 +34,40 @@ namespace dotNet5781_01_6715_7489
             stateOfFuel = fuel;
             kmSinceLastTreat = kmSinceTreat;
         }
-        public void checkingBusFit( int numberOfKm)
+        public void checkingBusFit(int numberOfKm)
         {
             TimeSpan diff = DateTime.Now - LastTreatDate;
-            if (stateOfFuel+numberOfKm<=1200)//can take the driving from the fuel aspect
-               if(diff.TotalDays<365 && kmSinceLastTreat+ numberOfKm<=20000)//can take the driving from the treat aspect
+            if (stateOfFuel + numberOfKm <= 1200)//can take the driving from the fuel aspect
+                if (diff.TotalDays < 365 && kmSinceLastTreat + numberOfKm <= 20000)//can take the driving from the treat aspect
                 {
                     Kilometrazh += numberOfKm;
                     stateOfFuel += numberOfKm;
                     kmSinceLastTreat += numberOfKm;
                 }
-      
+
                 else Console.WriteLine("The bus can not take the driving, take it to a treat!!");
             else Console.WriteLine("The bus can not take the driving, take it to refuel!");
+        }
+        public void refuel()
+        {
+            stateOfFuel = 0.0;
+        }
+        public void treat()
+        {
+            LastTreatDate = DateTime.Now;
+            kmSinceLastTreat = 0.0;
+        }
+        static int index=0;//counter for printing the bus method
+        public void printBus()
+        {
+            index++;
+            Console.Write("Bus #{0} :",index);
+            Console.WriteLine(Id+"-> "+ LastTreatDate);
         }
     }
     class Program
     {
+
         static public DateTime getDateFromUser()
         {
             //input the date and check the correctness of the input
@@ -77,10 +94,10 @@ namespace dotNet5781_01_6715_7489
         }
         static public Bus returnBusFromList(List<Bus> listOfBuses, string licenseNumber)
         {
-         foreach(Bus item in listOfBuses)
+            foreach (Bus item in listOfBuses)
                 if (item.Id == licenseNumber)
                     return item;
-         return null;
+            return null;
         }
         static public Random rand = new Random(DateTime.Now.Millisecond);
         enum Options { Exit, AddBus, ChooseBus, RefuelOrCare, StateOfTheBuses }
@@ -109,7 +126,7 @@ namespace dotNet5781_01_6715_7489
             {
 
                 //ch = Console.ReadLine();
-                choise = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out choise);
                 switch (choise)
                 {
 
@@ -131,13 +148,13 @@ namespace dotNet5781_01_6715_7489
 
 
                         Console.WriteLine("Enter the number of miles since the last refueling: ");
-                        stateFuel = double.Parse(Console.ReadLine());
+                        double.TryParse(Console.ReadLine(), out stateFuel);
 
                         Console.WriteLine("Enter the mileage of the bus: ");
-                        kilometer = double.Parse(Console.ReadLine());
+                        double.TryParse(Console.ReadLine(), out kilometer);
 
                         Console.WriteLine("Enter the miles the bus drived since the last treat: ");
-                        kmSinceTreat = double.Parse(Console.ReadLine());
+                        double.TryParse(Console.ReadLine(), out kmSinceTreat);
 
 
                         bus = new Bus(licenseNumber, StarDate, treaDate, kmSinceTreat, stateFuel, kilometer);
@@ -152,15 +169,48 @@ namespace dotNet5781_01_6715_7489
                         while (licenseNumber.Length != 8 && licenseNumber.Length != 7);
                         int numberOfKm = rand.Next(20001);
 
-                        bus=returnBusFromList(listOfBuses, licenseNumber);
-                        if(bus==null)
+                        bus = returnBusFromList(listOfBuses, licenseNumber);
+                        if (bus == null)
+                        {
                             Console.WriteLine("The bus isn't exist at the system");
+                            break;
+                        }
                         else
-                            bus.checkingBusFit( numberOfKm);
+                            bus.checkingBusFit(numberOfKm);
                         break;
                     case 3:
+                        do
+                        {
+                            Console.WriteLine("Enter the license number: ");
+                            licenseNumber = Console.ReadLine();
+                        }
+                        while (licenseNumber.Length != 8 && licenseNumber.Length != 7);
+
+                        bus = returnBusFromList(listOfBuses, licenseNumber);
+
+                        if (bus == null)
+                        {
+                            Console.WriteLine("The bus isn't exist at the system");
+                            break;
+                        }
+
+                        Console.WriteLine("Enter r for refuel and t for treat: ");
+                        char treatOrRefuel;
+                        char.TryParse(Console.ReadLine(), out treatOrRefuel);
+                        if (treatOrRefuel == 'r')
+                            bus.refuel();
+                        else if (treatOrRefuel == 't')
+                            bus.treat();
+                        else
+                        {
+                            Console.WriteLine("The character is invalid!");
+                            break;
+                        }
                         break;
-                    case 4:
+                    case 4:foreach(Bus item in listOfBuses)
+                        {
+                            item.printBus();
+                        }
                         break;
                     case 0:
                         break;
