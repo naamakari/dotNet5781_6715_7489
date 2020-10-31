@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,24 +44,27 @@ namespace dotNet5781_01_6715_7489
                     Kilometrazh += numberOfKm;
                     stateOfFuel += numberOfKm;
                     kmSinceLastTreat += numberOfKm;
+                    Console.WriteLine("The bus can not take the driving, have a good day!");
                 }
 
                 else Console.WriteLine("The bus can not take the driving, take it to a treat!!");
             else Console.WriteLine("The bus can not take the driving, take it to refuel!");
+
         }
         public void refuel()
         {
             stateOfFuel = 0.0;
+            Console.WriteLine("The bus will be lit");
         }
         public void treat()
         {
             LastTreatDate = DateTime.Now;
             kmSinceLastTreat = 0.0;
+            Console.WriteLine("The bus was taken care");
         }
-        static int index=0;//counter for printing the bus method
-        public void printBus()
+     
+        public void printBus(int index)
         {
-            index++;
             Console.Write("Bus #{0} :",index);
             Console.WriteLine(Id+"-> "+ LastTreatDate);
         }
@@ -111,7 +115,7 @@ namespace dotNet5781_01_6715_7489
             Console.WriteLine("Enter 4 to present all the driving information");
             Console.WriteLine("Enter 0 to exit from the system");
 
-            int choise;
+            int choise, counter=0;
             string licenseNumber;
             DateTime StarDate;
             DateTime treaDate;
@@ -143,19 +147,28 @@ namespace dotNet5781_01_6715_7489
                             Console.WriteLine("Enter the license number: ");
                             licenseNumber = Console.ReadLine();
                         }
-                        while ((StarDate.Day >= 2018 && licenseNumber.Length != 8) ||
-                            (StarDate.Day < 2018 && licenseNumber.Length != 7));
+                        while ((StarDate.Year >= 2018 && licenseNumber.Length != 8) ||
+                            (StarDate.Year < 2018 && licenseNumber.Length != 7));
+                        do
+                        {
+                            Console.WriteLine("Enter the mileage of the bus: ");
+                            double.TryParse(Console.ReadLine(), out kilometer);
+                        }
+                        while (kilometer < 0);
 
+                        do
+                        {
+                            Console.WriteLine("Enter the number of miles since the last refueling: ");
+                            double.TryParse(Console.ReadLine(), out stateFuel);
+                        }
+                        while (kilometer < 0);
 
-                        Console.WriteLine("Enter the number of miles since the last refueling: ");
-                        double.TryParse(Console.ReadLine(), out stateFuel);
-
-                        Console.WriteLine("Enter the mileage of the bus: ");
-                        double.TryParse(Console.ReadLine(), out kilometer);
-
-                        Console.WriteLine("Enter the miles the bus drived since the last treat: ");
-                        double.TryParse(Console.ReadLine(), out kmSinceTreat);
-
+                        do
+                        {
+                            Console.WriteLine("Enter the miles the bus drived since the last treat: ");
+                            double.TryParse(Console.ReadLine(), out kmSinceTreat);
+                        }
+                        while (kilometer < 0);
 
                         bus = new Bus(licenseNumber, StarDate, treaDate, kmSinceTreat, stateFuel, kilometer);
                         listOfBuses.Add(bus);
@@ -167,7 +180,7 @@ namespace dotNet5781_01_6715_7489
                             licenseNumber = Console.ReadLine();
                         }
                         while (licenseNumber.Length != 8 && licenseNumber.Length != 7);
-                        int numberOfKm = rand.Next(20001);
+                        int numberOfKm = rand.Next(1201);
 
                         bus = returnBusFromList(listOfBuses, licenseNumber);
                         if (bus == null)
@@ -209,7 +222,8 @@ namespace dotNet5781_01_6715_7489
                         break;
                     case 4:foreach(Bus item in listOfBuses)
                         {
-                            item.printBus();
+                            counter++;
+                            item.printBus(counter);
                         }
                         break;
                     case 0:
@@ -220,7 +234,7 @@ namespace dotNet5781_01_6715_7489
 
 
                 }
-
+                Console.WriteLine("Choose one of the following:");
             } while (choise != 0);
 
         }
