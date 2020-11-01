@@ -54,7 +54,7 @@ namespace dotNet5781_01_6715_7489
         public void refuel()
         {
             stateOfFuel = 0.0;
-            Console.WriteLine("The bus will be lit");
+            Console.WriteLine("The bus refueled");
         }
         public void treat()
         {
@@ -234,6 +234,7 @@ namespace dotNet5781_01_6715_7489
 
 
                 }
+                Console.WriteLine();
                 Console.WriteLine("Choose one of the following:");
             } while (choise != 0);
 
