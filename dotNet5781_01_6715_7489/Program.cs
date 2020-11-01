@@ -11,7 +11,7 @@ namespace dotNet5781_01_6715_7489
     class Bus
     {
         private string id;
-        public string Id
+        public string Id//property
         {
             get { return id; }
             private set { id = value; }
@@ -19,13 +19,15 @@ namespace dotNet5781_01_6715_7489
         public DateTime StartDate;
         public DateTime LastTreatDate;
         private double kilometrazh;
-        public double Kilometrazh
+        public double Kilometrazh//property
         {
             get { return kilometrazh; }
             private set { kilometrazh = value; }
         }
         public double stateOfFuel;
         public double kmSinceLastTreat;
+        
+        //constructor
         public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, double fuel = 0.0, double km = 0.0)
         {
             Id = idNumber;
@@ -35,9 +37,11 @@ namespace dotNet5781_01_6715_7489
             stateOfFuel = fuel;
             kmSinceLastTreat = kmSinceTreat;
         }
+       
+        //function that checks if the bus can take the current driving
         public void checkingBusFit(int numberOfKm)
         {
-            TimeSpan diff = DateTime.Now - LastTreatDate;
+            TimeSpan diff = DateTime.Now - LastTreatDate;//the difference between the last treat day and today
             if (stateOfFuel + numberOfKm <= 1200)//can take the driving from the fuel aspect
                 if (diff.TotalDays < 365 && kmSinceLastTreat + numberOfKm <= 20000)//can take the driving from the treat aspect
                 {
@@ -51,11 +55,15 @@ namespace dotNet5781_01_6715_7489
             else Console.WriteLine("The bus can not take the driving, take it to refuel!");
 
         }
+       
+        //function that update the refuel
         public void refuel()
         {
             stateOfFuel = 0.0;
             Console.WriteLine("The bus refueled");
         }
+       
+        //function that update the date of the last treat and the km since the last treat
         public void treat()
         {
             LastTreatDate = DateTime.Now;
@@ -63,6 +71,7 @@ namespace dotNet5781_01_6715_7489
             Console.WriteLine("The bus was taken care");
         }
      
+        //function that prints the number license of the bus and the km since the last treat
         public void printBus(int index)
         {
             Console.Write("Bus #{0}: ",index);
@@ -77,7 +86,7 @@ namespace dotNet5781_01_6715_7489
                 for (int i = 5; i < 8; i++)
                     Console.Write(id[i]);
             }
-            else
+            else//if(id.length==7)
             {
                 for (int i = 0; i < 2; i++)
                     Console.Write(id[i]);
@@ -120,15 +129,16 @@ namespace dotNet5781_01_6715_7489
             return date;
 
         }
+
+        //function that return specific bus from the list of the buses
         static public Bus returnBusFromList(List<Bus> listOfBuses, string licenseNumber)
         {
-            foreach (Bus item in listOfBuses)
+            foreach (Bus item in listOfBuses)//pass all over the list
                 if (item.Id == licenseNumber)
                     return item;
             return null;
         }
         static public Random rand = new Random(DateTime.Now.Millisecond);
-        enum Options { Exit, AddBus, ChooseBus, RefuelOrCare, StateOfTheBuses }
         static void Main(string[] args)
         {
             Console.WriteLine("Buses System");
@@ -149,16 +159,14 @@ namespace dotNet5781_01_6715_7489
             Bus bus;
 
             List<Bus> listOfBuses = new List<Bus>();
-            // string ch;
+   
             do
             {
-
-                //ch = Console.ReadLine();
                 int.TryParse(Console.ReadLine(), out choise);
                 switch (choise)
                 {
 
-                    case 1:
+                    case 1://add bus to the system
                         Console.WriteLine("Enter the date of commencement of activity");
                         StarDate = getDateFromUser();
 
@@ -173,6 +181,8 @@ namespace dotNet5781_01_6715_7489
                         }
                         while ((StarDate.Year >= 2018 && licenseNumber.Length != 8) ||
                             (StarDate.Year < 2018 && licenseNumber.Length != 7));
+
+                        //input the kilometer and checks the correctness of the input
                         do
                         {
                             Console.WriteLine("Enter the mileage of the bus: ");
@@ -180,32 +190,37 @@ namespace dotNet5781_01_6715_7489
                         }
                         while (kilometer < 0);
 
+                        //input the stateFuel and checks the correctness of the input
                         do
                         {
                             Console.WriteLine("Enter the number of miles since the last refueling: ");
                             double.TryParse(Console.ReadLine(), out stateFuel);
                         }
-                        while (kilometer < 0);
+                        while (stateFuel < 0);
 
+                        //input the kmSinceTreat and checks the correctness of the input
                         do
                         {
                             Console.WriteLine("Enter the miles the bus drived since the last treat: ");
                             double.TryParse(Console.ReadLine(), out kmSinceTreat);
                         }
-                        while (kilometer < 0);
+                        while (kmSinceTreat < 0);
 
+                        //sending to the constructor
                         bus = new Bus(licenseNumber, StarDate, treaDate, kmSinceTreat, stateFuel, kilometer);
+                      //add the new bus to the list
                         listOfBuses.Add(bus);
                         break;
-                    case 2:
+                    case 2://choose a bus to a driving
                         do
                         {
                             Console.WriteLine("Enter the license number: ");
                             licenseNumber = Console.ReadLine();
                         }
                         while (licenseNumber.Length != 8 && licenseNumber.Length != 7);
-                        int numberOfKm = rand.Next(1201);
+                        int numberOfKm = rand.Next(1201);//choose a random number
 
+                        //check if the bus is exist at the system
                         bus = returnBusFromList(listOfBuses, licenseNumber);
                         if (bus == null)
                         {
@@ -215,14 +230,14 @@ namespace dotNet5781_01_6715_7489
                         else
                             bus.checkingBusFit(numberOfKm);
                         break;
-                    case 3:
+                    case 3://treat/refuel
                         do
                         {
                             Console.WriteLine("Enter the license number: ");
                             licenseNumber = Console.ReadLine();
                         }
                         while (licenseNumber.Length != 8 && licenseNumber.Length != 7);
-
+                        //check if the bus is exist at the system
                         bus = returnBusFromList(listOfBuses, licenseNumber);
 
                         if (bus == null)
@@ -244,7 +259,9 @@ namespace dotNet5781_01_6715_7489
                             break;
                         }
                         break;
-                    case 4:foreach(Bus item in listOfBuses)
+                    case 4://print all the buses at the system
+                        counter = 0;
+                        foreach(Bus item in listOfBuses)
                         {
                             counter++;
                             item.printBus(counter);
@@ -256,12 +273,149 @@ namespace dotNet5781_01_6715_7489
                         Console.WriteLine("ERROR");
                         break;
 
-
                 }
                 Console.WriteLine();
                 Console.WriteLine("Choose one of the following:");
             } while (choise != 0);
-
         }
+       
     }
 }
+//Buses System
+//Choose one of the following:
+//Enter 1 to add bus to the system
+//Enter 2 to choose bus to driving
+//Enter 3 to refuel the bus or take care of the bus
+//Enter 4 to present all the driving information
+//Enter 0 to exit from the system
+//1
+//Enter the date of commencement of activity
+//Year: 2000
+//Month: 12
+//Day: 3
+//Enter the date of last treat of the bus:
+//Year: 2020
+//Month: 5
+//Day: 3
+//Enter the license number:
+//0000001
+//Enter the mileage of the bus:
+//30000
+//Enter the number of miles since the last refueling:
+//0
+//Enter the miles the bus drived since the last treat:
+//15000
+
+//Choose one of the following:
+//1
+//Enter the date of commencement of activity
+//Year: 2019
+//Month: 8
+//Day: 14
+//Enter the date of last treat of the bus:
+//Year: 2020
+//Month: 8
+//Day: 1
+//Enter the license number:
+//00000002
+//Enter the mileage of the bus:
+//100000
+//Enter the number of miles since the last refueling:
+//1199
+//Enter the miles the bus drived since the last treat:
+//1000
+
+//Choose one of the following:
+//1
+//Enter the date of commencement of activity
+//Year: 1998
+//Month: 12
+//Day: 23
+//Enter the date of last treat of the bus:
+//Year: 2000
+//Month: 10
+//Day: 2
+//Enter the license number:
+//0000003
+//Enter the mileage of the bus:
+//150000
+//Enter the number of miles since the last refueling:
+//1000
+//Enter the miles the bus drived since the last treat:
+//10000
+
+//Choose one of the following:
+//1
+//Enter the date of commencement of activity
+//Year: 2005
+//Month: 12
+//Day: 23
+//Enter the date of last treat of the bus:
+//Year: 2020
+//Month: 6
+//Day: 1
+//Enter the license number:
+//0000004
+//Enter the mileage of the bus:
+//30000
+//Enter the number of miles since the last refueling:
+//5
+//Enter the miles the bus drived since the last treat:
+//20000
+
+//Choose one of the following:
+//4
+//Bus #1: 00-000-01-> 15000
+//Bus #2: 000-00-002-> 1000
+//Bus #3: 00-000-03-> 10000
+//Bus #4: 00-000-04-> 20000
+
+//Choose one of the following:
+//2
+//Enter the license number:
+//00000002
+//The bus can not take the driving, take it to refuel!
+
+//Choose one of the following:
+//3
+//Enter the license number:
+//00000002
+//Enter r for refuel and t for treat:
+//r
+//The bus refueled
+
+//Choose one of the following:
+//2
+//Enter the license number:
+//0000004
+//The bus can not take the driving, take it to a treat!!
+
+//Choose one of the following:
+//3
+//Enter the license number:
+//0000004
+//Enter r for refuel and t for treat:
+//t
+//The bus was taken care
+
+//Choose one of the following:
+//2
+//Enter the license number:
+//00000002
+//The bus can take the driving, have a good day!
+
+//Choose one of the following:
+//2
+//Enter the license number:
+//0000004
+//The bus can take the driving, have a good day!
+
+//Choose one of the following:
+//4
+//Bus #1: 00-000-01-> 15000
+//Bus #2: 000-00-002-> 1177
+//Bus #3: 00-000-03-> 10000
+//Bus #4: 00-000-04-> 106
+
+//Choose one of the following:
+//0
