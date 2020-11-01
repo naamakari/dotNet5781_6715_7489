@@ -44,7 +44,7 @@ namespace dotNet5781_01_6715_7489
                     Kilometrazh += numberOfKm;
                     stateOfFuel += numberOfKm;
                     kmSinceLastTreat += numberOfKm;
-                    Console.WriteLine("The bus can not take the driving, have a good day!");
+                    Console.WriteLine("The bus can take the driving, have a good day!");
                 }
 
                 else Console.WriteLine("The bus can not take the driving, take it to a treat!!");
@@ -65,8 +65,32 @@ namespace dotNet5781_01_6715_7489
      
         public void printBus(int index)
         {
-            Console.Write("Bus #{0} :",index);
-            Console.WriteLine(Id+"-> "+ LastTreatDate);
+            Console.Write("Bus #{0}: ",index);
+            if (id.Length == 8)
+            {
+                for (int i = 0; i < 3; i++)
+                    Console.Write(id[i]);
+                Console.Write("-");
+                for (int i = 3; i < 5; i++)
+                    Console.Write(id[i]);
+                Console.Write("-");
+                for (int i = 5; i < 8; i++)
+                    Console.Write(id[i]);
+            }
+            else
+            {
+                for (int i = 0; i < 2; i++)
+                    Console.Write(id[i]);
+                Console.Write("-");
+                for (int i = 2; i < 5; i++)
+                    Console.Write(id[i]);
+                Console.Write("-");
+                for (int i = 5; i < 7; i++)
+                    Console.Write(id[i]);
+            }
+
+
+                Console.WriteLine("-> "+ kmSinceLastTreat);
         }
     }
     class Program
