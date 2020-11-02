@@ -14,17 +14,17 @@ namespace dotNet5781_02_6715_7489
     public class location
     {
         static public Random rand = new Random(DateTime.Now.Millisecond);
-        float latitude;
-        float longitude;
+        public float Latitude { get; }
+       public float Longitude { get;}
         public location()
         {
             //choose a random numbers 
-            latitude = (float)rand.NextDouble() + rand.Next(31, 34);
-            longitude = (float)rand.NextDouble() + rand.Next(34, 36);
+            Latitude = (float)rand.NextDouble() + rand.Next(31, 34);
+            Longitude = (float)rand.NextDouble() + rand.Next(34, 36);
         }
         public override string ToString()
         {
-            return latitude + "°N " + longitude + "°E";
+            return Latitude + "°N " + Longitude + "°E";
         }
     }
 
@@ -36,11 +36,11 @@ namespace dotNet5781_02_6715_7489
     public class busStation
     {
 
-        private string station_code;
+        
         public string StationCode
         {
-            get { return station_code; }
-            set { station_code = value; }
+            get;
+           private set;
         }
         public location StationLocation;
         public String AddressOfStation;
@@ -64,12 +64,70 @@ namespace dotNet5781_02_6715_7489
     /// </summary>
     public class lineBusStation: busStation
     {
-        private float dist_From_Last;
-        public float DistFromLast { get => dist_From_Last; set => dist_From_Last = value; }
+    static public Random rand = new Random(DateTime.Now.Millisecond);
+        public float DistFromLast { get; set; }
+        public float TimeFromLast { get; set; }
 
-        private float time_From_Last;
-        public float TimeFromLast { get => time_From_Last; set => time_From_Last = value; }
+        public lineBusStation(string code, string address = "/0") :base(code, address)
+        {
+            DistFromLast = (float)rand.NextDouble() + rand.Next(550);
+            TimeFromLast = rand.Next(360);
+        }
+
     }
+
+    public enum Area{ North,South,Center,Jerusalem,General}
+    /// <summary>
+    /// 
+    /// </summary>
+    public class lineOfBus
+    {
+
+        public List<lineBusStation> Stations { get; set; }//להגדיר רשימה בתכנית הראשית שנשלחת לבנאי
+        public int NumLine { get; set; }
+        public lineBusStation FirstStation { get; set; }
+        public lineBusStation LastStation { get; set; }
+        public Area AreaAtLand { get; set; }
+
+        //constructor
+        public lineOfBus(List<lineBusStation> line,int num,Area area)
+        {
+            Stations = new List<lineBusStation>();
+            foreach (lineBusStation item in line)//copy the list
+                Stations.Add(item);
+            Stations.First().DistFromLast = 0;//מעדכנים שמרחק התחנה הראשונה מהמתחנה שלפניה הוא 0
+            Stations.First().TimeFromLast = 0;//מעדכנים שהזמן בין התחנה הראשונה לתחנה שלפניה הוא 0 
+            FirstStation =Stations.First();//מעדכן את המאפיין להיות שווה לתחנה הראשונה ברשימה
+            LastStation = Stations.Last();//מעדכן את המאפיין להיות שווה לתחנה האחרונה ברשימה
+            AreaAtLand = area;
+            NumLine = num;
+        }
+
+    
+          
+        public override string ToString()
+        {
+            return NumLine + ", " + AreaAtLand + ", ";//+ f1();
+        }
+
+        public void AddRemoveStation(string code,char sign)
+        {
+
+        }
+        public bool IsExistAtPath(string code)
+        {
+            foreach (lineBusStation item in Stations)
+                if (item.StationCode == code)
+                    return true;
+            return false;
+        }
+
+        public float DisBetweenStation(string code1, string code2)
+        {
+            return 
+        }
+    }
+
 
     class Program
     {
