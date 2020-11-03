@@ -10,7 +10,7 @@ namespace dotNet5781_01_6715_7489
     {
         private string id;
         public string Id//property
-        {
+        { 
             get { return id; }
             private set { id = value; }
         }
