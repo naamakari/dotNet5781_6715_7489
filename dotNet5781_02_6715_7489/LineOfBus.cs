@@ -143,15 +143,15 @@ namespace dotNet5781_02_6715_7489
                 sumTime += Stations[i].TimeFromLast;
             return sumTime;
         }
-        public LineOfBus subPath(BusStation station1, BusStation station2)
+        public LineOfBus subPath(LineBusStation station1, LineBusStation station2)
         {
-            LineOfBus newLine = new LineOfBus(this.AreaAtLand);
+            LineOfBus newLine = new LineOfBus(station1,station2,this.AreaAtLand);
 
 
             int firstIndex, lastIndex;
             //נמצא את האינדקסים של המקום הראשון והאחרון
-            firstIndex = Stations.FindIndex(x => x.Station.StationCode == station1.StationCode);
-            lastIndex = Stations.FindIndex(x => x.Station.StationCode == station2.StationCode);
+            firstIndex = Stations.FindIndex(x => x.Station.StationCode == station1.Station.StationCode);
+            lastIndex = Stations.FindIndex(x => x.Station.StationCode == station2.Station.StationCode);
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
             for (int i = firstIndex; i <= lastIndex; i++)
