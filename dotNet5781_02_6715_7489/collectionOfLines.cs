@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6715_7489
 {
-    public class CollectionOfLines:IEnumerable
+    public class CollectionOfLines//: IEnumerable<LineOfBus>
     {
-        List<LineOfBus> Lines;
-        public IEnumerator GetEnumerator()
+        private List<LineOfBus> Lines;
+        public IEnumerator<LineOfBus> GetEnumerator()
         {
             return Lines.GetEnumerator();
         }
-
+        
         public CollectionOfLines()
         {
             Lines = new List<LineOfBus>();
