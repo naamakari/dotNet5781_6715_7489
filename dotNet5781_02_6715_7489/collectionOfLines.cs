@@ -14,17 +14,24 @@ namespace dotNet5781_02_6715_7489
         {
             return Lines.GetEnumerator();
         }
-        public bool condition(LineOfBus lnb, int code)
+
+        public CollectionOfLines()
         {
-            foreach (LineBusStation item in lnb.Stations)
-                if (item.Station.StationCode == code)
-                    return true;
+            Lines = new List<LineOfBus>();
         }
+       
         public List<LineOfBus> lineAcordingStation(int code)
         {
-            List<LineOfBus> newLines = new List<LineOfBus>();
-            return Lines(condition(code));
-            Lines.FindAll(x=>)
+            //return list of the lines that contain the current station 
+            if(Lines.FindAll(x => x.Search(code) == true)!=null)
+                return Lines.FindAll(x=>x.Search(code)==true);
+            throw new ArgumentException("No lines were found passing through this station");
+        }
+
+        public List<LineOfBus> SortLines()
+        {
+            Lines.Sort();
+            return Lines;
         }
 
     }
