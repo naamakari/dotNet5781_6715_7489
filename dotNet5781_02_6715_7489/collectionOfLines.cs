@@ -9,7 +9,7 @@ namespace dotNet5781_02_6715_7489
 {
     public class CollectionOfLines:IEnumerable
     {
-        List<LineOfBus> Lines;
+        public List<LineOfBus> Lines;
         public IEnumerator GetEnumerator()
         {
             return Lines.GetEnumerator();
@@ -23,8 +23,8 @@ namespace dotNet5781_02_6715_7489
         public List<LineOfBus> lineAcordingStation(int code)
         {
             //return list of the lines that contain the current station 
-            if(Lines.FindAll(x => x.Search(code) == true)!=null)
-                return Lines.FindAll(x=>x.Search(code)==true);
+            if(Lines.FindAll(x => x.IsStation(code) == true)!=null)
+                return Lines.FindAll(x=>x.IsStation(code)==true);
             throw new ArgumentException("No lines were found passing through this station");
         }
 
