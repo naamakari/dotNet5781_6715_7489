@@ -16,6 +16,7 @@ namespace dotNet5781_02_6715_7489
             //busStation bs=new busStation("1234","naharia");
             //bs.ToString();
             //Console.WriteLine(bs);
+
             Console.ReadKey();
         }
     }

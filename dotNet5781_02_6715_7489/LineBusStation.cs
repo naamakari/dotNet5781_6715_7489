@@ -18,9 +18,9 @@ namespace dotNet5781_02_6715_7489
 
         public LineBusStation(string code, string address = "/0" )
         {
-            DistFromLast = (float)rand.NextDouble() + rand.Next(550);
+            DistFromLast = 
             TimeFromLast = rand.Next(361);
-            Station = new BusStation(code, address);
+            Station = new BusStation(address);
         }
     }
 }

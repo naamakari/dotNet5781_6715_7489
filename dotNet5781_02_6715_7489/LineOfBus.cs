@@ -10,105 +10,104 @@ namespace dotNet5781_02_6715_7489
     /// <summary>
     /// מחלקה ברת השוואה של קווי אוטובוס
     /// </summary>
-    public class LineOfBus:IComparable
+    public class LineOfBus : IComparable
     {
         static int statisNumLine = 0;
         public List<LineBusStation> Stations { get; set; }//להגדיר רשימה בתכנית הראשית שנשלחת לבנאי
         public int NumLine { get; set; }
-        public LineBusStation FirstStation { get; set; }
-        public LineBusStation LastStation { get; set; }
-        public Area AreaAtLand { get; set; }
+        public LineBusStation FirstStation { get { return Stations.First(); } }
+        public LineBusStation LastStation { get { return Stations.Last(); } }
+                    public Area AreaAtLand { get; set; }
 
         //constructor
-        public LineOfBus(List<LineBusStation> line, Area area)
+        public LineOfBus(Area area)
         {
             Stations = new List<LineBusStation>();
-            foreach (LineBusStation item in line)//copy the list
-                Stations.Add(item);
-            Stations.First().DistFromLast = 0;//מעדכנים שמרחק התחנה הראשונה מהמתחנה שלפניה הוא 0
-            Stations.First().TimeFromLast = 0;//מעדכנים שהזמן בין התחנה הראשונה לתחנה שלפניה הוא 0 
-            FirstStation = Stations.First();//מעדכן את המאפיין להיות שווה לתחנה הראשונה ברשימה
-            LastStation = Stations.Last();//מעדכן את המאפיין להיות שווה לתחנה האחרונה ברשימה
+            //foreach (LineBusStation item in line)//copy the list
+            //    Stations.Add(item);
+            //Stations.First().DistFromLast = 0;//מעדכנים שמרחק התחנה הראשונה מהמתחנה שלפניה הוא 0
+            //Stations.First().TimeFromLast = 0;//מעדכנים שהזמן בין התחנה הראשונה לתחנה שלפניה הוא 0 
+            //FirstStation = Stations.First();//מעדכן את המאפיין להיות שווה לתחנה הראשונה ברשימה
+            //LastStation = Stations.Last();//מעדכן את המאפיין להיות שווה לתחנה האחרונה ברשימה
+           
+           
             AreaAtLand = area;
-            NumLine= ++statisNumLine;
+            NumLine = ++statisNumLine;
         }
 
 
 
         public override string ToString()
         {
-            string str1 = "", str2 = "";
+            string str1 = "";
             foreach (LineBusStation item in Stations)
             {
                 str1 += "-> ";
                 str1 += item.Station.StationCode;
             }
-            Stations.Reverse();//הןפך את הרשימה כדי שנוכל לעבור מהסוף להתחלה
-            foreach (LineBusStation item in Stations)
-            {
-                str2 += "-> ";
-                str2 += item.Station.StationCode;
-
-            }
-            Stations.Reverse();//הופך את הרשימה בחזרה לסדר המקורי
-            return NumLine + ", " + AreaAtLand + ", " + str1 + ", " + str2;
+            return NumLine + ", " + AreaAtLand + ", " + str1;
         }
 
-        public void AddRemoveStation(LineBusStation station, char sign, string code)
+        public void AddRemoveStation(LineBusStation addSta, char sign, int codeBefore)
         {
-            int index = -1;
-
+            int index;
             if (sign == 'a')//הוספה
             {
-                if (code == "0")//רוצים להוסיף תחנה לפני התחנה הראשונה
+
+                if (codeBefore == 0)//רוצים להוסיף תחנה לפני התחנה הראשונה
                 {
-                    Stations.Insert(0, station);//מכניסים למקום הראשון ברשימה
-                    FirstStation = station;//מעדכנים את המאפיין של המקום הראשון להיות התחנה שהתווספה
+                    Stations.Insert(0, addSta);//מכניסים למקום הראשון ברשימה
                     Stations.First().DistFromLast = 0;
                     Stations.First().TimeFromLast = 0;
                 }
                 else//אם התחנה היא באמצע הרשימה או בסופה
                 {
-                    foreach (LineBusStation item in Stations)
+                    index = Stations.FindIndex(x => x.Station.StationCode == codeBefore);
+                    if (index == Stations.Capacity)//אם התחנה שאחריה רוצים להכניס היא התחנה האחרונה
                     {
-                        index++;//מונה את מספר האיברים ברשימה כדי לדעת לאן להכניס 
-                        if (item.Station.StationCode == code)
-                            break;
+
+
+                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
+                        addSta.TimeFromLast = (int)addSta.DistFromLast;//מחשב לפי זמן  ממוצע של 60 קמש לשעה וקמ לדקה
+                        Stations.Add(addSta);//תוסיף לסוף של הרשימה
+
+
 
                     }
-                    if (index == Stations.Capacity)//אם התחנה שאחריה רוצים הלכניס היא התחנה האחרונה
+                    else if (index == -1)//האיבר שאחריו רוצים להכניס לא קיים
+                        throw new ArgumentException("The station isn't exist!!");
+                    else//רוצים להוסיף תחנה באמצע המסלול
                     {
-                        if (Stations[index].Station.StationCode == code)
-                        {
-                            Stations.Add(station);//תוסיף לסוף של הרשימה
-                            LastStation = station;//תעדכן את המאפיין של התחנה האחרונה להיות התחנה שהתווספה עכשיו
-                        }
-                        else throw new ArgumentException("The station isn't exist!!");
+                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
+                        addSta.TimeFromLast = (int)addSta.DistFromLast;//מחשב לפי זמן  ממוצע של 60 קמש לשעה וקמ לדקה
+                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
+                        Stations.Insert(index + 1, addSta);//הכנסה לאמצע הרשימה
                     }
-                    else
-                        Stations.Insert(index + 1, station);//הכנסה לאמצע הרשימה
                 }
 
 
             }
             else if (sign == 'r')//הסרה של תחנה מהרשימה
             {
-                if (IsExistAtPath(station.Station.StationCode) == true)//מצאנו את התחנה המבוקשת ברשימה
+                index = Stations.FindIndex(x => x == addSta);
+                if (index == 0)//אם מחקנו את התחנה הראשונה מהרשימה
                 {
-                    Stations.Remove(station);
-                    if (Stations.First().DistFromLast != 0)//אם מחקנו את התחנה הראשונה מהרשימה
-                    {
-                        Stations.First().DistFromLast = 0;
-                        Stations.First().TimeFromLast = 0;
-                    }
+                    Stations[1].DistFromLast = 0;
+                    Stations[1].TimeFromLast = 0;
                 }
-                else
+                else  if (index == -1)
                     throw new ArgumentException("The station isn't exist!!");
+                else
+                {
+                    Stations[index + 1].DistFromLast += Stations[index].DistFromLast;
+                    Stations[index + 1].TimeFromLast += Stations[index].TimeFromLast;
+                }
+                Stations.Remove(addSta);
             }
             else
                 throw new ArgumentException("The caracter isn't valid!");
         }
-        public bool IsExistAtPath(string code)
+        public bool IsExistAtPath(int code)
         {
             foreach (LineBusStation item in Stations)
                 if (item.Station.StationCode == code)
@@ -116,7 +115,7 @@ namespace dotNet5781_02_6715_7489
             return false;
         }
 
-        public float DisBetweenStations(string code1, string code2)
+        public float DisBetweenStations(int code1, int code2)
         {
             int firstIndex, lastIndex;
             float sumDis = 0;
@@ -132,7 +131,7 @@ namespace dotNet5781_02_6715_7489
                 sumDis += Stations[i].DistFromLast;
             return sumDis;
         }
-        public int TimeBetweenStations(string code1, string code2)
+        public int TimeBetweenStations(int code1, int code2)
         {
             int firstIndex, lastIndex;
             int sumTime = 0;
@@ -150,18 +149,18 @@ namespace dotNet5781_02_6715_7489
         }
         public LineOfBus subPath(BusStation station1, BusStation station2)
         {
-            //ניצור רשימה חדשה כדי להעביר אליה את תת המסלול
-            List<LineBusStation> newStation = new List<LineBusStation>();
+            LineOfBus newLine = new LineOfBus(this.AreaAtLand);
+
+
             int firstIndex, lastIndex;
-            firstIndex = Stations.FindIndex(x => x.Station.StationCode==station1.StationCode);
-            lastIndex = Stations.FindIndex(x => x.Station.StationCode==station2.StationCode);
+            //נמצא את האינדקסים של המקום הראשון והאחרון
+            firstIndex = Stations.FindIndex(x => x.Station.StationCode == station1.StationCode);
+            lastIndex = Stations.FindIndex(x => x.Station.StationCode == station2.StationCode);
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
             for (int i = firstIndex; i <= lastIndex; i++)
-                //נוסיף לרשימה החדשה את כל האיברים המתאימים
-                newStation.Add(Stations[i]);
-            //נאתחל אותה בבנאי
-            LineOfBus newLine = new LineOfBus(newStation, this.AreaAtLand);
+                //נוסיף לקו החדש את התחנות המתאימות
+                newLine.AddRemoveStation(Stations[i], 'a', Stations[i - 1].Station.StationCode);
             return newLine;
         }
         //מימוש של פונקציית קומפייר טו
@@ -169,8 +168,8 @@ namespace dotNet5781_02_6715_7489
         {
             LineOfBus lb = (LineOfBus)obj;
             int thisTime, lbTime;
-            thisTime=this.TimeBetweenStations(this.FirstStation.Station.StationCode, this.LastStation.Station.StationCode);
-           lbTime= lb.TimeBetweenStations(lb.FirstStation.Station.StationCode, lb.LastStation.Station.StationCode);
+            thisTime = this.TimeBetweenStations(this.FirstStation.Station.StationCode, this.LastStation.Station.StationCode);
+            lbTime = lb.TimeBetweenStations(lb.FirstStation.Station.StationCode, lb.LastStation.Station.StationCode);
             return thisTime.CompareTo(lbTime);
         }
 
