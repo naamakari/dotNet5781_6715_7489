@@ -12,7 +12,8 @@ namespace dotNet5781_02_6715_7489
     /// <param name="args"></param>
     public class BusStation
     {
-        public string StationCode
+        static public int code=0;
+        public int StationCode
         {
             get;
             private set;
@@ -22,9 +23,9 @@ namespace dotNet5781_02_6715_7489
 
         //defualt constructor
         public BusStation() { }
-        public BusStation(string code, string address = "/0")
+        public BusStation( string address = "/0")
         {
-            StationCode = code;
+            StationCode=++code;
             StationLocation = new Location();
             AddressOfStation = address;
         }
