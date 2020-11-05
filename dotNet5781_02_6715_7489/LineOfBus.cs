@@ -18,19 +18,15 @@ namespace dotNet5781_02_6715_7489
         public LineBusStation FirstStation { get { return Stations.First(); } }
         public LineBusStation LastStation { get { return Stations.Last(); } }
                     public Area AreaAtLand { get; set; }
-
+        
         //constructor
-        public LineOfBus(Area area)
+        public LineOfBus(LineBusStation startStation, LineBusStation destStation, Area area)
         {
             Stations = new List<LineBusStation>();
-            //foreach (LineBusStation item in line)//copy the list
-            //    Stations.Add(item);
-            //Stations.First().DistFromLast = 0;//מעדכנים שמרחק התחנה הראשונה מהמתחנה שלפניה הוא 0
-            //Stations.First().TimeFromLast = 0;//מעדכנים שהזמן בין התחנה הראשונה לתחנה שלפניה הוא 0 
-            //FirstStation = Stations.First();//מעדכן את המאפיין להיות שווה לתחנה הראשונה ברשימה
-            //LastStation = Stations.Last();//מעדכן את המאפיין להיות שווה לתחנה האחרונה ברשימה
-           
-           
+            Stations.Add(startStation);
+            destStation.DistFromLast = destStation.Station.StationLocation.GetDistanceTo(startStation.Station.StationLocation);
+            destStation.TimeFromLast = (int)destStation.DistFromLast;
+            Stations.Add(destStation);
             AreaAtLand = area;
             NumLine = ++statisNumLine;
         }
@@ -63,7 +59,7 @@ namespace dotNet5781_02_6715_7489
                 else//אם התחנה היא באמצע הרשימה או בסופה
                 {
                     index = Stations.FindIndex(x => x.Station.StationCode == codeBefore);
-                    if (index == Stations.Capacity)//אם התחנה שאחריה רוצים להכניס היא התחנה האחרונה
+                    if (index == Stations.Count)//אם התחנה שאחריה רוצים להכניס היא התחנה האחרונה
                     {
 
 

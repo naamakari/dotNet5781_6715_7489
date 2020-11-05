@@ -7,18 +7,27 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6715_7489
 {
+
+
+    public interface IEnumerable
+    { }
+
     public class CollectionOfLines:IEnumerable
     {
         public List<LineOfBus> Lines;
-        public IEnumerator GetEnumerator()
-        {
-            return Lines.GetEnumerator();
-        }
-
+       
+       
         public CollectionOfLines()
         {
             Lines = new List<LineOfBus>();
         }
+        public IEnumerator<LineOfBus> GetEnumerator()
+        {
+            return Lines.GetEnumerator();
+        }
+
+
+
 
         public void AddLine(LineOfBus lineBus)
         {
@@ -27,8 +36,9 @@ namespace dotNet5781_02_6715_7489
             if (line_Bus!=null)//if a bus with the same line number is found
             {
                 //Check if it is the same line in opposite directions
-                if (line_Bus.FirstStation.CompareTo(lineBus.LastStation) != 0 || line_Bus.FirstStation.CompareTo(lineBus.LastStation) != 0)
+                if (line_Bus.FirstStation.CompareTo(lineBus.LastStation) != 0 || line_Bus.LastStation.CompareTo(lineBus.FirstStation) != 0)
                     throw new ArgumentException("ERROR! the num of line exists in the system");
+                Lines.Add(lineBus);//add the reverse line
             }
             else
             {
@@ -37,6 +47,7 @@ namespace dotNet5781_02_6715_7489
                 else
                     throw new ArgumentException("ERROR! there are no stops on this bus line");
             }
+ 
         }
        
         public List<LineOfBus> LineAcordingStation(int code)
@@ -52,6 +63,11 @@ namespace dotNet5781_02_6715_7489
             Lines.Sort();
             return Lines;
         }
-
+        //definition of indexer
+        public LineOfBus this[int index]
+        {
+            get { return Lines[index]; }
+            set { Lines.Insert(index, value); }
+        }
     }
 }
