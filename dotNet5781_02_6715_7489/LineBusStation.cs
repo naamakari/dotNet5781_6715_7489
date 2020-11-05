@@ -9,7 +9,7 @@ namespace dotNet5781_02_6715_7489
     /// <summary>
     /// class for line bus station
     /// </summary>
-    public class LineBusStation
+    public class LineBusStation:IComparable
     {
         static public Random rand = new Random(DateTime.Now.Millisecond);
         public float DistFromLast { get; set; }
@@ -21,6 +21,12 @@ namespace dotNet5781_02_6715_7489
             DistFromLast =0;
             TimeFromLast =0;
             Station = new BusStation(address);
+        }
+
+        public int CompareTo(object obj)
+        {
+            LineBusStation lb = (LineBusStation)obj;
+            return this.Station.StationCode.CompareTo(lb.Station.StationCode);
         }
     }
 }

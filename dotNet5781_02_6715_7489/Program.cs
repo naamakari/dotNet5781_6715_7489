@@ -15,7 +15,7 @@ namespace dotNet5781_02_6715_7489
             
         }
 
-        static public void AddStation(CollectionOfLines lineSystem, int numLine)
+        static public void AddStation(CollectionOfLines lineSystem, int numLine, List<LineBusStation> allStation)
         {
             int index, numSt, numStBefore;
             LineBusStation newStation;
@@ -26,11 +26,9 @@ namespace dotNet5781_02_6715_7489
             int.TryParse(Console.ReadLine(),out numSt);
             Console.WriteLine("enter the code of the station after which you want to add," +
                 " if you want to add a first station - enter 0");
-            int.TryParse(Console.ReadLine(), out numStBefore);
-
-            newStation = lineSystem.Lines[index].Search(numSt);
-
-            lineSystem.Lines[index].AddRemoveStation(newStation,'a',numStBefore);
+           int.TryParse(Console.ReadLine(), out numStBefore);
+           newStation = allStation.Find(x => x.Station.StationCode == numSt);//return the specific statio
+           lineSystem.Lines[index].AddRemoveStation(newStation,'a',numStBefore);//add the station for the line
         }
      
         static void Main(string[] args)
@@ -51,9 +49,9 @@ namespace dotNet5781_02_6715_7489
 
             CollectionOfLines lineSystem = new CollectionOfLines();
             //לדעתי כדאי את כל 40 התחנות להכניס ישירות לרישמה הזו וכך נוכל להדפיס בסוף
-            List<BusStation> allStation = new List<BusStation>();
+            List<LineBusStation> allStation = new List<LineBusStation>();
             //לדוגמא
-            allStation.Add(new BusStation());
+            allStation.Add(new LineBusStation());
             //אולי אפשר אפילו לעשות לולאת פור של 40 תחנות ובתוך הלולאה לכתוב את השורה הזאת
             
             {
@@ -71,7 +69,7 @@ namespace dotNet5781_02_6715_7489
                             {
                                 Console.WriteLine("enter the line number where you want to add a station");
                                 int.TryParse(Console.ReadLine(), out numLine);
-                                AddStation(lineSystem,numLine);
+                                AddStation(lineSystem,numLine,allStation);
                             }
                             else
                                 throw new ArgumentException("invalid choice");
