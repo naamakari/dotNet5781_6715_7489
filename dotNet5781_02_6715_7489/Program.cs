@@ -12,7 +12,7 @@ namespace dotNet5781_02_6715_7489
     {
         static public void AddLine(CollectionOfLines lineSystem)
         {
-            lineSystem.
+            
         }
 
         static public void AddStation(CollectionOfLines lineSystem, int numLine)
@@ -69,7 +69,7 @@ namespace dotNet5781_02_6715_7489
                                 AddLine(lineSystem);
                             else if (charChoise == 's')
                             {
-                                Console.WriteLine("enter the line number where you want to add a station);
+                                Console.WriteLine("enter the line number where you want to add a station");
                                 int.TryParse(Console.ReadLine(), out numLine);
                                 AddStation(lineSystem,numLine);
                             }

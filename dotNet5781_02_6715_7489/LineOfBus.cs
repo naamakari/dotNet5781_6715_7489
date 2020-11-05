@@ -187,7 +187,7 @@ namespace dotNet5781_02_6715_7489
             foreach (LineBusStation item in Stations)
                 if (item.Station.StationCode == code)
                     return item;
-            throw new ArgumentException("The station isn't exist!!")
+            throw new ArgumentException("The station isn't exist!!");
         }
 
     }
