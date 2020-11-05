@@ -22,7 +22,7 @@ namespace dotNet5781_02_6715_7489
         public String AddressOfStation;
 
         //defualt constructor
-        public BusStation() { }
+        //public BusStation() { }
         public BusStation( string address = "/0")
         {
             StationCode=++code;

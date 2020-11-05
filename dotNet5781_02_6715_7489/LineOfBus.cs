@@ -172,13 +172,22 @@ namespace dotNet5781_02_6715_7489
             lbTime = lb.TimeBetweenStations(lb.FirstStation.Station.StationCode, lb.LastStation.Station.StationCode);
             return thisTime.CompareTo(lbTime);
         }
-        public bool Search( int code)
+        public bool IsStation( int code)
         {
             //the method search if some station is exist at bus
             foreach (LineBusStation item in Stations)
                 if (item.Station.StationCode == code)
                     return true;
             return false;
+        }
+
+        public LineBusStation Search(int code)
+        {
+            //the method search if some station is exist at bus
+            foreach (LineBusStation item in Stations)
+                if (item.Station.StationCode == code)
+                    return item;
+            throw new ArgumentException("The station isn't exist!!");
         }
 
     }
