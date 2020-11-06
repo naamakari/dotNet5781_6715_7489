@@ -77,7 +77,7 @@ namespace dotNet5781_02_6715_7489
             int choise, numLine, codeSt, start, destination;
             char charChoise;
             LineOfBus deBus;
-            LineBusStation deStation
+            LineBusStation deStation;
             
 
             List<LineBusStation> allStation = new List<LineBusStation>();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
@@ -7,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_6715_7489
 {
-
-
-    public interface IEnumerable
-    { }
 
     public class CollectionOfLines:IEnumerable
     {
@@ -21,7 +18,7 @@ namespace dotNet5781_02_6715_7489
         {
             Lines = new List<LineOfBus>();
         }
-        public IEnumerator<LineOfBus> GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return Lines.GetEnumerator();
         }

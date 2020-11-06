@@ -8,7 +8,7 @@ namespace dotNet5781_02_6715_7489
 {
     public enum Area { North, South, Center, Jerusalem, General }
     /// <summary>
-    /// מחלקה ברת השוואה של קווי אוטובוס
+    /// Comparable class of bus lines
     /// </summary>
     public class LineOfBus : IComparable
     {
@@ -47,46 +47,46 @@ namespace dotNet5781_02_6715_7489
         public void AddRemoveStation(LineBusStation addSta, char sign, int codeBefore)
         {
             int index;
-            if (sign == 'a')//הוספה
+            if (sign == 'a')//adding
             {
 
-                if (codeBefore == 0)//רוצים להוסיף תחנה לפני התחנה הראשונה
+                if (codeBefore == 0)//Want to add a station before the first station
                 {
-                    Stations.Insert(0, addSta);//מכניסים למקום הראשון ברשימה
+                    Stations.Insert(0, addSta);//Put in first place on the list
                     Stations.First().DistFromLast = 0;
                     Stations.First().TimeFromLast = 0;
                 }
-                else//אם התחנה היא באמצע הרשימה או בסופה
+                else//If the station is in the middle of the list or at the end
                 {
                     index = Stations.FindIndex(x => x.Station.StationCode == codeBefore);
-                    if (index == Stations.Count)//אם התחנה שאחריה רוצים להכניס היא התחנה האחרונה
+                    if (index == Stations.Count)//If the station you want to insert is the last station
                     {
 
 
                         addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        addSta.TimeFromLast = (int)addSta.DistFromLast;//מחשב לפי זמן  ממוצע של 60 קמש לשעה וקמ לדקה
-                        Stations.Add(addSta);//תוסיף לסוף של הרשימה
+                        addSta.TimeFromLast = (int)addSta.DistFromLast;//Calculate per average time of 60 km per hour and km per minute
+                        Stations.Add(addSta);//Add to the end of the list
 
 
 
                     }
-                    else if (index == -1)//האיבר שאחריו רוצים להכניס לא קיים
+                    else if (index == -1)//The organ after which you want to insert does not exist
                         throw new ArgumentException("The station isn't exist!!");
-                    else//רוצים להוסיף תחנה באמצע המסלול
+                    else//Want to add a station in the middle of the route
                     {
                         addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        addSta.TimeFromLast = (int)addSta.DistFromLast;//מחשב לפי זמן  ממוצע של 60 קמש לשעה וקמ לדקה
+                        addSta.TimeFromLast = (int)addSta.DistFromLast;//Calculate per average time of 60 km per hour and km per minute
                         addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        Stations.Insert(index + 1, addSta);//הכנסה לאמצע הרשימה
+                        Stations.Insert(index + 1, addSta);//Insert to the middle of the list
                     }
                 }
 
 
             }
-            else if (sign == 'r')//הסרה של תחנה מהרשימה
+            else if (sign == 'r')//Remove a station from the list
             {
                 index = Stations.FindIndex(x => x == addSta);
-                if (index == 0)//אם מחקנו את התחנה הראשונה מהרשימה
+                if (index == 0)//If we deleted the first station from the list
                 {
                     Stations[1].DistFromLast = 0;
                     Stations[1].TimeFromLast = 0;
@@ -115,14 +115,14 @@ namespace dotNet5781_02_6715_7489
         {
             int firstIndex, lastIndex;
             float sumDis = 0;
-            //מוצאים את האינדקס ברשימה לפני הקוד הראשון שניתן
+            //Find the index in the list according to the first code given
             firstIndex = Stations.FindIndex(x => x.Station.StationCode == code1);
-            //מוצאים את האינדקס ברשימה לפי הקוד השני שניתן
+            //Find the index in the list according to the second code given
             lastIndex = Stations.FindIndex(x => x.Station.StationCode == code2);
-            //אם אחד מקודי התחנה לא נמצאים
+            //If one of the station codes is not present
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
-            //תוסיף לסכום את כל מרחקי הנסיעה של אחת מהתחנות
+            //Add to the sum all the travel distances of one of the stations
             for (int i = firstIndex; i <= lastIndex; i++)
                 sumDis += Stations[i].DistFromLast;
             return sumDis;
@@ -131,14 +131,14 @@ namespace dotNet5781_02_6715_7489
         {
             int firstIndex, lastIndex;
             int sumTime = 0;
-            //מוצאים את האינדקס ברשימה לפני הקוד הראשון שניתן
+            //Find the index in the list according to the first code given
             firstIndex = Stations.FindIndex(x => x.Station.StationCode == code1);
-            //מוצאים את האינדקס ברשימה לפי הקוד השני שניתן
+            //Find the index in the list according to the second code given
             lastIndex = Stations.FindIndex(x => x.Station.StationCode == code2);
-            //אם אחד מקודי התחנה לא נמצאים
+            //If one of the station codes is not present
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
-            //תוסיף לסכום את כל זמני הנסיעה של אחת מהתחנות
+            //Add to the sum all the travel times of one of the stations
             for (int i = firstIndex; i <= lastIndex; i++)
                 sumTime += Stations[i].TimeFromLast;
             return sumTime;
@@ -149,17 +149,17 @@ namespace dotNet5781_02_6715_7489
 
 
             int firstIndex, lastIndex;
-            //נמצא את האינדקסים של המקום הראשון והאחרון
+            //We will find the indexes of the first and last place
             firstIndex = Stations.FindIndex(x => x.Station.StationCode == station1.Station.StationCode);
             lastIndex = Stations.FindIndex(x => x.Station.StationCode == station2.Station.StationCode);
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
             for (int i = firstIndex; i <= lastIndex; i++)
-                //נוסיף לקו החדש את התחנות המתאימות
+                //We will add the appropriate stations to the new line
                 newLine.AddRemoveStation(Stations[i], 'a', Stations[i - 1].Station.StationCode);
             return newLine;
         }
-        //מימוש של פונקציית קומפייר טו
+        //Implementation of the ComputerTo function
         public int CompareTo(object obj)
         {
             LineOfBus lb = (LineOfBus)obj;
