@@ -181,6 +181,7 @@ namespace dotNet5781_02_6715_7489
                                     throw new MinimunStationsExeption("Invalid line");
                                 RemoveStation(allLines, numLine, allStation);
                             }
+
                             break;
                         case 3:
                             Console.WriteLine("Enter 's' to see all the lines that pass in specific statiom");
