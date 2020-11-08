@@ -52,8 +52,6 @@ namespace dotNet5781_02_6715_7489
                 foreach (LineOfBus item2 in destinationStation)
                     //checks if the numbers of the lines are the same
                     if (item1.NumLine == item2.NumLine)
-                        //checks if the lines are the same and not the opossite line
-                        if (item1.FirstStation.CompareTo(item2.FirstStation) == 0)
                             returnList.Add(item1);
             returnList.Sort();
             Console.WriteLine("Possible routes for travel: ");

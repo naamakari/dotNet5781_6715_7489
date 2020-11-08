@@ -44,7 +44,7 @@ namespace dotNet5781_02_6715_7489
             return NumLine + ", " + AreaAtLand + ", " + str1;
         }
 
-        public void AddRemoveStation(LineBusStation addSta, char sign, int addIndex)//int codeBefore)
+        public void AddRemoveStation(LineBusStation addSta, char sign, int addIndex)
         {
             int index;
             if (sign == 'a')//adding

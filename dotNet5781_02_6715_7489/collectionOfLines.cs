@@ -32,10 +32,7 @@ namespace dotNet5781_02_6715_7489
             LineOfBus line_Bus = Lines.Find(x => x.NumLine == lineBus.NumLine);
             if (line_Bus!=null)//if a bus with the same line number is found
             {
-                //Check if it is the same line in opposite directions
-                if (line_Bus.FirstStation.CompareTo(lineBus.LastStation) != 0 || line_Bus.LastStation.CompareTo(lineBus.FirstStation) != 0)
                     throw new ArgumentException("ERROR! the num of line exists in the system");
-                Lines.Add(lineBus);//add the reverse line
             }
             else
             {
