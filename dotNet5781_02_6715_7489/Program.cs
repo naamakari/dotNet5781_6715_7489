@@ -154,6 +154,8 @@ namespace dotNet5781_02_6715_7489
                             {
                                 Console.WriteLine("enter the line number where you want to add a station");
                                 int.TryParse(Console.ReadLine(), out numLine);
+                                if (numLine >= 1000)
+                                    throw new MinimunStationsExeption("Invalid line");
                                 AddStation(allLines, numLine, allStation);
                             }
                             else
@@ -166,6 +168,8 @@ namespace dotNet5781_02_6715_7489
                             {
                                 Console.WriteLine("enter the line number that you want to delete");
                                 int.TryParse(Console.ReadLine(), out numLine);
+                                if (numLine >= 1000)
+                                    throw new MinimunStationsExeption("Invalid line");
                                 deBus = allLines.Lines.Find(x => x.NumLine == numLine);
                                 allLines.Lines.Remove(deBus);
                             }
@@ -173,6 +177,8 @@ namespace dotNet5781_02_6715_7489
                             {
                                 Console.WriteLine("enter the line number where you want to delete a station");
                                 int.TryParse(Console.ReadLine(), out numLine);
+                                if (numLine >= 1000)
+                                    throw new MinimunStationsExeption("Invalid line");
                                 RemoveStation(allLines, numLine, allStation);
                             }
                             break;
