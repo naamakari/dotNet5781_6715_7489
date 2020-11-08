@@ -44,7 +44,7 @@ namespace dotNet5781_02_6715_7489
             return NumLine + ", " + AreaAtLand + ", " + str1;
         }
 
-        public void AddRemoveStation(LineBusStation addSta, char sign, int addIndex)
+        public void AddRemoveStation(LineBusStation addSta, char sign, int addIndex=0)
         {
             int index;
             if (sign == 'a')//adding
@@ -76,6 +76,8 @@ namespace dotNet5781_02_6715_7489
             }
             else if (sign == 'r')//Remove a station from the list
             {
+                if (Stations.Count == 2)//if the user want to delete a station from a line wite 2 stations only
+                    throw new MinimunStationsExeption("can not delete this station from this line");
                 index = Stations.FindIndex(x => x == addSta);
                 if (index == 0)//If we deleted the first station from the list
                 {
@@ -84,11 +86,12 @@ namespace dotNet5781_02_6715_7489
                 }
                 else  if (index == -1)
                     throw new ArgumentException("The station isn't exist!!");
-                else
+                else if(index!=Stations.Count)//if the station that we want to delete is not th last one
                 {
                     Stations[index + 1].DistFromLast += Stations[index].DistFromLast;
                     Stations[index + 1].TimeFromLast += Stations[index].TimeFromLast;
                 }
+      
                 Stations.Remove(addSta);
             }
             else

@@ -18,6 +18,8 @@ namespace dotNet5781_02_6715_7489
             Console.WriteLine("enter a start station code and a destination station code");
             int.TryParse(Console.ReadLine(), out startCode);
             int.TryParse(Console.ReadLine(), out destCode);
+            if (startCode >= 1000000 || destCode >= 1000000)
+                throw new ArgumentException("Invalid code");
             //finds the required stations
             startStation = allStation.Find(x => x.Station.StationCode == startCode);
             destStation = allStation.Find(x => x.Station.StationCode == destCode);
@@ -35,11 +37,29 @@ namespace dotNet5781_02_6715_7489
             //receiving details about the station you want to add
             Console.WriteLine("enter the code of the station that you want to add");
             int.TryParse(Console.ReadLine(), out numSt);
-            Console.WriteLine("enter the code of the station after which you want to add," +
-                " if you want to add a first station - enter 0");
+            if (numSt >= 1000000 )
+                throw new ArgumentException("Invalid code");
+            Console.WriteLine("enter the location of the station, at the list of the stations, which you want to add");
             int.TryParse(Console.ReadLine(), out numStBefore);
+            if(numStBefore>allStation.Count-1)
+                throw new ArgumentException("Invalid number");
             newStation = allStation.Find(x => x.Station.StationCode == numSt);//return the specific statio
             lineSystem[index].AddRemoveStation(newStation, 'a', numStBefore);//add the station for the line
+        }
+        static public void RemoveStation(CollectionOfLines lineSystem, int numLine, List<LineBusStation> allStation)
+        {
+            int index, numSt;
+            LineBusStation delStation;
+            index = lineSystem.Lines.FindIndex(x => x.NumLine == numLine);//find the line that we want to insert the new station
+
+            //receiving details about the station you want to add
+            Console.WriteLine("enter the code of the station that you want to delete");
+            int.TryParse(Console.ReadLine(), out numSt);
+            if (numSt >= 1000000)
+                throw new ArgumentException("Invalid code");
+
+            delStation = allStation.Find(x => x.Station.StationCode == numSt);//return the specific statio
+            lineSystem[index].AddRemoveStation(delStation, 'r');//add the station for the line
         }
         static public void printPossiblePathes(CollectionOfLines allLines, int start, int destination)
         {
@@ -85,8 +105,8 @@ namespace dotNet5781_02_6715_7489
                 allStation.Add(new LineBusStation(address));
             for (int i = 0; i < 10; i++)
                 allLines[i] = new LineOfBus(allStation[rand.Next(0, 40)], allStation[rand.Next(0, 40)], (Area)rand.Next(0, 5));
-            foreach (LineOfBus item in allLines)
-                Console.WriteLine(item);
+            //foreach (LineOfBus item in allLines)
+            //    Console.WriteLine(item);
 
             for (int i = 0; i < 5; i++)
                 allLines[0].AddRemoveStation(allStation[i], 'a', i + 1);
@@ -106,14 +126,7 @@ namespace dotNet5781_02_6715_7489
                 allLines[7].AddRemoveStation(allStation[i + 30], 'a', i);
             for (int i = 1; i < 5; i++)
                 allLines[8].AddRemoveStation(allStation[i + 34], 'a', i);
-            //allLines[8].AddRemoveStation(allStation[36], 'a', 1);
-            //allLines[8].AddRemoveStation(allStation[37], 'a', 2);
-            //allLines[8].AddRemoveStation(allStation[38], 'a', 3);
-            //allLines[8].AddRemoveStation(allStation[39], 'a', 4);
-            ////  allLines[8].AddRemoveStation(allStation[40], 'a', 5);
-
-
-
+           
             allLines[9].AddRemoveStation(allStation[0], 'a', 1);
             allLines[9].AddRemoveStation(allStation[4], 'a', 2);
             allLines[9].AddRemoveStation(allStation[7], 'a', 3);
@@ -122,10 +135,10 @@ namespace dotNet5781_02_6715_7489
             allLines[9].AddRemoveStation(allStation[18], 'a', 6);
             allLines[9].AddRemoveStation(allStation[23], 'a', 7);
             allLines[9].AddRemoveStation(allStation[27], 'a', 8);
-            foreach (LineOfBus item in allLines)
-                Console.WriteLine(item);
+            //foreach (LineOfBus item in allLines)
+            //    Console.WriteLine(item);
 
-
+            do
             {
                 int.TryParse(Console.ReadLine(), out choise);
                 try
@@ -158,10 +171,9 @@ namespace dotNet5781_02_6715_7489
                             }
                             else if (charChoise == 's')
                             {
-                                Console.WriteLine("enter the station code that you want delete");
-                                int.TryParse(Console.ReadLine(), out codeSt);
-                                deStation = allStation.Find(x => x.Station.StationCode == codeSt);
-                                allStation.Remove(deStation);
+                                Console.WriteLine("enter the line number where you want to delete a station");
+                                int.TryParse(Console.ReadLine(), out numLine);
+                                RemoveStation(allLines, numLine, allStation);
                             }
                             break;
                         case 3:
@@ -172,6 +184,8 @@ namespace dotNet5781_02_6715_7489
                             {
                                 Console.WriteLine("enter the code of the ststion that you want");
                                 int.TryParse(Console.ReadLine(), out codeSt);
+                                if (codeSt >= 1000000)
+                                    throw new ArgumentException("Invalid code");
                                 allLines.LineAcordingStation(codeSt);
                             }
                             else if (charChoise == 'p')
@@ -180,7 +194,8 @@ namespace dotNet5781_02_6715_7489
                                 Console.WriteLine("enter a start station code and a destination station code");
                                 int.TryParse(Console.ReadLine(), out start);
                                 int.TryParse(Console.ReadLine(), out destination);
-
+                                if (start >= 1000000 || destination >= 1000000)
+                                    throw new ArgumentException("Invalid code");
                                 printPossiblePathes(allLines, start, destination);
                             }
                             else
@@ -198,7 +213,7 @@ namespace dotNet5781_02_6715_7489
                             else if (charChoise == 's')
                             {
                                 foreach (LineBusStation item in allStation)
-                                    Console.WriteLine(item);
+                                    Console.WriteLine(item.Station);
                             }
                             else
                                 throw new ArgumentException("invalid choice");
@@ -213,6 +228,11 @@ namespace dotNet5781_02_6715_7489
                 {
                     Console.WriteLine(ex.Message);
                 }
+                catch (MinimunStationsExeption ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+               // finally { Console.WriteLine("Unknown error"); }
                 Console.WriteLine();
                 Console.WriteLine("Choose one of the following:");
             } while (choise != 0) ;
@@ -221,3 +241,6 @@ namespace dotNet5781_02_6715_7489
         }
     }
 }
+
+//האינדקס מחוץ לטווח.עליו להיות ערך לא שלילי וקטן מוגדל האוסף.
+//שם פרמטר: index
