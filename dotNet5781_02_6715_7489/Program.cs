@@ -72,7 +72,7 @@ namespace dotNet5781_02_6715_7489
                 foreach (LineOfBus item2 in destinationStation)
                     //checks if the numbers of the lines are the same
                     if (item1.NumLine == item2.NumLine)
-                            returnList.Add(item1);
+                        returnList.Add(item1);//.subPath(start,destination));
             returnList.Sort();
             Console.WriteLine("Possible routes for travel: ");
             foreach (LineOfBus item in returnList)
@@ -95,7 +95,8 @@ namespace dotNet5781_02_6715_7489
             int choise, numLine, codeSt, start, destination;
             char charChoise;
             LineOfBus deBus;
-            LineBusStation deStation;
+            List<LineOfBus> returnListLines;
+           
 
 
             List<LineBusStation> allStation = new List<LineBusStation>();
@@ -181,7 +182,7 @@ namespace dotNet5781_02_6715_7489
                                     throw new MinimunStationsExeption("Invalid line");
                                 RemoveStation(allLines, numLine, allStation);
                             }
-
+                            else throw new ArgumentException ("invalid choice");
                             break;
                         case 3:
                             Console.WriteLine("Enter 's' to see all the lines that pass in specific statiom");
@@ -193,7 +194,9 @@ namespace dotNet5781_02_6715_7489
                                 int.TryParse(Console.ReadLine(), out codeSt);
                                 if (codeSt >= 1000000)
                                     throw new ArgumentException("Invalid code");
-                                allLines.LineAcordingStation(codeSt);
+                                returnListLines=allLines.LineAcordingStation(codeSt);
+                                foreach(LineOfBus item in returnListLines)
+                                    Console.WriteLine(item);
                             }
                             else if (charChoise == 'p')
                             {
@@ -241,10 +244,10 @@ namespace dotNet5781_02_6715_7489
                 }
                // finally { Console.WriteLine("Unknown error"); }
                 Console.WriteLine();
-                Console.WriteLine("Choose one of the following:");
+               Console.WriteLine("Choose one of the following:");
             } while (choise != 0) ;
 
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

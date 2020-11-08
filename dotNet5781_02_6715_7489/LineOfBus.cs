@@ -137,8 +137,12 @@ namespace dotNet5781_02_6715_7489
                 sumTime += Stations[i].TimeFromLast;
             return sumTime;
         }
-        public LineOfBus subPath(LineBusStation station1, LineBusStation station2)
+        public LineOfBus subPath(int codeStation1, int codeStation2)
         {
+            LineBusStation station1, station2;
+            station1 = Stations.Find(x => x.Station.StationCode == codeStation1);
+            station2 = Stations.Find(x => x.Station.StationCode == codeStation2);
+
             LineOfBus newLine = new LineOfBus(station1,station2,this.AreaAtLand);
 
 
@@ -148,9 +152,9 @@ namespace dotNet5781_02_6715_7489
             lastIndex = Stations.FindIndex(x => x.Station.StationCode == station2.Station.StationCode);
             if (firstIndex == -1 || lastIndex == -1)
                 throw new ArgumentException("The station isn't exist!!");
-            for (int i = firstIndex; i <= lastIndex; i++)
+            for (int i = firstIndex+1,j=1; i < lastIndex; i++,j++)
                 //We will add the appropriate stations to the new line
-                newLine.AddRemoveStation(Stations[i], 'a', Stations[i - 1].Station.StationCode);
+                newLine.AddRemoveStation(Stations[i], 'a', j);
             return newLine;
         }
         //Implementation of the ComputerTo function
