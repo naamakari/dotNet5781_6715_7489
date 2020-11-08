@@ -20,7 +20,7 @@ namespace dotNet5781_02_6715_7489
             int.TryParse(Console.ReadLine(), out destCode);
             //finds the required stations
             startStation = allStation.Find(x => x.Station.StationCode == startCode);
-            destStation= allStation.Find(x => x.Station.StationCode == destCode);
+            destStation = allStation.Find(x => x.Station.StationCode == destCode);
 
             LineOfBus bus = new LineOfBus(startStation, destStation, (Area)rand.Next(0, 5));
             lineSystem.Lines.Add(bus);
@@ -43,7 +43,7 @@ namespace dotNet5781_02_6715_7489
         }
         static public void printPossiblePathes(CollectionOfLines allLines, int start, int destination)
         {
-            List<LineOfBus> startStation, destinationStation,returnList;
+            List<LineOfBus> startStation, destinationStation, returnList;
             returnList = new List<LineOfBus>();
             //function that return list of lines that pass at the station
             startStation = allLines.LineAcordingStation(start);
@@ -57,9 +57,9 @@ namespace dotNet5781_02_6715_7489
                             returnList.Add(item1);
             returnList.Sort();
             Console.WriteLine("Possible routes for travel: ");
-            foreach(LineOfBus item in returnList)
+            foreach (LineOfBus item in returnList)
                 Console.WriteLine(item);
-         }
+        }
 
 
         static public Random rand = new Random(DateTime.Now.Millisecond);
@@ -78,7 +78,7 @@ namespace dotNet5781_02_6715_7489
             char charChoise;
             LineOfBus deBus;
             LineBusStation deStation;
-            
+
 
             List<LineBusStation> allStation = new List<LineBusStation>();
             CollectionOfLines allLines = new CollectionOfLines();
@@ -86,11 +86,46 @@ namespace dotNet5781_02_6715_7489
             for (int i = 0; i < 40; i++, address += "h")
                 allStation.Add(new LineBusStation(address));
             for (int i = 0; i < 10; i++)
-                allLines[i] = new LineOfBus(allStation[rand.Next(0, 40)], allStation[rand.Next(0, 40)],(Area)rand.Next(0, 5));
+                allLines[i] = new LineOfBus(allStation[rand.Next(0, 40)], allStation[rand.Next(0, 40)], (Area)rand.Next(0, 5));
             foreach (LineOfBus item in allLines)
                 Console.WriteLine(item);
 
+            for (int i = 0; i < 5; i++)
+                allLines[0].AddRemoveStation(allStation[i], 'a', i + 1);
+            for (int i = 1; i < 6; i++)
+                allLines[1].AddRemoveStation(allStation[i + 3], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[2].AddRemoveStation(allStation[i + 8], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[3].AddRemoveStation(allStation[i + 12], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[4].AddRemoveStation(allStation[i + 17], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[5].AddRemoveStation(allStation[i + 22], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[6].AddRemoveStation(allStation[i + 26], 'a', i);
+            for (int i = 1; i < 6; i++)
+                allLines[7].AddRemoveStation(allStation[i + 30], 'a', i);
+            for (int i = 1; i < 5; i++)
+                allLines[8].AddRemoveStation(allStation[i + 34], 'a', i);
+            //allLines[8].AddRemoveStation(allStation[36], 'a', 1);
+            //allLines[8].AddRemoveStation(allStation[37], 'a', 2);
+            //allLines[8].AddRemoveStation(allStation[38], 'a', 3);
+            //allLines[8].AddRemoveStation(allStation[39], 'a', 4);
+            ////  allLines[8].AddRemoveStation(allStation[40], 'a', 5);
 
+
+
+            allLines[9].AddRemoveStation(allStation[0], 'a', 1);
+            allLines[9].AddRemoveStation(allStation[4], 'a', 2);
+            allLines[9].AddRemoveStation(allStation[7], 'a', 3);
+            allLines[9].AddRemoveStation(allStation[9], 'a', 4);
+            allLines[9].AddRemoveStation(allStation[13], 'a', 5);
+            allLines[9].AddRemoveStation(allStation[18], 'a', 6);
+            allLines[9].AddRemoveStation(allStation[23], 'a', 7);
+            allLines[9].AddRemoveStation(allStation[27], 'a', 8);
+            foreach (LineOfBus item in allLines)
+                Console.WriteLine(item);
 
 
             {
@@ -103,7 +138,7 @@ namespace dotNet5781_02_6715_7489
                             Console.WriteLine("enter 'l' for add line or 's' for add station");
                             char.TryParse(Console.ReadLine(), out charChoise);
                             if (charChoise == 'l')
-                                AddLine(allLines,allStation);
+                                AddLine(allLines, allStation);
                             else if (charChoise == 's')
                             {
                                 Console.WriteLine("enter the line number where you want to add a station");
@@ -128,7 +163,7 @@ namespace dotNet5781_02_6715_7489
                                 Console.WriteLine("enter the station code that you want delete");
                                 int.TryParse(Console.ReadLine(), out codeSt);
                                 deStation = allStation.Find(x => x.Station.StationCode == codeSt);
-                                allStation.Remove(deStation);   
+                                allStation.Remove(deStation);
                             }
                             break;
                         case 3:
@@ -147,7 +182,7 @@ namespace dotNet5781_02_6715_7489
                                 Console.WriteLine("enter a start station code and a destination station code");
                                 int.TryParse(Console.ReadLine(), out start);
                                 int.TryParse(Console.ReadLine(), out destination);
-                               
+
                                 printPossiblePathes(allLines, start, destination);
                             }
                             else
@@ -159,12 +194,12 @@ namespace dotNet5781_02_6715_7489
                             char.TryParse(Console.ReadLine(), out charChoise);
                             if (charChoise == 'l')
                             {
-                                foreach(LineOfBus item in allLines)
-                                    Console.WriteLine(item);  
+                                foreach (LineOfBus item in allLines)
+                                    Console.WriteLine(item);
                             }
                             else if (charChoise == 's')
                             {
-                               foreach(LineBusStation item in allStation)
+                                foreach (LineBusStation item in allStation)
                                     Console.WriteLine(item);
                             }
                             else

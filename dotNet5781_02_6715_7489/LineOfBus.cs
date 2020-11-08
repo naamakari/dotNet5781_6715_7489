@@ -44,43 +44,34 @@ namespace dotNet5781_02_6715_7489
             return NumLine + ", " + AreaAtLand + ", " + str1;
         }
 
-        public void AddRemoveStation(LineBusStation addSta, char sign, int codeBefore)
+        public void AddRemoveStation(LineBusStation addSta, char sign, int addIndex)//int codeBefore)
         {
             int index;
             if (sign == 'a')//adding
             {
-
-                if (codeBefore == 0)//Want to add a station before the first station
-                {
-                    Stations.Insert(0, addSta);//Put in first place on the list
-                    Stations.First().DistFromLast = 0;
-                    Stations.First().TimeFromLast = 0;
-                }
-                else//If the station is in the middle of the list or at the end
-                {
-                    index = Stations.FindIndex(x => x.Station.StationCode == codeBefore);
-                    if (index == Stations.Count)//If the station you want to insert is the last station
+                if(addIndex>=0&&addIndex<= Stations.Count)//check if the index exist at the list
+                { 
+                Stations.Insert(addIndex, addSta);
+                    if (addIndex == 0)//Want to add a station at the first place
                     {
-
-
-                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        addSta.TimeFromLast = (int)addSta.DistFromLast;//Calculate per average time of 60 km per hour and km per minute
-                        Stations.Add(addSta);//Add to the end of the list
-
-
-
+                        Stations.First().DistFromLast = 0;
+                        Stations.First().TimeFromLast = 0;
                     }
-                    else if (index == -1)//The organ after which you want to insert does not exist
-                        throw new ArgumentException("The station isn't exist!!");
-                    else//Want to add a station in the middle of the route
+                    else//If the station is in the middle of the list or at the end
                     {
-                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        addSta.TimeFromLast = (int)addSta.DistFromLast;//Calculate per average time of 60 km per hour and km per minute
-                        addSta.DistFromLast = Stations[index].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
-                        Stations.Insert(index + 1, addSta);//Insert to the middle of the list
-                    }
-                }
+                        //index = Stations.FindIndex(x => x.Station.StationCode == codeBefore);
+                        if (addIndex+1 == Stations.Count)//If the station you want to insert is the last station
+                        {
+                            addSta.DistFromLast = Stations[addIndex-1].Station.StationLocation.GetDistanceTo(addSta.Station.StationLocation);
+                            addSta.TimeFromLast = (int)addSta.DistFromLast;//Calculate per average time of 60 km per hour and km per minute
 
+                        }
+                 
+                    }
+                
+                }
+                else //The organ after which you want to insert does not exist
+                    throw new ArgumentException("The station isn't exist!!");
 
             }
             else if (sign == 'r')//Remove a station from the list
