@@ -63,19 +63,7 @@ namespace dotNet5781_02_6715_7489
         static public Random rand = new Random(DateTime.Now.Millisecond);
         static void Main(string[] args)
         {
-            Console.WriteLine("Lines of System");
-            Console.WriteLine("Choose one of the following:");
-            Console.WriteLine("Enter 1 to add line of bus/station to line of bus");
-            Console.WriteLine("Enter 2 to deleteline of bus/station to line of bus");
-            Console.WriteLine("Enter 3 to look for lines that pass through a particular" +
-                    " station or look for a route between 2 stations");
-            Console.WriteLine("Enter 4 to print all the lines of buses or all the station");
-            Console.WriteLine("Enter 0 to exit from the system");
-
-            int choise, numLine, codeSt, start, destination;
-            char charChoise;
-            LineOfBus deBus;
-            LineBusStation deStation;
+            
 
 
             List<LineBusStation> allStation = new List<LineBusStation>();
@@ -85,8 +73,8 @@ namespace dotNet5781_02_6715_7489
                 allStation.Add(new LineBusStation(address));
             for (int i = 0; i < 10; i++)
                 allLines[i] = new LineOfBus(allStation[rand.Next(0, 40)], allStation[rand.Next(0, 40)], (Area)rand.Next(0, 5));
-            foreach (LineOfBus item in allLines)
-                Console.WriteLine(item);
+            //foreach (LineOfBus item in allLines)
+            //    Console.WriteLine(item);
 
             for (int i = 0; i < 5; i++)
                 allLines[0].AddRemoveStation(allStation[i], 'a', i + 1);
@@ -106,11 +94,7 @@ namespace dotNet5781_02_6715_7489
                 allLines[7].AddRemoveStation(allStation[i + 30], 'a', i);
             for (int i = 1; i < 5; i++)
                 allLines[8].AddRemoveStation(allStation[i + 34], 'a', i);
-            //allLines[8].AddRemoveStation(allStation[36], 'a', 1);
-            //allLines[8].AddRemoveStation(allStation[37], 'a', 2);
-            //allLines[8].AddRemoveStation(allStation[38], 'a', 3);
-            //allLines[8].AddRemoveStation(allStation[39], 'a', 4);
-            ////  allLines[8].AddRemoveStation(allStation[40], 'a', 5);
+           
 
 
 
@@ -122,8 +106,20 @@ namespace dotNet5781_02_6715_7489
             allLines[9].AddRemoveStation(allStation[18], 'a', 6);
             allLines[9].AddRemoveStation(allStation[23], 'a', 7);
             allLines[9].AddRemoveStation(allStation[27], 'a', 8);
-            foreach (LineOfBus item in allLines)
-                Console.WriteLine(item);
+           
+            Console.WriteLine("Lines of System");
+            Console.WriteLine("Choose one of the following:");
+            Console.WriteLine("Enter 1 to add line of bus/station to line of bus");
+            Console.WriteLine("Enter 2 to deleteline of bus/station to line of bus");
+            Console.WriteLine("Enter 3 to look for lines that pass through a particular" +
+                    " station or look for a route between 2 stations");
+            Console.WriteLine("Enter 4 to print all the lines of buses or all the station");
+            Console.WriteLine("Enter 0 to exit from the system");
+
+            int choise, numLine, codeSt, start, destination;
+            char charChoise;
+            LineOfBus deBus;
+            LineBusStation deStation;
 
 
             {
