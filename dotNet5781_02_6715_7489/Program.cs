@@ -64,19 +64,22 @@ namespace dotNet5781_02_6715_7489
         static public void printPossiblePathes(CollectionOfLines allLines, int start, int destination)
         {
             List<LineOfBus> startStation, destinationStation, returnList;
-            returnList = new List<LineOfBus>();
-            //function that return list of lines that pass at the station
+            returnList = new List<LineOfBus>();                                                            //function that return list of lines that pass at the station
             startStation = allLines.LineAcordingStation(start);
             destinationStation = allLines.LineAcordingStation(destination);
             foreach (LineOfBus item1 in startStation)
                 foreach (LineOfBus item2 in destinationStation)
                     //checks if the numbers of the lines are the same
                     if (item1.NumLine == item2.NumLine)
+                    {
                         returnList.Add(item1);//.subPath(start,destination));
+                        
+                    }
             returnList.Sort();
             Console.WriteLine("Possible routes for travel: ");
             foreach (LineOfBus item in returnList)
                 Console.WriteLine(item);
+          
         }
 
 
@@ -125,7 +128,7 @@ namespace dotNet5781_02_6715_7489
                 allLines[6].AddRemoveStation(allStation[i + 26], 'a', i);
             for (int i = 1; i < 6; i++)
                 allLines[7].AddRemoveStation(allStation[i + 30], 'a', i);
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
                 allLines[8].AddRemoveStation(allStation[i + 34], 'a', i);
            
             allLines[9].AddRemoveStation(allStation[0], 'a', 1);
@@ -182,7 +185,7 @@ namespace dotNet5781_02_6715_7489
                                     throw new MinimunStationsExeption("Invalid line");
                                 RemoveStation(allLines, numLine, allStation);
                             }
-                            else throw new ArgumentException ("invalid choice");
+                            else throw new ArgumentException ("Invalid choice");
                             break;
                         case 3:
                             Console.WriteLine("Enter 's' to see all the lines that pass in specific statiom");

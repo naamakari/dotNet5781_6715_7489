@@ -17,7 +17,7 @@ namespace dotNet5781_02_6715_7489
         public int NumLine { get; set; }
         public LineBusStation FirstStation { get { return Stations.First(); } }
         public LineBusStation LastStation { get { return Stations.Last(); } }
-                    public Area AreaAtLand { get; set; }
+        public Area AreaAtLand { get; set; }
         
         //constructor
         public LineOfBus(LineBusStation startStation, LineBusStation destStation, Area area)
@@ -30,7 +30,17 @@ namespace dotNet5781_02_6715_7489
             AreaAtLand = area;
             NumLine = ++statisNumLine;
         }
-
+        //another constructor that get the number of the line
+        public LineOfBus(LineBusStation startStation, LineBusStation destStation, Area area,int LineNum)
+        {
+            Stations = new List<LineBusStation>();
+            Stations.Add(startStation);
+            destStation.DistFromLast = destStation.Station.StationLocation.GetDistanceTo(startStation.Station.StationLocation);
+            destStation.TimeFromLast = (int)destStation.DistFromLast;
+            Stations.Add(destStation);
+            AreaAtLand = area;
+            //NumLine = LineNum;
+        }
 
 
         public override string ToString()
@@ -121,10 +131,10 @@ namespace dotNet5781_02_6715_7489
                 sumDis += Stations[i].DistFromLast;
             return sumDis;
         }
-        public int TimeBetweenStations(int code1, int code2)
+        public float TimeBetweenStations(int code1, int code2)
         {
             int firstIndex, lastIndex;
-            int sumTime = 0;
+            float sumTime = 0;
             //Find the index in the list according to the first code given
             firstIndex = Stations.FindIndex(x => x.Station.StationCode == code1);
             //Find the index in the list according to the second code given
@@ -161,7 +171,7 @@ namespace dotNet5781_02_6715_7489
         public int CompareTo(object obj)
         {
             LineOfBus lb = (LineOfBus)obj;
-            int thisTime, lbTime;
+            float thisTime, lbTime;
             thisTime = this.TimeBetweenStations(this.FirstStation.Station.StationCode, this.LastStation.Station.StationCode);
             lbTime = lb.TimeBetweenStations(lb.FirstStation.Station.StationCode, lb.LastStation.Station.StationCode);
             return thisTime.CompareTo(lbTime);
