@@ -5,25 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_6715_7489"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
-    <Grid Name="MainGrid" OpacityMask="Black">
+        Title="Bus line system" Height="640" Width="800" Icon="https://s.alicdn.com/@sc01/kf/HTB1A5S_IWmWBuNjy1Xaq6xCbXXaE.jpg">
+    <Grid Name="MainGrid" OpacityMask="Black" Background="#FFD6FDD7">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">
             <TextBox Name="tbArea" HorizontalAlignment="Stretch" 
-                     Height="23" Margin="66,32,0,0" TextWrapping="Wrap"
+                     Height="23" Margin="22.8,35,76.6,10" TextWrapping="Wrap"
                      Text="{Binding Path=Area}" VerticalAlignment="Stretch"
-                     Width="120" Grid.Column="3" FontFamily="Gabriola"
-                     FontSize="16" FontWeight="Bold" BorderBrush="#FF24B336" 
-                     BorderThickness="2"/>
-            <ComboBox Name="cbBusLines" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectionChanged="cbBusLines_SelectionChanged"/>
-            <Label Content="Bus Line Number:" HorizontalAlignment="Left" VerticalAlignment="Top"
-                   FontSize="20" FontFamily="david"  RenderTransformOrigin="-0.093,0.319" Height="68" Width="193" Margin="10,21,0,-21" Grid.ColumnSpan="2"/>
-            <Label Content="Area:" HorizontalAlignment="Left"
-                   Margin="77.2,19,0,0" VerticalAlignment="Top" 
-                   Grid.Column="2" FontSize="20" FontFamily="david"/>
+                     Width="Auto" Grid.Column="3"
+                     FontSize="16" FontWeight="Bold" FontFamily="david"
+                     BorderBrush="Green" BorderThickness="3"
+                     Background="#FFBCFCB5"/>
+            <ComboBox Name="cbBusLines" HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch" Grid.Column="1" FontSize="18"
+                      SelectionChanged="cbBusLines_SelectionChanged" 
+                      Margin="35.6,30,105.8,5" BorderBrush="Green" BorderThickness="5" RenderTransformOrigin="0.246,1.004"/>
+            <Label Content="Bus Line Number:" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="25" FontFamily="david"  RenderTransformOrigin="-0.093,0.319" Height="38" Width="156" Margin="32,30,10.4,0"/>
+            <Label Content="Area:" HorizontalAlignment="Center"
+                   Margin="100.2,21,34.2,0" VerticalAlignment="Center" 
+                   Grid.Column="2" FontSize="25" FontFamily="david" Height="37" Width="64"/>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -31,8 +35,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <ListBox Name="lbBusLineStation" HorizontalAlignment="Stretch" Margin="387,143,84.6,186.4" Grid.Row="1" 
-                 VerticalAlignment="Stretch"
-                 ItemsSource="{Binding}"/>
+        <ListBox Name="lbBusLineStation" HorizontalAlignment="Stretch" Margin="61,88,258.6,197.4" Grid.Row="1" 
+                 VerticalAlignment="Stretch" FontFamily="david" 
+                 ItemsSource="{Binding}" Background="#FFBCFCB5"
+                 FontSize="25" BorderBrush="Green" BorderThickness="5"
+                 SelectionChanged="lbBusLineStation_SelectionChanged">
+        </ListBox>
     </Grid>
 </Window>

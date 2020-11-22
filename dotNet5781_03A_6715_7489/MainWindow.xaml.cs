@@ -83,5 +83,10 @@ namespace dotNet5781_03A_6715_7489
         {
             ShowBusLine((cbBusLines.SelectedValue as LineOfBus).NumLine);
         }
+
+        private void lbBusLineStation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
