@@ -1,0 +1,19 @@
+﻿<Window x:Class="dotNet5781_03B_6715_7489.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300*"/>
+            <RowDefinition Height="150*"/>
+        </Grid.RowDefinitions>
+        <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="64,46,0,0" Grid.Row="1" VerticalAlignment="Top" Width="201" Height="55" Click="Button_Click"/>
+        <ComboBox HorizontalAlignment="Left" Margin="207,106,0,0" VerticalAlignment="Top" Width="179" Height="32"/>
+        <Label Content=":רשימת האוטובוסים" HorizontalAlignment="Left" Margin="412,106,0,0" VerticalAlignment="Top" Height="32" Width="121"/>
+
+    </Grid>
+</Window>

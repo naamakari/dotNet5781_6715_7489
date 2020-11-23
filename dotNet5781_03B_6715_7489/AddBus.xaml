@@ -1,0 +1,38 @@
+﻿<Window x:Class="dotNet5781_03B_6715_7489.AddBus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
+        mc:Ignorable="d"
+        Title="הוספת אוטובוס חדש" Height="490" Width="400" Icon="https://s.alicdn.com/@sc01/kf/HTB1A5S_IWmWBuNjy1Xaq6xCbXXaE.jpg">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False"/>
+        <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33"/>
+        <Label x:Name="lb1" Content=":מספר רישוי" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="0" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label x:Name="lb2" Content=":תאריך התחלה" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label x:Name="lb3" Content=":תאריך טיפול אחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label x:Name="lb4" Content=":נסועה מהטיפול האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label x:Name="lb5" Content=":נסועה מהתדלוק האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Width="150"/>
+        <Label x:Name="lb6" Content=":'קילומטראז" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="28" Width="150"/>
+        <TextBox x:Name="tbLiNum" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="0" KeyDown="tbLiNum_KeyDown"/>
+        <TextBox x:Name="tbTreat" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="3" KeyDown="tbTreat_KeyDown"/>
+        <TextBox x:Name="tbRef" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="4" KeyDown="tbRef_KeyDown"/>
+        <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="5" KeyDown="tbKm_KeyDown" />
+        <DatePicker x:Name="dateSt" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dateTreat" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+       
+
+
+
+    </Grid>
+</Window>
