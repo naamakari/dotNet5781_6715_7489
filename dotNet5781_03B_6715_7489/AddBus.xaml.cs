@@ -109,7 +109,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void tbLiNum_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dateSt.SelectedDate!=null && dateTreat.SelectedDate != null && tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
+            if ( tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
                 add.IsEnabled = true;
             else
                 add.IsEnabled = false;
