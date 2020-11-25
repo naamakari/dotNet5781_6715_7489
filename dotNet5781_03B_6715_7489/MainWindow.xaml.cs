@@ -48,6 +48,12 @@ namespace dotNet5781_03B_6715_7489
         {
 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            toDrive newWin = new toDrive();
+            newWin.ShowDialog();
+        }
     }
 
 }

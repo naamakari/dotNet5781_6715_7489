@@ -44,7 +44,6 @@ namespace dotNet5781_03B_6715_7489
         private void tbTreat_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
-            counter++;
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
@@ -52,16 +51,14 @@ namespace dotNet5781_03B_6715_7489
                     if (e.Key != Key.Decimal)
                         nonNumeriable = true;
 
-            if (counter == 8 || nonNumeriable == true)
+            if (nonNumeriable == true)
             {
                 e.Handled = true;
-                counter = 0;
             }
         }
         private void tbRef_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
-            counter++;
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
@@ -69,17 +66,15 @@ namespace dotNet5781_03B_6715_7489
                     if (e.Key != Key.Decimal)
                         nonNumeriable = true;
 
-            if (counter == 8 || nonNumeriable == true)
+            if ( nonNumeriable == true)
             {
                 e.Handled = true;
-                counter = 0;
             }
         }
 
         private void tbKm_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
-            counter++;
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
@@ -87,7 +82,7 @@ namespace dotNet5781_03B_6715_7489
                     if (e.Key != Key.Decimal)
                         nonNumeriable = true;
 
-            if (counter == 8 || nonNumeriable == true)
+            if (nonNumeriable == true)
             {
                 e.Handled = true;
                 counter = 0;
