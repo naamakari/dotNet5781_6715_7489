@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_01_6715_7489
 {
+    public enum state {ready, inDrive, inRefule, inTreat };
     public class Bus
     {
         private string id;
@@ -24,6 +25,11 @@ namespace dotNet5781_01_6715_7489
         }
         public double stateOfFuel;
         public double kmSinceLastTreat;
+        public state stateBus
+        {
+            get;
+            set;
+        }
 
         //constructor
         public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, double fuel = 0.0, double km = 0.0)
@@ -34,6 +40,7 @@ namespace dotNet5781_01_6715_7489
             Kilometrazh = km;
             stateOfFuel = fuel;
             kmSinceLastTreat = kmSinceTreat;
+            stateBus = state.ready;
         }
 
         //function that checks if the bus can take the current driving
