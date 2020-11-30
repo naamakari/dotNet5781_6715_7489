@@ -28,7 +28,7 @@ namespace dotNet5781_03B_6715_7489
 
             BusListView.ItemsSource = busStatic.buses;
             //cbListBuses.DisplayMemberPath = "Id";
-            BusListView.SelectedIndex = 9;
+            BusListView.SelectedIndex = 0;
 
 
             //List<string> str = new List<string>();
@@ -44,6 +44,7 @@ namespace dotNet5781_03B_6715_7489
         {
             AddBus newAddWin = new AddBus();
             newAddWin.ShowDialog();
+            BusListView.ItemsSource = busStatic.buses;
         }
 
         private void detailButton_Click(object sender, RoutedEventArgs e)

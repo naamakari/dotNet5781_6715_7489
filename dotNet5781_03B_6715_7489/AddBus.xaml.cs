@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using dotNet5781_01_6715_7489;
 
 namespace dotNet5781_03B_6715_7489
 {
@@ -124,6 +125,21 @@ namespace dotNet5781_03B_6715_7489
                 add.IsEnabled = true;
             else
                 add.IsEnabled = false;
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            
+            string id = tbLiNum.Text;
+            DateTime firstDate = (DateTime)dateSt.SelectedDate;
+            DateTime TreatDate = (DateTime)dateTreat.SelectedDate;
+            double kmSinceTreat = double.Parse(tbTreat.Text);
+            double fuel = double.Parse(tbRef.Text);
+            double km = double.Parse(tbKm.Text);
+            Bus newBus = new Bus(id, firstDate, TreatDate, kmSinceTreat, fuel, km);
+            busStatic.buses.Add(newBus);
+            
+            this.Close();
         }
     }
 }

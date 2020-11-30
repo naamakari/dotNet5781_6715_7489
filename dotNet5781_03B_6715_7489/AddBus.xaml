@@ -16,7 +16,7 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="75*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False"/>
+        <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False" Click="add_Click"/>
         <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" Click="cancel_Click"/>
         <Label x:Name="lb1" Content=":מספר רישוי" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="0" VerticalAlignment="Top" Height="28" Width="150"/>
         <Label x:Name="lb2" Content=":תאריך התחלה" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="150"/>
@@ -24,7 +24,7 @@
         <Label x:Name="lb4" Content=":נסועה מהטיפול האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="28" Width="150"/>
         <Label x:Name="lb5" Content=":נסועה מהתדלוק האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Width="150"/>
         <Label x:Name="lb6" Content=":'קילומטראז" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="28" Width="150"/>
-        <TextBox x:Name="tbLiNum" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="0" KeyDown="tbLiNum_KeyDown" TextChanged="tbLiNum_TextChanged"/>
+        <TextBox x:Name="tbLiNum" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="0" KeyDown="tbLiNum_KeyDown" TextChanged="tbLiNum_TextChanged" MaxLength="8"/>
         <TextBox x:Name="tbTreat" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="3" KeyDown="tbTreat_KeyDown" TextChanged="tbTreat_TextChanged"/>
         <TextBox x:Name="tbRef" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="4" KeyDown="tbRef_KeyDown" TextChanged="tbRef_TextChanged"/>
         <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="5" KeyDown="tbKm_KeyDown" TextChanged="tbKm_TextChanged" />
