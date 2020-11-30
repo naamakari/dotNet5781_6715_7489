@@ -18,9 +18,34 @@
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
         <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="35,46,0,0" Grid.Row="2" VerticalAlignment="Top" Width="201" Height="55" Click="Button_Click"/>
-        <ComboBox x:Name="cbListBuses" HorizontalAlignment="Left"
+        <ListView x:Name="BusListView" HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="298" Grid.ColumnSpan="2" Margin="222,31,0,0" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView x:Name="gridView">
+                    <GridViewColumn Header="תדלוק" Width="50" DisplayMemberBinding="{Binding ElementName=RefuelBotton,Path=Click}" />
+                    <GridViewColumn Header="נסיעה"  Width="50" />
+                    <GridViewColumn Header="מספר רישוי" Width="200" DisplayMemberBinding="{Binding Id}" FrameworkElement.FlowDirection="LeftToRight">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="RefuelBotton" Content="bdika"  Margin="0"
+                                VerticalAlignment="Center"
+                                Click="refuelButton_Click" />
+                                <!--<Button x:Name="DrivingBotton" Content="bdik"  Margin="0"
+                                VerticalAlignment="Center"
+                                Click="detailButton_Click" />-->
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+
+                    </GridViewColumn>
+
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <!--<ComboBox x:Name="cbListBuses" HorizontalAlignment="Left"
                   VerticalAlignment="Top" Width="265" 
-                  Height="32" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                  Height="32" Grid.Column="1" Grid.Row="1" 
+                  Grid.ColumnSpan="2"
+            SelectedIndex="{Binding ElementName=detailButton, Path=Click, Mode=OneWay}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -29,22 +54,25 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <!--<Grid.RowDefinitions>
+                        -->
+        <!--<Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>-->
+        <!--
                         <Label x:Name="detaillabel" Content="{Binding}" Width="165"/>
-                        <Button x:Name="detailButton" Click="detailButton_Click" Margin="0,4,4,4" Grid.Column="1" >לפרטים</Button>
-                        <!--<Label x:Name="refuelLable" Content="{Binding}" Width="165"/>-->
-                        <Button x:Name="refuelButton" Click="refuelButton_Click" Margin="4,4,2,4" Grid.Column="2" >לתדלוק</Button>
-                    </Grid>
+                        <Button x:Name="detailButton" Click="detailButton_Click"  Margin="0,4,4,4"
+                                Grid.Column="1" HorizontalAlignment="Right" >נסיעה</Button>
+                        -->
+        <!--<Label x:Name="refuelLable" Content="{Binding}" Width="165"/>-->
+        <!--
+                        <Button x:Name="refuelButton" Click="refuelButton_Click" Margin="4,4,2,4" Grid.Column="2" >לתדלוק</Button>-->
+        <!--</Grid>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-        </ComboBox>
-        <Label Content=":רשימת האוטובוסים" HorizontalAlignment="Stretch" VerticalAlignment="top" Height="32" Width="121" Grid.Column="2" Grid.Row="1"/>
-        <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="165.2,98,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-
+        </ComboBox>-->
+        <!--<Label Content=":רשימת האוטובוסים" HorizontalAlignment="Stretch" VerticalAlignment="top" Height="32" Width="121" Grid.Column="2" Grid.Row="1"/>-->
     </Grid>
 </Window>

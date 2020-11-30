@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using dotNet5781_01_6715_7489;
 
 namespace dotNet5781_03B_6715_7489
 {
@@ -25,12 +25,19 @@ namespace dotNet5781_03B_6715_7489
         public MainWindow()
         {
             InitializeComponent();
-       List<string> str = new List<string>();
-            str.Add("Bus1");
-            str.Add("Bus2");
-            str.Add("Bus3");
-            cbListBuses.ItemsSource = str;
-  
+
+            BusListView.ItemsSource = busStatic.buses;
+            //cbListBuses.DisplayMemberPath = "Id";
+            BusListView.SelectedIndex = 9;
+
+
+            //List<string> str = new List<string>();
+            //str.Add("Bus1");
+            //str.Add("Bus2");
+            //str.Add("Bus3");
+            //cbListBuses.ItemsSource = str;
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -41,18 +48,15 @@ namespace dotNet5781_03B_6715_7489
 
         private void detailButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("hello", "Hi");
+            toDrive newWin = new toDrive();
+            newWin.myBus = (Bus)BusListView.SelectedItem;
+            newWin.ShowDialog();
+            //cbListBuses.SelectedIndex =
         }
 
         private void refuelButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            toDrive newWin = new toDrive();
-            newWin.ShowDialog();
+            MessageBox.Show("hi", "world");
         }
     }
 
