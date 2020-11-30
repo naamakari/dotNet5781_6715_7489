@@ -44,7 +44,10 @@ namespace dotNet5781_03B_6715_7489
         {
             AddBus newAddWin = new AddBus();
             newAddWin.ShowDialog();
+            InitializeComponent();
             BusListView.ItemsSource = busStatic.buses;
+            BusListView.SelectedIndex = 0;
+
         }
 
         private void detailButton_Click(object sender, RoutedEventArgs e)
