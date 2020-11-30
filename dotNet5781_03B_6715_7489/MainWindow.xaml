@@ -18,28 +18,30 @@
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
         <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="35,46,0,0" Grid.Row="2" VerticalAlignment="Top" Width="201" Height="55" Click="Button_Click"/>
-        <ListView x:Name="BusListView" HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="298" Grid.ColumnSpan="2" Margin="222,31,0,0" Grid.RowSpan="2">
+        <ListView x:Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="239" VerticalAlignment="Top" Width="298" Grid.ColumnSpan="2" Margin="222,31,0,0" Grid.RowSpan="2" MouseDoubleClick="BusListView_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridView">
-                    <GridViewColumn Header="תדלוק" Width="50" DisplayMemberBinding="{Binding ElementName=RefuelBotton,Path=Click}" />
-                    <GridViewColumn Header="נסיעה"  Width="50" />
-                    <GridViewColumn Header="מספר רישוי" Width="200" DisplayMemberBinding="{Binding Id}" FrameworkElement.FlowDirection="LeftToRight">
+                    <GridViewColumn Width="150" Header="מספר רישוי" DisplayMemberBinding="{Binding Id}" FrameworkElement.FlowDirection="LeftToRight"/>
+                    <GridViewColumn Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="RefuelBotton" Content="bdika"  Margin="0"
+                                <Button x:Name="RefuelBotton" Content="bdika"
                                 VerticalAlignment="Center"
                                 Click="refuelButton_Click" />
-                                <!--<Button x:Name="DrivingBotton" Content="bdik"  Margin="0"
-                                VerticalAlignment="Center"
-                                Click="detailButton_Click" />-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-
                     </GridViewColumn>
-
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DrivingBotton" Content="bdik"  Margin="0"
+                                VerticalAlignment="Center"
+                                Click="detailButton_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
-
         </ListView>
         <!--<ComboBox x:Name="cbListBuses" HorizontalAlignment="Left"
                   VerticalAlignment="Top" Width="265" 

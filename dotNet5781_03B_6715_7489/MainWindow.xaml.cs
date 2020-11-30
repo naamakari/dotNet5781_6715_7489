@@ -58,6 +58,11 @@ namespace dotNet5781_03B_6715_7489
         {
             MessageBox.Show("hi", "world");
         }
+
+        private void BusListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 
 }
