@@ -57,10 +57,17 @@
     </ApplicationDefinition>
     <Compile Include="Bus.cs" />
     <Compile Include="busStatic.cs" />
+    <Compile Include="disPlayDetails.xaml.cs">
+      <DependentUpon>disPlayDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="toDrive.xaml.cs">
       <DependentUpon>toDrive.xaml</DependentUpon>
     </Compile>
     <Page Include="AddBus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="disPlayDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -36,7 +36,8 @@
                             <DataTemplate>
                                 <Button x:Name="DrivingBotton" Content="לנסיעה"  Margin="1" Width="70"
                                 VerticalAlignment="Center"
-                                Click="detailButton_Click" />
+                                Click="detailButton_Click"/>
+                                <!--IsEnabled="{Binding  ElementName=lv, Path=state.ready}"-->
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

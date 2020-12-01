@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
         mc:Ignorable="d"
-        Title="נסיעה חדשה" Height="200" Width="400">
+        Title="חלון ביצוע נסיעה" Height="200" Width="400">
 
     <Grid>
         <Label x:Name="lb1" Content=":הכנס את מרחק הנסיעה" HorizontalAlignment="Left" Margin="201,37,0,0" VerticalAlignment="Top" Width="153"/>

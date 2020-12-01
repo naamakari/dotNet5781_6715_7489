@@ -48,7 +48,7 @@ namespace dotNet5781_03B_6715_7489
                         myBus.upDateDetails(double.Parse(dis.Text));
                         myBus.stateBus = state.inDrive;
                         //שולח לנסיעה
-                        // Console.WriteLine("The bus can take the driving, have a good day!");
+                        //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
                     }
 
                     else
@@ -56,6 +56,8 @@ namespace dotNet5781_03B_6715_7489
                         MessageBox.Show("!!האוטובוס צריך טיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                         myBus.stateBus = state.inTreat;
                         //שולח לטיפול
+                        //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
+
                     }
                 }
                 else
@@ -63,6 +65,8 @@ namespace dotNet5781_03B_6715_7489
                     MessageBox.Show("!!האוטובוס צריך תדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
                     myBus.stateBus = state.inRefule;
                     //שולח לתדלוק
+                    //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
+
 
                 }
             }

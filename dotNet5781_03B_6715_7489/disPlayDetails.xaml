@@ -1,0 +1,47 @@
+﻿<Window x:Class="dotNet5781_03B_6715_7489.disPlayDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
+        mc:Ignorable="d"
+        Title="חלון הצגת פרטי אוטובוס" Height="110" Width="1035.779">
+    <Grid Margin="0,0,-89.8,0.4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="984*"/>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="112*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="Lv" Margin="0,0,1.8,0" Grid.ColumnSpan="2" Height="70" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="מספר רישוי" Width="100" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="תאריך תחילת פעילות" Width="150" DisplayMemberBinding="{Binding StartDate}"/>
+                    <GridViewColumn Header="תאריך טיפול אחרון" Width="150" DisplayMemberBinding="{Binding LastTreatDate}"/>
+                    <GridViewColumn Header="'קילומטראז" Width="100" DisplayMemberBinding="{Binding kmSinceLastTreat}"/>
+                    <GridViewColumn Header="ק''מ מאז תדלוק אחרון" Width="125" DisplayMemberBinding="{Binding stateOfFuel}"/>
+                    <GridViewColumn Header="ק''מ מאז טיפול אחרון" Width="125" DisplayMemberBinding="{Binding Kilometrazh }"/>
+                    <GridViewColumn Header="מצב האוטובוס" Width="90" DisplayMemberBinding="{Binding stateBus}"/>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="RefuelBotton" Content="לתדלוק" Width="70" Margin="1"
+                                VerticalAlignment="Center"
+                                Click="RefuelBotton_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="TreatButton" Content="לטיפול"  Margin="1" Width="70"
+                                VerticalAlignment="Center"
+                                Click="TreatButton_Click"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

@@ -15,16 +15,16 @@ namespace dotNet5781_01_6715_7489
             get { return id; }
             private set { id = value; }
         }
-        public DateTime StartDate;
-        public DateTime LastTreatDate;
+        public DateTime StartDate { get; set; }
+        public DateTime LastTreatDate { get; set; }
         private double kilometrazh;
         public double Kilometrazh//property
         {
             get { return kilometrazh; }
             private set { kilometrazh = value; }
         }
-        public double stateOfFuel;
-        public double kmSinceLastTreat;
+        public double stateOfFuel { get; set; }
+        public double kmSinceLastTreat { get; set; }
         public state stateBus
         {
             get;

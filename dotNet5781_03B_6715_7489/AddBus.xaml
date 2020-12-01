@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
         mc:Ignorable="d"
-        Title="הוספת אוטובוס חדש" Height="490" Width="400" Icon="https://s.alicdn.com/@sc01/kf/HTB1A5S_IWmWBuNjy1Xaq6xCbXXaE.jpg">
+        Title="חלון הוספת אוטובוס" Height="490" Width="400" Icon="https://s.alicdn.com/@sc01/kf/HTB1A5S_IWmWBuNjy1Xaq6xCbXXaE.jpg">
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
