@@ -97,44 +97,74 @@ namespace dotNet5781_03B_6715_7489
 
         private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                //add.IsEnabled = true;
-                this.errors();
-            else
-                add.IsEnabled = false;
+            if(tbTreat.Text!="")
+            {
+                if (double.Parse(tbTreat.Text) > double.Parse(tbKm.Text))//if the filometers from the treat high from the kilometraz
+                    Km1Eror.Visibility = Visibility.Visible;
+                else
+                    Km1Eror.Visibility = Visibility.Hidden;
+            }
+
+            if(tbRef.Text!="")
+            {
+                if (double.Parse(tbRef.Text) > double.Parse(tbKm.Text))//if the filometers from the reful high from the kilometraz
+                    Km2Eror.Visibility = Visibility.Visible;
+                else
+                    Km2Eror.Visibility = Visibility.Hidden;
+            }
+
+            this.errors();
         }
 
         private void tbLiNum_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if ( tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                //add.IsEnabled = true;
-                this.errors();
-            else
-                add.IsEnabled = false;
+            if (dateSt.SelectedDate!=null)
+            {
+                DateTime starDate = (DateTime)dateSt.SelectedDate;
+                //Checks the correctness of the vehicle number according to the year of manufacture
+                if ((starDate.Year >= 2018 && tbLiNum.Text.Length != 8) || (starDate.Year < 2018 && tbLiNum.Text.Length != 7))
+                    NumEror.Visibility = Visibility.Visible;
+                else
+                    NumEror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
         }
 
         private void tbTreat_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dateSt.Text!=null&&dateTreat.Text!=null&& tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                //add.IsEnabled = true;
-                this.errors();
-            else
-                add.IsEnabled = false;
+            if (tbKm.Text != "")
+            {
+                if (double.Parse(tbTreat.Text) > double.Parse(tbKm.Text))//if the filometers from the treat high from the kilometraz
+                    Km1Eror.Visibility = Visibility.Visible;
+                else
+                    Km1Eror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
         }
 
         private void tbRef_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-
-            if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                //add.IsEnabled = true;
-                this.errors();
-            else
-                add.IsEnabled = false;
+            if (tbKm.Text != "")
+            {
+                if (double.Parse(tbRef.Text) > double.Parse(tbKm.Text))//if the filometers from the reful high from the kilometraz
+                    Km2Eror.Visibility = Visibility.Visible;
+                else
+                    Km2Eror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
         }
 
         private void dateSt_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (tbLiNum.Text != "")
+            {
+                DateTime starDate = (DateTime)dateSt.SelectedDate;
+                //Checks the correctness of the vehicle number according to the year of manufacture
+                if ((starDate.Year >= 2018 && tbLiNum.Text.Length != 8) || (starDate.Year < 2018 && tbLiNum.Text.Length != 7))
+                    NumEror.Visibility = Visibility.Visible;
+                else
+                    NumEror.Visibility = Visibility.Hidden;
+            }
 
             //cheaks if the date is reasonable
             TimeSpan diffDate = DateTime.Now - (DateTime)dateSt.SelectedDate;
@@ -148,10 +178,16 @@ namespace dotNet5781_03B_6715_7489
                 dateInvalid1.Visibility = Visibility.Hidden;
                 
             }
-            if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                this.errors();
-            else
-                add.IsEnabled = false;
+
+            if(dateTreat.SelectedDate!=null)
+            {
+                TimeSpan diffDate1 = (DateTime)dateTreat.SelectedDate - (DateTime)dateSt.SelectedDate;
+                if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
+                    DateEror.Visibility = Visibility.Visible;
+                else
+                    DateEror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
 
         }
 
@@ -167,45 +203,26 @@ namespace dotNet5781_03B_6715_7489
             }
             else
                 dateInvalid2.Visibility = Visibility.Hidden;
-            if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != "")
-                this.errors();
-            else
-                add.IsEnabled = false;
+
+            if (dateSt.SelectedDate != null)
+            {
+                TimeSpan diffDate1 = (DateTime)dateTreat.SelectedDate - (DateTime)dateSt.SelectedDate;
+                if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
+                    DateEror.Visibility = Visibility.Visible;
+                else
+                    DateEror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
 
         }
 
         private void errors()
         {
-            //This function, after all the fields are filled, checks the 
-            //correctness of the input and makes sure that there are no discrepancies between the data
-            DateTime starDate = (DateTime)dateSt.SelectedDate;
-            DateTime treatDate = (DateTime)dateTreat.SelectedDate;
-            TimeSpan diffDate = treatDate- starDate;
-
-
-            //Checks the correctness of the vehicle number according to the year of manufacture
-            if ((starDate.Year >= 2018 && tbLiNum.Text.Length != 8) || (starDate.Year < 2018 && tbLiNum.Text.Length != 7))
-                NumEror.Visibility = Visibility.Visible;
-            else
-                NumEror.Visibility = Visibility.Hidden;
-            //cheaks if the date is reasonable
-            if (diffDate.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
-                DateEror.Visibility = Visibility.Visible;
-            else
-                DateEror.Visibility = Visibility.Hidden;
-
-            //cheac if the kilometer is reasonable
-            if(double.Parse(tbTreat.Text)> double.Parse(tbKm.Text))//if the filometers from the treat high from the kilometraz
-                Km1Eror.Visibility = Visibility.Visible;
-            else
-                Km1Eror.Visibility = Visibility.Hidden;
-
-            if (double.Parse(tbRef.Text) > double.Parse(tbKm.Text))//if the filometers from the reful high from the kilometraz
-                Km2Eror.Visibility = Visibility.Visible;
-            else
-                Km2Eror.Visibility = Visibility.Hidden;
-
-            if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
+            //The function verifies if all the fields are filled in and if the content is 
+            //correct and there are no discrepancies between the fields
+            if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != ""
+               && dateTreat.SelectedDate!=null&& dateSt.SelectedDate!=null)
+                   if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
                 && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
                 && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
                 add.IsEnabled = true;
