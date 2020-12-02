@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading;
 using dotNet5781_01_6715_7489;
 
 namespace dotNet5781_03B_6715_7489
@@ -46,7 +49,7 @@ namespace dotNet5781_03B_6715_7489
             newAddWin.ShowDialog();
         }
 
-        private void detailButton_Click(object sender, RoutedEventArgs e)
+        private void detailButton_Click(object sender, RoutedEventArgs e)//event of sending bus to driving
         {
             var fxElt = sender as FrameworkElement;
             Bus selectedBus = fxElt.DataContext as Bus;
@@ -55,7 +58,7 @@ namespace dotNet5781_03B_6715_7489
             newWin.ShowDialog();
         }
 
-        private void refuelButton_Click(object sender, RoutedEventArgs e)
+        private void refuelButton_Click(object sender, RoutedEventArgs e)//event of sending bus to refuel
         {
             var fxElt = sender as FrameworkElement;
             Bus selectedBus = fxElt.DataContext as Bus;
@@ -64,7 +67,7 @@ namespace dotNet5781_03B_6715_7489
             //לשלוח את האוטובוס לתדלוק מבחינת זמן
         }
 
-        private void BusListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void BusListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)//double click to display the details of the bus
         {
             disPlayDetails displayDetails = new disPlayDetails();
             displayDetails.myBus2 = (Bus)BusListView.SelectedItem;

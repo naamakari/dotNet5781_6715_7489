@@ -24,6 +24,7 @@ namespace dotNet5781_03B_6715_7489
         public disPlayDetails()
         {
             InitializeComponent();
+
         }
         public Bus myBus2 { get; set; }
        public void intilizied()
@@ -31,7 +32,10 @@ namespace dotNet5781_03B_6715_7489
             List<Bus> oneOrganList = new List<Bus>();
             oneOrganList.Add(new Bus(myBus2.Id, myBus2.StartDate, myBus2.LastTreatDate, myBus2.Kilometrazh, myBus2.stateOfFuel, myBus2.kmSinceLastTreat));
             Lv.ItemsSource = oneOrganList;
-
+            feul.Value = 1200-myBus2.stateOfFuel;
+            TimeSpan diffYear = DateTime.Now - myBus2.LastTreatDate;
+            if (myBus2.kmSinceLastTreat >= 19900 || diffYear.TotalDays >=335)
+                warnning.Visibility = Visibility.Visible;
         }
 
         private void RefuelBotton_Click(object sender, RoutedEventArgs e)
@@ -50,6 +54,11 @@ namespace dotNet5781_03B_6715_7489
             selectedBus.kmSinceLastTreat = 0.0;
             selectedBus.stateBus = state.inTreat;
             //לשלוח את האוטובוס לטיפול מבחינת זמן
+        }
+
+        private void feul_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //feul.Value = myBus2.stateOfFuel;
         }
     }
 }

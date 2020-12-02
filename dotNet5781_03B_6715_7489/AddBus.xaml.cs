@@ -25,7 +25,7 @@ namespace dotNet5781_03B_6715_7489
             InitializeComponent();
         }
         static int counter = 0;
-        private bool nonNumeriable=false;
+        private bool nonNumeriable = false;
         private void tbLiNum_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
@@ -34,7 +34,7 @@ namespace dotNet5781_03B_6715_7489
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
                 if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
-                        nonNumeriable = true;
+                    nonNumeriable = true;
 
             if (counter == 8 || nonNumeriable == true)
             {
@@ -67,7 +67,7 @@ namespace dotNet5781_03B_6715_7489
                     if (e.Key != Key.Decimal)
                         nonNumeriable = true;
 
-            if ( nonNumeriable == true)
+            if (nonNumeriable == true)
             {
                 e.Handled = true;
             }
@@ -97,7 +97,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(tbTreat.Text!="")
+            if (tbTreat.Text != "")
             {
                 if (double.Parse(tbTreat.Text) > double.Parse(tbKm.Text))//if the filometers from the treat high from the kilometraz
                     Km1Eror.Visibility = Visibility.Visible;
@@ -105,7 +105,7 @@ namespace dotNet5781_03B_6715_7489
                     Km1Eror.Visibility = Visibility.Hidden;
             }
 
-            if(tbRef.Text!="")
+            if (tbRef.Text != "")
             {
                 if (double.Parse(tbRef.Text) > double.Parse(tbKm.Text))//if the filometers from the reful high from the kilometraz
                     Km2Eror.Visibility = Visibility.Visible;
@@ -118,7 +118,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void tbLiNum_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dateSt.SelectedDate!=null)
+            if (dateSt.SelectedDate != null)
             {
                 DateTime starDate = (DateTime)dateSt.SelectedDate;
                 //Checks the correctness of the vehicle number according to the year of manufacture
@@ -176,10 +176,10 @@ namespace dotNet5781_03B_6715_7489
             else
             {
                 dateInvalid1.Visibility = Visibility.Hidden;
-                
+
             }
 
-            if(dateTreat.SelectedDate!=null)
+            if (dateTreat.SelectedDate != null)
             {
                 TimeSpan diffDate1 = (DateTime)dateTreat.SelectedDate - (DateTime)dateSt.SelectedDate;
                 if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
@@ -199,7 +199,7 @@ namespace dotNet5781_03B_6715_7489
             {
                 dateInvalid2.Visibility = Visibility.Visible;
                 add.IsEnabled = false;
-               
+
             }
             else
                 dateInvalid2.Visibility = Visibility.Hidden;
@@ -221,22 +221,18 @@ namespace dotNet5781_03B_6715_7489
             //The function verifies if all the fields are filled in and if the content is 
             //correct and there are no discrepancies between the fields
             if (tbTreat.Text != "" && tbRef.Text != "" && tbLiNum.Text != "" && tbKm.Text != ""
-               && dateTreat.SelectedDate!=null&& dateSt.SelectedDate!=null)
-                   if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
-                && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
-                && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
-                add.IsEnabled = true;
-            else
-                add.IsEnabled = false;
-
-
-
-
+               && dateTreat.SelectedDate != null && dateSt.SelectedDate != null)
+                if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
+             && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
+             && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
+                    add.IsEnabled = true;
+                else
+                    add.IsEnabled = false;
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            
+
             string id = tbLiNum.Text;
             DateTime firstDate = (DateTime)dateSt.SelectedDate;
             DateTime TreatDate = (DateTime)dateTreat.SelectedDate;
@@ -245,10 +241,10 @@ namespace dotNet5781_03B_6715_7489
             double km = double.Parse(tbKm.Text);
             Bus newBus = new Bus(id, firstDate, TreatDate, kmSinceTreat, fuel, km);
             busStatic.buses.Add(newBus);
-            
+
             this.Close();
         }
 
-    
+
     }
 }

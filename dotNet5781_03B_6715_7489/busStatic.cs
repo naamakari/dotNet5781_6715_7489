@@ -27,7 +27,7 @@ namespace dotNet5781_03B_6715_7489
             buses.Add(new Bus("78854401", new DateTime(2018, 6, 7), new DateTime(2020, 3, 14), 8554, 78, 33320));
             buses.Add(new Bus("79965402", new DateTime(2020, 10, 24), new DateTime(2020, 4, 27), 445, 41, 12345));
             buses.Add(new Bus("7448541", new DateTime(2016, 7, 1), new DateTime(2020, 5, 20), 11425, 745, 78451));
-            buses.Add(new Bus("7996522", new DateTime(2013, 2, 3), new DateTime(2020, 11, 12), 785, 852, 748512));
+            buses.Add(new Bus("7996522", new DateTime(2013, 2, 3), new DateTime(2020, 12, 11), 785, 852, 748512));
         }
     }
 }
