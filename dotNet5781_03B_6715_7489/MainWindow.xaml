@@ -17,8 +17,8 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="200*"/>-->
         </Grid.ColumnDefinitions>
-        <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="35,46,0,0" Grid.Row="2" VerticalAlignment="Top" Width="201" Height="55" Click="Button_Click"/>
-        <ListView x:Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="347" Margin="208,31,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick">
+        <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="32,30,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="55" Click="Button_Click"/>
+        <ListView x:Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="347" Margin="243,26,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridView">
                     <GridViewColumn Width="150" Header="מספר רישוי" DisplayMemberBinding="{Binding Id}" FrameworkElement.FlowDirection="LeftToRight"/>
@@ -44,6 +44,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="סגירה" HorizontalAlignment="Left" Margin="32,94,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="36" Click="Button_Click_1"/>
         <!--<ComboBox x:Name="cbListBuses" HorizontalAlignment="Left"
                   VerticalAlignment="Top" Width="265" 
                   Height="32" Grid.Column="1" Grid.Row="1" 

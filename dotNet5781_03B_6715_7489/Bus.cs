@@ -42,6 +42,16 @@ namespace dotNet5781_01_6715_7489
             kmSinceLastTreat = kmSinceTreat;
             stateBus = state.ready;
         }
+        public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, state sta, double fuel = 0.0, double km = 0.0)
+        {
+            Id = idNumber;
+            StartDate = firstDate;
+            LastTreatDate = TreatDate;
+            Kilometrazh = km;
+            stateOfFuel = fuel;
+            kmSinceLastTreat = kmSinceTreat;
+            stateBus = sta;
+        }
         public void upDateDetails(double dist)
         {
             Kilometrazh += dist;

@@ -25,24 +25,18 @@ namespace dotNet5781_03B_6715_7489
     /// 
     public partial class MainWindow : Window
     {
+        BackgroundWorker refuelWorker;
+
+
         public MainWindow()
         {
             InitializeComponent();
 
             BusListView.ItemsSource = busStatic.buses;
-            //cbListBuses.DisplayMemberPath = "Id";
-           // BusListView.SelectedIndex = 0;
-
-
-            //List<string> str = new List<string>();
-            //str.Add("Bus1");
-            //str.Add("Bus2");
-            //str.Add("Bus3");
-            //cbListBuses.ItemsSource = str;
-
-
+          
         }
 
+        Bus currentBus { get; set; }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             AddBus newAddWin = new AddBus();
@@ -51,6 +45,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void detailButton_Click(object sender, RoutedEventArgs e)//event of sending bus to driving
         {
+
             var fxElt = sender as FrameworkElement;
             Bus selectedBus = fxElt.DataContext as Bus;
             toDrive newWin = new toDrive();
@@ -60,26 +55,54 @@ namespace dotNet5781_03B_6715_7489
 
         private void refuelButton_Click(object sender, RoutedEventArgs e)//event of sending bus to refuel
         {
+            refuelWorker = new BackgroundWorker();
+            refuelWorker.DoWork += RefuelWorker_DoWork;
+            refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;
             var fxElt = sender as FrameworkElement;
             Bus selectedBus = fxElt.DataContext as Bus;
+            currentBus = selectedBus;
+            refuelWorker.RunWorkerAsync(selectedBus);
             selectedBus.stateOfFuel = 0.0;
             selectedBus.stateBus = state.inRefule;
             //לשלוח את האוטובוס לתדלוק מבחינת זמן
         }
 
+        private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+          currentBus = (Bus)e.Result;
+            currentBus.stateBus = state.ready;
+            string numLine = currentBus.Id;
+            MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
+
+        }
+
+        private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //currentBus =
+           e.Result = (Bus)e.Argument; 
+            Thread.Sleep(12000);
+        }
+
         private void BusListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)//double click to display the details of the bus
         {
+           
+            var fxElt = sender as FrameworkElement;
+            Bus selectedBus = fxElt.DataContext as Bus;
             disPlayDetails displayDetails = new disPlayDetails();
             displayDetails.myBus2 = (Bus)BusListView.SelectedItem;
             displayDetails.intilizied();
             displayDetails.ShowDialog();
+
+          //if ( displayDetails.myBus2.stateBus==state.inRefule|| displayDetails.myBus2.stateBus == state.inTreat)
+    
+          //      IsEnabled= e.ButtonState
+          //      fxElt.IsEnabled = false;
         }
 
-        private void DrivingBotton_GotMouseCapture(object sender, MouseEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("jhjbj", "hv");
-        
-                }
+            this.Close();
+        }
     }
 
 }

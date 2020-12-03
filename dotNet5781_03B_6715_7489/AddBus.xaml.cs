@@ -127,6 +127,15 @@ namespace dotNet5781_03B_6715_7489
                 else
                     NumEror.Visibility = Visibility.Hidden;
             }
+            if (tbLiNum.Text.Length >= 7)
+            {
+                if (busStatic.buses.Any(x => x.Id == tbLiNum.Text))
+                    NumEror1.Visibility = Visibility.Visible;
+                else
+                    NumEror1.Visibility = Visibility.Hidden;
+
+            }
+
             this.errors();
         }
 
