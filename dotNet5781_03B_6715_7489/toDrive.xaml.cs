@@ -24,46 +24,48 @@ namespace dotNet5781_03B_6715_7489
         {
             InitializeComponent();
         }
-        public Bus myBus { get; set; }
+        public Bus myBus { get; set; }//definaition of proparthy of bus we selected for the new window we opened
         private bool nonNumeriable = false;
-        private void dis_KeyDown(object sender, KeyEventArgs e)
+        private void dis_KeyDown(object sender, KeyEventArgs e)//An event of inserting keys from the keyboard
         {
             nonNumeriable = false;
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
                 if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
-                    if (e.Key != Key.Decimal)
+                    if (e.Key != Key.Decimal)//if the number is not point
                         nonNumeriable = true;
 
-            if (nonNumeriable == true)
-                e.Handled = true;
-            if (e.Key == Key.Enter)
+            if (nonNumeriable == true)//if the key is not a number or point
+                e.Handled = true;//block the option to insert keys
+            if (e.Key == Key.Enter)//if the key is 'enter'
             {
                 TimeSpan diff = DateTime.Now - myBus.LastTreatDate;//the difference between the last treat day and today
                 if (myBus.stateOfFuel + float.Parse(dis.Text) <= 1200)//can take the driving from the fuel aspect
                 {
                     if (diff.TotalDays < 365 && myBus.kmSinceLastTreat + float.Parse(dis.Text) <= 20000)//can take the driving from the treat aspect
                     {
-                        myBus.upDateDetails(double.Parse(dis.Text));
-                        myBus.stateBus = state.inDrive;
+                        myBus.upDateDetails(double.Parse(dis.Text));//update the details of the bus according the km
+                        myBus.stateBus = state.inDrive;//change the status of the bus
                         //שולח לנסיעה
                         //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
                     }
 
-                    else
+                    else//the bus need treat and can not take the driving
                     {
+                        //message box
                         MessageBox.Show("!!האוטובוס צריך טיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                        myBus.stateBus = state.inTreat;
+                        myBus.stateBus = state.inTreat;//change the status of the bus
                         //שולח לטיפול
                         //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
 
                     }
                 }
-                else
+                else//the bus need refuel and can not take the driving
                 {
+                    //message box
                     MessageBox.Show("!!האוטובוס צריך תדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
-                    myBus.stateBus = state.inRefule;
+                    myBus.stateBus = state.inRefule;// change the status of the bus
                     //שולח לתדלוק
                     //לעדכן את הזמן, להוציא הודעה מתאימה ולעדכן את הסטטוס
 
@@ -76,7 +78,7 @@ namespace dotNet5781_03B_6715_7489
             this.Close();
         }
 
-        private void dis_MouseDown(object sender, MouseButtonEventArgs e)
+        private void dis_MouseDown(object sender, MouseButtonEventArgs e)//double click on the text box
         {
             dis.Text = "";
         }
