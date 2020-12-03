@@ -75,5 +75,16 @@ namespace dotNet5781_03B_6715_7489
         {
             this.Close();
         }
+
+        private void dis_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            dis.Text = "";
+        }
+
+        private void dis_MouseEnter(object sender, MouseEventArgs e)
+        {
+            dis.Text = "";
+
+        }
     }
 }
