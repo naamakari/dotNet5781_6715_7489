@@ -24,24 +24,26 @@ namespace dotNet5781_03B_6715_7489
         {
             InitializeComponent();
         }
-        static int counter = 0;
+
         private bool nonNumeriable = false;
+        //The following functions check the integrity of the input
         private void tbLiNum_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
-            counter++;
+           
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 //if the key is not a number from the side keyboard
                 if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
                     nonNumeriable = true;
 
-            if (counter == 8 || nonNumeriable == true)
+            if ( nonNumeriable == true)
             {
                 e.Handled = true;
-                counter = 0;
+                
             }
         }
+
         private void tbTreat_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
@@ -57,6 +59,7 @@ namespace dotNet5781_03B_6715_7489
                 e.Handled = true;
             }
         }
+
         private void tbRef_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
@@ -86,7 +89,7 @@ namespace dotNet5781_03B_6715_7489
             if (nonNumeriable == true)
             {
                 e.Handled = true;
-                counter = 0;
+                
             }
         }
 
@@ -95,6 +98,7 @@ namespace dotNet5781_03B_6715_7489
             this.Close();
         }
 
+        //The following functions check the input integrity logically
         private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (tbTreat.Text != "")
@@ -239,9 +243,11 @@ namespace dotNet5781_03B_6715_7489
                     add.IsEnabled = false;
         }
 
+
+
         private void add_Click(object sender, RoutedEventArgs e)
         {
-
+            //Adding the information from the window to a new bus and inserting it into the list
             string id = tbLiNum.Text;
             DateTime firstDate = (DateTime)dateSt.SelectedDate;
             DateTime TreatDate = (DateTime)dateTreat.SelectedDate;
