@@ -26,7 +26,7 @@ namespace dotNet5781_03B_6715_7489
     public partial class disPlayDetails : Window
     {
         BackgroundWorker refuelWorker;//defination of backgroundworker for processes
-
+        BackgroundWorker treatWorker;//defination of backgroundworker for processes
         public disPlayDetails()
         {
             InitializeComponent();
@@ -81,13 +81,18 @@ namespace dotNet5781_03B_6715_7489
 
         private void TreatButton_Click(object sender, RoutedEventArgs e)//Event of clicking a treat button
         {
+            treatWorker = new BackgroundWorker();//creat a new proccess
+            treatWorker.DoWork += TreatWorker_DoWork;//Event registration
+            treatWorker.RunWorkerCompleted += TreatWorker_RunWorkerCompleted;//Event registration
+
             var fxElt = sender as FrameworkElement;//casting for bus 
             Bus selectedBus = fxElt.DataContext as Bus;
             this.Close();
-            selectedBus.kmSinceLastTreat = 0.0;//Update the km of the bus
-            myBus2.LastTreatDate = DateTime.Now;//Update the date of the km of the bus sincr treat
-            oneOrganList[0].LastTreatDate = DateTime.Now;
+           // selectedBus.kmSinceLastTreat = 0.0;//Update the km of the bus
+           // myBus2.LastTreatDate = DateTime.Now;//Update the date of the km of the bus since treat
+           // oneOrganList[0].LastTreatDate = DateTime.Now;
             selectedBus.stateBus = state.inTreat;//Updating the status of the bus to 'inTreat'
+           
             if (selectedBus.stateOfFuel >= 1150)//checks if the bus need also refueling
             {//the time of the refuling include at the treat time
                 selectedBus.stateOfFuel = 0.0;//Update on the fuel state of the bus
@@ -95,8 +100,26 @@ namespace dotNet5781_03B_6715_7489
                 myBus2.stateOfFuel = 0.0;//Update on the fuel state of the bus
                 feul.Value = 1200;//update the progressbar to be full
             }
+            treatWorker.RunWorkerAsync(selectedBus);
             //לשלוח את האוטובוס לטיפול מבחינת זמן
         }
+        private void TreatWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = (Bus)e.Argument;//Sending to a function that takes place at the end of the process
+            Thread.Sleep(144000);//Refueling is done for two hours on a simulation clock
+        }
+
+        private void TreatWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            myBus2 = (Bus)e.Result;//casting for bus 
+            myBus2.stateBus = state.ready;//use in Bus external for changed in the bus during the process
+            string numLine = myBus2.Id;
+            MessageBox.Show(" אוטובוס מספר " + numLine + " טופל בהצלחה", "סיום הטיפול");
+            myBus2.kmSinceLastTreat = 0.0;//Update the km of the bus
+            myBus2.LastTreatDate = DateTime.Now;//Update the date of the km of the bus since treat
+        }
+
+      
 
         private void feul_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

@@ -237,7 +237,8 @@ namespace dotNet5781_03B_6715_7489
                && dateTreat.SelectedDate != null && dateSt.SelectedDate != null)
                 if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
              && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
-             && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
+             && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden
+             && NumEror1.Visibility==Visibility.Hidden)
                     add.IsEnabled = true;
                 else
                     add.IsEnabled = false;

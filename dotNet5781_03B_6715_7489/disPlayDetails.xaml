@@ -18,9 +18,9 @@
                     <GridViewColumn Header="מספר רישוי" Width="100" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="תאריך תחילת פעילות" Width="150" DisplayMemberBinding="{Binding StartDate}"/>
                     <GridViewColumn Header="תאריך טיפול אחרון" Width="150" DisplayMemberBinding="{Binding LastTreatDate}"/>
-                    <GridViewColumn Header="'קילומטראז" Width="100" DisplayMemberBinding="{Binding kmSinceLastTreat}"/>
+                    <GridViewColumn Header="'קילומטראז" Width="100" DisplayMemberBinding="{Binding Kilometrazh}"/>
                     <GridViewColumn x:Name="kmsince" Header="ק''מ מאז תדלוק אחרון" Width="125" DisplayMemberBinding="{Binding stateOfFuel}"/>
-                    <GridViewColumn Header="ק''מ מאז טיפול אחרון" Width="125" DisplayMemberBinding="{Binding Kilometrazh }"/>
+                    <GridViewColumn Header="ק''מ מאז טיפול אחרון" Width="125" DisplayMemberBinding="{Binding kmSinceLastTreat }"/>
                     <GridViewColumn Header="מצב האוטובוס" Width="90" DisplayMemberBinding="{Binding stateBus}"/>
                     <GridViewColumn Width="80">
                         <GridViewColumn.CellTemplate>
