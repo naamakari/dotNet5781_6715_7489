@@ -61,30 +61,25 @@ namespace dotNet5781_03B_6715_7489
             refuelWorker = new BackgroundWorker();
             refuelWorker.DoWork += RefuelWorker_DoWork;
             refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
-            
-            var fxElt = sender as FrameworkElement;//casting for bus
-            Bus selectedBus = fxElt.DataContext as Bus;
-            
-            //currentBus = selectedBus;
-            refuelWorker.RunWorkerAsync(selectedBus);//start the process
-            selectedBus.stateOfFuel = 0.0;//update the state of the fule
-            selectedBus.stateBus = state.inRefule;//update the statos 
+
+            currentBus.stateBus = state.inRefule;//update the statos 
+            refuelWorker.RunWorkerAsync();//start the process
+        
             
         }
 
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            currentBus = (Bus)e.Result;//castong for bus 
             currentBus.stateBus = state.ready;//use in Bus external for changed in the bus during the process 
             string numLine = currentBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
+            currentBus.stateOfFuel = 0.0;//update the state of the fule
 
         }
 
         private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             
-           e.Result = (Bus)e.Argument; //Sending to a function that takes place at the end of the process
             Thread.Sleep(12000);//Refueling is done for two hours on a simulation clock
         }
 
