@@ -58,14 +58,21 @@ namespace dotNet5781_03B_6715_7489
 
         private void refuelButton_Click(object sender, RoutedEventArgs e)//event of sending bus to refuel
         {
+
             refuelWorker = new BackgroundWorker();
             refuelWorker.DoWork += RefuelWorker_DoWork;
             refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
 
+            var fxElt = sender as FrameworkElement;//casting for bus
+            currentBus = fxElt.DataContext as Bus;
+
             currentBus.stateBus = state.inRefule;//update the statos 
             refuelWorker.RunWorkerAsync();//start the process
-        
             
+
+
+
+
         }
 
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -74,7 +81,7 @@ namespace dotNet5781_03B_6715_7489
             string numLine = currentBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
             currentBus.stateOfFuel = 0.0;//update the state of the fule
-
+            
         }
 
         private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -93,7 +100,8 @@ namespace dotNet5781_03B_6715_7489
             displayDetails.myBus2 = (Bus)BusListView.SelectedItem;//Sending the selected auto to the new window
             displayDetails.intilizied();//Initialize the details in the new window
             displayDetails.ShowDialog();
-
+            
+            
           //if ( displayDetails.myBus2.stateBus==state.inRefule|| displayDetails.myBus2.stateBus == state.inTreat)
     
           //      IsEnabled= e.ButtonState

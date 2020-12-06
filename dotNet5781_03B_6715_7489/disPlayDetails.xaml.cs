@@ -104,6 +104,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void feul_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            
             //feul.Value = myBus2.stateOfFuel;
         }
     }

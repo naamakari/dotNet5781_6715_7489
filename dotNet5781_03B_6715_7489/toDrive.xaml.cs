@@ -78,6 +78,7 @@ namespace dotNet5781_03B_6715_7489
         }
         private void cancle_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Close();
         }
 
