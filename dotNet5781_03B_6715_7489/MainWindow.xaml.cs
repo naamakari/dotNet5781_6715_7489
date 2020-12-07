@@ -37,8 +37,12 @@ namespace dotNet5781_03B_6715_7489
         }
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
-            if (!(e is EventArgs))
+            if (!(e is StateChangedEventArgs))
                 return;
+            StateChangedEventArgs temp = (StateChangedEventArgs)e;
+             ObservableCollection <busStatic> nm  =BusListView.SelectedItems;
+            temp.myId;
+            BusListView.View;
             MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
             //שינוי הצבעים לפי הסטטוס
         }
@@ -55,39 +59,56 @@ namespace dotNet5781_03B_6715_7489
             //drive button
 
             var fxElt = sender as FrameworkElement;//casting for bus
-            Bus selectedBus = fxElt.DataContext as Bus;
-            if (!refuelWorker.IsBusy)
+            currentBus = fxElt.DataContext as Bus;
+
+            if (currentBus.StateBus != state.inTreat && currentBus.StateBus != state.inDrive && currentBus.StateBus != state.inRefule)
             {
                 var drivingButton = sender as Button;
-                drivingButton.IsEnabled = false;
+                //drivingButton.IsEnabled = false;
                 //In order to exit the trip, a new window will open in which it is necessary to enter the distance traveled
                 toDrive newWin = new toDrive();
-                newWin.myBus = selectedBus;//Sending the selected bus to the next window
+                newWin.myBus = currentBus;//Sending the selected bus to the next window
                 newWin.ShowDialog();
             }
+            else if (currentBus.StateBus == state.inTreat)
+                MessageBox.Show("האוטובוס לא יכול לצאת לנסיעה כי הוא בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (currentBus.StateBus == state.inDrive)
+                MessageBox.Show("האוטובוס לא יכול לצאת לנסיעה כי הוא כבר בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             else
-                MessageBox.Show("האוטובוס נמצא בתדלוק כרגע ולכן לא יכול לצאת לנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("האוטובוס לא יכול לצאת לנסיעה כי הוא בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
 
         private void refuelButton_Click(object sender, RoutedEventArgs e)//event of sending bus to refuel
         {
+            
 
             refuelWorker = new BackgroundWorker();
             refuelWorker.DoWork += RefuelWorker_DoWork;
             refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
-            if(!DriveWorker)
-                var fxElt = sender as FrameworkElement;//casting for bus
-            var myButtonRe =sender as Button;
-            myButtonRe.IsEnabled = false;
+           
+    
+            var fxElt = sender as FrameworkElement;//casting for bus
             currentBus = fxElt.DataContext as Bus;
-           // (Button)BusListView.SelectedItem.RefuelButton;
+            var myButtonRe =sender as Button;
+            if (currentBus.StateBus != state.inTreat && currentBus.StateBus != state.inDrive && currentBus.StateBus != state.inRefule)
+            {
+                myButtonRe.IsEnabled = false;
+
+                // (Button)BusListView.SelectedItem.RefuelButton;
 
 
-            new StatusChangedObserver(currentBus);//event registration 
+                new StatusChangedObserver(currentBus);//event registration 
 
-            currentBus.StateBus = state.inRefule;//update the status 
-            refuelWorker.RunWorkerAsync(myButtonRe);//start the process
+                currentBus.StateBus = state.inRefule;//update the status 
+                refuelWorker.RunWorkerAsync(myButtonRe);//start the process
+            }
+            else if (currentBus.StateBus == state.inTreat)
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (currentBus.StateBus == state.inDrive)
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
 
 
         }

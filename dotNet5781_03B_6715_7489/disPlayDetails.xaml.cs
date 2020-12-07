@@ -34,14 +34,14 @@ namespace dotNet5781_03B_6715_7489
         }
         public static void Bus_StatusChanged1(object sender, EventArgs e)
         {
-            if (!(e is EventArgs))
+            if (!(e is StateChangedEventArgs))
                 return;
             MessageBox.Show("אחת אחת", " טיפוללל ");
             //שינוי הצבעים לפי הסטטוס
         }
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
-            if (!(e is EventArgs))
+            if (!(e is StateChangedEventArgs))
                 return;
             MessageBox.Show("אחת שתיים", " הפסקת תדלוק וסיגריה ");
             //שינוי הצבעים לפי הסטטוס
@@ -62,21 +62,29 @@ namespace dotNet5781_03B_6715_7489
 
         private void RefuelBotton_Click(object sender, RoutedEventArgs e)//Event of clicking a fuel button
         {
-            
-            refuelWorker = new BackgroundWorker();//Production of a new process
-            refuelWorker.DoWork += RefuelWorker_DoWork; //Event registration
-            refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
-            new StatusChangedObserver(myBus2, 'a');//event registration 
-
-            this.Close();
-            myBus2.StateBus = state.inRefule;//Updating the status of the bus to 'refueling'   
-            refuelWorker.RunWorkerAsync();//start the process with the selected bus
-
+            if (myBus2.StateBus!=state.inTreat&&myBus2.StateBus!=state.inDrive&&myBus2.StateBus!=state.inRefule)
+            {
+                refuelWorker = new BackgroundWorker();//Production of a new process
+                refuelWorker.DoWork += RefuelWorker_DoWork; //Event registration
+                refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
+                new StatusChangedObserver(myBus2, 'a');//event registration 
+                
+                this.Close();
+                myBus2.StateBus = state.inRefule;//Updating the status of the bus to 'refueling'   
+                refuelWorker.RunWorkerAsync();//start the process with the selected bus
+            }
+            else if(myBus2.StateBus==state.inTreat)
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if(myBus2.StateBus==state.inDrive)
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
             //לשלוח את האוטובוס לתדלוק מבחינת זמן
         }
 
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+           
             myBus2.StateBus = state.ready;//use in Bus external for changed in the bus during the process
             string numLine = myBus2.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
@@ -90,19 +98,29 @@ namespace dotNet5781_03B_6715_7489
 
         private void TreatButton_Click(object sender, RoutedEventArgs e)//Event of clicking a treat button
         {
-            treatWorker = new BackgroundWorker();//creat a new proccess
-            treatWorker.DoWork += TreatWorker_DoWork;//Event registration
-            treatWorker.RunWorkerCompleted += TreatWorker_RunWorkerCompleted;//Event registration
-            new StatusChangedObserver(myBus2, true);//event registration 
+            if (myBus2.StateBus != state.inTreat && myBus2.StateBus != state.inDrive && myBus2.StateBus != state.inRefule)
+            {
+                treatWorker = new BackgroundWorker();//creat a new proccess
+                treatWorker.DoWork += TreatWorker_DoWork;//Event registration
+                treatWorker.RunWorkerCompleted += TreatWorker_RunWorkerCompleted;//Event registration
+                new StatusChangedObserver(myBus2, true);//event registration 
 
-            this.Close();
-            myBus2.StateBus = state.inTreat;//Updating the status of the bus to 'inTreat'
-           
-            if (myBus2.stateOfFuel >= 1150)//checks if the bus need also refueling
-            {//the time of the refuling include at the treat time
-                myBus2.stateOfFuel = 0.0;//Update on the fuel state of the bus
+                this.Close();
+                myBus2.StateBus = state.inTreat;//Updating the status of the bus to 'inTreat'
+
+                if (myBus2.stateOfFuel >= 1150)//checks if the bus need also refueling
+                {//the time of the refuling include at the treat time
+                    myBus2.stateOfFuel = 0.0;//Update on the fuel state of the bus
+                }
+                treatWorker.RunWorkerAsync();
             }
-            treatWorker.RunWorkerAsync();
+            else if (myBus2.StateBus == state.inTreat)
+                MessageBox.Show("האוטובוס לא יכול ללכת לטיפול כי הוא כבר בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else if (myBus2.StateBus == state.inDrive)
+                MessageBox.Show("האוטובוס לא יכול ללכת לטיפול כי הוא בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+            else
+                MessageBox.Show("האוטובוס לא יכול ללכת לטיפול כי הוא בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+
             //לשלוח את האוטובוס לטיפול מבחינת זמן
         }
         private void TreatWorker_DoWork(object sender, DoWorkEventArgs e)

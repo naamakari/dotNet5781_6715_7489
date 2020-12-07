@@ -27,7 +27,7 @@ namespace dotNet5781_03B_6715_7489
         {
             InitializeComponent();
         }
-        public static BackgroundWorker DriveWorker;
+       public BackgroundWorker DriveWorker;
        public BackgroundWorker treatWorker;
        public BackgroundWorker refuelWorker;
         public Bus myBus { get; set; }//definaition of proparthy of bus we selected for the new window we opened
@@ -36,7 +36,7 @@ namespace dotNet5781_03B_6715_7489
 
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
-            if (!(e is EventArgs))
+            if (!(e is StateChangedEventArgs))
                 return;
             MessageBox.Show("בדיקוש", " יצאתי לנסיעה ואולי גם חזרתי ");
             //שינוי הצבעים לפי הסטטוס
@@ -61,7 +61,7 @@ namespace dotNet5781_03B_6715_7489
                 {
                     if (diff.TotalDays < 365 && myBus.kmSinceLastTreat + float.Parse(dis.Text) <= 20000)//can take the driving from the treat aspect
                     {
-                        this.driving();
+                        this.driving(sender);
                     }
 
                     else//the bus need treat and can not take the driving
@@ -101,7 +101,7 @@ namespace dotNet5781_03B_6715_7489
 
         //}
 
-        private void driving()
+        private void driving(object sender)
         {
             DriveWorker = new BackgroundWorker();
             DriveWorker.DoWork += DriveWorker_DoWork;
@@ -110,6 +110,7 @@ namespace dotNet5781_03B_6715_7489
 
             float kmForH = rand.Next(20, 50);
             int time = (int)(float.Parse(dis.Text) / kmForH);
+
             DriveWorker.RunWorkerAsync(time);//start the process
             myBus.StateBus = state.inDrive;//change the status of the bus
 
@@ -117,7 +118,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void DriveWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+
             Thread.Sleep((int)(e.Argument)*6000);//drive is done accord the km and the bus speed 
         }
 
@@ -127,7 +128,6 @@ namespace dotNet5781_03B_6715_7489
             string numLine = myBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " חזר מנסיעה", "סיום הנסיעה");
             myBus.upDateDetails(double.Parse(dis.Text));//update the details of the bus according the km
-
         }
         private void treat()
         {

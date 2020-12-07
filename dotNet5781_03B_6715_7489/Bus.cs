@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using dotNet5781_03B_6715_7489;
 
 namespace dotNet5781_01_6715_7489
 {
@@ -32,15 +33,15 @@ namespace dotNet5781_01_6715_7489
         public state StateBus
         {
             get { return stateBus; }
-            set { EventArgs args = new EventArgs();//creat event details
+            set { StateChangedEventArgs args = new StateChangedEventArgs(Id);//creat event details
                 stateBus =value;//when the state is changed
-                OnStatusChanged();//send to the event
+                OnStatusChanged(args);//send to the event
             }
         }
-        protected void OnStatusChanged()//function that play the delegate
+        protected void OnStatusChanged(StateChangedEventArgs args)//function that play the delegate
         {
             if (StatusChanged != null)
-                StatusChanged(this, EventArgs.Empty);
+                StatusChanged(this, args);
         }
         //constructor
         public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, double fuel = 0.0, double km = 0.0, state SBus=state.ready)

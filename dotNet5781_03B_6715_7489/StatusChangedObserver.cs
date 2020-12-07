@@ -19,7 +19,7 @@ namespace dotNet5781_03B_6715_7489
             bus.StatusChanged += toDrive.Bus_StatusChanged;
             
         }
-        public StatusChangedObserver(Bus bus, bool flag)
+        public StatusChangedObserver(Bus bus, bool flag)//
         {
           
             bus.StatusChanged += disPlayDetails.Bus_StatusChanged1;

@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
         mc:Ignorable="d"
         Title="חלון הצגת פרטי אוטובוס" Height="140" Width="1035.779">
-    <Grid Margin="0,0,-89.8,0.4">
+    <Grid Margin="0,0,-89.8,0.4" Background="#FFD5ECEE">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="984*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="925*"/>
             <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="110*"/>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="Lv" Margin="0,0,1.8,0" Grid.ColumnSpan="2" Height="65" VerticalAlignment="Top">
+        <ListView x:Name="Lv" Margin="0,0,1.8,0" Grid.ColumnSpan="3" Height="65" VerticalAlignment="Top" FontSize="12" FontWeight="SemiBold" Background="#FFD5ECEE">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="מספר רישוי" Width="100" DisplayMemberBinding="{Binding Id}"/>
@@ -43,8 +44,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ProgressBar x:Name="feul" Maximum="1200" HorizontalAlignment="Left" Height="23" Margin="42,75,0,0" VerticalAlignment="Top" Width="413" ValueChanged="feul_ValueChanged" BorderBrush="#FFBCBCBC"/>
-        <Label Content=":מצב הדלק" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="509,70,0,0" VerticalAlignment="Top" Width="89"/>
-        <Label x:Name="warnning" Content="שים לב! האוטובוס זקוק לטיפול בקרוב" Visibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="658,72,0,0" VerticalAlignment="Top" Width="243" FontWeight="Bold"/>
+        <ProgressBar x:Name="feul" Maximum="1200" HorizontalAlignment="Left" Height="23" Margin="42,75,0,0" VerticalAlignment="Top" Width="413" ValueChanged="feul_ValueChanged" BorderBrush="#FFBCBCBC" Foreground="#FF06B025" Grid.ColumnSpan="2" />
+        <Label Content=":מצב הדלק" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="462.41,70,0,0" VerticalAlignment="Top" Width="89" Grid.Column="1"/>
+        <Label x:Name="warnning" Content="שים לב! האוטובוס זקוק לטיפול בקרוב" Visibility="Hidden" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Red" HorizontalAlignment="Left" Margin="611.41,72,0,0" VerticalAlignment="Top" Width="243" FontWeight="Bold" Grid.Column="1"/>
+        <Image HorizontalAlignment="Left" Height="35" Margin="430.41,70,0,0" VerticalAlignment="Top" Width="68" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%93%D7%99%D7%A8%D7%94-%D7%94%D7%A6%D7%91-%D7%92%D7%96-%D7%90%D7%99%D7%A7%D7%95%D7%9F-%D7%95%D7%A7%D7%98%D7%95%D7%A8-%D7%90%D7%99%D7%A4%D7%A1%D7%90%D7%A1_csp33441689.jpg" Grid.Column="1"/>
     </Grid>
 </Window>
