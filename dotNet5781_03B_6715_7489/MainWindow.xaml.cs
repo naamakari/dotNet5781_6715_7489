@@ -56,11 +56,17 @@ namespace dotNet5781_03B_6715_7489
 
             var fxElt = sender as FrameworkElement;//casting for bus
             Bus selectedBus = fxElt.DataContext as Bus;
-            //In order to exit the trip, a new window will open in which it is necessary to enter the distance traveled
-           
-            toDrive newWin = new toDrive();
-            newWin.myBus = selectedBus;//Sending the selected bus to the next window
-            newWin.ShowDialog();
+            if (!refuelWorker.IsBusy)
+            {
+                var drivingButton = sender as Button;
+                drivingButton.IsEnabled = false;
+                //In order to exit the trip, a new window will open in which it is necessary to enter the distance traveled
+                toDrive newWin = new toDrive();
+                newWin.myBus = selectedBus;//Sending the selected bus to the next window
+                newWin.ShowDialog();
+            }
+            else
+                MessageBox.Show("האוטובוס נמצא בתדלוק כרגע ולכן לא יכול לצאת לנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
 
         }
 
@@ -70,14 +76,18 @@ namespace dotNet5781_03B_6715_7489
             refuelWorker = new BackgroundWorker();
             refuelWorker.DoWork += RefuelWorker_DoWork;
             refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
-
-            var fxElt = sender as FrameworkElement;//casting for bus
+            if(!DriveWorker)
+                var fxElt = sender as FrameworkElement;//casting for bus
+            var myButtonRe =sender as Button;
+            myButtonRe.IsEnabled = false;
             currentBus = fxElt.DataContext as Bus;
+           // (Button)BusListView.SelectedItem.RefuelButton;
+
 
             new StatusChangedObserver(currentBus);//event registration 
 
-            currentBus.StateBus = state.inRefule;//update the statos 
-            refuelWorker.RunWorkerAsync();//start the process
+            currentBus.StateBus = state.inRefule;//update the status 
+            refuelWorker.RunWorkerAsync(myButtonRe);//start the process
 
 
         }
@@ -88,12 +98,14 @@ namespace dotNet5781_03B_6715_7489
             string numLine = currentBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
             currentBus.stateOfFuel = 0.0;//update the state of the fule
+            Button myBottonRef =(Button) e.Result;
+            myBottonRef.IsEnabled = true;
 
         }
 
         private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            e.Result = e.Argument;
             Thread.Sleep(12000);//Refueling is done for two hours on a simulation clock
         }
 

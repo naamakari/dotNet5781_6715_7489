@@ -27,9 +27,9 @@ namespace dotNet5781_03B_6715_7489
         {
             InitializeComponent();
         }
-        BackgroundWorker DriveWorker;
-        BackgroundWorker treatWorker;
-        BackgroundWorker refuelWorker;
+        public static BackgroundWorker DriveWorker;
+       public BackgroundWorker treatWorker;
+       public BackgroundWorker refuelWorker;
         public Bus myBus { get; set; }//definaition of proparthy of bus we selected for the new window we opened
         private bool nonNumeriable = false;
         static public Random rand = new Random(DateTime.Now.Millisecond);
