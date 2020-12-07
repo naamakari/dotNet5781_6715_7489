@@ -25,14 +25,25 @@ namespace dotNet5781_01_6715_7489
         }
         public double stateOfFuel { get; set; }
         public double kmSinceLastTreat { get; set; }
-        public state stateBus
-        {
-            get;
-            set;
-        }
 
+        public event EventHandler StatusChanged;
+
+        private state stateBus;
+        public state StateBus
+        {
+            get { return stateBus; }
+            set { EventArgs args = new EventArgs();//creat event details
+                stateBus =value;//when the state is changed
+                OnStatusChanged();//send to the event
+            }
+        }
+        protected void OnStatusChanged()//function that play the delegate
+        {
+            if (StatusChanged != null)
+                StatusChanged(this, EventArgs.Empty);
+        }
         //constructor
-        public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, double fuel = 0.0, double km = 0.0)
+        public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, double fuel = 0.0, double km = 0.0, state SBus=state.ready)
         {
             Id = idNumber;
             StartDate = firstDate;
@@ -40,18 +51,10 @@ namespace dotNet5781_01_6715_7489
             Kilometrazh = km;
             stateOfFuel = fuel;
             kmSinceLastTreat = kmSinceTreat;
-            stateBus = state.ready;
+            
+            //stateBus = state.ready;
         }
-        public Bus(string idNumber, DateTime firstDate, DateTime TreatDate, double kmSinceTreat, state sta, double fuel = 0.0, double km = 0.0)
-        {
-            Id = idNumber;
-            StartDate = firstDate;
-            LastTreatDate = TreatDate;
-            Kilometrazh = km;
-            stateOfFuel = fuel;
-            kmSinceLastTreat = kmSinceTreat;
-            stateBus = sta;
-        }
+      
         public void upDateDetails(double dist)
         {
             Kilometrazh += dist;

@@ -32,6 +32,20 @@ namespace dotNet5781_03B_6715_7489
             InitializeComponent();
 
         }
+        public static void Bus_StatusChanged1(object sender, EventArgs e)
+        {
+            if (!(e is EventArgs))
+                return;
+            MessageBox.Show("אחת אחת", " טיפוללל ");
+            //שינוי הצבעים לפי הסטטוס
+        }
+        public static void Bus_StatusChanged(object sender, EventArgs e)
+        {
+            if (!(e is EventArgs))
+                return;
+            MessageBox.Show("אחת שתיים", " הפסקת תדלוק וסיגריה ");
+            //שינוי הצבעים לפי הסטטוס
+        }
         public Bus myBus2 { get; set; }//definaition of proparthy of bus we selected for the new window we open
         ObservableCollection<Bus> oneOrganList;//defination of list to insert for the listView of the details
        public void intilizied()
@@ -48,11 +62,14 @@ namespace dotNet5781_03B_6715_7489
 
         private void RefuelBotton_Click(object sender, RoutedEventArgs e)//Event of clicking a fuel button
         {
+            
             refuelWorker = new BackgroundWorker();//Production of a new process
             refuelWorker.DoWork += RefuelWorker_DoWork; //Event registration
-            refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration            
+            refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted;//Event registration
+            new StatusChangedObserver(myBus2, 'a');//event registration 
+
             this.Close();
-            myBus2.stateBus = state.inRefule;//Updating the status of the bus to 'refueling'   
+            myBus2.StateBus = state.inRefule;//Updating the status of the bus to 'refueling'   
             refuelWorker.RunWorkerAsync();//start the process with the selected bus
 
             //לשלוח את האוטובוס לתדלוק מבחינת זמן
@@ -60,7 +77,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            myBus2.stateBus = state.ready;//use in Bus external for changed in the bus during the process
+            myBus2.StateBus = state.ready;//use in Bus external for changed in the bus during the process
             string numLine = myBus2.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
             myBus2.stateOfFuel = 0.0;//Update on the fuel state of the bus
@@ -76,8 +93,10 @@ namespace dotNet5781_03B_6715_7489
             treatWorker = new BackgroundWorker();//creat a new proccess
             treatWorker.DoWork += TreatWorker_DoWork;//Event registration
             treatWorker.RunWorkerCompleted += TreatWorker_RunWorkerCompleted;//Event registration
+            new StatusChangedObserver(myBus2, true);//event registration 
+
             this.Close();
-            myBus2.stateBus = state.inTreat;//Updating the status of the bus to 'inTreat'
+            myBus2.StateBus = state.inTreat;//Updating the status of the bus to 'inTreat'
            
             if (myBus2.stateOfFuel >= 1150)//checks if the bus need also refueling
             {//the time of the refuling include at the treat time
@@ -93,7 +112,7 @@ namespace dotNet5781_03B_6715_7489
 
         private void TreatWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            myBus2.stateBus = state.ready;//use in Bus external for changed in the bus during the process
+            myBus2.StateBus = state.ready;//use in Bus external for changed in the bus during the process
             string numLine = myBus2.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " טופל בהצלחה", "סיום הטיפול");
             myBus2.kmSinceLastTreat = 0.0;//Update the km of the bus

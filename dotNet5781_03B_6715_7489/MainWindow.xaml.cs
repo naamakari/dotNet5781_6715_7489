@@ -35,7 +35,13 @@ namespace dotNet5781_03B_6715_7489
             BusListView.ItemsSource = busStatic.buses;//Link the list of buses to the list displayed in the window
 
         }
-
+        public static void Bus_StatusChanged(object sender, EventArgs e)
+        {
+            if (!(e is EventArgs))
+                return;
+            MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
+            //שינוי הצבעים לפי הסטטוס
+        }
         Bus currentBus { get; set; }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -51,9 +57,11 @@ namespace dotNet5781_03B_6715_7489
             var fxElt = sender as FrameworkElement;//casting for bus
             Bus selectedBus = fxElt.DataContext as Bus;
             //In order to exit the trip, a new window will open in which it is necessary to enter the distance traveled
+           
             toDrive newWin = new toDrive();
             newWin.myBus = selectedBus;//Sending the selected bus to the next window
             newWin.ShowDialog();
+
         }
 
         private void refuelButton_Click(object sender, RoutedEventArgs e)//event of sending bus to refuel
@@ -66,27 +74,26 @@ namespace dotNet5781_03B_6715_7489
             var fxElt = sender as FrameworkElement;//casting for bus
             currentBus = fxElt.DataContext as Bus;
 
-            currentBus.stateBus = state.inRefule;//update the statos 
+            new StatusChangedObserver(currentBus);//event registration 
+
+            currentBus.StateBus = state.inRefule;//update the statos 
             refuelWorker.RunWorkerAsync();//start the process
-            
-
-
 
 
         }
 
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            currentBus.stateBus = state.ready;//use in Bus external for changed in the bus during the process 
+            currentBus.StateBus = state.ready;//use in Bus external for changed in the bus during the process 
             string numLine = currentBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
             currentBus.stateOfFuel = 0.0;//update the state of the fule
-            
+
         }
 
         private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            
+
             Thread.Sleep(12000);//Refueling is done for two hours on a simulation clock
         }
 
@@ -100,12 +107,12 @@ namespace dotNet5781_03B_6715_7489
             displayDetails.myBus2 = (Bus)BusListView.SelectedItem;//Sending the selected auto to the new window
             displayDetails.intilizied();//Initialize the details in the new window
             displayDetails.ShowDialog();
-            
-            
-          //if ( displayDetails.myBus2.stateBus==state.inRefule|| displayDetails.myBus2.stateBus == state.inTreat)
-    
-          //      IsEnabled= e.ButtonState
-          //      fxElt.IsEnabled = false;
+
+
+            //if ( displayDetails.myBus2.stateBus==state.inRefule|| displayDetails.myBus2.stateBus == state.inTreat)
+
+            //      IsEnabled= e.ButtonState
+            //      fxElt.IsEnabled = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

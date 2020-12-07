@@ -60,6 +60,7 @@
     <Compile Include="disPlayDetails.xaml.cs">
       <DependentUpon>disPlayDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatusChangedObserver.cs" />
     <Compile Include="toDrive.xaml.cs">
       <DependentUpon>toDrive.xaml</DependentUpon>
     </Compile>
