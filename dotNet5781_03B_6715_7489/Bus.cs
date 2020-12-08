@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using dotNet5781_03B_6715_7489;
 namespace dotNet5781_01_6715_7489
 {
     public enum state {ready, inDrive, inRefule, inTreat };
-    public class Bus
+    public class Bus 
     {
         private string id;
         public string Id//property
@@ -29,6 +30,8 @@ namespace dotNet5781_01_6715_7489
 
         public event EventHandler StatusChanged;
 
+        //public static readonly DependencyProperty stateBus=
+        //    DependencyProperty.Register("StateBus",typeof(state),typeof(Bus),new UIPropertyMetadata(0));
         private state stateBus;
         public state StateBus
         {
