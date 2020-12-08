@@ -40,9 +40,17 @@ namespace dotNet5781_03B_6715_7489
             if (!(e is StateChangedEventArgs))
                 return;
             StateChangedEventArgs temp = (StateChangedEventArgs)e;
-             ObservableCollection <busStatic> nm  =BusListView.SelectedItems;
-            temp.myId;
-            BusListView.View;
+
+
+            Binding binding = new Binding("StateBus");
+           // binding.Source = BusListView.SelectedItem;
+          //  BusListView[5];//להגדיר אינדקסר?
+           // BusListView.SetBinding(bud, binding);
+            //ListViewItem item1 = lsexample.FindItemWithText(temp.myId);
+            //BusListView.find
+            // ObservableCollection <busStatic> nm  =BusListView.SelectedItems;
+            //temp.myId;
+            //BusListView.View;
             MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
             //שינוי הצבעים לפי הסטטוס
         }

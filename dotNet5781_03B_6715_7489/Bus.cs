@@ -38,6 +38,7 @@ namespace dotNet5781_01_6715_7489
                 OnStatusChanged(args);//send to the event
             }
         }
+        
         protected void OnStatusChanged(StateChangedEventArgs args)//function that play the delegate
         {
             if (StatusChanged != null)
