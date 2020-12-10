@@ -38,7 +38,7 @@ namespace dotNet5781_03B_6715_7489
         {
             if (!(e is StateChangedEventArgs))
                 return;
-            MessageBox.Show("בדיקוש", " יצאתי לנסיעה ואולי גם חזרתי ");
+            //MessageBox.Show("בדיקוש", " יצאתי לנסיעה ואולי גם חזרתי ");
             //שינוי הצבעים לפי הסטטוס
         }
         private void dis_KeyDown(object sender, KeyEventArgs e)//An event of inserting keys from the keyboard

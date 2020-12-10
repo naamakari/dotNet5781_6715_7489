@@ -36,14 +36,14 @@ namespace dotNet5781_03B_6715_7489
         {
             if (!(e is StateChangedEventArgs))
                 return;
-            MessageBox.Show("אחת אחת", " טיפוללל ");
+           // MessageBox.Show("אחת אחת", " טיפוללל ");
             //שינוי הצבעים לפי הסטטוס
         }
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
             if (!(e is StateChangedEventArgs))
                 return;
-            MessageBox.Show("אחת שתיים", " הפסקת תדלוק וסיגריה ");
+           // MessageBox.Show("אחת שתיים", " הפסקת תדלוק וסיגריה ");
             //שינוי הצבעים לפי הסטטוס
         }
         public Bus myBus2 { get; set; }//definaition of proparthy of bus we selected for the new window we open

@@ -8,8 +8,10 @@
         Title="חלון ביצוע נסיעה" Height="200" Width="400">
 
     <Grid>
-        <Label x:Name="lb1" Content=":הכנס את מרחק הנסיעה" HorizontalAlignment="Left" Margin="201,37,0,0" VerticalAlignment="Top" Width="153"/>
-        <TextBox x:Name="dis" Text="Enter לסיום הקש/י" Foreground="Gray" FontSize="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="121,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" KeyDown="dis_KeyDown" MouseDoubleClick="dis_MouseDown"/>
+        <Image HorizontalAlignment="Left" Height="180" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%9E%D7%99%D7%93%D7%A2-%D7%A4%D7%A1%D7%A7-%D7%97%D7%AA%D7%95%D7%9D-%D7%AA%D7%A0%D7%95%D7%A2%D7%94-%D7%94%D7%A2%D7%AA%D7%A7-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp7553010.jpg" Margin="0,0,-0.4,-9.6" VerticalAlignment="Top" Width="394"/>
+
+        <Label x:Name="lb1" Content=":הכנס/י את מרחק הנסיעה" HorizontalContentAlignment="Right" HorizontalAlignment="Left" FontWeight="SemiBold" Margin="206,60,0,0" VerticalAlignment="Top" Width="153"/>
+        <TextBox x:Name="dis" Text="Enter לסיום הקש/י" Foreground="Gray" FontSize="9" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="126,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" KeyDown="dis_KeyDown" MouseDoubleClick="dis_MouseDown"/>
         <Button x:Name="drive" Content="!סע" HorizontalAlignment="Left" Margin="26,93,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden"/>
         <Button x:Name="cancle" Content="ביטול" HorizontalAlignment="Left" Margin="26,126,0,0" VerticalAlignment="Top" Width="75" Click="cancle_Click"/>
 

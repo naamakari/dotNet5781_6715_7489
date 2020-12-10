@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:dotNet5781_03B_6715_7489"
         mc:Ignorable="d"
         Title="חלון הוספת אוטובוס" Height="490" Width="400" Icon="https://s.alicdn.com/@sc01/kf/HTB1A5S_IWmWBuNjy1Xaq6xCbXXaE.jpg">
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Background="#FFAEF0E5" OpacityMask="#FFE3F1EF">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
@@ -16,20 +16,20 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="75*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False" Click="add_Click"/>
-        <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" Click="cancel_Click"/>
-        <Label x:Name="lb1" Content=":מספר רישוי" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="0" VerticalAlignment="Top" Height="28" Width="150"/>
-        <Label x:Name="lb2" Content=":תאריך התחלה" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="150"/>
-        <Label x:Name="lb3" Content=":תאריך טיפול אחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="28" Width="150"/>
-        <Label x:Name="lb4" Content=":נסועה מהטיפול האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="28" Width="150"/>
-        <Label x:Name="lb5" Content=":נסועה מהתדלוק האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Width="150"/>
-        <Label x:Name="lb6" Content=":'קילומטראז" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="28" Width="150"/>
-        <TextBox x:Name="tbLiNum" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="0" KeyDown="tbLiNum_KeyDown" TextChanged="tbLiNum_TextChanged" MaxLength="8"/>
-        <TextBox x:Name="tbTreat" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="3" KeyDown="tbTreat_KeyDown" TextChanged="tbTreat_TextChanged"/>
-        <TextBox x:Name="tbRef" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="4" KeyDown="tbRef_KeyDown" TextChanged="tbRef_TextChanged"/>
-        <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="5" KeyDown="tbKm_KeyDown" TextChanged="tbKm_TextChanged" />
-        <DatePicker x:Name="dateSt" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDateChanged="dateSt_SelectedDateChanged"/>
-        <DatePicker x:Name="dateTreat" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top" SelectedDateChanged="dateTreat_SelectedDateChanged"/>
+        <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False" Click="add_Click" Background="#FFACABAD" BorderThickness="2" BorderBrush="#FFE7A429"/>
+        <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" Click="cancel_Click" Background="#FFACABAD" BorderBrush="#FFE7A429"  BorderThickness="2"/>
+        <Label x:Name="lb1" Foreground="Gray" FontWeight="SemiBold" Content=":מספר רישוי" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="0" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lb2" Foreground="Gray" FontWeight="SemiBold" Content=":תאריך התחלה" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lb3" Foreground="Gray" FontWeight="SemiBold" Content=":תאריך טיפול אחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lb4" Foreground="Gray" FontWeight="SemiBold" Content=":נסועה מהטיפול האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lb5" Foreground="Gray" FontWeight="SemiBold" Content=":נסועה מהתדלוק האחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <Label x:Name="lb6" Foreground="Gray" FontWeight="SemiBold" Content=":'קילומטראז" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="5" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="tbLiNum" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="0" KeyDown="tbLiNum_KeyDown" TextChanged="tbLiNum_TextChanged" MaxLength="8" BorderBrush="#FFE7A429" BorderThickness="2"/>
+        <TextBox x:Name="tbTreat" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="3" KeyDown="tbTreat_KeyDown" TextChanged="tbTreat_TextChanged" BorderBrush="#FFE7A429" BorderThickness="2"/>
+        <TextBox x:Name="tbRef" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="4" KeyDown="tbRef_KeyDown" TextChanged="tbRef_TextChanged" BorderBrush="#FFE7A429" BorderThickness="2"/>
+        <TextBox x:Name="tbKm" HorizontalAlignment="Left" Height="23" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="5" KeyDown="tbKm_KeyDown" TextChanged="tbKm_TextChanged" BorderBrush="#FFE7A429" BorderThickness="2"/>
+        <DatePicker x:Name="dateSt" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="1" VerticalAlignment="Top" SelectedDateChanged="dateSt_SelectedDateChanged" BorderBrush="#FFE7A429" BorderThickness="2" Width="120"/>
+        <DatePicker x:Name="dateTreat" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="2" VerticalAlignment="Top" SelectedDateChanged="dateTreat_SelectedDateChanged" BorderBrush="#FFE7A429" BorderThickness="2" Width="120"/>
         <Label x:Name="NumEror" Content="מספר רישוי לא חוקי" HorizontalAlignment="Left" Margin="10,38,0,-2" Grid.Row="0" VerticalAlignment="Top" Width="138" Height="21" FontSize="10" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>
         <Label x:Name="DateEror" Content="תאריך הטיפול אינו תואם את תאריך תחילת הפעילות של האוטובוס" HorizontalAlignment="Left" Margin="10,29.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="295" Height="21" FontSize="10" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>
         <Label x:Name="Km1Eror" Content="'הנסועה אינה תואמת את הקילומטראז" HorizontalAlignment="Left" Margin="10,38,0,0" Grid.Row="3" VerticalAlignment="Top" Width="173" Height="21" FontSize="10" FontStyle="Italic" Foreground="Red" Visibility="Hidden"/>

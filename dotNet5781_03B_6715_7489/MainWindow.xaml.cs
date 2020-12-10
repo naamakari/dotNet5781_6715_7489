@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Threading;
 using dotNet5781_01_6715_7489;
 
+
 namespace dotNet5781_03B_6715_7489
 {
     /// <summary>
@@ -40,21 +41,19 @@ namespace dotNet5781_03B_6715_7489
             if (!(e is StateChangedEventArgs))
                 return;
             StateChangedEventArgs temp = (StateChangedEventArgs)e;
-
+            Bus busu = (busStatic.buses.Single(x => x.Id == temp.myId));
+            busu.stateOfFuel = 1100;
+            
+            //busStatic.buses[(int)i] = (new Bus("7854212", new DateTime(2015, 12, 7), new DateTime(2020, 11, 25), 199989, 742, 302451));
 
             Binding binding = new Binding("StateBus");
-           // binding.Source = BusListView.SelectedItem;
-          //  BusListView[5];//להגדיר אינדקסר?
-           // BusListView.SetBinding(bud, binding);
-            //ListViewItem item1 = lsexample.FindItemWithText(temp.myId);
-            //BusListView.find
-            // ObservableCollection <busStatic> nm  =BusListView.SelectedItems;
-            //temp.myId;
-            //BusListView.View;
-            MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
+            //busStatic.buses[0] =(new Bus("7854212", new DateTime(2015, 12, 7), new DateTime(2020, 11, 25), 199989, 742, 302451));
+           
+            // MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
             //שינוי הצבעים לפי הסטטוס
         }
         Bus currentBus { get; set; }
+    
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //To add a bus, a window will open for inserting the bus
@@ -101,7 +100,7 @@ namespace dotNet5781_03B_6715_7489
             var myButtonRe =sender as Button;
             if (currentBus.StateBus != state.inTreat && currentBus.StateBus != state.inDrive && currentBus.StateBus != state.inRefule)
             {
-                myButtonRe.IsEnabled = false;
+                //myButtonRe.IsEnabled = false;
 
                 // (Button)BusListView.SelectedItem.RefuelButton;
 
@@ -109,7 +108,7 @@ namespace dotNet5781_03B_6715_7489
                 new StatusChangedObserver(currentBus);//event registration 
 
                 currentBus.StateBus = state.inRefule;//update the status 
-                refuelWorker.RunWorkerAsync(myButtonRe);//start the process
+                refuelWorker.RunWorkerAsync(currentBus.Id);//start the process
             }
             else if (currentBus.StateBus == state.inTreat)
                 MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -124,11 +123,12 @@ namespace dotNet5781_03B_6715_7489
         private void RefuelWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             currentBus.StateBus = state.ready;//use in Bus external for changed in the bus during the process 
-            string numLine = currentBus.Id;
+            //string numLine = currentBus.Id;
+            string numLine =(string)e.Result;
             MessageBox.Show(" אוטובוס מספר " + numLine + " תודלק בהצלחה", "סיום התדלוק");
             currentBus.stateOfFuel = 0.0;//update the state of the fule
-            Button myBottonRef =(Button) e.Result;
-            myBottonRef.IsEnabled = true;
+            //Button myBottonRef =(Button) e.Result;
+           // myBottonRef.IsEnabled = true;
 
         }
 

@@ -19,10 +19,11 @@
         </Grid.ColumnDefinitions>
         <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="410" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794" 
                Source="https://img.lovepik.com/photo/40019/7599.jpg_wh860.jpg" Stretch="UniformToFill"  Grid.RowSpan="3"/>
-        <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="409,22,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="55" Click="Button_Click" Background="#FF5CD5D7" BorderBrush="White" FontSize="16" FontWeight="Bold" Foreground="#FF2C2525" Grid.Column="2"/>
+        <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="409,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="61" Click="Button_Click" Background="#FFE7A429" BorderBrush="White" FontSize="16" FontWeight="Bold" Foreground="#FF2C2525" Grid.Column="2"/>
 
-        <ListView Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="347" Margin="0,87,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick" Grid.Column="1" Background="#FFE9F2F3" BorderBrush="#FF5CD5D7" 
-                  BorderThickness="4" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2">
+        <ListView Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="279" VerticalAlignment="Top" Width="398" Margin="48,62,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick" Background="#FFE9F2F3" BorderBrush="#FF5CD5D7" 
+                  BorderThickness="4" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3"
+                 >
             <!--<ListView.Resources>
                <Style TargetType="ListViewItem">
                    <Style.Triggers>
@@ -43,24 +44,25 @@
             </ListView.Resources>-->
 
             <ListView.View>
-              
+
                 <GridView x:Name="gridView">
-                   
+
                     <GridViewColumn Width="150" Header="מספר רישוי" DisplayMemberBinding="{Binding Id}" FrameworkElement.FlowDirection="LeftToRight"/>
-                    <GridViewColumn Width="80">
+                    <GridViewColumn Width="100">
+
 
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="RefuelBotton" Content="לתדלוק" Width="70" Margin="1"
+                                <Button x:Name="RefuelBotton" Background="#FFE7A429" Content="לתדלוק" Width="85" Margin="1"
                                 VerticalAlignment="Center"
                                 Click="refuelButton_Click" FontSize="12" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="80">
+                    <GridViewColumn Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="DrivingBotton" Content="לנסיעה"  Margin="1" Width="70"
+                                <Button x:Name="DrivingBotton" Background="#FFE7A429" Content="לנסיעה"  Margin="1" Width="85"
                                 VerticalAlignment="Center"
                                 Click="detailButton_Click" FontSize="12"/>
                                 <!--IsEnabled="{Binding  ElementName=lv, Path=state.ready}"-->
@@ -70,7 +72,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="closeButton" Content="סגירה" HorizontalAlignment="Left" Margin="409,94,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="36" Click="Button_Click_1" BorderBrush="White" Background="#FFACABAD" FontSize="13" FontWeight="Bold" Grid.Column="2"/>
+        <Button x:Name="closeButton" Content="סגירה" HorizontalAlignment="Left" Margin="409,82,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="36" Click="Button_Click_1" BorderBrush="White" Background="#FFACABAD" FontSize="13" FontWeight="Bold" Grid.Column="2"/>
 
     </Grid>
 </Window>
