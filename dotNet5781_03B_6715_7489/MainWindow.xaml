@@ -20,24 +20,25 @@
         <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="410" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794" 
                Source="https://img.lovepik.com/photo/40019/7599.jpg_wh860.jpg" Stretch="UniformToFill"  Grid.RowSpan="3"/>
         <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="409,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="61" Click="Button_Click" Background="#FFE7A429" BorderBrush="White" FontSize="16" FontWeight="Bold" Foreground="#FF2C2525" Grid.Column="2"/>
-
         <ListView Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="279" VerticalAlignment="Top" Width="398" Margin="48,62,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick" Background="#FFE9F2F3" BorderBrush="#FF5CD5D7" 
-                  BorderThickness="4" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3"
-                 >
+                  BorderThickness="4" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="3">
+           
+            
+            
             <!--<ListView.Resources>
                <Style TargetType="ListViewItem">
                    <Style.Triggers>
                        <DataTrigger Binding="{Binding Path=StateBus}" Value="ready">
-                           <Setter Property="Background" Value="AntiqueWhite"></Setter>
+                           <Setter Property="Foreground" Value="Green"></Setter>
                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=StateBus}" Value="inDrive,">
-                            <Setter Property="Background" Value="Bisque"></Setter>
+                        <DataTrigger Binding="{Binding Path=StateBus}" Value="inDrive">
+                            <Setter Property="Foreground" Value="Blue"></Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=StateBus}" Value="inRefule">
-                            <Setter Property="Background" Value="Beige"></Setter>
+                            <Setter Property="Foreground" Value="Yellow"></Setter>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=StateBus}" Value="inTreat">
-                            <Setter Property="Background" Value="Azure"></Setter>
+                            <Setter Property="Foreground" Value="red"></Setter>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

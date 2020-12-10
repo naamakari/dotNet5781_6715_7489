@@ -27,28 +27,32 @@ namespace dotNet5781_03B_6715_7489
     public partial class MainWindow : Window
     {
         BackgroundWorker refuelWorker;
-
+       
 
         public MainWindow()
         {
             InitializeComponent();
 
             BusListView.ItemsSource = busStatic.buses;//Link the list of buses to the list displayed in the window
+            //BusListView.Style.BasedOn=; 
 
+            //BusListView.Foreground+=chang
         }
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
             if (!(e is StateChangedEventArgs))
                 return;
             StateChangedEventArgs temp = (StateChangedEventArgs)e;
+  
             Bus busu = (busStatic.buses.Single(x => x.Id == temp.myId));
-            busu.stateOfFuel = 1100;
-            
+            //busu.stateOfFuel = 1100;
+            //Binding binding = new Binding("StateBus");
+            // DependencyProperty ForegroundProperty = new DependencyProperty(binding);
             //busStatic.buses[(int)i] = (new Bus("7854212", new DateTime(2015, 12, 7), new DateTime(2020, 11, 25), 199989, 742, 302451));
 
-            Binding binding = new Binding("StateBus");
+
             //busStatic.buses[0] =(new Bus("7854212", new DateTime(2015, 12, 7), new DateTime(2020, 11, 25), 199989, 742, 302451));
-           
+
             // MessageBox.Show("בדיקה", "יצאתי לתדלק מהחלון הראשי");
             //שינוי הצבעים לפי הסטטוס
         }
