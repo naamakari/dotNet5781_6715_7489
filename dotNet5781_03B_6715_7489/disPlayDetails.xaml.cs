@@ -30,7 +30,6 @@ namespace dotNet5781_03B_6715_7489
         public disPlayDetails()
         {
             InitializeComponent();
-
         }
         public static void Bus_StatusChanged1(object sender, EventArgs e)
         {

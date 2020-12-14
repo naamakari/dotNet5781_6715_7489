@@ -22,17 +22,19 @@ namespace dotNet5781_03B_6715_7489
     /// </summary>
     public partial class toDrive : Window
     {
-
         public toDrive()
         {
             InitializeComponent();
         }
-       public BackgroundWorker DriveWorker;
-       public BackgroundWorker treatWorker;
-       public BackgroundWorker refuelWorker;
+
+        public BackgroundWorker DriveWorker;
+        public BackgroundWorker treatWorker;
+        public BackgroundWorker refuelWorker;
+
         public Bus myBus { get; set; }//definaition of proparthy of bus we selected for the new window we opened
         private bool nonNumeriable = false;
         static public Random rand = new Random(DateTime.Now.Millisecond);
+  
 
         public static void Bus_StatusChanged(object sender, EventArgs e)
         {
@@ -86,7 +88,7 @@ namespace dotNet5781_03B_6715_7489
         }
         private void cancle_Click(object sender, RoutedEventArgs e)
         {
-            
+
             this.Close();
         }
 
@@ -107,10 +109,10 @@ namespace dotNet5781_03B_6715_7489
             DriveWorker.DoWork += DriveWorker_DoWork;
             DriveWorker.RunWorkerCompleted += DriveWorker_RunWorkerCompleted;//Event registration
             new StatusChangedObserver(myBus, 5);//event registration 
-
+  
             float kmForH = rand.Next(20, 50);
             int time = (int)(float.Parse(dis.Text) / kmForH);
-
+           
             DriveWorker.RunWorkerAsync(time);//start the process
             myBus.StateBus = state.inDrive;//change the status of the bus
 
@@ -119,7 +121,7 @@ namespace dotNet5781_03B_6715_7489
         private void DriveWorker_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            Thread.Sleep((int)(e.Argument)*6000);//drive is done accord the km and the bus speed 
+            Thread.Sleep((int)(e.Argument) * 6000);//drive is done accord the km and the bus speed 
         }
 
         private void DriveWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -128,6 +130,7 @@ namespace dotNet5781_03B_6715_7489
             string numLine = myBus.Id;
             MessageBox.Show(" אוטובוס מספר " + numLine + " חזר מנסיעה", "סיום הנסיעה");
             myBus.upDateDetails(double.Parse(dis.Text));//update the details of the bus according the km
+       
         }
         private void treat()
         {
@@ -156,14 +159,14 @@ namespace dotNet5781_03B_6715_7489
             myBus.kmSinceLastTreat = 0.0;//Update the km of the bus
             myBus.LastTreatDate = DateTime.Now;//Update the date of the km of the bus since treat
         }
-private void refuel()
+        private void refuel()
         {
             refuelWorker = new BackgroundWorker();//Production of a new process
             refuelWorker.DoWork += RefuelWorker_DoWork; //Event registration
             refuelWorker.RunWorkerCompleted += RefuelWorker_RunWorkerCompleted; ;//Event registration
-           
+
             myBus.StateBus = state.inRefule;//Updating the status of the bus to 'refueling'
-           
+
             refuelWorker.RunWorkerAsync();//start the process with the selected bus
         }
         private void RefuelWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -179,6 +182,6 @@ private void refuel()
             myBus.stateOfFuel = 0.0;//Update on the fuel state of the bus
         }
 
-       
+
     }
 }
