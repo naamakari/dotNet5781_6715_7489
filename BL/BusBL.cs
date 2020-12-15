@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+
+namespace BO
 {
     /// <summary>
-    /// class for every bus at the system
+    /// class for every bus at the system at layer BL
     /// </summary>
-    public enum BusStatus { inDrive,ready, inRefuel, inTreat}
-    public class Bus
+    public enum BusStatus { inDrive, ready, inRefuel, inTreat }
+    public class BusBL
     {
         public string LicenseNumber { get; set; }
         public DateTime StartDate { get; set; }

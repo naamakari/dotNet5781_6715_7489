@@ -9,6 +9,7 @@ namespace APIBL
 {
     public interface IBL
     {
-       Weather GetWeather(int day);
+     //  Weather GetWeather(int day);
+        int stam(int staam);
     }
 }

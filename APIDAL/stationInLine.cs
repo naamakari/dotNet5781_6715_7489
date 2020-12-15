@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 namespace DO
 {
     /// <summary>
-    /// class of station that bus pass over there
+    /// class for station that is at line
     /// </summary>
-   public class BusStation
+    public class stationInLine
     {
+        public int LineId { get; set; }
         public int StationCode { get; set; }
-        public float Longitude { get; set; }
-        public float Latitude { get; set; }
-        public string Address { get; set; }
-
-        public string StationName { get; set; }
+        public int IndexStationAtLine { get; set; }
+        public bool IsDeleted { get; set; }
         public override string ToString()
         {
             return HelpToString.ToStringProperty(this);
         }
-
     }
 }

@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace DO
+namespace BO
 {
     /// <summary>
-    /// class that implement function of tostring property
+    /// class that implement tostring property
     /// </summary>
     public static class HelpToString
     {
