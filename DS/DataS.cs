@@ -258,35 +258,42 @@ namespace DS
         static void initBusStation()
         {
             #region initilized the station of bus
-            busStations.Add(new BusStation() { StationCode =Configuration.GetBusStationRunNum(), Longitude = (float)10.0, Latitude = (float)10.50, Address = "הגעתון 2 נהריה", StationName = "הגעתון" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.1, Latitude = (float)10.49, Address = "הבנאי 2 ירושלים", StationName = "הבנאי" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.2, Latitude = (float)10.48, Address = "המייסדים 5 נתניה", StationName = "המייסדים/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.3, Latitude = (float)10.47, Address = "רקפת 2 בת ים", StationName = "רקפת/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.4, Latitude = (float)10.46, Address = "דוכיפת 2 אשדוד", StationName = "דוכיפת/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.5, Latitude = (float)10.45, Address = "ערוגות 2 אשקלון", StationName = "ערוגות/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.6, Latitude = (float)10.44, Address = "קידרון 2 גדרה", StationName = "קידרון/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.7, Latitude = (float)10.43, Address = "חבר 2 חדרה", StationName = "חבר/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.8, Latitude = (float)10.42, Address = "עפרוני 2 נתיבות", StationName = "עפרוני/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.9, Latitude = (float)10.41, Address = "המכבים 2 באר שבע", StationName = "המכבים/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.10, Latitude = (float)10.40, Address = "שבט בנימין 2 גבעת אולגה", StationName = "שבט בנימין/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.11, Latitude = (float)10.39, Address = "הלולב 2 הוד השרון", StationName = "הלולב/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.12, Latitude = (float)10.38, Address = "האתרוג 2 טבריה", StationName = "האתרוג/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.13, Latitude = (float)10.37, Address = "מבוא הדס 2 הרצליה", StationName = "מבוא הדס/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.14, Latitude = (float)10.36, Address = "הערבה 2 זיכרון יעקב", StationName = "הערבה/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.15, Latitude = (float)10.35, Address = "יקינתון 2 חיפה", StationName = "יקינתון/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.16, Latitude = (float)10.34, Address = "שאול המלך 2 ירוחם", StationName = "שאול המלך/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.17, Latitude = (float)10.33, Address = "דוד המלך 2 לוד", StationName = "דוד המלך/ממילא" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.18, Latitude = (float)10.32, Address = "החרצית 2 רמלה", StationName = "הרצל/החרצית" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.19, Latitude = (float)10.31, Address = "קרית יערים 2 רחובות", StationName = "הרצל/קרית יערים" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.20, Latitude = (float)10.30, Address = "היהודים 2 תל אביב", StationName = "היהודים/השוערים" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.21, Latitude = (float)10.29, Address = "תפארת ישראל 2 כפר סבא", StationName = "תפארת ישראל/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.22, Latitude = (float)10.28, Address = "המשוררים 2 מבשרת ציון", StationName = "המשוררים/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.23, Latitude = (float)10.27, Address = "השוערים 2 מעלות", StationName = "השוערים/הרצל" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.24, Latitude = (float)10.26, Address = "מבוא השיקמה 2 צפת", StationName = "מבוא השיקמה/בן גוריון" });
+            //1111
+            busStations.Add(new BusStation() { StationCode =Configuration.GetBusStationRunNum(), Longitude = (float)32.170699, Latitude = (float)34.82964, Address = "הנדיב 2 הרצליה", StationName = "הנדיב/ז'בוטינסקי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16843, Latitude = (float)34.83031, Address = "פינסקר 2 הרצליה", StationName = "פינסקר/ז'בוטינסקי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16780, Latitude = (float)34.83265, Address = "צבי מנדלבליט 2 הרצליה", StationName = "צבי מנדלבליט/שמואל הנגיד" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16448, Latitude = (float)34.83541, Address = "ויצמן 2 הרצליה", StationName = "בית ספר ויצמן/ויצמן" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16440, Latitude = (float)34.84276, Address = "בן גוריון 10 הרצליה", StationName = "בן גוריון/העצמאות" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16480, Latitude = (float)34.84333, Address = "העצמאות 2 הרצליה", StationName = "העצמאות/בן גוריון" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16694, Latitude = (float)34.84254, Address = "בן גוריון 30 הרצליה", StationName = "קניון לב העיר" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17035, Latitude = (float)34.84037, Address = "טשרניחובקסי 1 הרצליה", StationName = "טשרניחובסקי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17111, Latitude = (float)34.83991, Address = "בני בנימין 2 הרצליה", StationName = "בני בנימין/סמילנסקי" });
+            //1120
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17250, Latitude = (float)34.84085, Address = "בני בנימין 11 הרצליה", StationName = "בני בנימין/גיסין" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17445, Latitude = (float)34.83959, Address = "כנםי נשרים 4 הרצליה", StationName = "כנפי נשרים/נתן אלתרמן" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17382, Latitude = (float)34.83684, Address = "דור שמעוני 4 הרצליה", StationName = "דוד שמעוני/יהודה אלקלעי" });
+            
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24265, Latitude = (float)34.79775, Address = "יהושע חנקין 2 באר שבע", StationName = "ת.מרכזית/עירוניים לדרום" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24171, Latitude = (float)34.79647, Address = "שדרות דוד חכם 80 באר שבע", StationName = "שגרות דוד חכם/תחנה מרכזית" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24502, Latitude = (float)34.79589, Address = "יצחק רגר 10 באר שבע", StationName = "דואר/יצחק רגר" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24428, Latitude = (float)34.79591, Address = "יצחק בן צבי 2 באר שבע", StationName = "קניון הנגב/יצחק בן צבי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24690, Latitude = (float)34.79789, Address = "הנרייטה סולד 8 באר שבע", StationName = "הנרייטה סולד/מדרחוב התקווה" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24753, Latitude = (float)34.80236, Address = "הנרייטה סולד 28 באר שבע", StationName = "קופת חולים ג/הנרייטה סולד" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25147, Latitude = (float)34.80166, Address = "דרך השלום 100", StationName = "תיכון מקיף א/דרך השלום" });
+            //1130
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25294, Latitude = (float)34.80366, Address = "דרך השלום 34", StationName = "דרך השלום/יד ושם" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25203, Latitude = (float)34.80689, Address = "דרך השלום 2 באר שבע", StationName = "דרך השלום/ארלוזורוב" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25185, Latitude = (float)34.80913, Address = "ז'בוטינסקי 10 באר שבע", StationName = "שדרות דוד בן גוריון/דרך השלום" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.5731, Latitude = (float)34.81207, Address = "שדרות דוד בן גוריון 100 באר שבע", StationName = "המשוררים/הרצל" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25776, Latitude = (float)34.81337, Address = "יהושע הצורף 2 באר שבע", StationName = "יהושע הצורף/יהודה הנחתום" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25682, Latitude = (float)34.81534, Address = "יהושע הצורף 15", StationName = "יהושע הצורף" });
+            
+
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.25, Latitude = (float)10.25, Address = "העומר 2 נוף הגליל", StationName = "העומר/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.26, Latitude = (float)10.24, Address = "העוגב 2 עפולה", StationName = "העוגב/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.27, Latitude = (float)10.23, Address = "המלאך 2 שילה", StationName = "המלאך/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.28, Latitude = (float)10.22, Address = "חב''ד 2 פתח תקווה", StationName = "חב''ד/הרצל" });
+            //1140
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.29, Latitude = (float)10.21, Address = "המצילתיים 2 רמת גן", StationName = "המצילתיים/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.30, Latitude = (float)10.20, Address = "הכותל 2 מודיעין", StationName = "הכותל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.31, Latitude = (float)10.19, Address = "בית הדפוס 2 שוהם", StationName = "בית הדפוס/בית השנהב" });
@@ -297,6 +304,7 @@ namespace DS
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.36, Latitude = (float)10.14, Address = "משה מרזוק 2 מטולה", StationName = "משה מרזוק/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.37, Latitude = (float)10.13, Address = "דרך נמיר 2 אילת", StationName = "דרך נמיר/בן גוריון" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.38, Latitude = (float)10.12, Address = "הרצל 2 קרית שמונה", StationName = "בן גוריון/הרצל" });
+            //1150
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.39, Latitude = (float)10.11, Address = "אלחדיף 2 קרית מלאכי", StationName = "אלחדיף/קונטיננטל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.40, Latitude = (float)10.10, Address = "חנה סנש 2 קרית גת", StationName = "חנה סנש/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.41, Latitude = (float)10.9, Address = "יצחק רגר 2 קרית חיים", StationName = "יצחק רגר/הרצל" });
@@ -307,6 +315,7 @@ namespace DS
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.46, Latitude = (float)10.4, Address = "ירמיהו 2 גבעתיים", StationName = "ירמיהו/מנחת יצחק" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.47, Latitude = (float)10.3, Address = "המ''ג 2 בית שמש", StationName = "המ''ג/הרצל" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.48, Latitude = (float)10.2, Address = "יפו 2 גבעת שמואל", StationName = "יפו/הרצל" });
+            //1160
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.49, Latitude = (float)10.1, Address = "קינג ג'ורג' 2 רעננה", StationName = "קינג ג'ורג'/יפו" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)10.50, Latitude = (float)10.0, Address = "פייר קניג 2 נהריה", StationName = "פייר קניג/הרצל" });
             #endregion
@@ -314,11 +323,12 @@ namespace DS
         static void initBusLine()
         {
             #region initilized the lines of bus
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1154, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.General, NumberFirstStation = 1113, NumberLastStation = 1153, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.General, NumberFirstStation = 1124, NumberLastStation = 1152, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 4, AreaAtLand = Area.General, NumberFirstStation = 1125, NumberLastStation = 1151, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 5, AreaAtLand = Area.General, NumberFirstStation = 1126, NumberLastStation = 1150, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false });
+
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 6, AreaAtLand = Area.General, NumberFirstStation = 1127, NumberLastStation = 1149, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 7, AreaAtLand = Area.General, NumberFirstStation = 1128, NumberLastStation = 1148, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 8, AreaAtLand = Area.General, NumberFirstStation = 1129, NumberLastStation = 1147, IsDeleted = false });
@@ -341,18 +351,49 @@ namespace DS
             stationsInLine1.Add(new stationInLine() { LineId = 1111, StationCode = 1119, IndexStationAtLine = 9, IsDeleted = false });
             stationsInLine1.Add(new stationInLine() { LineId = 1111, StationCode = 1120, IndexStationAtLine = 10, IsDeleted = false });
            
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1121, IndexStationAtLine = 1, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1122, IndexStationAtLine = 2, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1123, IndexStationAtLine = 3, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1124, IndexStationAtLine = 4, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1125, IndexStationAtLine = 5, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1126, IndexStationAtLine = 6, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1127, IndexStationAtLine = 7, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1128, IndexStationAtLine = 8, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1129, IndexStationAtLine = 9, IsDeleted = false });
-            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1130, IndexStationAtLine = 10, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1123, IndexStationAtLine = 1, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1124, IndexStationAtLine = 2, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1125, IndexStationAtLine = 3, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1126, IndexStationAtLine = 4, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1127, IndexStationAtLine = 5, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1128, IndexStationAtLine = 6, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1129, IndexStationAtLine = 7, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1131, IndexStationAtLine = 8, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1133, IndexStationAtLine = 9, IsDeleted = false });
+            stationsInLine2.Add(new stationInLine() { LineId = 1112, StationCode = 1135, IndexStationAtLine = 10, IsDeleted = false });
 
-            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1131, IndexStationAtLine = 1, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1123, IndexStationAtLine = 1, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1124, IndexStationAtLine = 2, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1125, IndexStationAtLine = 3, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1126, IndexStationAtLine = 4, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1128, IndexStationAtLine = 5, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1130, IndexStationAtLine = 6, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1132, IndexStationAtLine = 7, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1133, IndexStationAtLine = 8, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1134, IndexStationAtLine = 9, IsDeleted = false });
+            stationsInLine3.Add(new stationInLine() { LineId = 1113, StationCode = 1135, IndexStationAtLine = 10, IsDeleted = false });
+
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1123, IndexStationAtLine = 1, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1124, IndexStationAtLine = 2, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1125, IndexStationAtLine = 3, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1126, IndexStationAtLine = 4, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1117, IndexStationAtLine = 5, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1118, IndexStationAtLine = 6, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1119, IndexStationAtLine = 7, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1120, IndexStationAtLine = 8, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1121, IndexStationAtLine = 9, IsDeleted = false });
+            stationsInLine4.Add(new stationInLine() { LineId = 1114, StationCode = 1120, IndexStationAtLine = 10, IsDeleted = false });
+
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1111, IndexStationAtLine = 1, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1112, IndexStationAtLine = 2, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1113, IndexStationAtLine = 3, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1114, IndexStationAtLine = 4, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1125, IndexStationAtLine = 5, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1130, IndexStationAtLine = 6, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1135, IndexStationAtLine = 7, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1132, IndexStationAtLine = 8, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1124, IndexStationAtLine = 9, IsDeleted = false });
+            stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1123, IndexStationAtLine = 10, IsDeleted = false });
 
             #endregion
         }
