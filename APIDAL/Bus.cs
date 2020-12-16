@@ -18,7 +18,7 @@ namespace DO
         public float KmSinceRefeul { get; set; }
         public DateTime DateSinceLastTreat { get; set; }
         public float KmSinceLastTreat { get; set; }
-        public BusStatus BusStatus { get; set; }
+        public BusStatus BusState { get; set; }
         public bool IsDeleted { get; set; }
         public override string ToString()
         {

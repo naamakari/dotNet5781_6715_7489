@@ -32,7 +32,7 @@ namespace APIDAL
         /// <summary>
         /// CRUD for bus station
         /// </summary>
-        
+
         void AddBusStation(BusStation busStation);
         BusStation GetBusStation(int stationCode);
         IEnumerable<BusStation> GetBusStationCollection();
@@ -43,7 +43,7 @@ namespace APIDAL
         /// CRUD for following stations
         /// </summary>
         void AddFollowingStations(FollowingStations followingStations);
-        FollowingStations GetFollowingStation(int stationCode1,int stationCode2);
+        FollowingStations GetFollowingStation(int stationCode1, int stationCode2);
         IEnumerable<FollowingStations> GetFollowingStationsCollection();
         void UpdateFoloowingStations(FollowingStations followingStations);
         void DeleteFollowingStations(FollowingStations followingStations);

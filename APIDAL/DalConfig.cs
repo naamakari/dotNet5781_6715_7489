@@ -39,6 +39,19 @@ namespace APIDAL
     {
         public DalConfigException(string message) : base(message) { }
         public DalConfigException(string message, Exception inner) : base(message, inner) { }
+      
+    }
+    /// <summary>
+    ///  Represents errors during insert alreay exist object
+    /// </summary>
+    [Serializable]
+    public class DalAlreayExistExeption:Exception
+    {
+        public DalAlreayExistExeption(string message) : base(message) { }
+    }
+    public class DalEmptyCollectionExeption : Exception
+    {
+        public DalEmptyCollectionExeption(string message) : base(message) { }
     }
 }
 
