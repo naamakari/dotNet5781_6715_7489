@@ -22,6 +22,7 @@ namespace DS
         public static List<stationInLine> stationsInLine8 = new List<stationInLine>();
         public static List<stationInLine> stationsInLine9 = new List<stationInLine>();
         public static List<stationInLine> stationsInLine10 = new List<stationInLine>();
+        public static List<FollowingStations> followingStations = new List<FollowingStations>();
 
         static DataS()
         {
@@ -29,6 +30,7 @@ namespace DS
             initBusStation();
             initBusLine();
             initStationsInLine();
+            initFollowingStation();
         }
         static void initBuses()
         {
@@ -396,6 +398,10 @@ namespace DS
             stationsInLine5.Add(new stationInLine() { LineId = 1115, StationCode = 1123, IndexStationAtLine = 10, IsDeleted = false });
 
             #endregion
+        }
+        static void initFollowingStation()
+        {
+            followingStations.Add(new FollowingStations {StationCode1=1111,StationCode2=1112,DistanceBetweenStations})
         }
     }
 }
