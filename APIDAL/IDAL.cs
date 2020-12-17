@@ -16,6 +16,7 @@ namespace APIDAL
         void AddBus(Bus bus);
         Bus GetBus(string lisceneNumber);
         IEnumerable<Bus> GetBusCollection();
+        IEnumerable<Bus> GetBusCollectionBy(Predicate<Bus> predicate);
         void UpdateBus(Bus bus);
         void DeleteBus(Bus bus);
 
@@ -25,7 +26,7 @@ namespace APIDAL
         void AddBusLine(BusLine busLine);
         BusLine GetBusLine(int busId);
         IEnumerable<BusLine> GetBusLineCollection();
-        IEnumerable<BusLine> GetBusLineCollection(int StationCode);
+        IEnumerable<BusLine> GetBusLineCollectionBy(Predicate<BusLine> predicate);
         void UpdateBusLine(BusLine busLine);
         void DeleteBusLine(BusLine busLine);
 
@@ -36,6 +37,7 @@ namespace APIDAL
         void AddBusStation(BusStation busStation);
         BusStation GetBusStation(int stationCode);
         IEnumerable<BusStation> GetBusStationCollection();
+        IEnumerable<BusStation> GetBusStationCollectionBy(Predicate<BusStation> predicate);
         void UpdateBusStation(BusStation busStation);
         void DeleteBusStation(BusStation busStation);
 
@@ -45,7 +47,7 @@ namespace APIDAL
         void AddFollowingStations(FollowingStations followingStations);
         FollowingStations GetFollowingStation(int stationCode1, int stationCode2);
         IEnumerable<FollowingStations> GetFollowingStationsCollection();
-        void UpdateFoloowingStations(FollowingStations followingStations);
+        void UpdateFollowingStations(FollowingStations followingStations);
         void DeleteFollowingStations(FollowingStations followingStations);
 
         /// <summary>

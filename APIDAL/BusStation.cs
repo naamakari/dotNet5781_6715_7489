@@ -17,6 +17,7 @@ namespace DO
         public string Address { get; set; }
 
         public string StationName { get; set; }
+        public bool IsDeleted { get; set; }
         public override string ToString()
         {
             return HelpToString.ToStringProperty(this);
