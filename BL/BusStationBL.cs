@@ -7,20 +7,11 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// class of station that bus pass over there
+    /// class for presentation of all the lines that pass there
     /// </summary>
-    public class BusStationBL
+    public class BusStationBL:BusStation
     {
-        public int StationCode { get; set; }
-        public LocationBL StationLocation { get; set; }
-        public string Address { get; set; }
-
-        public string StationName { get; set; }
-        IEnumerable<BusLineBL> CollectionBusLines { get; set; }
-        public override string ToString()
-        {
-            return HelpToString.ToStringProperty(this);
-        }
+        IEnumerable<BO.BusLine> CollectionBusLines { get; set; }
 
     }
 }

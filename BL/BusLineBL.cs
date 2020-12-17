@@ -7,20 +7,13 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// class for line of bus 
+    /// class for presentation for  UI
     /// </summary>
-    public enum Area { North, South, Center, Jerusalem, General }
-    public class BusLineBL
+    public class BusLineBL:BusLine
     {
-       public int BusId { get; set; }
-        public int BusNumLine { get; set; }
-        public Area AreaAtLand { get; set; }
-        public BusStationBL FirstStation { get; set; }
-        public BusStationBL LastStation { get; set; }
-        public IEnumerable<stationInLineBL> CollectionOfStation { get; set; }
-        public override string ToString()
-        {
-            return HelpToString.ToStringProperty(this);
-        }
+      public BusStation FirstStation { get; set; }
+       public BusStation LastStation { get; set; }
+        public IEnumerable<BO.stationInLine> CollectionOfStation { get; set; }
+
     }
 }

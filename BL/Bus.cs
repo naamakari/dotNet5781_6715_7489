@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    public enum BusStatus { inDrive, ready, inRefuel, inTreat }
+
     /// <summary>
     /// class for every bus at the system at layer BL
     /// </summary>
-    public enum BusStatus { inDrive, ready, inRefuel, inTreat }
-    public class BusBL
+
+    public class Bus
     {
         public string LicenseNumber { get; set; }
         public DateTime StartDate { get; set; }
@@ -19,7 +21,7 @@ namespace BO
         public float KmSinceRefeul { get; set; }
         public DateTime DateSinceLastTreat { get; set; }
         public float KmSinceLastTreat { get; set; }
-        public BusStatus BusStatus { get; set; }
+        public BusStatus BusState { get; set; }
         public bool IsDeleted { get; set; }
         public override string ToString()
         {
