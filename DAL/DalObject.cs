@@ -41,6 +41,14 @@ namespace DAL
                                        where item.IsDeleted == false
                                        select item;
             if (TempBus.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימים אוטובוסים פעילים במערכת");
+            return TempBus;
+        }
+       public IEnumerable<Bus> GetAllBusesCollection()
+        {
+            IEnumerable<Bus> TempBus = from Bus item in DataS.buses
+                                       select item;
+            if (TempBus.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים אוטובוסים במערכת");
             return TempBus;
         }
@@ -94,6 +102,14 @@ namespace DAL
         {
             IEnumerable<BusLine> TempBusLine = from BusLine item in DataS.busLines
                                                where item.IsDeleted == false
+                                               select item;
+            if (TempBusLine.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימים קווי אוטובוס פעילים במערכת");
+            return TempBusLine;
+        }
+       public IEnumerable<BusLine> GetAllBusLinesCollection()
+        {
+            IEnumerable<BusLine> TempBusLine = from BusLine item in DataS.busLines
                                                select item;
             if (TempBusLine.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים קווי אוטובוס במערכת");
@@ -150,9 +166,18 @@ namespace DAL
                                                      where item.IsDeleted == false
                                                      select item.Clone();
             if (TempBusStation.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימות תחנות אוטובוס פעילות במערכת");
+            return TempBusStation;
+        }
+      public  IEnumerable<BusStation> GetAllBusStationsCollection()
+        {
+            IEnumerable<BusStation> TempBusStation = from BusStation item in DataS.busStations
+                                                     select item.Clone();
+            if (TempBusStation.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימות תחנות אוטובוס במערכת");
             return TempBusStation;
         }
+
         public IEnumerable<BusStation> GetBusStationCollectionBy(Predicate<BusStation> condition)
         {
             IEnumerable<BusStation> TempBusStation = from BusStation item in DataS.busStations
@@ -257,7 +282,16 @@ namespace DAL
                 throw new DalEmptyCollectionExeption("לא קיימות תחנות קו פעילות במערכת");
             return TempstationInLine;
         }
-       public IEnumerable<stationInLine> GetStationInLineCollectionBy(Predicate<stationInLine> condition)
+       public IEnumerable<stationInLine> GetAllStationsInLineCollection()
+        {
+            IEnumerable<stationInLine> TempstationInLine = from stationInLine item in DataS.stationsInLine
+                                                           select item;
+            if (TempstationInLine.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימות תחנות קו במערכת");
+            return TempstationInLine;
+        }
+
+        public IEnumerable<stationInLine> GetStationInLineCollectionBy(Predicate<stationInLine> condition)
         {
             IEnumerable<stationInLine> TempStationInLine = from stationInLine item in DataS.stationsInLine
                                        where condition(item)
