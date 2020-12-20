@@ -10,6 +10,7 @@ namespace BL
 {
    public class BLIMP : IBL
     {
+
         readonly IDAL dal = DalFactory.GetDal();
       public  void sendToRefuel(BO.Bus bus)
         {
@@ -95,6 +96,11 @@ namespace BL
         }
         #endregion
 
+        public static bool conditionForNumLine(int numLine, DO.stationInLine busLine)
+        {
+            return busLine.LineId == numLine;
+        }
+        public static 
         public void AddBusStation(BO.BusStation busStationBO)
         {
             DO.BusStation busStationDO = new DO.BusStation();
@@ -108,39 +114,11 @@ namespace BL
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
-        public BO.BusLineBL GetBusLineBL(int Id)
-        {
-            try
-            {
-                DO.BusLine busLineDO = dal.GetBusLine(Id);
-                BO.BusLineBL busLineBL = new BO.BusLineBL();
-                busLineDO.Clone(busLineBL);
-                BO.BusStation busStationBO1 = new BO.BusStation();
-                BO.BusStation busStationBO2 = new BO.BusStation();
-
-                DO.BusStation busStationDO1= dal.GetBusStation(busLineBL.FirstStationCode);
-                DO.BusStation busStationDO2 = dal.GetBusStation(busLineBL.LastStationCode);
-
-                busStationDO1.Clone(busStationBO1);
-                busStationDO2.Clone(busStationBO2);
-
-                busLineBL.FirstStation = busStationBO1;
-                busLineBL.LastStation = busStationBO2;
-
-                BO.stationInLine stationInLineBO = new BO.stationInLine();
-                busLineBL.CollectionOfStation = from item in dal.GetStationInLineCollection()
-                                                where item.LineId == Id
-                                                select item.Clone(stationInLineBO)
-                return busLineBL;
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new KeyNotFoundException(ex.Message, ex);
-            }
-        }
         public void DeleteBusStation(int code);
         public void UpdateBusStation(BusStation busStation);
+        public BO.BusStationBL GetBusStationBL(int code);
 
+        
         public void AddBusLine(BO.BusLine busLineBO)
         {
             DO.BusStation busLineDO = new DO.BusStation();
@@ -154,9 +132,43 @@ namespace BL
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
-        public BusStationBL GetBusStationBL(int code);
         public void DeleteBusLine(int id);
         public void UpdateBusLine(BusLine busLine);
+        public BO.BusLineBL GetBusLineBL(int Id)
+        {
+            try
+            {
+                DO.BusLine busLineDO = dal.GetBusLine(Id);
+                BO.BusLineBL busLineBL = new BO.BusLineBL();
+                busLineDO.Clone(busLineBL);
+                BO.BusStation busStationBO1 = new BO.BusStation();
+                BO.BusStation busStationBO2 = new BO.BusStation();
+
+                DO.BusStation busStationDO1 = dal.GetBusStation(busLineBL.FirstStationCode);
+                DO.BusStation busStationDO2 = dal.GetBusStation(busLineBL.LastStationCode);
+
+                busStationDO1.Clone(busStationBO1);
+                busStationDO2.Clone(busStationBO2);
+
+                busLineBL.FirstStation = busStationBO1;
+                busLineBL.LastStation = busStationBO2;
+
+
+                BO.stationInLine stationInLineBO = new BO.stationInLine();
+                Predicate<DO.stationInLine> condition = item => item.LineId == busLineBL.BusId;
+                IEnumerable<DO.stationInLine> stationsDO = dal.GetStationInLineCollectionBy(condition);
+                busLineBL.CollectionOfStation = from DO.stationInLine item in stationsDO
+                                                select item.Clone(stationInLineBO);
+                //busLineBL.CollectionOfStation = from item in dal.GetStationInLineCollection()
+                //where item.LineId == Id
+                //select item.Clone(stationInLineBO)
+                return busLineBL;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
 
     }
 }
