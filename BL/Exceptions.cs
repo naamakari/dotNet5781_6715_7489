@@ -28,6 +28,8 @@ namespace BO
     public class DalEmptyCollectionExeption : Exception
     {
         public DalEmptyCollectionExeption(string message) : base(message) { }
+        public DalEmptyCollectionExeption(string message, Exception inner) : base(message, inner) { }
+
     }
 }
 }

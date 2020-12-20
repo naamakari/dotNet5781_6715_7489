@@ -8,11 +8,11 @@ using APIBL;
 
 namespace BL
 {
-   public class BLIMP : IBL
+    public class BLIMP : IBL
     {
 
         readonly IDAL dal = DalFactory.GetDal();
-      public  void sendToRefuel(BO.Bus bus)
+        public void sendToRefuel(BO.Bus bus)
         {
             try
             {
@@ -20,7 +20,7 @@ namespace BL
                 busDO.KmSinceRefeul = (float)0.0;
                 dal.UpdateBus(busDO);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -44,13 +44,13 @@ namespace BL
         #region methods for bus
         public void AddBus(BO.Bus busBO)
         {
-            DO.Bus busDO = new DO.Bus(); 
+            DO.Bus busDO = new DO.Bus();
             busBO.Clone(busDO);
             try
             {
                 dal.AddBus(busDO);
             }
-            catch(DO.DalAlreayExistExeption ex)
+            catch (DO.DalAlreayExistExeption ex)
             {
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
@@ -64,7 +64,7 @@ namespace BL
                 busDO.Clone(busBO);
                 return busBO;
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -76,7 +76,7 @@ namespace BL
             {
                 dal.DeleteBus(lisenceNum);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -89,7 +89,7 @@ namespace BL
             {
                 dal.UpdateBus(busDO);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -100,7 +100,8 @@ namespace BL
         {
             return busLine.LineId == numLine;
         }
-        public static 
+
+        // public static 
         public void AddBusStation(BO.BusStation busStationBO)
         {
             DO.BusStation busStationDO = new DO.BusStation();
@@ -114,11 +115,62 @@ namespace BL
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
-        public void DeleteBusStation(int code);
-        public void UpdateBusStation(BusStation busStation);
-        public BO.BusStationBL GetBusStationBL(int code);
+        public void DeleteBusStation(int code)
+        {
+            try
+            {
+                dal.DeleteBusStation(code);
+                DO.BusStation busStationDAL = dal.GetBusStation(code);
+                BO.BusStationBL busStationBL = new BO.BusStationBL();
+                busStationDAL.Clone(busStationBL);
+               // busStationBL.CollectionBusLines = null;
+                Predicate<DO.stationInLine> predicate = item => item.StationCode == code;
+                IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(predicate);
+                //stationInLinesDAL= from item in stationInLinesDAL
+                  //                select dal.DeleteStationInLine(item)
 
-        
+
+                foreach (DO.stationInLine item in stationInLinesDAL)
+ 
+                    dal.DeleteStationInLine(item);
+                
+                //איך מכניסים את המידע החדש פנימה חזרה?
+                //האם כמו שעשיתי?
+            }
+            catch (KeyNotFoundException exc)
+            {
+                throw new KeyNotFoundException(exc.Message, exc);
+            }
+        }
+        public void UpdateBusStation(BO.BusStation busStation)
+        {
+            try
+            {
+                DO.BusStation busStationDAL = new DO.BusStation();
+                busStation.Clone(busStationDAL);
+                dal.UpdateBusStation(busStationDAL);
+            }
+            catch(KeyNotFoundException exc)
+            {
+                throw new KeyNotFoundException(exc.Message, exc);
+            }
+        }
+        public BO.BusStationBL GetBusStationBL(int code)
+        {
+            try
+            {
+                DO.BusStation busStationDAL = dal.GetBusStation(code);
+                BO.BusStationBL busStationBL = new BO.BusStationBL();
+                busStationDAL.Clone(busStationBL);
+                return busStationBL;
+            }
+            catch (DO.DalEmptyCollectionExeption exc)
+            {
+               throw new BO.DalEmptyCollectionExeption(exc.Message, exc);
+            }
+        }   
+
+
         public void AddBusLine(BO.BusLine busLineBO)
         {
             DO.BusStation busLineDO = new DO.BusStation();

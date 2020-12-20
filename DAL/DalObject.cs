@@ -199,11 +199,11 @@ namespace DAL
             DataS.busStations.Remove(DataS.busStations.Find(x => x.StationCode == busStation.StationCode));
             DataS.busStations.Add(busStation.Clone());
         }
-        public void DeleteBusStation(BusStation busStation)
+        public void DeleteBusStation(int busStationCode)
         {
-            if (!DataS.busStations.Any(x => x.StationCode == busStation.StationCode))
-                throw new KeyNotFoundException("כבר לא קיימת במערכת " + busStation.StationCode + " תחנה מספר");
-            DataS.busStations.Find(x => x.StationCode == busStation.StationCode).IsDeleted = true;
+            if (!DataS.busStations.Any(x => x.StationCode == busStationCode))
+                throw new KeyNotFoundException("כבר לא קיימת במערכת " + busStationCode + " תחנה מספר");
+            DataS.busStations.Find(x => x.StationCode == busStationCode).IsDeleted = true;
         }
         #endregion
 

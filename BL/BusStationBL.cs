@@ -11,7 +11,7 @@ namespace BO
     /// </summary>
     public class BusStationBL:BusStation
     {
-        IEnumerable<BO.BusLine> CollectionBusLines { get; set; }
+      public  IEnumerable<BO.BusLine> CollectionBusLines { get; set; }
 
     }
 }

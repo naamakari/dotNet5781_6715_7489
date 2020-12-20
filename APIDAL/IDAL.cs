@@ -42,7 +42,7 @@ namespace APIDAL
         IEnumerable<BusStation> GetAllBusStationsCollection();
         IEnumerable<BusStation> GetBusStationCollectionBy(Predicate<BusStation> predicate);
         void UpdateBusStation(BusStation busStation);
-        void DeleteBusStation(BusStation busStation);
+        void DeleteBusStation(int busStationCode);
 
         /// <summary>
         /// CRUD for following stations
