@@ -110,17 +110,17 @@ namespace BL
             }
         }
         public void DeleteBusStation(int code);
-        public void UpdateBusStation(BusStation busStation);
+        public void UpdateBusStation(BO.BusStation busStation);
         public BO.BusStationBL GetBusStationBL(int code);
 
         
         public void AddBusLine(BO.BusLine busLineBO)
         {
-            DO.BusStation busLineDO = new DO.BusStation();
+            DO.BusLine busLineDO = new DO.BusLine();
             busLineBO.Clone(busLineDO);
             try
             {
-                dal.AddBusStation(busLineDO);
+                dal.AddBusLine(busLineDO);
             }
             catch (DO.DalAlreayExistExeption ex)
             {
@@ -132,18 +132,30 @@ namespace BL
             try
             {
                 //Delete all stations through which the line passes
-                IEnumerable<DO.stationInLine> stationsInLine = dal.GetStationInLineCollection();
+                Predicate<DO.stationInLine> condition = item => item.LineId == id;
+                IEnumerable<DO.stationInLine> stationsInLine = dal.GetStationInLineCollectionBy(condition);
                foreach (DO.stationInLine item in stationsInLine)
-                    if (item.LineId == id)
                         dal.DeleteStationInLine(item);
-
+                dal.DeleteBusLine(id);
             }
             catch (KeyNotFoundException ex)
             {
-
+                throw new KeyNotFoundException(ex.Message, ex);
             }
         }
-        public void UpdateBusLine(BusLine busLine);
+        public void UpdateBusLine(BO.BusLine busLineBO)
+        {
+            try
+            {
+            DO.BusLine busLineDO = new DO.BusLine();
+            busLineBO.Clone(busLineDO);
+            dal.UpdateBusLine(busLineDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
         public BO.BusLineBL GetBusLineBL(int Id)
         {
             try

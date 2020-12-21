@@ -30,7 +30,7 @@ namespace APIDAL
         IEnumerable<BusLine> GetAllBusLinesCollection();
         IEnumerable<BusLine> GetBusLineCollectionBy(Predicate<BusLine> predicate);
         void UpdateBusLine(BusLine busLine);
-        void DeleteBusLine(BusLine busLine);
+        void DeleteBusLine(int busId);
 
         /// <summary>
         /// CRUD for bus station
@@ -59,7 +59,7 @@ namespace APIDAL
         /// CRUD for station at line 
         /// </summary>
         void AddStationInLine(stationInLine stationInLine);
-        stationInLine GetStationInLine(int lineId);
+        stationInLine GetStationInLine(int lineId, int stationCode);
         IEnumerable<stationInLine> GetStationInLineCollection();
         IEnumerable<stationInLine> GetAllStationsInLineCollection();
         IEnumerable<stationInLine> GetStationInLineCollectionBy(Predicate<stationInLine> predicate);

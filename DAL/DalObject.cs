@@ -134,12 +134,13 @@ namespace DAL
             DataS.busLines.Remove(TempBusLine);
             DataS.busLines.Add(busLine.Clone());
         }
-        public void DeleteBusLine(BusLine busLine)
+        public void DeleteBusLine(int busId)
         {
-            if (!DataS.busLines.Any(x => x.BusId == busLine.BusId))
-                throw new KeyNotFoundException("כבר לא קיים במערכת " + busLine.BusId + " קו אוטובוס מספר");
-            BusLine tempBusLine = DataS.busLines.Find(x => x.BusId == busLine.BusId);
-            tempBusLine.IsDeleted = true;
+            if (!DataS.busLines.Any(x => x.BusId == busId))
+                throw new KeyNotFoundException("כבר לא קיים במערכת " + busId + " קו אוטובוס מספר");
+            //BusLine tempBusLine = DataS.busLines.Find(x => x.BusId == busLine.BusId);
+            //tempBusLine.IsDeleted = true;
+            DataS.busLines.Find(x => x.BusId == busId).IsDeleted=true;
         }
         #endregion
 
@@ -260,17 +261,17 @@ namespace DAL
 
        public void AddStationInLine(stationInLine stationInLine)
         {
-            if (DataS.stationsInLine.Any(x => x.LineId == stationInLine.LineId))
-                throw new DalAlreayExistExeption("קיימת כבר במערכת " + stationInLine.LineId + " תחנת קו");
+            if (DataS.stationsInLine.Any(x => (x.LineId == stationInLine.LineId)&&(x.StationCode==stationInLine.StationCode)))
+                throw new DalAlreayExistExeption("קיימת כבר במערכת " + stationInLine.LineId + " תחנת זו של קו");
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
-      public  stationInLine GetStationInLine(int lineId)
+      public  stationInLine GetStationInLine(int lineId,int stationCode)
         {
-            if (!DataS.stationsInLine.Any(x => x.LineId == lineId))
+            if (!DataS.stationsInLine.Any(x => (x.LineId == lineId)&&(x.StationCode==stationCode)))
                 throw new KeyNotFoundException("לא קיימת במערכת " + lineId + " תחנת קו");
-            stationInLine tempStationInLine = DataS.stationsInLine.Find(x => x.LineId == lineId);
+            stationInLine tempStationInLine = DataS.stationsInLine.Find(x => (x.LineId == lineId) && (x.StationCode == stationCode));
             if (tempStationInLine.IsDeleted == true)
-                throw new KeyNotFoundException("לא פעילה " + lineId + " תחנה זו");
+                throw new KeyNotFoundException("לא פעילה " + lineId + " תחנה זו של קו");
             return tempStationInLine.Clone();
         }
        public IEnumerable<stationInLine> GetStationInLineCollection()
@@ -302,17 +303,17 @@ namespace DAL
         }
       public  void UpdateStationInLine(stationInLine stationInLine)
         {
-            if (!DataS.stationsInLine.Any(x => x.LineId == stationInLine.LineId))
+            if (!DataS.stationsInLine.Any(x => (x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)))
                 throw new KeyNotFoundException("לא קיימת במערכת " + stationInLine.LineId + " תחנת קו");
-            stationInLine TempstationInLine = DataS.stationsInLine.Find(x => x.LineId == stationInLine.LineId);
+            stationInLine TempstationInLine = DataS.stationsInLine.Find(x => (x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode));
             if (TempstationInLine.IsDeleted)
                 throw new KeyNotFoundException("לא פעילה " + TempstationInLine.LineId + " תחנת קו");
-            DataS.stationsInLine.Remove(DataS.stationsInLine.Find(x => x.LineId == stationInLine.LineId));
+            DataS.stationsInLine.Remove(DataS.stationsInLine.Find(x => (x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)));
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
       public  void DeleteStationInLine(stationInLine stationInLine)
         {
-            if (!DataS.stationsInLine.Any(x => x.LineId==stationInLine.LineId))
+            if (!DataS.stationsInLine.Any(x => (x.LineId==stationInLine.LineId)&&(x.StationCode==stationInLine.StationCode)))
                 throw new KeyNotFoundException("כבר לא קיימת במערכת " + stationInLine.LineId + " תחנת קו");
             DataS.stationsInLine.Find(x => x.LineId == stationInLine.LineId).IsDeleted = true;
         }
