@@ -15,6 +15,8 @@ namespace BO
         public int StationCode { get; set; }
         public int IndexStationAtLine { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsFirstStation { get; set; }
+        public bool IsLastStation { get; set; }
         public override string ToString()
         {
             return HelpToString.ToStringProperty(this);

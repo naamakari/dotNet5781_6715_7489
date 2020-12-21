@@ -8,11 +8,13 @@ using APIBL;
 
 namespace BL
 {
-   public class BLIMP : IBL
+    //לממש את הפונקציות של עדכון תחנה ראשונה ואחרונה
+    //לעדכן בקובץ הנתונים
+    public class BLIMP : IBL
     {
 
         readonly IDAL dal = DalFactory.GetDal();
-      public  void sendToRefuel(BO.Bus bus)
+        public void sendToRefuel(BO.Bus bus)
         {
             try
             {
@@ -20,7 +22,7 @@ namespace BL
                 busDO.KmSinceRefeul = (float)0.0;
                 dal.UpdateBus(busDO);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -41,16 +43,19 @@ namespace BL
 
         }
 
+        void updateFirstStation(int code, int busId);
+        void updateLastStation(int code, int busId);
+
         #region methods for bus
         public void AddBus(BO.Bus busBO)
         {
-            DO.Bus busDO = new DO.Bus(); 
+            DO.Bus busDO = new DO.Bus();
             busBO.Clone(busDO);
             try
             {
                 dal.AddBus(busDO);
             }
-            catch(DO.DalAlreayExistExeption ex)
+            catch (DO.DalAlreayExistExeption ex)
             {
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
@@ -64,7 +69,7 @@ namespace BL
                 busDO.Clone(busBO);
                 return busBO;
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -76,7 +81,7 @@ namespace BL
             {
                 dal.DeleteBus(lisenceNum);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -89,7 +94,7 @@ namespace BL
             {
                 dal.UpdateBus(busDO);
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
@@ -113,21 +118,21 @@ namespace BL
         {
             try
             {
-                dal.DeleteBusStation(code);
-                DO.BusStation busStationDAL = dal.GetBusStation(code);
-                BO.BusLineBL busLineBL = new BO.BusLineBL();
-                busStationDAL.Clone(busLineBL);
-                //  busLineBL.CollectionOfStation = null;
+
                 Predicate<DO.stationInLine> predicate = item => item.StationCode == code;
                 IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(predicate);
-                // stationInLinesDAL= from item in stationInLinesDAL
-                //               select item.IsDeleted=true
                 foreach (DO.stationInLine item in stationInLinesDAL)
-                    dal.DeleteStationInLine(item);
-
-                //ככה מכניסים את השינוי פנימה?
-                    }
-            catch(KeyNotFoundException exc)
+                {
+                    if (item.IsFirstStation)
+                        updateFirstStation(code, item.LineId);
+                    else if (item.IsLastStation)
+                        updateLastStation(code, item.LineId);
+                    else
+                        dal.DeleteStationInLine(item);
+                }
+                dal.DeleteBusStation(code);
+            }
+            catch (KeyNotFoundException exc)
             {
                 throw new KeyNotFoundException(exc.Message, exc);
             }
@@ -140,7 +145,7 @@ namespace BL
                 busStation.Clone(busStationDAL);
                 dal.UpdateBusStation(busStationDAL);
             }
-            catch(KeyNotFoundException exc)
+            catch (KeyNotFoundException exc)
             {
                 throw new KeyNotFoundException(exc.Message, exc);
             }
@@ -155,28 +160,30 @@ namespace BL
                 busStationDAL.Clone(busStationBL);
                 Predicate<DO.stationInLine> predicate = item => item.StationCode == code;
                 IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(predicate);
-                IEnumerable<DO.BusLine> busLinesDAL = dal.GetAllBusLinesCollection();
                 BO.BusLine busLineBL = new BO.BusLine();
-                IEnumerable<DO.BusLine> busLinesDALCollection = from item in busLinesDAL
-                                                      from item1 in stationInLinesDAL
-                                                      where item.BusId == item1.LineId
-                                                      select item;
-               // foreach (DO.BusLine item in busLinesDALCollection)
-                //    item.Clone(busLineBL);
-                busLinesDALCollection.Clone(busStationBL.CollectionBusLines);
+                busStationBL.CollectionBusLines = from item in stationInLinesDAL
+                                                  let busLine = dal.GetBusLine(item.LineId)
+                                                  select new BO.BusLine()
+                                                  {
+                                                      BusId = busLine.BusId,
+                                                      BusNumLine = busLine.BusNumLine,
+                                                      AreaAtLand = (BO.Area)busLine.AreaAtLand,
+                                                      FirstStationCode = busLine.NumberFirstStation,
+                                                      LastStationCode=busLine.NumberLastStation                                                      
+                                                  };
                 return busStationBL;
             }
-            catch(KeyNotFoundException exc)
+            catch (KeyNotFoundException exc)
             {
                 throw new KeyNotFoundException(exc.Message, exc);
             }
-            catch(DO.DalEmptyCollectionExeption ex)
+            catch (DO.DalEmptyCollectionExeption ex)
             {
                 throw new BO.DalEmptyCollectionExeption(ex.Message, ex);
             }
         }
 
-        
+
         public void AddBusLine(BO.BusLine busLineBO)
         {
             DO.BusLine busLineDO = new DO.BusLine();
@@ -197,8 +204,8 @@ namespace BL
                 //Delete all stations through which the line passes
                 Predicate<DO.stationInLine> condition = item => item.LineId == id;
                 IEnumerable<DO.stationInLine> stationsInLine = dal.GetStationInLineCollectionBy(condition);
-               foreach (DO.stationInLine item in stationsInLine)
-                        dal.DeleteStationInLine(item);
+                foreach (DO.stationInLine item in stationsInLine)
+                    dal.DeleteStationInLine(item);
                 dal.DeleteBusLine(id);
             }
             catch (KeyNotFoundException ex)
@@ -210,9 +217,9 @@ namespace BL
         {
             try
             {
-            DO.BusLine busLineDO = new DO.BusLine();
-            busLineBO.Clone(busLineDO);
-            dal.UpdateBusLine(busLineDO);
+                DO.BusLine busLineDO = new DO.BusLine();
+                busLineBO.Clone(busLineDO);
+                dal.UpdateBusLine(busLineDO);
             }
             catch (KeyNotFoundException ex)
             {
@@ -243,10 +250,16 @@ namespace BL
                 Predicate<DO.stationInLine> condition = item => item.LineId == busLineBL.BusId;
                 IEnumerable<DO.stationInLine> stationsDO = dal.GetStationInLineCollectionBy(condition);
                 busLineBL.CollectionOfStation = from DO.stationInLine item in stationsDO
-                                                select item.Clone(new BO.stationInLine());
-                //busLineBL.CollectionOfStation = from item in dal.GetStationInLineCollection()
-                //where item.LineId == Id
-                //select item.Clone(stationInLineBO)
+                                                select new BO.stationInLine()
+                                                {
+                                                    LineId = item.LineId,
+                                                    StationCode = item.StationCode,
+                                                    IsFirstStation = item.IsFirstStation,
+                                                    IsLastStation = item.IsLastStation,
+                                                    IsDeleted = item.IsDeleted,
+                                                    IndexStationAtLine = item.IndexStationAtLine
+
+                                                };
                 return busLineBL;
             }
             catch (KeyNotFoundException ex)

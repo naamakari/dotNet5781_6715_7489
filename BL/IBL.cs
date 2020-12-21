@@ -11,8 +11,10 @@ namespace APIBL
     {
         void sendToRefuel(Bus bus);
         void sendToTreat(Bus bus);
-        
-        
+        void updateFirstStation(int code, int busId);
+        void updateLastStation(int code, int busId);
+
+
         void AddBus(Bus bus);
         Bus GetBus(string lisenceNum);
         void DeleteBus(string lisenceNum);

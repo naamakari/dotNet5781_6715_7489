@@ -316,17 +316,17 @@ namespace DS
         static void initBusLine()
         {
             #region initilized the lines of bus
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false,NumberOfStation=10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false, NumberOfStation = 10 });
 
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 8, AreaAtLand = Area.North, NumberFirstStation = 1137, NumberLastStation = 1147, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 13, AreaAtLand = Area.North, NumberFirstStation = 1147, NumberLastStation = 1138, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 5, AreaAtLand = Area.Center, NumberFirstStation = 1161, NumberLastStation = 1153, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1159, NumberLastStation = 1138, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1138, NumberLastStation = 1159, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 8, AreaAtLand = Area.North, NumberFirstStation = 1137, NumberLastStation = 1147, IsDeleted = false, NumberOfStation = 11 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 13, AreaAtLand = Area.North, NumberFirstStation = 1147, NumberLastStation = 1138, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 5, AreaAtLand = Area.Center, NumberFirstStation = 1161, NumberLastStation = 1153, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1159, NumberLastStation = 1138, IsDeleted = false, NumberOfStation = 10 });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1138, NumberLastStation = 1159, IsDeleted = false, NumberOfStation = 10 });
 
             #endregion
         }
