@@ -109,9 +109,72 @@ namespace BL
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
-        public void DeleteBusStation(int code);
-        public void UpdateBusStation(BO.BusStation busStation);
-        public BO.BusStationBL GetBusStationBL(int code);
+        public void DeleteBusStation(int code)
+        {
+            try
+            {
+                dal.DeleteBusStation(code);
+                DO.BusStation busStationDAL = dal.GetBusStation(code);
+                BO.BusLineBL busLineBL = new BO.BusLineBL();
+                busStationDAL.Clone(busLineBL);
+                //  busLineBL.CollectionOfStation = null;
+                Predicate<DO.stationInLine> predicate = item => item.StationCode == code;
+                IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(predicate);
+                // stationInLinesDAL= from item in stationInLinesDAL
+                //               select item.IsDeleted=true
+                foreach (DO.stationInLine item in stationInLinesDAL)
+                    dal.DeleteStationInLine(item);
+
+                //ככה מכניסים את השינוי פנימה?
+                    }
+            catch(KeyNotFoundException exc)
+            {
+                throw new KeyNotFoundException(exc.Message, exc);
+            }
+        }
+        public void UpdateBusStation(BO.BusStation busStation)
+        {
+            try
+            {
+                DO.BusStation busStationDAL = new DO.BusStation();
+                busStation.Clone(busStationDAL);
+                dal.UpdateBusStation(busStationDAL);
+            }
+            catch(KeyNotFoundException exc)
+            {
+                throw new KeyNotFoundException(exc.Message, exc);
+            }
+        }
+        public BO.BusStationBL GetBusStationBL(int code)
+
+        {
+            try
+            {
+                DO.BusStation busStationDAL = dal.GetBusStation(code);
+                BO.BusStationBL busStationBL = new BO.BusStationBL();
+                busStationDAL.Clone(busStationBL);
+                Predicate<DO.stationInLine> predicate = item => item.StationCode == code;
+                IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(predicate);
+                IEnumerable<DO.BusLine> busLinesDAL = dal.GetAllBusLinesCollection();
+                BO.BusLine busLineBL = new BO.BusLine();
+                IEnumerable<DO.BusLine> busLinesDALCollection = from item in busLinesDAL
+                                                      from item1 in stationInLinesDAL
+                                                      where item.BusId == item1.LineId
+                                                      select item;
+               // foreach (DO.BusLine item in busLinesDALCollection)
+                //    item.Clone(busLineBL);
+                busLinesDALCollection.Clone(busStationBL.CollectionBusLines);
+                return busStationBL;
+            }
+            catch(KeyNotFoundException exc)
+            {
+                throw new KeyNotFoundException(exc.Message, exc);
+            }
+            catch(DO.DalEmptyCollectionExeption ex)
+            {
+                throw new BO.DalEmptyCollectionExeption(ex.Message, ex);
+            }
+        }
 
         
         public void AddBusLine(BO.BusLine busLineBO)
