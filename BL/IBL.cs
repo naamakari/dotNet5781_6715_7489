@@ -19,8 +19,9 @@ namespace APIBL
         Bus GetBus(string lisenceNum);
         void DeleteBus(string lisenceNum);
         void UpdateBus(Bus bus);
-        BusLineBL possiblePath(int startStationCode, int lastStationCode);
-        float timeBetweenStation(int startStationCode, int lastStationCode,List<DO.stationInLine> stations);
+        IEnumerable<BusLineBL> getPossiblePath(int startStationCode, int lastStationCode);
+        BusLineBL returnShortPath(int startStationCode, int lastStationCode);
+        int timeBetweenStations(int startStationCode, int lastStationCode,int numLine);
         
         void AddBusStation(BusStation busStation);
         BusLineBL GetBusLineBL(int Id);
