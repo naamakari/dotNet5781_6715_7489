@@ -21,7 +21,7 @@ namespace APIBL
         void UpdateBus(Bus bus);
         IEnumerable<BusLineBL> getPossiblePath(int startStationCode, int lastStationCode);
         BusLineBL returnShortPath(int startStationCode, int lastStationCode);
-        int timeBetweenStations(int startStationCode, int lastStationCode,int numLine);
+        float timeBetweenStations(int startStationCode, int lastStationCode,int numLine);
         
         void AddBusStation(BusStation busStation);
         BusLineBL GetBusLineBL(int Id);

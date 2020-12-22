@@ -124,8 +124,8 @@ namespace BL
         public BO.BusLineBL returnShortPath(int startStationCode, int lastStationCode)
         {
             IEnumerable<BO.BusLineBL> lines = getPossiblePath(startStationCode, lastStationCode);
-            int sumTime = 999999999;
-            int time;
+            float sumTime = 999999999;
+            float time;
             BO.BusLineBL line=new BO.BusLineBL();
             foreach (BO.BusLineBL item in lines)
             {
@@ -146,11 +146,11 @@ namespace BL
         /// <param name="lastStationCode"></param>
         /// <param name="lineId"></param>
         /// <returns></returns>
-        public int timeBetweenStations(int startStationCode, int lastStationCode, int lineId)
+        public float timeBetweenStations(int startStationCode, int lastStationCode, int lineId)
         {
             IEnumerable<DO.stationInLine> stations = dal.GetStationInLineCollectionBy(item => item.LineId == lineId);
             List<DO.stationInLine> stationsList = stations.ToList();
-            int sumTime = 0;
+            float sumTime = 0;
             int i = 0;
             while (stationsList[0].StationCode != startStationCode)
                 stationsList.Remove(stationsList[0]);
@@ -158,7 +158,7 @@ namespace BL
                 throw new KeyNotFoundException("לא נמצאה ברשימה " + startStationCode + " תחנה מספר");
             while (stationsList[i + 2].StationCode != lastStationCode || i < stationsList.Count - 2)
             {
-                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations.Second;
+                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations;
             }
             if (i == stationsList.Count - 2)
                 throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
@@ -368,7 +368,7 @@ namespace BL
                 busLineBL.LastStation = busStationBO2;
 
 
-                BO.stationInLine stationInLineBO = new BO.stationInLine();
+                BO.StationInLine stationInLineBO = new BO.StationInLine();
                 Predicate<DO.stationInLine> condition = item => item.LineId == busLineBL.BusId;
                 IEnumerable<DO.stationInLine> stationsDO = dal.GetStationInLineCollectionBy(condition);
                 busLineBL.CollectionOfStation = from item in stationsDO
