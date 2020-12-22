@@ -8,8 +8,7 @@ using APIBL;
 
 namespace BL
 {
-    //לממש את הפונקציות של עדכון תחנה ראשונה ואחרונה
-    //לעדכן בקובץ הנתונים
+ 
     public class BLIMP : IBL
     {
 
@@ -384,6 +383,90 @@ namespace BL
                                                     StationName = busStation.StationName
                                                 };
                 return busLineBL;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        #endregion
+
+        #region method for followingStations
+        public void AddFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.AddFollowingStations(followingDO);
+            }
+            catch (DO.DalAlreayExistExeption ex)
+            {
+                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
+        }
+        public void DeleteFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.DeleteFollowingStations(followingDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        public void UpdateBusFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.UpdateFollowingStations(followingDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        #endregion
+
+        #region method for followingStations
+        public void AddStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.AddStationInLine(stationLineDO);
+            }
+            catch (DO.DalAlreayExistExeption ex)
+            {
+                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
+        }
+        public void DeleteStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.DeleteStationInLine(stationLineDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        public void UpdateStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.UpdateStationInLine(stationLineDO);
             }
             catch (KeyNotFoundException ex)
             {

@@ -32,5 +32,13 @@ namespace APIBL
         BusStationBL GetBusStationBL(int code);
         void DeleteBusLine(int id);
         void UpdateBusLine(BusLine busLine);
+
+        void AddFollowingStations(FollowingStations following);
+        void DeleteFollowingStations(FollowingStations following);
+        void UpdateBusFollowingStations(FollowingStations following);
+
+        void AddStationInLine(StationInLine stationLine);
+        void DeleteStationInLine(StationInLine stationLine);
+        void UpdateStationInLine(StationInLine stationLine);
     }
 }

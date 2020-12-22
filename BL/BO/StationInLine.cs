@@ -9,7 +9,7 @@ namespace BO
     /// <summary>
     /// class for station that is at line
     /// </summary>
-    public class stationInLine
+    public class StationInLine
     {
         public int LineId { get; set; }
         public int StationCode { get; set; }
