@@ -31,5 +31,24 @@ namespace BO
         public DalEmptyCollectionExeption(string message, Exception inner) : base(message, inner) { }
 
     }
+    /// <summary>
+    /// repersents errors during invalid remove  
+    /// </summary>
+    public class invalidRemoveExeption : Exception
+    {
+        public invalidRemoveExeption(string message) : base(message) { }
+        public invalidRemoveExeption(string message, Exception inner) : base(message, inner) { }
+
+    }
+
+    /// <summary>
+    /// repersents errors in case invalid remove 
+    /// </summary>
+    public class invalidRequestExeption : Exception
+    {
+        public invalidRequestExeption(string message) : base(message) { }
+        public invalidRequestExeption(string message, Exception inner) : base(message, inner) { }
+
+    }
 }
-}
+

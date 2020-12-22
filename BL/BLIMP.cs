@@ -8,12 +8,15 @@ using APIBL;
 
 namespace BL
 {
-    //לממש את הפונקציות של עדכון תחנה ראשונה ואחרונה
-    //לעדכן בקובץ הנתונים
+ 
     public class BLIMP : IBL
     {
 
         readonly IDAL dal = DalFactory.GetDal();
+        /// <summary>
+        /// refule the bus
+        /// </summary>
+        /// <param name="bus"></param>
         public void sendToRefuel(BO.Bus bus)
         {
             try
@@ -27,6 +30,10 @@ namespace BL
                 throw new KeyNotFoundException(ex.Message, ex);
             }
         }
+        /// <summary>
+        /// treat the bus
+        /// </summary>
+        /// <param name="bus"></param>
         public void sendToTreat(BO.Bus bus)
         {
             try
@@ -43,8 +50,121 @@ namespace BL
 
         }
 
-        void updateFirstStation(int code, int busId);
-        void updateLastStation(int code, int busId);
+        /// <summary>
+        /// update the "BO.BusLine" if the furs station is deleted
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="busId"></param>
+        public void updateFirstStation(int code, int busId)
+        {
+            DO.BusLine newBusLine = dal.GetBusLine(busId);
+            IEnumerable<DO.stationInLine> stationsInLine = from item in dal.GetStationInLineCollectionBy(item => item.LineId == busId)
+                                                           orderby item.IndexStationAtLine
+                                                           select item;
+            if (stationsInLine.Count() == 2)
+                throw new BO.invalidRemoveExeption(" קיימות 2 תחנות, לא ניתן למחוק תחנה " + busId + " בקו");
+            List<DO.stationInLine> stationsList = stationsInLine.ToList();
+            dal.DeleteStationInLine(stationsList[0]);//delete
+            stationsList.Remove(stationsList[0]);//now the first station is the next station
+            newBusLine.NumberFirstStation = stationsList[0].StationCode;
+            dal.UpdateBusLine(newBusLine);
+        }
+        /// <summary>
+        /// update the "BO.BusLine" if the last station is deleted
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="busId"></param>
+        public void updateLastStation(int code, int busId)
+        {
+            DO.BusLine newBusLine = dal.GetBusLine(busId);
+            IEnumerable<DO.stationInLine> stationsInLine = from item in dal.GetStationInLineCollectionBy(item => item.LineId == busId)
+                                                           orderby item.IndexStationAtLine
+                                                           select item;
+            if (stationsInLine.Count() == 2)
+                throw new BO.invalidRemoveExeption(" קיימות 2 תחנות, לא ניתן למחוק תחנה " + busId + " בקו");
+            List<DO.stationInLine> stationsList = stationsInLine.ToList();
+            dal.DeleteStationInLine(stationsList[stationsList.Count - 1]);//delete the last station
+            stationsList.Remove(stationsList[stationsList.Count - 1]);//now the last station is the previous station
+            newBusLine.NumberFirstStation = stationsList[stationsList.Count - 1].StationCode;
+            dal.UpdateBusLine(newBusLine);
+        }
+
+        /// <summary>
+        /// return all he lines that have direct path between two stations
+        /// </summary>
+        /// <param name="startStationCode"></param>
+        /// <param name="lastStationCode"></param>
+        /// <returns></returns>
+        public IEnumerable<BO.BusLineBL> getPossiblePath(int startStationCode, int lastStationCode)
+        {
+            IEnumerable<DO.BusLine> LinesInStartStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == startStationCode)
+                                                          let busLine = dal.GetBusLine(item.LineId)
+                                                          select busLine;
+            IEnumerable<DO.BusLine> LinesInLastStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == lastStationCode)
+                                                         let busLine = dal.GetBusLine(item.LineId)
+                                                         select busLine;
+            IEnumerable<DO.BusLine> directLinePath = from start in LinesInStartStation
+                                                     from last in LinesInLastStation
+                                                     where start.BusId == last.BusId
+                                                     select start;
+            if (directLinePath.Count() == 0)
+                throw new BO.invalidRequestExeption(lastStationCode + ", " + startStationCode + " אין מסלול ישיר בין התחנות");
+            IEnumerable<BO.BusLineBL> lines = from item in directLinePath
+                                           select GetBusLineBL(item.BusId);
+            return lines;
+
+
+        }
+
+        /// <summary>
+        /// return the short path between all the lines in the recived collection
+        /// </summary>
+        /// <param name="lines"></param>
+        /// <returns></returns>
+        public BO.BusLineBL returnShortPath(int startStationCode, int lastStationCode)
+        {
+            IEnumerable<BO.BusLineBL> lines = getPossiblePath(startStationCode, lastStationCode);
+            int sumTime = 999999999;
+            int time;
+            BO.BusLineBL line=new BO.BusLineBL();
+            foreach (BO.BusLineBL item in lines)
+            {
+                time = timeBetweenStations(startStationCode, lastStationCode, item.BusId);
+                if (time <= sumTime)
+                {
+                    sumTime = time;
+                    line = item;
+                }
+            }
+            return line;
+        }
+        
+        /// <summary>
+        /// the function get start station and last station and number of line and return the distance between them in this line
+        /// </summary>
+        /// <param name="startStationCode"></param>
+        /// <param name="lastStationCode"></param>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
+        public int timeBetweenStations(int startStationCode, int lastStationCode, int lineId)
+        {
+            IEnumerable<DO.stationInLine> stations = dal.GetStationInLineCollectionBy(item => item.LineId == lineId);
+            List<DO.stationInLine> stationsList = stations.ToList();
+            int sumTime = 0;
+            int i = 0;
+            while (stationsList[0].StationCode != startStationCode)
+                stationsList.Remove(stationsList[0]);
+            if (stationsList.Count == 0)
+                throw new KeyNotFoundException("לא נמצאה ברשימה " + startStationCode + " תחנה מספר");
+            while (stationsList[i + 2].StationCode != lastStationCode || i < stationsList.Count - 2)
+            {
+                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations.Second;
+            }
+            if (i == stationsList.Count - 2)
+                throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
+            return sumTime;
+
+        }
 
         #region methods for bus
         public void AddBus(BO.Bus busBO)
@@ -101,6 +221,7 @@ namespace BL
         }
         #endregion
 
+        #region methods for bus-staion
         public void AddBusStation(BO.BusStation busStationBO)
         {
             DO.BusStation busStationDO = new DO.BusStation();
@@ -169,7 +290,7 @@ namespace BL
                                                       BusNumLine = busLine.BusNumLine,
                                                       AreaAtLand = (BO.Area)busLine.AreaAtLand,
                                                       FirstStationCode = busLine.NumberFirstStation,
-                                                      LastStationCode=busLine.NumberLastStation                                                      
+                                                      LastStationCode = busLine.NumberLastStation
                                                   };
                 return busStationBL;
             }
@@ -182,8 +303,9 @@ namespace BL
                 throw new BO.DalEmptyCollectionExeption(ex.Message, ex);
             }
         }
+        #endregion
 
-
+        #region method for bus-line
         public void AddBusLine(BO.BusLine busLineBO)
         {
             DO.BusLine busLineDO = new DO.BusLine();
@@ -249,16 +371,16 @@ namespace BL
                 BO.stationInLine stationInLineBO = new BO.stationInLine();
                 Predicate<DO.stationInLine> condition = item => item.LineId == busLineBL.BusId;
                 IEnumerable<DO.stationInLine> stationsDO = dal.GetStationInLineCollectionBy(condition);
-                busLineBL.CollectionOfStation = from DO.stationInLine item in stationsDO
-                                                select new BO.stationInLine()
+                busLineBL.CollectionOfStation = from item in stationsDO
+                                                let busStation = dal.GetBusStation(item.StationCode)
+                                                orderby item.IndexStationAtLine
+                                                select new BO.BusStation()
                                                 {
-                                                    LineId = item.LineId,
-                                                    StationCode = item.StationCode,
-                                                    IsFirstStation = item.IsFirstStation,
-                                                    IsLastStation = item.IsLastStation,
-                                                    IsDeleted = item.IsDeleted,
-                                                    IndexStationAtLine = item.IndexStationAtLine
-
+                                                    StationCode = busStation.StationCode,
+                                                    Longitude = busStation.Longitude,
+                                                    Latitude = busStation.Latitude,
+                                                    Address = busStation.Address,
+                                                    StationName = busStation.StationName
                                                 };
                 return busLineBL;
             }
@@ -267,6 +389,91 @@ namespace BL
                 throw new KeyNotFoundException(ex.Message, ex);
             }
         }
+        #endregion
 
+        #region method for followingStations
+        public void AddFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.AddFollowingStations(followingDO);
+            }
+            catch (DO.DalAlreayExistExeption ex)
+            {
+                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
+        }
+        public void DeleteFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.DeleteFollowingStations(followingDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        public void UpdateBusFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.UpdateFollowingStations(followingDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        #endregion
+
+        #region method for followingStations
+        public void AddStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.AddStationInLine(stationLineDO);
+            }
+            catch (DO.DalAlreayExistExeption ex)
+            {
+                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
+        }
+        public void DeleteStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.DeleteStationInLine(stationLineDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        public void UpdateStationInLine(BO.StationInLine stationLineBO)
+        {
+            DO.stationInLine stationLineDO = new DO.stationInLine();
+            stationLineBO.Clone(stationLineDO);
+            try
+            {
+                dal.UpdateStationInLine(stationLineDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        #endregion
     }
 }
+

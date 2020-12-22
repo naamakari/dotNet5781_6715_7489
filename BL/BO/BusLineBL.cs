@@ -13,7 +13,7 @@ namespace BO
     {
       public BusStation FirstStation { get; set; }
        public BusStation LastStation { get; set; }
-        public IEnumerable<BO.stationInLine> CollectionOfStation { get; set; }
+        public IEnumerable<BO.BusStation> CollectionOfStation { get; set; }
 
     }
 }

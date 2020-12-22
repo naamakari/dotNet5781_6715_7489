@@ -19,6 +19,9 @@ namespace APIBL
         Bus GetBus(string lisenceNum);
         void DeleteBus(string lisenceNum);
         void UpdateBus(Bus bus);
+        IEnumerable<BusLineBL> getPossiblePath(int startStationCode, int lastStationCode);
+        BusLineBL returnShortPath(int startStationCode, int lastStationCode);
+        int timeBetweenStations(int startStationCode, int lastStationCode,int numLine);
         
         void AddBusStation(BusStation busStation);
         BusLineBL GetBusLineBL(int Id);
@@ -29,5 +32,13 @@ namespace APIBL
         BusStationBL GetBusStationBL(int code);
         void DeleteBusLine(int id);
         void UpdateBusLine(BusLine busLine);
+
+        void AddFollowingStations(FollowingStations following);
+        void DeleteFollowingStations(FollowingStations following);
+        void UpdateBusFollowingStations(FollowingStations following);
+
+        void AddStationInLine(StationInLine stationLine);
+        void DeleteStationInLine(StationInLine stationLine);
+        void UpdateStationInLine(StationInLine stationLine);
     }
 }
