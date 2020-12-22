@@ -15,7 +15,7 @@ namespace DO
         public int StationCode2 { get; set; }
         //public string key { get; set; }
         public float DistanceBetweenStations { get; set; }
-        public DateTime TimeTravelBetweenStations { get; set; }
+        public float TimeTravelBetweenStations { get; set; }
         public override string ToString()
         {
             return HelpToString.ToStringProperty(this);

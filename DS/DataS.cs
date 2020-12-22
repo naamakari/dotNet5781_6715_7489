@@ -252,8 +252,8 @@ namespace DS
         {
             #region initilized the station of bus
             //1111
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.170699, Latitude = (float)34.82964, Address = "הנדיב 2 הרצליה", StationName = "הנדיב/ז'בוטינסקי" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16843, Latitude = (float)34.83031, Address = "פינסקר 2 הרצליה", StationName = "פינסקר/ז'בוטינסקי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.170699, Latitude = (float)34.82964, Address = "הנדיב 2 הרצליה", StationName = "הנדיב/ז'בוטינסקי" });//1111
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16843, Latitude = (float)34.83031, Address = "פינסקר 2 הרצליה", StationName = "פינסקר/ז'בוטינסקי" });//1112
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16780, Latitude = (float)34.83265, Address = "צבי מנדלבליט 2 הרצליה", StationName = "צבי מנדלבליט/שמואל הנגיד" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16448, Latitude = (float)34.83541, Address = "ויצמן 2 הרצליה", StationName = "בית ספר ויצמן/ויצמן" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.16440, Latitude = (float)34.84276, Address = "בן גוריון 10 הרצליה", StationName = "בן גוריון/העצמאות" });
@@ -265,9 +265,10 @@ namespace DS
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17250, Latitude = (float)34.84085, Address = "בני בנימין 11 הרצליה", StationName = "בני בנימין/גיסין" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17445, Latitude = (float)34.83959, Address = "כנפי נשרים 4 הרצליה", StationName = "כנפי נשרים/נתן אלתרמן" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17382, Latitude = (float)34.83684, Address = "דור שמעוני 4 הרצליה", StationName = "דוד שמעוני/יהודה אלקלעי" });
-
+            
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24265, Latitude = (float)34.79775, Address = "יהושע חנקין 2 באר שבע", StationName = "ת.מרכזית/עירוניים לדרום" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24171, Latitude = (float)34.79647, Address = "שדרות דוד חכם 80 באר שבע", StationName = "שגרות דוד חכם/תחנה מרכזית" });
+            //1125
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24502, Latitude = (float)34.79589, Address = "יצחק רגר 10 באר שבע", StationName = "דואר/יצחק רגר" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24428, Latitude = (float)34.79591, Address = "יצחק בן צבי 2 באר שבע", StationName = "קניון הנגב/יצחק בן צבי" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24690, Latitude = (float)34.79789, Address = "הנרייטה סולד 8 באר שבע", StationName = "הנרייטה סולד/מדרחוב התקווה" });
@@ -276,8 +277,8 @@ namespace DS
             //1130
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25294, Latitude = (float)34.80366, Address = "דרך השלום 34 באר שבע", StationName = "דרך השלום/יד ושם" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25203, Latitude = (float)34.80689, Address = "דרך השלום 2 באר שבע", StationName = "דרך השלום/ארלוזורוב" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25185, Latitude = (float)34.80913, Address = "ז'בוטינסקי 10 באר שבע", StationName = "שדרות דוד בן גוריון/דרך השלום" });
-            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.5731, Latitude = (float)34.81207, Address = "שדרות דוד בן גוריון 100 באר שבע", StationName = "המשוררים/הרצל" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24908, Latitude = (float)34.80917, Address = "ז'בוטינסקי 10 באר שבע", StationName = "בי''ס דגניה/ז'בוטינסקי" });
+            busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25752, Latitude = (float)34.81208, Address = "שדרות דוד בן גוריון 100 באר שבע", StationName = "שדרות דוד בן גוריון/דרך השלום" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25776, Latitude = (float)34.81337, Address = "יהושע הצורף 2 באר שבע", StationName = "יהושע הצורף/יהודה הנחתום" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.25682, Latitude = (float)34.81534, Address = "יהושע הצורף 15 באר שבע", StationName = "יהושע הצורף" });
 
@@ -374,7 +375,7 @@ namespace DS
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1119, IndexStationAtLine = 7, IsDeleted = false });
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1120, IndexStationAtLine = 8, IsDeleted = false });
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1121, IndexStationAtLine = 9, IsDeleted = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1120, IndexStationAtLine = 10, IsDeleted = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1122, IndexStationAtLine = 10, IsDeleted = false });
 
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1111, IndexStationAtLine = 1, IsDeleted = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1112, IndexStationAtLine = 2, IsDeleted = false });
@@ -447,7 +448,47 @@ namespace DS
         }
         static void initFollowingStation()
         {
-            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations })
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.95, TimeTravelBetweenStations =(float) 0.95});
+            followingStations.Add(new FollowingStations { StationCode1 = 1112, StationCode2 = 1113, DistanceBetweenStations = (float)0.29, TimeTravelBetweenStations = (float)0.29 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1113, StationCode2 = 1114, DistanceBetweenStations = (float)0.52, TimeTravelBetweenStations = (float)0.52 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1114, StationCode2 = 1115, DistanceBetweenStations = (float)1.43, TimeTravelBetweenStations = (float)1.43 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1115, StationCode2 = 1116, DistanceBetweenStations = (float)0.11, TimeTravelBetweenStations = (float)0.11 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1116, StationCode2 = 1117, DistanceBetweenStations = (float)0.36, TimeTravelBetweenStations = (float)0.36 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1117, StationCode2 = 1118, DistanceBetweenStations = (float)0.62, TimeTravelBetweenStations = (float)0.62 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1118, StationCode2 = 1119, DistanceBetweenStations = (float)0.1, TimeTravelBetweenStations = (float)0.1 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1119, StationCode2 = 1120, DistanceBetweenStations = (float)0.18, TimeTravelBetweenStations = (float)0.18 });
+            
+            followingStations.Add(new FollowingStations { StationCode1 = 1123, StationCode2 = 1124, DistanceBetweenStations = (float)1.62, TimeTravelBetweenStations = (float)1.62 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1124, StationCode2 = 1125, DistanceBetweenStations = (float)0.58, TimeTravelBetweenStations = (float)0.58 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1125, StationCode2 = 1126, DistanceBetweenStations = (float)0.51, TimeTravelBetweenStations = (float)0.51 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1126, StationCode2 = 1127, DistanceBetweenStations = (float)0.57, TimeTravelBetweenStations = (float)0.57 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1127, StationCode2 = 1128, DistanceBetweenStations = (float)0.45, TimeTravelBetweenStations = (float)0.45 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1128, StationCode2 = 1129, DistanceBetweenStations = (float)0.6, TimeTravelBetweenStations = (float)0.6 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1129, StationCode2 = 1131, DistanceBetweenStations = (float)0.59, TimeTravelBetweenStations = (float)0.59 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1131, StationCode2 = 1133, DistanceBetweenStations = (float)1.93, TimeTravelBetweenStations = (float)1.93 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1133, StationCode2 = 1135, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+          
+            followingStations.Add(new FollowingStations { StationCode1 = 1125, StationCode2 = 1126, DistanceBetweenStations = (float)0.51, TimeTravelBetweenStations = (float)0.51 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1126, StationCode2 = 1128, DistanceBetweenStations = (float)1.01, TimeTravelBetweenStations = (float)1.01 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1128, StationCode2 = 1130, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1130, StationCode2 = 1132, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1132, StationCode2 = 1133, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1133, StationCode2 = 1134, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1134, StationCode2 = 1135, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            
+            
+            
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
+
         }
     }
 }
