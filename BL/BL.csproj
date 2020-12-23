@@ -51,7 +51,7 @@
     <Compile Include="Cloning.cs" />
     <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\FollowingStations.cs" />
-    <Compile Include="HelpToString.cs" />
+    <Compile Include="BO\HelpToString.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="BO\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

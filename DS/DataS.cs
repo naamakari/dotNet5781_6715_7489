@@ -448,7 +448,7 @@ namespace DS
         }
         static void initFollowingStation()
         {
-            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.95, TimeTravelBetweenStations =(float) 0.95});
+            followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.95, TimeTravelBetweenStations = (float)0.95 });
             followingStations.Add(new FollowingStations { StationCode1 = 1112, StationCode2 = 1113, DistanceBetweenStations = (float)0.29, TimeTravelBetweenStations = (float)0.29 });
             followingStations.Add(new FollowingStations { StationCode1 = 1113, StationCode2 = 1114, DistanceBetweenStations = (float)0.52, TimeTravelBetweenStations = (float)0.52 });
             followingStations.Add(new FollowingStations { StationCode1 = 1114, StationCode2 = 1115, DistanceBetweenStations = (float)1.43, TimeTravelBetweenStations = (float)1.43 });
@@ -457,7 +457,7 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1117, StationCode2 = 1118, DistanceBetweenStations = (float)0.62, TimeTravelBetweenStations = (float)0.62 });
             followingStations.Add(new FollowingStations { StationCode1 = 1118, StationCode2 = 1119, DistanceBetweenStations = (float)0.1, TimeTravelBetweenStations = (float)0.1 });
             followingStations.Add(new FollowingStations { StationCode1 = 1119, StationCode2 = 1120, DistanceBetweenStations = (float)0.18, TimeTravelBetweenStations = (float)0.18 });
-            
+
             followingStations.Add(new FollowingStations { StationCode1 = 1123, StationCode2 = 1124, DistanceBetweenStations = (float)1.62, TimeTravelBetweenStations = (float)1.62 });
             followingStations.Add(new FollowingStations { StationCode1 = 1124, StationCode2 = 1125, DistanceBetweenStations = (float)0.58, TimeTravelBetweenStations = (float)0.58 });
             followingStations.Add(new FollowingStations { StationCode1 = 1125, StationCode2 = 1126, DistanceBetweenStations = (float)0.51, TimeTravelBetweenStations = (float)0.51 });
@@ -467,7 +467,7 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1129, StationCode2 = 1131, DistanceBetweenStations = (float)0.59, TimeTravelBetweenStations = (float)0.59 });
             followingStations.Add(new FollowingStations { StationCode1 = 1131, StationCode2 = 1133, DistanceBetweenStations = (float)1.93, TimeTravelBetweenStations = (float)1.93 });
             followingStations.Add(new FollowingStations { StationCode1 = 1133, StationCode2 = 1135, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
-          
+
             followingStations.Add(new FollowingStations { StationCode1 = 1125, StationCode2 = 1126, DistanceBetweenStations = (float)0.51, TimeTravelBetweenStations = (float)0.51 });
             followingStations.Add(new FollowingStations { StationCode1 = 1126, StationCode2 = 1128, DistanceBetweenStations = (float)1.01, TimeTravelBetweenStations = (float)1.01 });
             followingStations.Add(new FollowingStations { StationCode1 = 1128, StationCode2 = 1130, DistanceBetweenStations = (float)0.85, TimeTravelBetweenStations = (float)0.85 });
@@ -475,26 +475,26 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1132, StationCode2 = 1133, DistanceBetweenStations = (float)2.07, TimeTravelBetweenStations = (float)2.07 });
             followingStations.Add(new FollowingStations { StationCode1 = 1133, StationCode2 = 1134, DistanceBetweenStations = (float)0.17, TimeTravelBetweenStations = (float)0.17 });
             followingStations.Add(new FollowingStations { StationCode1 = 1134, StationCode2 = 1135, DistanceBetweenStations = (float)0.21, TimeTravelBetweenStations = (float)0.21 });
-            
-            
-            
+
+
+
             followingStations.Add(new FollowingStations { StationCode1 = 1126, StationCode2 = 1117, DistanceBetweenStations = (float)111.91, TimeTravelBetweenStations = (float)111.91 });
             followingStations.Add(new FollowingStations { StationCode1 = 1120, StationCode2 = 1121, DistanceBetweenStations = (float)0.41, TimeTravelBetweenStations = (float)0.41 });
             followingStations.Add(new FollowingStations { StationCode1 = 1121, StationCode2 = 1122, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
-           
-            
-            
+
+
+
             followingStations.Add(new FollowingStations { StationCode1 = 1114, StationCode2 = 1125, DistanceBetweenStations = (float)112.15, TimeTravelBetweenStations = (float)112.15 });
             followingStations.Add(new FollowingStations { StationCode1 = 1125, StationCode2 = 1130, DistanceBetweenStations = (float)1.40, TimeTravelBetweenStations = (float)1.40 });
             followingStations.Add(new FollowingStations { StationCode1 = 1130, StationCode2 = 1135, DistanceBetweenStations = (float)1.61, TimeTravelBetweenStations = (float)1.61 });
             followingStations.Add(new FollowingStations { StationCode1 = 1135, StationCode2 = 1132, DistanceBetweenStations = (float)1.96, TimeTravelBetweenStations = (float)1.96 });
             followingStations.Add(new FollowingStations { StationCode1 = 1132, StationCode2 = 1124, DistanceBetweenStations = (float)3.27, TimeTravelBetweenStations = (float)3.27 });
             followingStations.Add(new FollowingStations { StationCode1 = 1124, StationCode2 = 1123, DistanceBetweenStations = (float)0.57, TimeTravelBetweenStations = (float)0.57 });
-            
-            
-            
-            
-            
+
+
+
+
+
             followingStations.Add(new FollowingStations { StationCode1 = 1137, StationCode2 = 1136, DistanceBetweenStations = (float)0.69, TimeTravelBetweenStations = (float)0.69 });
             followingStations.Add(new FollowingStations { StationCode1 = 1136, StationCode2 = 1139, DistanceBetweenStations = (float)0.75, TimeTravelBetweenStations = (float)0.75 });
             followingStations.Add(new FollowingStations { StationCode1 = 1139, StationCode2 = 1140, DistanceBetweenStations = (float)0.41, TimeTravelBetweenStations = (float)0.41 });
@@ -505,8 +505,8 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1144, StationCode2 = 1145, DistanceBetweenStations = (float)1.62, TimeTravelBetweenStations = (float)1.62 });
             followingStations.Add(new FollowingStations { StationCode1 = 1145, StationCode2 = 1146, DistanceBetweenStations = (float)1.81, TimeTravelBetweenStations = (float)1.81 });
             followingStations.Add(new FollowingStations { StationCode1 = 1146, StationCode2 = 1147, DistanceBetweenStations = (float)0.38, TimeTravelBetweenStations = (float)0.38 });
-           
-            
+
+
             followingStations.Add(new FollowingStations { StationCode1 = 1147, StationCode2 = 1148, DistanceBetweenStations = (float)1.18, TimeTravelBetweenStations = (float)1.18 });
             followingStations.Add(new FollowingStations { StationCode1 = 1148, StationCode2 = 1149, DistanceBetweenStations = (float)0.74, TimeTravelBetweenStations = (float)0.74 });
             followingStations.Add(new FollowingStations { StationCode1 = 1149, StationCode2 = 1145, DistanceBetweenStations = (float)2.01, TimeTravelBetweenStations = (float)2.01 });
@@ -527,6 +527,26 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1156, StationCode2 = 1154, DistanceBetweenStations = (float)1.5, TimeTravelBetweenStations = (float)1.5 });
             followingStations.Add(new FollowingStations { StationCode1 = 1154, StationCode2 = 1153, DistanceBetweenStations = (float)1.06, TimeTravelBetweenStations = (float)1.06 });
 
+
+            followingStations.Add(new FollowingStations { StationCode1 = 1159, StationCode2 = 1160, DistanceBetweenStations = (float)0.43, TimeTravelBetweenStations = (float)0.43 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1160, StationCode2 = 1151, DistanceBetweenStations = (float)1.03, TimeTravelBetweenStations = (float)1.03 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1151, StationCode2 = 1161, DistanceBetweenStations = (float)0.96, TimeTravelBetweenStations = (float)0.96 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1161, StationCode2 = 1142, DistanceBetweenStations = (float)130.48, TimeTravelBetweenStations = (float)130.48 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1142, StationCode2 = 1144, DistanceBetweenStations = (float)1.47, TimeTravelBetweenStations = (float)1.47 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1144, StationCode2 = 1141, DistanceBetweenStations = (float)1.85, TimeTravelBetweenStations = (float)1.85 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1141, StationCode2 = 1140, DistanceBetweenStations = (float)0.84, TimeTravelBetweenStations = (float)0.84 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1140, StationCode2 = 1136, DistanceBetweenStations = (float)0.68, TimeTravelBetweenStations = (float)0.68 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1136, StationCode2 = 1138, DistanceBetweenStations = (float)1.64, TimeTravelBetweenStations = (float)1.64 });
+
+            followingStations.Add(new FollowingStations { StationCode1 = 1138, StationCode2 = 1136, DistanceBetweenStations = (float)1.78, TimeTravelBetweenStations = (float)1.78 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1136, StationCode2 = 1140, DistanceBetweenStations = (float)0.73, TimeTravelBetweenStations = (float)0.73 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1141, StationCode2 = 1144, DistanceBetweenStations = (float)1.61, TimeTravelBetweenStations = (float)1.61 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1144, StationCode2 = 1142, DistanceBetweenStations = (float)2.20, TimeTravelBetweenStations = (float)2.20 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1142, StationCode2 = 1161, DistanceBetweenStations = (float)129.82, TimeTravelBetweenStations = (float)129.82 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1161, StationCode2 = 1151, DistanceBetweenStations = (float)1.62, TimeTravelBetweenStations = (float)1.62 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1151, StationCode2 = 1160, DistanceBetweenStations = (float)1.30, TimeTravelBetweenStations = (float)1.30 });
+            followingStations.Add(new FollowingStations { StationCode1 = 1160, StationCode2 = 1159, DistanceBetweenStations = (float)0.62, TimeTravelBetweenStations = (float)0.62 });
         }
+
     }
 }

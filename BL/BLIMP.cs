@@ -12,7 +12,7 @@ namespace BL
     public class BLIMP : IBL
     {
 
-        readonly IDAL dal = DalFactory.GetDal();
+        readonly IDAL dal = DLFactory.GetDL();
         /// <summary>
         /// refule the bus
         /// </summary>
