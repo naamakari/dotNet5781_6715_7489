@@ -17,7 +17,11 @@
             <RowDefinition Height="75*"/>
         </Grid.RowDefinitions>
         <Button x:Name="add" Content="הוספה" HorizontalAlignment="Left" Margin="57,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" IsEnabled="False" Click="add_Click" Background="#FFACABAD" BorderThickness="2" BorderBrush="#FFE7A429"/>
-        <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" Click="cancel_Click" Background="#FFACABAD" BorderBrush="#FFE7A429"  BorderThickness="2"/>
+        <Button x:Name="cancel" Content="ביטול" HorizontalAlignment="Left" Margin="244,24,0,0" Grid.Row="6" VerticalAlignment="Top" Width="104" Height="33" Click="cancel_Click" BorderBrush="#FFE7A429"  BorderThickness="2">
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background>
+        </Button>
         <Label x:Name="lb1" Foreground="Gray" FontWeight="SemiBold" Content=":מספר רישוי" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="0" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
         <Label x:Name="lb2" Foreground="Gray" FontWeight="SemiBold" Content=":תאריך התחלה" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
         <Label x:Name="lb3" Foreground="Gray" FontWeight="SemiBold" Content=":תאריך טיפול אחרון" HorizontalAlignment="Left" Margin="200,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="28" Width="150" HorizontalContentAlignment="Right"/>
