@@ -39,7 +39,7 @@ namespace DL
         {
             IEnumerable<Bus> TempBus = from Bus item in DataS.buses
                                        where item.IsDeleted == false
-                                       select item;
+                                       select item.Clone();
             if (TempBus.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים אוטובוסים פעילים במערכת");
             return TempBus;
@@ -47,7 +47,7 @@ namespace DL
         public IEnumerable<Bus> GetAllBusesCollection()
         {
             IEnumerable<Bus> TempBus = from Bus item in DataS.buses
-                                       select item;
+                                       select item.Clone();
             if (TempBus.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים אוטובוסים במערכת");
             return TempBus;
@@ -102,7 +102,7 @@ namespace DL
         {
             IEnumerable<BusLine> TempBusLine = from BusLine item in DataS.busLines
                                                where item.IsDeleted == false
-                                               select item;
+                                               select item.Clone();
             if (TempBusLine.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים קווי אוטובוס פעילים במערכת");
             return TempBusLine;
@@ -110,7 +110,7 @@ namespace DL
         public IEnumerable<BusLine> GetAllBusLinesCollection()
         {
             IEnumerable<BusLine> TempBusLine = from BusLine item in DataS.busLines
-                                               select item;
+                                               select item.Clone();
             if (TempBusLine.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים קווי אוטובוס במערכת");
             return TempBusLine;
@@ -278,7 +278,7 @@ namespace DL
         {
             IEnumerable<stationInLine> TempstationInLine = from stationInLine item in DataS.stationsInLine
                                                            where item.IsDeleted == false
-                                                           select item;
+                                                           select item.Clone();
             if (TempstationInLine.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימות תחנות קו פעילות במערכת");
             return TempstationInLine;
@@ -286,7 +286,7 @@ namespace DL
         public IEnumerable<stationInLine> GetAllStationsInLineCollection()
         {
             IEnumerable<stationInLine> TempstationInLine = from stationInLine item in DataS.stationsInLine
-                                                           select item;
+                                                           select item.Clone();
             if (TempstationInLine.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימות תחנות קו במערכת");
             return TempstationInLine;
@@ -334,11 +334,36 @@ namespace DL
         }
        public IEnumerable<User> GetUsersCollection()
         {
-
+            IEnumerable<User> TempUser = from User item in DataS.users
+                                       select item.Clone();
+            if (TempUser.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימים משתמשים במערכת");
+            return TempUser;
         }
-        IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
-        void UpdateUser(User user);
-        void DeleteUser(User user);
+       public IEnumerable<User> GetUserCollectionBy(Predicate<User> condition)
+        {
+            IEnumerable<User> TempUser = from User item in DataS.users
+                                       where condition(item)
+                                       select item.Clone();
+            if (TempUser.Count() == 0)
+                throw new DalEmptyCollectionExeption("לא קיימים משתמשים במערכת");
+            return TempUser;
+        }
+       public void UpdateUser(User user)
+        {
+            if (!DataS.users.Any(x => x.UserName == user.UserName))
+                throw new KeyNotFoundException("לא קיים במערכת " + user.UserName + " משתמש");
+            DataS.users.Remove(DataS.users.Find(x => x.UserName == user.UserName));
+            DataS.users.Add(user.Clone());
+        }
+       public void DeleteUser(string userName)
+        {
+            if (!DataS.users.Any(x => x.UserName == userName))
+                throw new KeyNotFoundException("כבר לא קיים במערכת " + userName + " המשתמש");
+            User TempUser = DataS.users.Find(x => x.UserName == userName);
+            if (!DataS.users.Remove(TempUser))
+                throw new CanNotRemoveException("לא מצליח להסיר את המשתמש");
+        }
         #endregion
     }
 }

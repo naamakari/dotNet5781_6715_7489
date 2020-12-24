@@ -8,7 +8,7 @@ using APIBL;
 
 namespace BL
 {
- 
+
     public class BLIMP : IBL
     {
 
@@ -110,7 +110,7 @@ namespace BL
             if (directLinePath.Count() == 0)
                 throw new BO.invalidRequestExeption(lastStationCode + ", " + startStationCode + " אין מסלול ישיר בין התחנות");
             IEnumerable<BO.BusLineBL> lines = from item in directLinePath
-                                           select GetBusLineBL(item.BusId);
+                                              select GetBusLineBL(item.BusId);
             return lines;
 
 
@@ -126,7 +126,7 @@ namespace BL
             IEnumerable<BO.BusLineBL> lines = getPossiblePath(startStationCode, lastStationCode);
             float sumTime = 999999999;
             float time;
-            BO.BusLineBL line=new BO.BusLineBL();
+            BO.BusLineBL line = new BO.BusLineBL();
             foreach (BO.BusLineBL item in lines)
             {
                 time = timeBetweenStations(startStationCode, lastStationCode, item.BusId);
@@ -138,7 +138,7 @@ namespace BL
             }
             return line;
         }
-        
+
         /// <summary>
         /// the function get start station and last station and number of line and return the time of distance between them in this line
         /// </summary>
@@ -159,7 +159,7 @@ namespace BL
             while (stationsList[i + 2].StationCode != lastStationCode || i < stationsList.Count - 2)
             {
                 //plus the time of the next station and one minute for the time the bus in the station
-                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations+1;
+                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations + 1;
             }
             if (i == stationsList.Count - 2)
                 throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
@@ -441,7 +441,7 @@ namespace BL
             stationLineBO.Clone(stationLineDO);
             try
             {
-                
+
                 dal.AddStationInLine(stationLineDO);
                 //update the line if the station is first or last
                 if (stationLineDO.IsFirstStation)
@@ -449,14 +449,14 @@ namespace BL
                     DO.BusLine busLineDO = dal.GetBusLine(stationLineDO.LineId);
                     busLineDO.NumberFirstStation = stationLineDO.StationCode;
                     dal.UpdateBusLine(busLineDO);
-                 }
+                }
                 if (stationLineDO.IsLastStation)
                 {
                     DO.BusLine busLineDO = dal.GetBusLine(stationLineDO.LineId);
                     busLineDO.NumberLastStation = stationLineDO.StationCode;
                     dal.UpdateBusLine(busLineDO);
                 }
-               
+
             }
             catch (DO.DalAlreayExistExeption ex)
             {
@@ -470,7 +470,23 @@ namespace BL
             stationLineBO.Clone(stationLineDO);
             try
             {
-                dal.DeleteStationInLine(stationLineDO);
+                Predicate<DO.stationInLine> predicate = item => item.LineId == stationLineBO.LineId;
+                IEnumerable<DO.stationInLine> stationInLinesAtTheSameLine = dal.GetStationInLineCollectionBy(predicate);
+                foreach (DO.stationInLine item in stationInLinesAtTheSameLine)
+                {
+                    if (item.IndexStationAtLine > stationLineBO.IndexStationAtLine)
+                    {
+                        --item.IndexStationAtLine;
+                        dal.UpdateStationInLine(item);
+                    }
+                }
+                if (stationLineBO.IsFirstStation)
+                    updateFirstStation(stationLineBO.StationCode, stationLineBO.LineId);
+                else
+                if (stationLineBO.IsLastStation)
+                    updateLastStation(stationLineBO.StationCode, stationLineBO.LineId);
+                else
+                    dal.DeleteStationInLine(stationLineDO);
             }
             catch (KeyNotFoundException ex)
             {

@@ -74,7 +74,7 @@ namespace APIDAL
         IEnumerable<User> GetUsersCollection();
         IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
         void UpdateUser(User user);
-        void DeleteUser(User user);
+        void DeleteUser(string userName);
     }
 }
     

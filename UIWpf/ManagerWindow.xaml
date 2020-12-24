@@ -1,0 +1,42 @@
+﻿<Window x:Class="UIWpf.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIWpf"
+        mc:Ignorable="d"
+        Title="ManagerWindow" Height="450" Width="801" FontWeight="Bold" FontFamily="Lucida Sans Unicode">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="193*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="busStation" BorderBrush="Black" BorderThickness="2.5" HorizontalAlignment="Left" Margin="0.4,2.89,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" Width="185" Height="132" Click="busStation_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="https://www.caesarion.co.il/wp-content/uploads/2019/03/l_1511528569.jpg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Bus" BorderBrush="Black" BorderThickness="2.5" HorizontalAlignment="Left" Margin="45.2,2.89,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Width="175" Height="132" Click="Bus_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="https://ashdod10.co.il/wp-content/uploads/2020/05/WhatsApp-Image-2020-05-11-at-11.58.52.jpeg"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="BusLine" BorderBrush="Black" BorderThickness="2.5" HorizontalAlignment="Left" Margin="90,2.89,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Width="175" Height="132" Grid.ColumnSpan="2" Click="BusLine_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="https://www.davar1.co.il/wp-content/uploads/2019/11/181119_kavgreen.jpg"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="BusStationLable" Content="תחנות אוטובוס" FontSize="14" HorizontalAlignment="Left" Margin="43.4,139.89,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal" />
+        <Label x:Name="BusLable" Content="אוטובוסים" FontSize="14" HorizontalAlignment="Left" Margin="93.2,139.89,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal"/>
+        <Label x:Name="BusLineLable" Content="קווי אוטובוס" FontSize="14" HorizontalAlignment="Left" Margin="134,139.89,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal"/>
+        <Label Name="UserName" Grid.Column="2" HorizontalAlignment="Left" Margin="30.4,52,0,0" VerticalAlignment="Top" Width="140" FontFamily="Arial Nova" Height="25"/>
+    </Grid>
+</Window>
