@@ -318,5 +318,27 @@ namespace DL
             DataS.stationsInLine.Find(x => x.LineId == stationInLine.LineId).IsDeleted = true;
         }
         #endregion
+
+        #region CRUD for User
+       public void AddUser(User user)
+        {
+            if (DataS.users.Any(x => x.UserName == user.UserName))
+                throw new DalAlreayExistExeption("כבר קיים במערכת " + user.UserName + " שם המשתמש");
+            DataS.users.Add(user.Clone());  
+        }
+      public User GetUser(string UserName)
+        {
+            if (!DataS.users.Any(x => x.UserName == UserName))
+                throw new KeyNotFoundException("לא קיים במערכת " + UserName + " המשתמש");
+            return DataS.users.Find(x => x.UserName == UserName).Clone();
+        }
+       public IEnumerable<User> GetUsersCollection()
+        {
+
+        }
+        IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
+        void UpdateUser(User user);
+        void DeleteUser(User user);
+        #endregion
     }
 }

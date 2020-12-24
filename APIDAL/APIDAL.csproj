@@ -48,6 +48,7 @@
     <Compile Include="DO\Exeptions.cs" />
     <Compile Include="DO\FollowingStations.cs" />
     <Compile Include="DO\HelpToString.cs" />
+    <Compile Include="DO\User.cs" />
     <Compile Include="IDAL.cs" />
     <Compile Include="DO\Bus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
