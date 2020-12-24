@@ -24,20 +24,24 @@ namespace UIWpf
             InitializeComponent();
             UserName.Content = " ,שלום"+ name;
         }
+        User user { get; set; }
 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
-            
+            BusWindow busWindow = new BusWindow();
+            busWindow.ShowDialog();
         }
 
         private void busStation_Click(object sender, RoutedEventArgs e)
         {
-
+            BusStationWindow busStationWindow = new BusStationWindow();
+            busStationWindow.ShowDialog();
         }
 
         private void BusLine_Click(object sender, RoutedEventArgs e)
         {
-
+            BusLineWindow busLineWindow = new BusLineWindow();
+            busLineWindow.ShowDialog();
         }
     }
 }

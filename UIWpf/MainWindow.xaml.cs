@@ -40,6 +40,9 @@ namespace UIWpf
         private void enter_Click(object sender, RoutedEventArgs e)
         {
             //בדיקה בנתונים שלנו אם הכל טוב
+            //ואם לא, להקפיץ הודעה שיש בעיה (לפי החריגה המתאימה), למחוק את מה שיש בשדות ולהפוך את כפתור הכניסה ללא זמין
+            ManagerWindow managerWindow = new ManagerWindow(User user);
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

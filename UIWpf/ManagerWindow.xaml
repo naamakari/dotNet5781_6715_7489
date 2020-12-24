@@ -8,10 +8,8 @@
         Title="ManagerWindow" Height="450" Width="801" FontWeight="Bold" FontFamily="Lucida Sans Unicode">
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120*"/>
-            <RowDefinition Height="47*"/>
-            <RowDefinition Height="193*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
