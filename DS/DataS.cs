@@ -14,6 +14,7 @@ namespace DS
         public static List<BusLine> busLines = new List<BusLine>();
         public static List<stationInLine> stationsInLine = new List<stationInLine>();
         public static List<FollowingStations> followingStations = new List<FollowingStations>();
+        public static List<User> users = new List<User>();
 
         static DataS()
         {
@@ -22,6 +23,7 @@ namespace DS
             initBusLine();
             initStationsInLine();
             initFollowingStation();
+            initUser();
         }
         static void initBuses()
         {
@@ -448,6 +450,7 @@ namespace DS
         }
         static void initFollowingStation()
         {
+            #region initilized following station
             followingStations.Add(new FollowingStations { StationCode1 = 1111, StationCode2 = 1112, DistanceBetweenStations = (float)0.95, TimeTravelBetweenStations = (float)0.95 });
             followingStations.Add(new FollowingStations { StationCode1 = 1112, StationCode2 = 1113, DistanceBetweenStations = (float)0.29, TimeTravelBetweenStations = (float)0.29 });
             followingStations.Add(new FollowingStations { StationCode1 = 1113, StationCode2 = 1114, DistanceBetweenStations = (float)0.52, TimeTravelBetweenStations = (float)0.52 });
@@ -490,9 +493,6 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1135, StationCode2 = 1132, DistanceBetweenStations = (float)1.96, TimeTravelBetweenStations = (float)1.96 });
             followingStations.Add(new FollowingStations { StationCode1 = 1132, StationCode2 = 1124, DistanceBetweenStations = (float)3.27, TimeTravelBetweenStations = (float)3.27 });
             followingStations.Add(new FollowingStations { StationCode1 = 1124, StationCode2 = 1123, DistanceBetweenStations = (float)0.57, TimeTravelBetweenStations = (float)0.57 });
-
-
-
 
 
             followingStations.Add(new FollowingStations { StationCode1 = 1137, StationCode2 = 1136, DistanceBetweenStations = (float)0.69, TimeTravelBetweenStations = (float)0.69 });
@@ -546,7 +546,15 @@ namespace DS
             followingStations.Add(new FollowingStations { StationCode1 = 1161, StationCode2 = 1151, DistanceBetweenStations = (float)1.62, TimeTravelBetweenStations = (float)1.62 });
             followingStations.Add(new FollowingStations { StationCode1 = 1151, StationCode2 = 1160, DistanceBetweenStations = (float)1.30, TimeTravelBetweenStations = (float)1.30 });
             followingStations.Add(new FollowingStations { StationCode1 = 1160, StationCode2 = 1159, DistanceBetweenStations = (float)0.62, TimeTravelBetweenStations = (float)0.62 });
+            #endregion
         }
 
+        static void initUser()
+        {
+            #region
+            users.Add(new User { UserName = "RenanaC", Password = "RenanaC123", ManagePermission = true });
+            users.Add(new User { UserName = "NaamaK", Password = "Naama206", ManagePermission = false });
+            #endregion
+        }
     }
 }

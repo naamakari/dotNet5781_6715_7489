@@ -65,6 +65,16 @@ namespace APIDAL
         IEnumerable<stationInLine> GetStationInLineCollectionBy(Predicate<stationInLine> predicate);
         void UpdateStationInLine(stationInLine stationInLine);
         void DeleteStationInLine(stationInLine stationInLine);
+
+        /// <summary>
+        /// CRUD for user
+        /// </summary>
+        void AddUser(User user);
+        User GetUser(string UserName);
+        IEnumerable<User> GetUsersCollection();
+        IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
+        void UpdateUser(User user);
+        void DeleteUser(User user);
     }
 }
     
