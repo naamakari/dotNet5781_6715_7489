@@ -23,5 +23,35 @@ namespace UIWpf
         {
             InitializeComponent();
         }
+
+        private void manager_Checked(object sender, RoutedEventArgs e)
+        {
+            if(manager.IsChecked==true)
+               driver.IsEnabled = false;
+            else
+                driver.IsEnabled = true;
+        }
+
+        private void driver_Checked(object sender, RoutedEventArgs e)
+        {
+            if (driver.IsChecked == true)
+               manager.IsEnabled = false;
+            else
+                manager.IsEnabled = true;
+        }
+
+        private void add_Click(object sender, RoutedEventArgs e)
+        {
+            //הוספת המשתמש החדש לנתונים
+            //אם הוא מנהל
+            ManagerWindow managerWindow = new ManagerWindow();
+            //לשלוח את היוזר
+            this.Close();
+            managerWindow.ShowDialog();
+            //אם הוא נוסע
+            //פןתח חלון לנוסע
+
+            
+        }
     }
 }
