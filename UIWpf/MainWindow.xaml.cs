@@ -41,7 +41,8 @@ namespace UIWpf
         {
             //בדיקה בנתונים שלנו אם הכל טוב
             //ואם לא, להקפיץ הודעה שיש בעיה (לפי החריגה המתאימה), למחוק את מה שיש בשדות ולהפוך את כפתור הכניסה ללא זמין
-            ManagerWindow managerWindow = new ManagerWindow(User user);
+           // ManagerWindow managerWindow = new ManagerWindow();
+          //  managerWindow.User;
 
         }
 

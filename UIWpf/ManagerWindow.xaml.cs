@@ -24,7 +24,7 @@ namespace UIWpf
             InitializeComponent();
             UserName.Content = " ,שלום"+ name;
         }
-        User user { get; set; }
+       // User user { get; set; }
 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {
