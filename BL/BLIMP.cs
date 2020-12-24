@@ -140,7 +140,7 @@ namespace BL
         }
         
         /// <summary>
-        /// the function get start station and last station and number of line and return the distance between them in this line
+        /// the function get start station and last station and number of line and return the time of distance between them in this line
         /// </summary>
         /// <param name="startStationCode"></param>
         /// <param name="lastStationCode"></param>
@@ -158,7 +158,8 @@ namespace BL
                 throw new KeyNotFoundException("לא נמצאה ברשימה " + startStationCode + " תחנה מספר");
             while (stationsList[i + 2].StationCode != lastStationCode || i < stationsList.Count - 2)
             {
-                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations;
+                //plus the time of the next station and one minute for the time the bus in the station
+                sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations+1;
             }
             if (i == stationsList.Count - 2)
                 throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
@@ -402,7 +403,7 @@ namespace BL
             }
             catch (DO.DalAlreayExistExeption ex)
             {
-                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+                //throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
         public void DeleteFollowingStations(BO.FollowingStations followingBO)
@@ -433,20 +434,36 @@ namespace BL
         }
         #endregion
 
-        #region method for followingStations
+        #region method station in line
         public void AddStationInLine(BO.StationInLine stationLineBO)
         {
             DO.stationInLine stationLineDO = new DO.stationInLine();
             stationLineBO.Clone(stationLineDO);
             try
             {
+                
                 dal.AddStationInLine(stationLineDO);
+                //update the line if the station is first or last
+                if (stationLineDO.IsFirstStation)
+                {
+                    DO.BusLine busLineDO = dal.GetBusLine(stationLineDO.LineId);
+                    busLineDO.NumberFirstStation = stationLineDO.StationCode;
+                    dal.UpdateBusLine(busLineDO);
+                 }
+                if (stationLineDO.IsLastStation)
+                {
+                    DO.BusLine busLineDO = dal.GetBusLine(stationLineDO.LineId);
+                    busLineDO.NumberLastStation = stationLineDO.StationCode;
+                    dal.UpdateBusLine(busLineDO);
+                }
+               
             }
             catch (DO.DalAlreayExistExeption ex)
             {
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
+
         public void DeleteStationInLine(BO.StationInLine stationLineBO)
         {
             DO.stationInLine stationLineDO = new DO.stationInLine();
