@@ -17,7 +17,7 @@
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="331*"/>
         </Grid.ColumnDefinitions>
-        <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="410" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794" 
+        <Image Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="430" Margin="0,0,-0.4,0" VerticalAlignment="Top" Width="794" 
                Source="https://img.lovepik.com/photo/40019/7599.jpg_wh860.jpg" Stretch="UniformToFill"  Grid.RowSpan="3"/>
         <Button Content="הוספת אוטובוס חדש" HorizontalAlignment="Left" Margin="409,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="189" Height="61" Click="Button_Click" Background="#FFE7A429" BorderBrush="White" FontSize="16" FontWeight="Bold" Foreground="#FF2C2525" Grid.Column="2"/>
         <ListView Name="BusListView" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="279" VerticalAlignment="Top" Width="398" Margin="48,62,0,0" Grid.RowSpan="3" MouseDoubleClick="BusListView_MouseDoubleClick" Background="#FFE9F2F3" BorderBrush="#FF5CD5D7" 

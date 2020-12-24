@@ -24,5 +24,27 @@ namespace UIWpf
         {
             InitializeComponent();
         }
+
+        private void textName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textName.Text != "" && textPas.Password != "")
+                enter.IsEnabled = true;
+        }
+
+        private void textPas_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (textName.Text != "" && textPas.Password != "")
+                enter.IsEnabled = true;
+        }
+
+        private void enter_Click(object sender, RoutedEventArgs e)
+        {
+            //בדיקה בנתונים שלנו אם הכל טוב
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
