@@ -12,7 +12,7 @@ namespace BL
     public class BLIMP : IBL
     {
 
-        readonly IDAL dal = DLFactory.GetDL();
+        readonly IDAL dal = DalFactory.GetDal();
         /// <summary>
         /// refule the bus
         /// </summary>
@@ -202,7 +202,7 @@ namespace BL
             try
             {
                 DO.stationInLine firstStation = dal.GetStationInLine(lineId, startStationCode);
-                IEnumerable<DO.stationInLine> stations = dal.GetStationInLineCollectionBy(item => (item.LineId == lineId && item.IndexStationAtLine >= firstStation.IndexStationAtLine);
+                IEnumerable<DO.stationInLine> stations = dal.GetStationInLineCollectionBy(item => (item.LineId == lineId && item.IndexStationAtLine >= firstStation.IndexStationAtLine));
                 if (stations.Count()==0)
                     throw new KeyNotFoundException("לא נמצאה ברשימה " + startStationCode + " תחנה מספר");
                 List<DO.stationInLine> stationsList = stations.ToList();

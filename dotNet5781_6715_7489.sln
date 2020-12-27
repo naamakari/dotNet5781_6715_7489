@@ -26,9 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{94C0
 		bin\config.xml = bin\config.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObject.csproj", "{A623887A-4C1F-43C3-A5CB-EF8062523F05}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIWpf", "UIWpf\UIWpf.csproj", "{706129CF-B3D7-4068-B0CE-90AC55788D1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalObject", "DalObject\DalObject.csproj", "{103BD6AE-79FC-4F5E-90B1-80D8AA989D1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,14 +72,14 @@ Global
 		{E0A15274-8B3C-4144-9BE6-2B466C554F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A15274-8B3C-4144-9BE6-2B466C554F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A15274-8B3C-4144-9BE6-2B466C554F7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A623887A-4C1F-43C3-A5CB-EF8062523F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A623887A-4C1F-43C3-A5CB-EF8062523F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A623887A-4C1F-43C3-A5CB-EF8062523F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A623887A-4C1F-43C3-A5CB-EF8062523F05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{706129CF-B3D7-4068-B0CE-90AC55788D1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{706129CF-B3D7-4068-B0CE-90AC55788D1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{706129CF-B3D7-4068-B0CE-90AC55788D1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{706129CF-B3D7-4068-B0CE-90AC55788D1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{103BD6AE-79FC-4F5E-90B1-80D8AA989D1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103BD6AE-79FC-4F5E-90B1-80D8AA989D1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103BD6AE-79FC-4F5E-90B1-80D8AA989D1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103BD6AE-79FC-4F5E-90B1-80D8AA989D1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

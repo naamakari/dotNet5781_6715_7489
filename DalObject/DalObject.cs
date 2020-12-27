@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using APIDAL;
 using DO;
 using DS;
+using APIDAL;
 
 namespace DL
 {
-    public class DLObject:IDAL
+    public class DalObject:IDAL
     {
         #region singelton
-        static readonly DLObject instance = new DLObject();
-        static DLObject() { }
-        DLObject() { }
-        static DLObject Instance => instance;
+        static readonly DalObject instance = new DalObject();
+        static DalObject() { }
+        DalObject() { }
+        public static DalObject Instance { get => instance; }
         #endregion
 
 
@@ -320,43 +320,43 @@ namespace DL
         #endregion
 
         #region CRUD for User
-       public void AddUser(User user)
+        public void AddUser(User user)
         {
             if (DataS.users.Any(x => x.UserName == user.UserName))
                 throw new DalAlreayExistExeption("כבר קיים במערכת " + user.UserName + " שם המשתמש");
-            DataS.users.Add(user.Clone());  
+            DataS.users.Add(user.Clone());
         }
-      public User GetUser(string UserName)
+        public User GetUser(string UserName)
         {
             if (!DataS.users.Any(x => x.UserName == UserName))
                 throw new KeyNotFoundException("לא קיים במערכת " + UserName + " המשתמש");
             return DataS.users.Find(x => x.UserName == UserName).Clone();
         }
-       public IEnumerable<User> GetUsersCollection()
+        public IEnumerable<User> GetUsersCollection()
         {
             IEnumerable<User> TempUser = from User item in DataS.users
-                                       select item.Clone();
+                                         select item.Clone();
             if (TempUser.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים משתמשים במערכת");
             return TempUser;
         }
-       public IEnumerable<User> GetUserCollectionBy(Predicate<User> condition)
+        public IEnumerable<User> GetUserCollectionBy(Predicate<User> condition)
         {
             IEnumerable<User> TempUser = from User item in DataS.users
-                                       where condition(item)
-                                       select item.Clone();
+                                         where condition(item)
+                                         select item.Clone();
             if (TempUser.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים משתמשים במערכת");
             return TempUser;
         }
-       public void UpdateUser(User user)
+        public void UpdateUser(User user)
         {
             if (!DataS.users.Any(x => x.UserName == user.UserName))
                 throw new KeyNotFoundException("לא קיים במערכת " + user.UserName + " משתמש");
             DataS.users.Remove(DataS.users.Find(x => x.UserName == user.UserName));
             DataS.users.Add(user.Clone());
         }
-       public void DeleteUser(string userName)
+        public void DeleteUser(string userName)
         {
             if (!DataS.users.Any(x => x.UserName == userName))
                 throw new KeyNotFoundException("כבר לא קיים במערכת " + userName + " המשתמש");

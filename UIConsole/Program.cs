@@ -17,6 +17,7 @@ namespace UIConsole
         {
             bl = BlFactory.GetBL();
             Console.WriteLine("HIII");
+            Console.ReadKey();
         }
        
     }
