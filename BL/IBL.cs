@@ -19,12 +19,12 @@ namespace APIBL
         float Distance(int startStationCode, int destStationCode);
 
         //נעמה
-        void AddBus(Bus bus);
+        void AddBus(Bus bus);//v
         Bus GetBus(string lisenceNum);//v
-        void DeleteBus(string lisenceNum);
-        void UpdateBus(Bus bus);
-        IEnumerable<Bus> GetAllBuses();
-        IEnumerable<Bus> GetAllBusesBy(Predicate<DO.Bus> condition);
+        void DeleteBus(string lisenceNum);//v
+        void UpdateBus(Bus bus);//v
+        IEnumerable<Bus> GetAllBuses();//v
+        IEnumerable<Bus> GetAllBusesBy(Predicate<BO.Bus> condition);//v
         //רננה
         void AddBusStation(BusStation busStation);
         BusStationBL ToBusStationBL(DO.BusStation busStationDO);
@@ -32,7 +32,7 @@ namespace APIBL
         void UpdateBusStation(BusStation busStation);
         BusStationBL GetBusStationBL(int stationID);
         IEnumerable<BusStationBL> GetAllStations();
-        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<DO.BusStation> condition);
+        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStation> condition);
 
 
         //נעמה
@@ -43,14 +43,12 @@ namespace APIBL
         void AddStationToBus(StationInLine stationLine);
         BusLineBL GetBusLineBL(int busID);
         IEnumerable<BusLineBL> GetAllLines();
-        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<DO.BusLine> condition);
+        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);
 
         //רננה
         void AddFollowingStations(FollowingStations following);
         void DeleteFollowingStations(FollowingStations following);
         void UpdateBusFollowingStations(FollowingStations following);
-
-        
         void DeleteStationInLine(StationInLine stationLine);
         void UpdateStationInLine(StationInLine stationLine);
     }

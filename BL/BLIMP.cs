@@ -324,27 +324,13 @@ namespace BL
                 throw new BO.DalEmptyCollectionExeption(ex.Message, ex);
             }
         }
-        public IEnumerable<BO.Bus> GetAllBusesBy(Predicate<DO.Bus> condition)
+        public IEnumerable<BO.Bus> GetAllBusesBy(Predicate<BO.Bus> condition)
         {
-            try
-            {
-                IEnumerable<BO.Bus> buses = from item in dal.GetBusCollectionBy(condition)
-                                            select new BO.Bus()
-                                            {
-                                                LicenseNumber = item.LicenseNumber,
-                                                StartDate = item.StartDate,
-                                                Kilometraz = item.Kilometraz,
-                                                KmSinceRefeul = item.KmSinceRefeul,
-                                                DateSinceLastTreat = item.DateSinceLastTreat,
-                                                KmSinceLastTreat = item.KmSinceLastTreat,
-                                                BusState = (BO.BusStatus)item.BusState,
-                                            };
+                IEnumerable<BO.Bus> buses = from item in GetAllBuses()
+                                            where condition(item)
+                                            select item;
                 return buses;
-            }
-            catch (DO.DalEmptyCollectionExeption ex)
-            {
-                throw new BO.DalEmptyCollectionExeption(ex.Message, ex);
-            }
+           
         }
         #endregion
 
@@ -456,10 +442,11 @@ namespace BL
                                                          select ToBusStationBL(item);
             return busStationBLs;
         }
-        public IEnumerable<BO.BusStationBL> GetAllStationsBy(Predicate<DO.BusStation> condition)
+        public IEnumerable<BO.BusStationBL> GetAllStationsBy(Predicate<BO.BusStation> condition)
         {
-            IEnumerable<BO.BusStationBL> busStationBLs = from item in dal.GetBusStationCollectionBy(condition)
-                                                         select ToBusStationBL(item);
+            IEnumerable<BO.BusStationBL> busStationBLs = from item in GetAllStations()
+                                                         where condition(item)
+                                                         select item;
             return busStationBLs;
         }
         #endregion
@@ -686,10 +673,11 @@ namespace BL
                                                    select ToBusLineBL(item);
             return busLineBLs;
         }
-        public IEnumerable<BO.BusLineBL> GetAllLinesBy(Predicate<DO.BusLine> condition)
+        public IEnumerable<BO.BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition)
         {
-            IEnumerable<BO.BusLineBL> busLineBLs = from item in dal.GetBusLineCollectionBy(condition)
-                                                   select ToBusLineBL(item);
+            IEnumerable<BO.BusLineBL> busLineBLs = from item in GetAllLines()
+                                                   where condition(item)
+                                                   select  (item);
             return busLineBLs;
         }
 
