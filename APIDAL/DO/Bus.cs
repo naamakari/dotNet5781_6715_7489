@@ -9,7 +9,7 @@ namespace DO
     /// <summary>
     /// class for every bus at the system
     /// </summary>
-    public enum BusStatus { inDrive,ready, inRefuel, inTreat}
+    
     public class Bus
     {
         public string LicenseNumber { get; set; }

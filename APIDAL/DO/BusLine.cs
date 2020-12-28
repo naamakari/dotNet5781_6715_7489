@@ -9,7 +9,7 @@ namespace DO
     /// <summary>
     /// class for line of bus 
     /// </summary>
-    public enum Area { North, South, Center, Jerusalem, General }
+    
     public class BusLine
     {
         public int BusId { get; set; }

@@ -52,6 +52,7 @@
     <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\FollowingStations.cs" />
     <Compile Include="BO\HelpToString.cs" />
+    <Compile Include="BO\Enums.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="BO\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

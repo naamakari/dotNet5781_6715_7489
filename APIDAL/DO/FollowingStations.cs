@@ -13,7 +13,6 @@ namespace DO
     {
         public int StationCode1 { get; set; }
         public int StationCode2 { get; set; }
-        //public string key { get; set; }
         public float DistanceBetweenStations { get; set; }
         public float TimeTravelBetweenStations { get; set; }
         public override string ToString()

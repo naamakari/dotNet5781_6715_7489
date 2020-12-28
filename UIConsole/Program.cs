@@ -17,6 +17,8 @@ namespace UIConsole
         {
             bl = BlFactory.GetBL();
             Console.WriteLine("HIII");
+            Bus bus1 = bl.GetBus("1111111");
+            Console.WriteLine(bus1) ;
             Console.ReadKey();
         }
        

@@ -28,9 +28,11 @@ namespace DL
         }
         public Bus GetBus(string Id)
         {
-            if (!DataS.buses.Any(x => x.LicenseNumber == Id))
+           if (!DataS.buses.Any(x => x.LicenseNumber == Id))
                 throw new KeyNotFoundException("לא קיים במערכת " + Id + " אוטובוס");
             Bus tempBus = DataS.buses.Find(x => x.LicenseNumber == Id);
+            //if(tempBus==null)
+                
             if (tempBus.IsDeleted == true)
                 throw new KeyNotFoundException("לא פעיל " + Id + " אוטובוס");
             return tempBus.Clone();

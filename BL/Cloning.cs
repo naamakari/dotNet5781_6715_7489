@@ -13,7 +13,7 @@ namespace BL
         {
             foreach (PropertyInfo propTo in to.GetType().GetProperties())
             {
-                PropertyInfo propFrom = from.GetType().GetProperty(propTo.Name);
+                PropertyInfo propFrom = typeof(S).GetProperty(propTo.Name);
                 if (propFrom == null)
                     continue;
                 var value = propFrom.GetValue(from, null);

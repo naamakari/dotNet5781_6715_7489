@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum BusStatus { inDrive, ready, inRefuel, inTreat }
-
+   
     /// <summary>
     /// class for every bus at the system at layer BL
     /// </summary>

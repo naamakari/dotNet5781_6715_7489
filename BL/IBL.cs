@@ -9,35 +9,48 @@ namespace APIBL
 {
     public interface IBL
     {
-        void sendToRefuel(Bus bus);
-        void sendToTreat(Bus bus);
-        void updateFirstStation(int code, int busId);
-        void updateLastStation(int code, int busId);
+        void SendToRefuel(Bus bus);
+        void SendToTreat(Bus bus);
+        void UpdateFirstStation(int code, int busId);
+        void UpdateLastStation(int code, int busId);
+        IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);
+        BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);
+        float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);
+        float Distance(int startStationCode, int destStationCode);
 
-
+        //נעמה
         void AddBus(Bus bus);
-        Bus GetBus(string lisenceNum);
+        Bus GetBus(string lisenceNum);//v
         void DeleteBus(string lisenceNum);
         void UpdateBus(Bus bus);
-        IEnumerable<BusLineBL> getPossiblePath(int startStationCode, int lastStationCode);
-        BusLineBL returnShortPath(int startStationCode, int lastStationCode);
-        float timeBetweenStations(int startStationCode, int lastStationCode,int numLine);
-        
+        IEnumerable<Bus> GetAllBuses();
+        IEnumerable<Bus> GetAllBusesBy(Predicate<DO.Bus> condition);
+        //רננה
         void AddBusStation(BusStation busStation);
-        BusLineBL GetBusLineBL(int Id);
+        BusStationBL ToBusStationBL(DO.BusStation busStationDO);
         void DeleteBusStation(int code);
         void UpdateBusStation(BusStation busStation);
-        
-        void AddBusLine(BusLine busLine);
-        BusStationBL GetBusStationBL(int code);
-        void DeleteBusLine(int id);
-        void UpdateBusLine(BusLine busLine);
+        BusStationBL GetBusStationBL(int stationID);
+        IEnumerable<BusStationBL> GetAllStations();
+        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<DO.BusStation> condition);
 
+
+        //נעמה
+        void AddBusLine(BusLineBL busLine);
+        BusLineBL ToBusLineBL(DO.BusLine busLineDO);
+        void DeleteBusLine(BusLineBL busLine);
+        void UpdateBusLine(BusLine busLine);
+        void AddStationToBus(StationInLine stationLine);
+        BusLineBL GetBusLineBL(int busID);
+        IEnumerable<BusLineBL> GetAllLines();
+        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<DO.BusLine> condition);
+
+        //רננה
         void AddFollowingStations(FollowingStations following);
         void DeleteFollowingStations(FollowingStations following);
         void UpdateBusFollowingStations(FollowingStations following);
 
-        void AddStationInLine(StationInLine stationLine);
+        
         void DeleteStationInLine(StationInLine stationLine);
         void UpdateStationInLine(StationInLine stationLine);
     }

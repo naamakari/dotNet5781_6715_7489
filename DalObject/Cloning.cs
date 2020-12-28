@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace DL
 {
@@ -16,6 +17,8 @@ namespace DL
         internal static T Clone<T>(this T original)
         {
             T target = (T)Activator.CreateInstance(original.GetType());
+            foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
+                propertyInfo.SetValue(target, propertyInfo.GetValue(original, null), null);
             return target;
         }
     }

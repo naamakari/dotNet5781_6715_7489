@@ -31,222 +31,222 @@ namespace DS
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111111",
-                StartDate = new DateTime(1, 1, 2017),
+                StartDate = new DateTime(2017,1,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "2222222",
-                StartDate = new DateTime(1, 2, 2017),
+                StartDate = new DateTime(2017,1,2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 1, 2020)
+                DateSinceLastTreat = new DateTime(2020,1,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "33333333",
-                StartDate = new DateTime(1, 3, 2017),
+                StartDate = new DateTime(2017,3,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 2, 2020)
+                DateSinceLastTreat = new DateTime(2020,1,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111112",
-                StartDate = new DateTime(1, 4, 2017),
+                StartDate = new DateTime(2017,1,4),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 3, 2020)
+                DateSinceLastTreat = new DateTime(2020,3,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111113",
-                StartDate = new DateTime(1, 5, 2017),
+                StartDate = new DateTime(2017,1,5),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 5, 2020)
+                DateSinceLastTreat = new DateTime(2020,1,5)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111145",
-                StartDate = new DateTime(1, 6, 2017),
+                StartDate = new DateTime(2017,6,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 6, 2020)
+                DateSinceLastTreat = new DateTime(2020,6,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111167",
-                StartDate = new DateTime(1, 7, 2017),
+                StartDate = new DateTime(2017,1,7),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 7, 2020)
+                DateSinceLastTreat = new DateTime(2020,7,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111189",
-                StartDate = new DateTime(1, 8, 2017),
+                StartDate = new DateTime(2017,1,8),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 8, 2020)
+                DateSinceLastTreat = new DateTime(2020,1,8)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1101111",
-                StartDate = new DateTime(1, 9, 2017),
+                StartDate = new DateTime(2017,9,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 9, 2020)
+                DateSinceLastTreat = new DateTime(2020,1,7)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111312",
-                StartDate = new DateTime(1, 10, 2017),
+                StartDate = new DateTime(2017,10,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 10, 2020)
+                DateSinceLastTreat = new DateTime(2020,10,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111415",
-                StartDate = new DateTime(1, 11, 2017),
+                StartDate = new DateTime(2017,1,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 11, 2020)
+                DateSinceLastTreat = new DateTime(2020,11,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111617",
-                StartDate = new DateTime(1, 12, 2017),
+                StartDate = new DateTime(2017,1,2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(1, 12, 2020)
+                DateSinceLastTreat = new DateTime(2020,12,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111819",
-                StartDate = new DateTime(10, 1, 2017),
+                StartDate = new DateTime(2017,10,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(10, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111120",
-                StartDate = new DateTime(11, 1, 2017),
+                StartDate = new DateTime(2017,1,2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(11, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,11,4)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111121",
-                StartDate = new DateTime(12, 1, 2017),
+                StartDate = new DateTime(2017,1,4),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(12, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,12,4)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111122",
-                StartDate = new DateTime(13, 1, 2017),
+                StartDate = new DateTime(2017,3,1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(21, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,10)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111123",
-                StartDate = new DateTime(14, 1, 2017),
+                StartDate = new DateTime(2017,7,14),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(13, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,13)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111124",
-                StartDate = new DateTime(15, 1, 2017),
+                StartDate = new DateTime(2017,1,15),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(14, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,14)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111125",
-                StartDate = new DateTime(16, 1, 2017),
+                StartDate = new DateTime(2017,1,16),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(15, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,15)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111126",
-                StartDate = new DateTime(17, 1, 2017),
+                StartDate = new DateTime(2017,1,2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(16, 4, 2020)
+                DateSinceLastTreat = new DateTime(2020,4,16)
             });
             #endregion
         }
