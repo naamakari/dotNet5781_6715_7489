@@ -443,7 +443,7 @@ namespace BL
                                                          select ToBusStationBL(item);
             return busStationBLs;
         }
-        public IEnumerable<BO.BusStationBL> GetAllStationsBy(Predicate<BO.BusStation> condition)
+        public IEnumerable<BO.BusStationBL> GetAllStationsBy(Predicate<BO.BusStationBL> condition)
         {
             IEnumerable<BO.BusStationBL> busStationBLs = from item in GetAllStations()
                                                          where condition(item)
@@ -593,7 +593,8 @@ namespace BL
                 IEnumerable<DO.stationInLine> stationsLine = from item in dal.GetStationInLineCollectionBy(item => item.LineId == stationLineBO.LineId)
                                                              where item.IndexStationAtLine >= stationLineBO.IndexStationAtLine
                                                              select item;
-                foreach(var item in stationsLine)
+                List<DO.stationInLine> stationInLines= stationsLine.ToList();
+                foreach(var item in stationInLines)
                 {
                     item.IndexStationAtLine++;
                     dal.UpdateStationInLine(item);

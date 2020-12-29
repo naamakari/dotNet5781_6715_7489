@@ -14,6 +14,9 @@ namespace BO
       public BusStation FirstStation { get; set; }
        public BusStation LastStation { get; set; }
         public IEnumerable<BO.BusStation> CollectionOfStation { get; set; }
-
+        public override string ToString()
+        {
+            return HelpToString.ToStringProperty(this);
+        }
     }
 }

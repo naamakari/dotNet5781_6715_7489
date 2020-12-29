@@ -32,18 +32,18 @@ namespace APIBL
         void UpdateBusStation(BusStation busStation);//v
         BusStationBL GetBusStationBL(int stationID);//v
         IEnumerable<BusStationBL> GetAllStations();
-        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStation> condition);
+        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStationBL> condition);
 
 
         //נעמה
-        void AddBusLine(BusLineBL busLine);
+        void AddBusLine(BusLineBL busLine);//x לא מוסיף לרשימה?
         BusLineBL ToBusLineBL(DO.BusLine busLineDO);//v
-        void DeleteBusLine(BusLineBL busLine);
-        void UpdateBusLine(BusLine busLine);
-        void AddStationToBus(StationInLine stationLine);
+        void DeleteBusLine(BusLineBL busLine);//v לבדוק אם מעדכן גם את התחנות הרלוונטיות שהקו כבר לא עובר בהן
+        void UpdateBusLine(BusLine busLine);//v
+        void AddStationToBus(StationInLine stationLine);//v
         BusLineBL GetBusLineBL(int busID);//v
-        IEnumerable<BusLineBL> GetAllLines();
-        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);
+        IEnumerable<BusLineBL> GetAllLines();//x נתקע על 1162
+        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);//v
 
         //רננה
         void AddFollowingStations(FollowingStations following);
