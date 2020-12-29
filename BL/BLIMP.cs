@@ -354,7 +354,8 @@ namespace BL
             BO.StationInLine stationInLineBO = new BO.StationInLine();
             try
             { 
-                IEnumerable<DO.stationInLine>stationInLinesDAL = dal.GetStationInLineCollectionBy(item => item.StationCode == code);
+                List<DO.stationInLine>stationInLinesDAL = dal.GetStationInLineCollectionBy(item => item.StationCode == code).ToList();
+
                 foreach (DO.stationInLine item in stationInLinesDAL)
                 {
                     item.Clone(stationInLineBO);
@@ -408,8 +409,8 @@ namespace BL
                                                       BusId = busLine.BusId,
                                                       BusNumLine = busLine.BusNumLine,
                                                       AreaAtLand = (BO.Area)busLine.AreaAtLand,
-                                                      FirstStationCode = busLine.NumberFirstStation,
-                                                      LastStationCode = busLine.NumberLastStation
+                                                      NumberFirstStation = busLine.NumberFirstStation,
+                                                      NumberLastStation = busLine.NumberLastStation
                                                   };
                 return busStationBL;
             }
@@ -550,8 +551,8 @@ namespace BL
                 //insert the busStation
                 BO.BusStation busStationBO1 = new BO.BusStation();
                 BO.BusStation busStationBO2 = new BO.BusStation();
-                DO.BusStation busStationDO1 = dal.GetBusStation(busLineBL.FirstStationCode);
-                DO.BusStation busStationDO2 = dal.GetBusStation(busLineBL.LastStationCode);
+                DO.BusStation busStationDO1 = dal.GetBusStation(busLineBL.NumberFirstStation);
+                DO.BusStation busStationDO2 = dal.GetBusStation(busLineBL.NumberLastStation);
                 busStationDO1.Clone(busStationBO1);
                 busStationDO2.Clone(busStationBO2);
                 busLineBL.FirstStation = busStationBO1;
@@ -631,16 +632,16 @@ namespace BL
             try
             {
                 Predicate<DO.stationInLine> predicate = item => item.LineId == stationLineBO.LineId;
-                IEnumerable<DO.stationInLine> stationInLinesAtTheSameLine = dal.GetStationInLineCollectionBy(predicate);
-                foreach (DO.stationInLine item in stationInLinesAtTheSameLine)
+                IEnumerable<DO.stationInLine> stationsOfLine = from item in dal.GetStationInLineCollectionBy(predicate)
+                                                        where (item.IndexStationAtLine > stationLineBO.IndexStationAtLine)
+                                                        select item;
+                List<DO.stationInLine> listStation = stationsOfLine.ToList();
+                for(int i=0;i<listStation.Count()-1; i++)
                 {
-                    //update the index 
-                    if (item.IndexStationAtLine > stationLineBO.IndexStationAtLine)
-                    {
-                        --item.IndexStationAtLine;
-                        dal.UpdateStationInLine(item);
-                    }
+                    listStation[i].IndexStationAtLine--;
+                    dal.UpdateStationInLine(listStation[i]);
                 }
+
                 if (stationLineBO.IsFirstStation)
                     UpdateFirstStation(stationLineBO.StationCode, stationLineBO.LineId);
                 else

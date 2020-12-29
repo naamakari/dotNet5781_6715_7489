@@ -14,8 +14,8 @@ namespace BO
        public int BusId { get; set; }
         public int BusNumLine { get; set; }
         public Area AreaAtLand { get; set; }
-        public int FirstStationCode { get; set; }
-        public int LastStationCode { get; set; } 
+        public int NumberFirstStation { get; set; }
+        public int NumberLastStation { get; set; }
         public int NumberOfStation { get; set; }
         public override string ToString()
         {

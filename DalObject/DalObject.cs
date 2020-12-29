@@ -86,9 +86,10 @@ namespace DL
 
         public void AddBusLine(BusLine busLine)
         {
+            busLine.BusId = Configuration.GetBusLineRunNum();
+            //צריך את הבדיקה הזו?
             if (DataS.busLines.Any(x => x.BusId == busLine.BusId))
                 throw new DalAlreayExistExeption("קיים כבר במערכת " + busLine.BusId + " קו אוטובוס מספר");
-            busLine.BusId = Configuration.GetBusLineRunNum();
             DataS.busLines.Add(busLine.Clone());
         }
         public BusLine GetBusLine(int busId)
@@ -149,9 +150,10 @@ namespace DL
         #region CRUD for bus station
         public void AddBusStation(BusStation busStation)
         {
+            busStation.StationCode = Configuration.GetBusStationRunNum();
+            //צריך את הבדיקה הזו?
             if (DataS.busStations.Any(x => x.StationCode == busStation.StationCode))
                 throw new DalAlreayExistExeption("קיימת כבר במערכת " + busStation.StationCode + " תחנה מספר");
-            busStation.StationCode = Configuration.GetBusStationRunNum();
             DataS.busStations.Add(busStation.Clone());
         }
         public BusStation GetBusStation(int stationCode)

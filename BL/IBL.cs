@@ -26,22 +26,22 @@ namespace APIBL
         IEnumerable<Bus> GetAllBuses();//v
         IEnumerable<Bus> GetAllBusesBy(Predicate<BO.Bus> condition);//v
         //רננה
-        void AddBusStation(BusStation busStation);
-        BusStationBL ToBusStationBL(DO.BusStation busStationDO);
+        void AddBusStation(BusStation busStation);//v
+        BusStationBL ToBusStationBL(DO.BusStation busStationDO);//v
         void DeleteBusStation(int code);
-        void UpdateBusStation(BusStation busStation);
-        BusStationBL GetBusStationBL(int stationID);
+        void UpdateBusStation(BusStation busStation);//v
+        BusStationBL GetBusStationBL(int stationID);//v
         IEnumerable<BusStationBL> GetAllStations();
         IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStation> condition);
 
 
         //נעמה
         void AddBusLine(BusLineBL busLine);
-        BusLineBL ToBusLineBL(DO.BusLine busLineDO);
+        BusLineBL ToBusLineBL(DO.BusLine busLineDO);//v
         void DeleteBusLine(BusLineBL busLine);
         void UpdateBusLine(BusLine busLine);
         void AddStationToBus(StationInLine stationLine);
-        BusLineBL GetBusLineBL(int busID);
+        BusLineBL GetBusLineBL(int busID);//v
         IEnumerable<BusLineBL> GetAllLines();
         IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);
 
