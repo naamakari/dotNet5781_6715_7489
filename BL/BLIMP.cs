@@ -103,7 +103,7 @@ namespace BL
                 //dal.DeleteStationInLine(stationsList[stationsList.Count - 1]);//delete the last station
                 //ימחק בפונקציה שקראה לו
                 stationsList.Remove(stationsList[stationsList.Count - 1]);//now the last station is the previous station
-                newBusLine.NumberFirstStation = stationsList[stationsList.Count - 1].StationCode;
+                newBusLine.NumberLastStation = stationsList[stationsList.Count - 1].StationCode;
                 dal.UpdateBusLine(newBusLine);
             }
             catch (DO.DalEmptyCollectionExeption ex)
@@ -201,8 +201,7 @@ namespace BL
         /// <param name="lineId"></param>
         /// <returns></returns>
         public float TimeBetweenStations(int startStationCode, int lastStationCode, int lineId)
-        {
-            ;
+        { 
             try
             {
                 DO.stationInLine firstStation = dal.GetStationInLine(lineId, startStationCode);
@@ -212,13 +211,13 @@ namespace BL
                 List<DO.stationInLine> stationsList = stations.ToList();
                 float sumTime = 0;
                 int i = 0;
-                while (stationsList[i + 2].StationCode != lastStationCode || i < stationsList.Count - 2)
+                while (stationsList[i].StationCode != lastStationCode && i < stationsList.Count - 1)
                 {
                     //plus the time of the next station and one minute for the time the bus in the station
                     sumTime += dal.GetFollowingStation(stationsList[i].StationCode, stationsList[i + 1].StationCode).TimeTravelBetweenStations + 1;
                     i++;
                 }
-                if (i == stationsList.Count - 2)
+                if (i == stationsList.Count - 1&&lastStationCode!= stationsList[i].StationCode)
                     throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
                 return sumTime;
             }
@@ -463,12 +462,13 @@ namespace BL
                 busLineBO.Clone(busLineDO);
                 dal.AddBusLine(busLineDO);
 
+                //busLineDO = dal.GetBusLine();
                 //add all the station of the line
                 int i = 0;
                 IEnumerable<DO.stationInLine> stationsLineDO = from item in busLineBO.CollectionOfStation
                                                                select new DO.stationInLine()
                                                                {
-                                                                   LineId = busLineBO.BusId,
+                                                                   LineId = busLineDO.BusId,
                                                                    StationCode = item.StationCode,
                                                                    IndexStationAtLine = i++,
                                                                    IsDeleted = false,
@@ -484,7 +484,7 @@ namespace BL
                     dal.AddStationInLine(item);
 
                 //add to the data following stations
-                for(i=0;i< listStationsLineDO.Count - 2;i++)
+                for(i=0;i< listStationsLineDO.Count - 1;i++)
                 {
                     float dis= Distance(listStationsLineDO[i].StationCode, listStationsLineDO[i + 1].StationCode);
                     dal.AddFollowingStations(new DO.FollowingStations()
@@ -686,61 +686,61 @@ namespace BL
         #endregion
         //רננה
         #region method for followingStations
-        public void AddFollowingStations(BO.FollowingStations followingBO)
-        {
-            DO.FollowingStations followingDO = new DO.FollowingStations();
-            followingBO.Clone(followingDO);
-            try
-            {
-                dal.AddFollowingStations(followingDO);
-            }
-            catch (DO.DalAlreayExistExeption ex)
-            {
-                //throw new BO.DalAlreayExistExeption(ex.Message, ex);
-            }
-        }
-        public void DeleteFollowingStations(BO.FollowingStations followingBO)
-        {
-            DO.FollowingStations followingDO = new DO.FollowingStations();
-            followingBO.Clone(followingDO);
-            try
-            {
-                dal.DeleteFollowingStations(followingDO);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new KeyNotFoundException(ex.Message, ex);
-            }
-        }
-        public void UpdateBusFollowingStations(BO.FollowingStations followingBO)
-        {
-            DO.FollowingStations followingDO = new DO.FollowingStations();
-            followingBO.Clone(followingDO);
-            try
-            {
-                dal.UpdateFollowingStations(followingDO);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new KeyNotFoundException(ex.Message, ex);
-            }
-        }
+        //public void AddFollowingStations(BO.FollowingStations followingBO)
+        //{
+        //    DO.FollowingStations followingDO = new DO.FollowingStations();
+        //    followingBO.Clone(followingDO);
+        //    try
+        //    {
+        //        dal.AddFollowingStations(followingDO);
+        //    }
+        //    catch (DO.DalAlreayExistExeption ex)
+        //    {
+        //        //throw new BO.DalAlreayExistExeption(ex.Message, ex);
+        //    }
+        //}
+        //public void DeleteFollowingStations(BO.FollowingStations followingBO)
+        //{
+        //    DO.FollowingStations followingDO = new DO.FollowingStations();
+        //    followingBO.Clone(followingDO);
+        //    try
+        //    {
+        //        dal.DeleteFollowingStations(followingDO);
+        //    }
+        //    catch (KeyNotFoundException ex)
+        //    {
+        //        throw new KeyNotFoundException(ex.Message, ex);
+        //    }
+        //}
+        //public void UpdateBusFollowingStations(BO.FollowingStations followingBO)
+        //{
+        //    DO.FollowingStations followingDO = new DO.FollowingStations();
+        //    followingBO.Clone(followingDO);
+        //    try
+        //    {
+        //        dal.UpdateFollowingStations(followingDO);
+        //    }
+        //    catch (KeyNotFoundException ex)
+        //    {
+        //        throw new KeyNotFoundException(ex.Message, ex);
+        //    }
+        //}
         #endregion
 
         #region method station in line
-       public void UpdateStationInLine(BO.StationInLine stationLineBO)
-        {
-            DO.stationInLine stationLineDO = new DO.stationInLine();
-            stationLineBO.Clone(stationLineDO);
-            try
-            {
-                dal.UpdateStationInLine(stationLineDO);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                throw new KeyNotFoundException(ex.Message, ex);
-            }
-        }
+       //public void UpdateStationInLine(BO.StationInLine stationLineBO)
+       // {
+       //     DO.stationInLine stationLineDO = new DO.stationInLine();
+       //     stationLineBO.Clone(stationLineDO);
+       //     try
+       //     {
+       //         dal.UpdateStationInLine(stationLineDO);
+       //     }
+       //     catch (KeyNotFoundException ex)
+       //     {
+       //         throw new KeyNotFoundException(ex.Message, ex);
+       //     }
+       // }
         #endregion
     }
 }

@@ -18,7 +18,9 @@ namespace DL
         public static DalObject Instance { get => instance; }
         #endregion
 
-
+        //בכל הגטים לשנות את העניין עם הany
+        //בגט ביי להוסיף לתנאי -וגם אם זה לא מחוק
+        //הכרוד של התחנות עוקבות
         #region  CRUD for Bus
         public void AddBus(Bus bus)
         {
@@ -27,12 +29,10 @@ namespace DL
             DataS.buses.Add(bus.Clone());
         }
         public Bus GetBus(string Id)
-        {
-           if (!DataS.buses.Any(x => x.LicenseNumber == Id))
-                throw new KeyNotFoundException("לא קיים במערכת " + Id + " אוטובוס");
+        {    
             Bus tempBus = DataS.buses.Find(x => x.LicenseNumber == Id);
-            //if(tempBus==null)
-                
+            if(tempBus==null)
+                throw new KeyNotFoundException("לא קיים במערכת " + Id + " אוטובוס");
             if (tempBus.IsDeleted == true)
                 throw new KeyNotFoundException("לא פעיל " + Id + " אוטובוס");
             return tempBus.Clone();
@@ -57,7 +57,7 @@ namespace DL
         public IEnumerable<Bus> GetBusCollectionBy(Predicate<Bus> condition)
         {
             IEnumerable<Bus> TempBus = from Bus item in DataS.buses
-                                       where condition(item)
+                                       where condition(item)&&item.IsDeleted==false
                                        select item.Clone();
             if (TempBus.Count() == 0)
                 throw new DalEmptyCollectionExeption("לא קיימים אוטובוסים במערכת");
@@ -216,7 +216,7 @@ namespace DL
 
         public void AddFollowingStations(FollowingStations followingStations)
         {
-            if (DataS.followingStations.Any(x => x.StationCode1 + x.StationCode2 == followingStations.StationCode1 + followingStations.StationCode2))
+            if (DataS.followingStations.Any(x => x.StationCode1  == followingStations.StationCode1&& x.StationCode2 == followingStations.StationCode2))
                 throw new DalAlreayExistExeption("קיימות כבר במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו ");
             DataS.followingStations.Add(followingStations.Clone());
         }

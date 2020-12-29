@@ -18,7 +18,6 @@ namespace DO
         public int NumberFirstStation { get; set; }
         public int NumberLastStation { get; set; }
         public bool IsDeleted { get; set; }
-        public int NumberOfStation { get; set; }
         public override string ToString()
         {
             return HelpToString.ToStringProperty(this);
