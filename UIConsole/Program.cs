@@ -31,7 +31,7 @@ namespace UIConsole
             //bl.DeleteBusStation(1111);
             //busStationBL = bl.GetBusStationBL(1112);
             //Console.WriteLine(busStationBL);
-            bl.DeleteBus("1201201");
+            //bl.DeleteBus("1201201");
 
             Console.ReadKey();
         }
