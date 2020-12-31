@@ -15,7 +15,6 @@ namespace BO
         public float Longitude { get; set; }
         public float Latitude { get; set; }
         public string Address { get; set; }
-
         public string StationName { get; set; }
         public override string ToString()
         {
