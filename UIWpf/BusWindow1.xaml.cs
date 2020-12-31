@@ -65,11 +65,6 @@ namespace UIWpf
            
         }
 
-        private void update_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
