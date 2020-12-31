@@ -1,12 +1,42 @@
-﻿<Window x:Class="UIWpf.BusLinesWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UIWpf"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.BusLinesWindow"
         mc:Ignorable="d"
         Title="BusLinesWindow" Height="450" Width="800">
     <Grid>
-        
+
+        <DataGrid x:Name="busLineBLDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="124,113,48.6,107" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="busNumLineColumn" Width="SizeToHeader" Header="Bus Num Line">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BusNumLine}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="areaAtLandColumn" Width="SizeToHeader" Header="Area At Land">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AreaAtLand}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn x:Name="collectionOfStationColumn" Width="SizeToHeader" Header="Collection Of Station">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListView>
+                                <ListBoxItem Content="{Binding CollectionOfStation}"/>
+                            </ListView>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
     </Grid>
 </Window>
