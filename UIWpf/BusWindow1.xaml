@@ -79,7 +79,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="add" Content="להוספת אוטובוס" Click="add_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="51.2,301,0,0" VerticalAlignment="Top" Width="156" Height="38"/>
-        <Button x:Name="exit" Content="לחזרה לתפריט הראשי" Grid.Column="1" HorizontalAlignment="Left" Margin="65.2,362,0,0" VerticalAlignment="Top" Width="130" Height="25"/>
+        <Button x:Name="exit" Content="לחזרה לתפריט הראשי" Grid.Column="1" HorizontalAlignment="Left" Margin="65.2,362,0,0" VerticalAlignment="Top" Width="130" Height="25" Click="exit_Click"/>
         <Grid x:Name="addGrid"  Visibility="Hidden" HorizontalAlignment="Left" Margin="65,31,0,0" VerticalAlignment="Top" Height="308" Width="259">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
