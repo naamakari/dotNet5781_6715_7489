@@ -11,17 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BL;
+using BO;
+using APIBL;
 namespace UIWpf
 {
     /// <summary>
-    /// Interaction logic for BusWindow.xaml
+    /// Interaction logic for BusStationsWindow.xaml
     /// </summary>
-    public partial class BusWindow : Window
+    public partial class BusStationsWindow : Window
     {
-        public BusWindow()
+        IBL bl;
+        public BusStationsWindow(IBL _Bl)
         {
             InitializeComponent();
+            bl = _Bl;
         }
     }
 }

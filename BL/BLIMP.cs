@@ -264,12 +264,16 @@ namespace BL
         }
         public BO.Bus GetBus(string lisenceNum)
         {
+            
             try
             {
                 DO.Bus busDO = dal.GetBus(lisenceNum);
                 BO.Bus busBO = new BO.Bus();
                 busDO.Clone(busBO);
+                busBO.LicenseNumber = setLicenseNumber(busBO.LicenseNumber);
+
                 return busBO;
+               
             }
             catch (KeyNotFoundException ex)
             {
@@ -308,7 +312,7 @@ namespace BL
                 IEnumerable<BO.Bus> buses = from item in dal.GetBusCollection()
                                             select new BO.Bus()
                                             {
-                                                LicenseNumber = item.LicenseNumber,
+                                                LicenseNumber = setLicenseNumber(item.LicenseNumber),
                                                 StartDate=item.StartDate,
                                                 Kilometraz=item.Kilometraz,
                                                 KmSinceRefeul=item.KmSinceRefeul,
@@ -330,6 +334,39 @@ namespace BL
                                             select item;
                 return buses;
            
+        }
+        /// <summary>
+        /// set the licence number to UI
+        /// </summary>
+        /// <param name="licenseNumber"></param>
+        /// <returns></returns>
+        public string setLicenseNumber(string licenseNumber)
+        {
+            string newLicenseNumber="";
+            if (licenseNumber.Length == 8)
+            {
+                for (int i = 0; i < 3; i++)
+                    newLicenseNumber += licenseNumber[i];
+                newLicenseNumber += '-';
+                for (int i = 3; i < 5; i++)
+                    newLicenseNumber += licenseNumber[i];
+                newLicenseNumber += '-';
+                for (int i = 5; i < 8; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            else if (licenseNumber.Length == 7)
+            {
+                for (int i = 0; i < 2; i++)
+                    newLicenseNumber += licenseNumber[i];
+                newLicenseNumber += '-';
+                for (int i = 2; i < 5; i++)
+                    newLicenseNumber += licenseNumber[i];
+                newLicenseNumber += '-';
+                for (int i = 5; i < 7; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            return newLicenseNumber;
+            
         }
         #endregion
 
@@ -728,20 +765,29 @@ namespace BL
         #endregion
 
         #region method station in line
-       //public void UpdateStationInLine(BO.StationInLine stationLineBO)
-       // {
-       //     DO.stationInLine stationLineDO = new DO.stationInLine();
-       //     stationLineBO.Clone(stationLineDO);
-       //     try
-       //     {
-       //         dal.UpdateStationInLine(stationLineDO);
-       //     }
-       //     catch (KeyNotFoundException ex)
-       //     {
-       //         throw new KeyNotFoundException(ex.Message, ex);
-       //     }
-       // }
+        //public void UpdateStationInLine(BO.StationInLine stationLineBO)
+        // {
+        //     DO.stationInLine stationLineDO = new DO.stationInLine();
+        //     stationLineBO.Clone(stationLineDO);
+        //     try
+        //     {
+        //         dal.UpdateStationInLine(stationLineDO);
+        //     }
+        //     catch (KeyNotFoundException ex)
+        //     {
+        //         throw new KeyNotFoundException(ex.Message, ex);
+        //     }
+        // }
         #endregion
+
+        public void addUser(string name, string password)
+        {
+
+        }
+        public void isAllowEntry(string name, string password)
+        {
+
+        }
     }
 }
 

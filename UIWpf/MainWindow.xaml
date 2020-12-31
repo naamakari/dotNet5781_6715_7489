@@ -32,5 +32,6 @@
         <TextBox x:Name="textName" HorizontalAlignment="Left" Height="31"  Margin="58,27,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="129" MaxLength="15" TextChanged="textName_TextChanged"/>
         <PasswordBox x:Name="textPas" HorizontalAlignment="Left" Margin="57,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="31" Width="129" MaxLength="8" PasswordChanged="textPas_PasswordChanged"/>
         <Button x:Name="enter" Content="הכנס" HorizontalAlignment="Left" Margin="22,10,0,0" Grid.Row="5" VerticalAlignment="Top" Width="98" Height="29" FontSize="14" FontWeight="Bold" IsEnabled="False" Click="enter_Click"/>
+        <Label x:Name="error" Content="שם משתמש/סיסמא שגויים" HorizontalContentAlignment="Center" FontSize="14" Foreground="red" HorizontalAlignment="Left" Margin="57,48,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="298"/>
     </Grid>
 </Window>

@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,15 +59,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusLineWindow.xaml">
+    <Page Include="BusLinesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusStationWindow.xaml">
+    <Page Include="BusStationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusWindow.xaml">
+    <Page Include="BusWindow1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -82,14 +82,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BusLineWindow.xaml.cs">
-      <DependentUpon>BusLineWindow.xaml</DependentUpon>
+    <Compile Include="BusLinesWindow.xaml.cs">
+      <DependentUpon>BusLinesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusStationWindow.xaml.cs">
-      <DependentUpon>BusStationWindow.xaml</DependentUpon>
+    <Compile Include="BusStationsWindow.xaml.cs">
+      <DependentUpon>BusStationsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusWindow.xaml.cs">
-      <DependentUpon>BusWindow.xaml</DependentUpon>
+    <Compile Include="BusWindow1.xaml.cs">
+      <DependentUpon>BusWindow1.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -121,6 +121,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BO.Bus.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,5 +130,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj">
+      <Project>{84361635-82a6-4c2d-be80-9deae54fdf7b}</Project>
+      <Name>BL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

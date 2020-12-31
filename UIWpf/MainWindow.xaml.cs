@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using BL;
+using BO;
+using APIBL;
 namespace UIWpf
 {
     /// <summary>
@@ -20,20 +22,22 @@ namespace UIWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        static IBL bl = BlFactory.GetBL();
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         private void textName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (textName.Text != "" && textPas.Password != "")
+            //if (textName.Text != "" && textPas.Password != "")
                 enter.IsEnabled = true;
         }
 
         private void textPas_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (textName.Text != "" && textPas.Password != "")
+            //if (textName.Text != "" && textPas.Password != "")
                 enter.IsEnabled = true;
         }
 
@@ -41,8 +45,8 @@ namespace UIWpf
         {
             //בדיקה בנתונים שלנו אם הכל טוב
             //ואם לא, להקפיץ הודעה שיש בעיה (לפי החריגה המתאימה), למחוק את מה שיש בשדות ולהפוך את כפתור הכניסה ללא זמין
-           // ManagerWindow managerWindow = new ManagerWindow();
-          //  managerWindow.User;
+           ManagerWindow managerWindow = new ManagerWindow(bl);
+            managerWindow.ShowDialog();
 
         }
 

@@ -44,10 +44,10 @@ namespace UIWpf
         {
             //הוספת המשתמש החדש לנתונים
             //אם הוא מנהל
-            ManagerWindow managerWindow = new ManagerWindow();
+           // ManagerWindow managerWindow = new ManagerWindow();
             //לשלוח את היוזר
             this.Close();
-            managerWindow.ShowDialog();
+            //managerWindow.ShowDialog();
             //אם הוא נוסע
             //פןתח חלון לנוסע
 
