@@ -25,6 +25,7 @@ namespace UIWpf
     {
         ObservableCollection<BusLineBL> busLineBLs = new ObservableCollection<BusLineBL>();
         ObservableCollection<BusStation> busStations = new ObservableCollection<BusStation>();
+        static int indexOfStation = 0;
         IBL bl;
         public BusLinesWindow(IBL _Bl)
         {
@@ -33,11 +34,13 @@ namespace UIWpf
             foreach (BusLineBL item in bl.GetAllLines())
                 busLineBLs.Add(item);
             busLineBLListView.ItemsSource = busLineBLs;
+
         }
 
         private void addBusLine_Click(object sender, RoutedEventArgs e)
         {
-            AddBusLine.IsEnabled = false;
+            RealyAddBusLine.IsEnabled = false;
+            addBusLine.IsEnabled = false;
             DetailsGrid.Visibility = Visibility.Hidden;
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
@@ -54,6 +57,7 @@ namespace UIWpf
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             busLineBLs.Remove(busLineBL);
             DetailsGrid.DataContext = null;
+            collectionOfStationListView.ItemsSource = null;
         }
 
         private void busLineBLListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -61,7 +65,9 @@ namespace UIWpf
             DeleteBusLine.IsEnabled = true;
             UpdateBusLine.IsEnabled = true;
             DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
-            AllStationListView.ItemsSource = bl.GetAllStations();
+            BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
+            if (busLineBL != null)
+                collectionOfStationListView.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -71,7 +77,7 @@ namespace UIWpf
 
         private void busNumLineTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-           bool nonNumeriable = false;
+            bool nonNumeriable = false;
 
             //if the key is not a number from the up keyboard
             if (e.Key < Key.D0 || e.Key > Key.D9)
@@ -84,14 +90,63 @@ namespace UIWpf
                 e.Handled = true;
 
             }
+
         }
 
         private void AllStationListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BusStation busStation = AllStationListView.SelectedItem as BusStation;
-          if(!busStations.Any(x => x.StationCode == busStation.StationCode))
-            busStations.Add(busStation);
+            if (!busStations.Any(x => x.StationCode == busStation.StationCode))
+            {
+                busStations.Add(busStation);
+                indexOfStation++;
+            }
             collectionOfStationListViewAdd.DataContext = busStations;
+            //חיבור של המספר של התחנה
+
+        }
+
+
+        private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var busLine = sender as FrameworkElement;//casting for bus
+            BusStation busStation = busLine.DataContext as BusStation;
+
+            busStations.Remove(busStation);
+        }
+
+        private void RealyAddBusLine_Click(object sender, RoutedEventArgs e)
+        {
+            //המרה של אזור, רשימה של ליסט וויו לאייאינאמראייבל 
+            //IEnumerable<BusStation> busStationsTemp;
+            //  busStations.Clone(busStationsTemp);
+            BusLineBL busLineBL = new BusLineBL
+            {
+                BusNumLine = int.Parse(busNumLineTextBox.Text)
+            };
+            bl.AddBusLine(busLineBL);
+            //  busLineBLs.Add(busLineBL);
+
+
+        }
+
+        private void areaAtLandComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+                RealyAddBusLine.IsEnabled = true;
+        }
+
+        private void busNumLineTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+                RealyAddBusLine.IsEnabled = true;
+        }
+
+        private void collectionOfStationListViewAdd_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+                RealyAddBusLine.IsEnabled = true;
         }
     }
 }
