@@ -84,5 +84,10 @@ namespace UIWpf
         {
             this.Close();
         }
+
+        private void kilometrazTextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

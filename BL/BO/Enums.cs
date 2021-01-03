@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 namespace BO
 {
     public enum BusStatus { ready, inDrive, inRefule, inTreat };
-    public enum Area { North, South, Center, Jerusalem, General };
+    public enum Area { צפון, דרום, מרכז, ירושלים, כללי };
 }
