@@ -53,21 +53,38 @@ namespace UIWpf
         private void refule_Click(object sender, RoutedEventArgs e)
         {
             Bus bus= busListView.SelectedItem as Bus;
-            bl.SendToRefuel(bus);
-            BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
+            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
+            try
+            {
+                bl.SendToRefuel(bus);
+                BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void treat_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
-            bl.SendToTreat(bus);
-            BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
-           
+            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
+            try
+            {
+                bl.SendToTreat(bus);
+                BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
         }
 
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
+            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
             buses.Remove(bus);
             //bl.DeleteBus(bus.LicenseNumber);
             BusDeatailsGrid.DataContext = null;
@@ -77,7 +94,215 @@ namespace UIWpf
         {
             BusDeatailsGrid.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
+            BusDeatailsGrid.DataContext = null;
 
+        }
+
+        private bool nonNumeriable = false;
+        //The following functions check the integrity of the input
+        private void tbLiNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumeriable = false;
+
+            //if the key is not a number from the up keyboard
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                //if the key is not a number from the side keyboard
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                    nonNumeriable = true;
+
+            if (nonNumeriable == true)
+            {
+                e.Handled = true;
+
+            }
+        }
+
+        private void tbTreat_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumeriable = false;
+            //if the key is not a number from the up keyboard
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                //if the key is not a number from the side keyboard
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                    if (e.Key != Key.Decimal)
+                        nonNumeriable = true;
+
+            if (nonNumeriable == true)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbRef_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumeriable = false;
+            //if the key is not a number from the up keyboard
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                //if the key is not a number from the side keyboard
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                    if (e.Key != Key.Decimal)
+                        nonNumeriable = true;
+
+            if (nonNumeriable == true)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbKm_KeyDown(object sender, KeyEventArgs e)
+        {
+            nonNumeriable = false;
+            //if the key is not a number from the up keyboard
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                //if the key is not a number from the side keyboard
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                    if (e.Key != Key.Decimal)
+                        nonNumeriable = true;
+
+            if (nonNumeriable == true)
+            {
+                e.Handled = true;
+
+            }
+        }
+
+
+        //The following functions check the input integrity logically
+        private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (kmSinceLastTreatTextBox1.Text != "")
+            {
+                if (double.Parse(kmSinceLastTreatTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the treat high from the kilometraz
+                    Km1Eror.Visibility = Visibility.Visible;
+                else
+                    Km1Eror.Visibility = Visibility.Hidden;
+            }
+
+            if (kmSinceRefeulTextBox1.Text != "")
+            {
+                if (double.Parse(kmSinceRefeulTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the reful high from the kilometraz
+                    Km2Eror.Visibility = Visibility.Visible;
+                else
+                    Km2Eror.Visibility = Visibility.Hidden;
+            }
+
+            this.errors();
+        }
+
+        private void tbLiNum_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (startDateDatePicker.SelectedDate != null)
+            {
+                DateTime starDate = (DateTime)startDateDatePicker.SelectedDate;
+                //Checks the correctness of the vehicle number according to the year of manufacture
+                if ((starDate.Year >= 2018 && licenseNumberTextBox1.Text.Length != 8) || (starDate.Year < 2018 && licenseNumberTextBox1.Text.Length != 7))
+                    NumEror.Visibility = Visibility.Visible;
+                else
+                    NumEror.Visibility = Visibility.Hidden;
+            }
+           
+
+            this.errors();
+        }
+
+        private void tbTreat_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (kilometrazTextBox1.Text != "")
+            {
+                if (double.Parse(kmSinceLastTreatTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the treat high from the kilometraz
+                    Km1Eror.Visibility = Visibility.Visible;
+                else
+                    Km1Eror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
+        }
+
+        private void tbRef_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (kilometrazTextBox1.Text != "")
+            {
+                if (double.Parse(kmSinceRefeulTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the reful high from the kilometraz
+                    Km2Eror.Visibility = Visibility.Visible;
+                else
+                    Km2Eror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
+        }
+
+        private void dateSt_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (licenseNumberTextBox1.Text != "")
+            {
+                DateTime starDate = (DateTime)startDateDatePicker.SelectedDate;
+                //Checks the correctness of the vehicle number according to the year of manufacture
+                if ((starDate.Year >= 2018 && licenseNumberTextBox1.Text.Length != 8) || (starDate.Year < 2018 && licenseNumberTextBox1.Text.Length != 7))
+                    NumEror.Visibility = Visibility.Visible;
+                else
+                    NumEror.Visibility = Visibility.Hidden;
+            }
+
+            //cheaks if the date is reasonable
+            TimeSpan diffDate = DateTime.Now - (DateTime)startDateDatePicker.SelectedDate;
+            if (diffDate.TotalDays < 0)
+            {
+                dateInvalid1.Visibility = Visibility.Visible;
+                add.IsEnabled = false;
+            }
+            else
+            {
+                dateInvalid1.Visibility = Visibility.Hidden;
+
+            }
+
+            if (dateSinceLastTreatDatePicker.SelectedDate != null)
+            {
+                TimeSpan diffDate1 = (DateTime)dateSinceLastTreatDatePicker.SelectedDate - (DateTime)startDateDatePicker.SelectedDate;
+                if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
+                    DateEror.Visibility = Visibility.Visible;
+                else
+                    DateEror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
+
+        }
+
+        private void dateTreat_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //cheaks if the date is reasonable
+            TimeSpan diffDate = DateTime.Now - (DateTime)dateSinceLastTreatDatePicker.SelectedDate;
+            if (diffDate.TotalDays < 0)
+            {
+                dateInvalid2.Visibility = Visibility.Visible;
+                add.IsEnabled = false;
+
+            }
+            else
+                dateInvalid2.Visibility = Visibility.Hidden;
+
+            if (startDateDatePicker.SelectedDate != null)
+            {
+                TimeSpan diffDate1 = (DateTime)dateSinceLastTreatDatePicker.SelectedDate - (DateTime)startDateDatePicker.SelectedDate;
+                if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
+                    DateEror.Visibility = Visibility.Visible;
+                else
+                    DateEror.Visibility = Visibility.Hidden;
+            }
+            this.errors();
+
+        }
+
+        private void errors()
+        {
+            //The function verifies if all the fields are filled in and if the content is 
+            //correct and there are no discrepancies between the fields
+            if (kmSinceLastTreatTextBox1.Text != "" && kmSinceRefeulTextBox1.Text != "" && licenseNumberTextBox1.Text != "" && kilometrazTextBox1.Text != ""
+               && dateSinceLastTreatDatePicker.SelectedDate != null && startDateDatePicker.SelectedDate != null&& busStateComboBox!=null)
+                if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
+             && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
+             && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
+                    toAdd.IsEnabled = true;
+                else
+                    toAdd.IsEnabled = false;
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
@@ -85,9 +310,57 @@ namespace UIWpf
             this.Close();
         }
 
-        private void kilometrazTextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        private void toAdd_Click(object sender, RoutedEventArgs e)
         {
+            Bus bus = new Bus()
+            {
+                LicenseNumber = licenseNumberTextBox1.Text,
+                Kilometraz = float.Parse(kilometrazTextBox1.Text),
+                KmSinceLastTreat=float.Parse(kmSinceLastTreatTextBox1.Text),
+                KmSinceRefeul=float.Parse(kmSinceRefeulTextBox1.Text),
+                DateSinceLastTreat=(DateTime)dateSinceLastTreatDatePicker.SelectedDate,
+                StartDate=(DateTime)startDateDatePicker.SelectedDate,
+                IsDeleted=false,
+                BusState= (BO.BusStatus)busStateComboBox.SelectedItem,
+            };
+            try
+            {
+                bl.AddBus(bus);
+                bus.LicenseNumber = bl.setLicenseNumber(bus.LicenseNumber);
+                buses.Add(bus);
+                BusDeatailsGrid.Visibility = Visibility.Visible;
+                addGrid.Visibility = Visibility.Hidden;
+                MessageBox.Show("אוטובוס מספר " + licenseNumberTextBox1.Text + " נוסף בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(BO.DalAlreayExistExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
 
+        //The function returns a string of the license number without the'- '
+        string setLicenseNumber(string licenseNumber)
+        { 
+            string newLicenseNumber = "";
+            if (licenseNumber.Length == 10)
+            {
+                for (int i = 0; i < 3; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 4; i < 6; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 7; i < 10; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            else if (licenseNumber.Length == 9)
+            {
+                for (int i = 0; i < 2; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 3; i < 6; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 7; i < 9; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            return newLicenseNumber;
         }
     }
 }
