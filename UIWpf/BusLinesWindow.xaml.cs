@@ -25,6 +25,7 @@ namespace UIWpf
     {
         ObservableCollection<BusLineBL> busLineBLs = new ObservableCollection<BusLineBL>();
         ObservableCollection<BusStation> busStations = new ObservableCollection<BusStation>();
+        BusLineBL BusLineBLSelectedItem;
         static int indexOfStation = 0;
         IBL bl;
         public BusLinesWindow(IBL _Bl)
@@ -41,6 +42,8 @@ namespace UIWpf
         {
             RealyAddBusLine.IsEnabled = false;
             addBusLine.IsEnabled = false;
+            cancledAddBus.Visibility = Visibility.Visible;
+            backToNenu.Visibility = Visibility.Hidden;
             DetailsGrid.Visibility = Visibility.Hidden;
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
@@ -49,7 +52,14 @@ namespace UIWpf
 
         private void UpdateBusLine_Click(object sender, RoutedEventArgs e)
         {
-
+            DetailsGrid.Visibility = Visibility.Hidden;
+            UpdateGrid.Visibility = Visibility.Visible;
+            RealyUpdateBusLine.IsEnabled = false;
+            UpdateGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
+            areaAtLandTextBoxUpdate.ItemsSource=Enum.GetValues(typeof(Area));
+            BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
+            if (busLineBL != null)
+                collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
         }
 
         private void DeleteBusLine_Click(object sender, RoutedEventArgs e)
@@ -64,6 +74,7 @@ namespace UIWpf
         {
             DeleteBusLine.IsEnabled = true;
             UpdateBusLine.IsEnabled = true;
+            //BusLineBLSelectedItem = busLineBLListView.SelectedItem as BusLineBL;
             DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             if (busLineBL != null)
@@ -112,20 +123,29 @@ namespace UIWpf
 
             var busLine = sender as FrameworkElement;//casting for bus
             BusStation busStation = busLine.DataContext as BusStation;
-
-            busStations.Remove(busStation);
+           busStations.Remove(busStation);
         }
 
         private void RealyAddBusLine_Click(object sender, RoutedEventArgs e)
         {
-            //המרה של אזור, רשימה של ליסט וויו לאייאינאמראייבל 
-            //IEnumerable<BusStation> busStationsTemp;
-            //  busStations.Clone(busStationsTemp);
-            BusLineBL busLineBL = new BusLineBL
-            {
-                BusNumLine = int.Parse(busNumLineTextBox.Text)
-            };
-            bl.AddBusLine(busLineBL);
+            
+                // רשימה של ליסט וויו לאייאינאמראייבל 
+                IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
+                busStationsTemp.ToList().Clear();
+                busStations.Clone(busStationsTemp);
+                BusLineBL busLineBL = new BusLineBL
+                {
+                    BusNumLine = int.Parse(busNumLineTextBox.Text),
+                    AreaAtLand = (BO.Area)areaAtLandComboBox.SelectedItem,
+                    CollectionOfStation = busStationsTemp,
+                    NumberFirstStation = busStations[0].StationCode,
+                    NumberLastStation = busStations[busStations.Count() - 1].StationCode,
+                    FirstStation = busStations[0],
+                    LastStation = busStations[busStations.Count() - 1]
+                };
+                bl.AddBusLine(busLineBL);
+            
+          
             //  busLineBLs.Add(busLineBL);
 
 
@@ -147,6 +167,19 @@ namespace UIWpf
         {
             if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
                 RealyAddBusLine.IsEnabled = true;
+        }
+
+        private void cancleAddBus_Click(object sender, RoutedEventArgs e)
+        {
+            addBusLine.IsEnabled = true;
+            cancledAddBus.Visibility = Visibility.Hidden;
+            backToNenu.Visibility = Visibility.Visible;
+            DetailsGrid.Visibility = Visibility.Visible;
+            AddBusLineGrid.Visibility = Visibility.Hidden;
+            areaAtLandComboBox.Text = null;
+            busNumLineTextBox.Text = null;
+            busStations.Clear();
+            collectionOfStationListViewAdd.DataContext = busStations;
         }
     }
 }
