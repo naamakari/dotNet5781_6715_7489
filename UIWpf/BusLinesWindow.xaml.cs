@@ -74,7 +74,6 @@ namespace UIWpf
         {
             DeleteBusLine.IsEnabled = true;
             UpdateBusLine.IsEnabled = true;
-            //BusLineBLSelectedItem = busLineBLListView.SelectedItem as BusLineBL;
             DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             if (busLineBL != null)

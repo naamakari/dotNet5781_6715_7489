@@ -231,7 +231,7 @@
             <Label x:Name="busIdTextBoxUpdate" HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold" Margin="0,13.8,57.6,30.2" Grid.Row="1" Content="מספר זה לא ניתן לעדכון" VerticalAlignment="Center" Height="40" Width="177" Grid.ColumnSpan="2"/>
 
             <Label Content=":מספר הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,14,-89.6,28.4" Grid.Row="0" VerticalAlignment="Center" Height="40" Width="101"/>
-            <TextBox x:Name="busNumLineTextBoxUpdate" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,14,48.4,27.4" Grid.Row="0" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="41" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown"/>
+            <TextBox x:Name="busNumLineTextBoxUpdate" Grid.Column="1" MaxLength="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,14,48.4,27.4" Grid.Row="0" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="41" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown"/>
 
             <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,-89.6,151.8" Grid.Row="3" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="101"/>
             <ListView x:Name="collectionOfStationListViewUpdate" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="179" ItemsSource="{Binding}" Margin="18,62,-89,-30.6" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="455" Grid.ColumnSpan="2">
@@ -255,6 +255,13 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding StationName}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="DeleteStationUpdate" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Margin="-6,-1" Content="מחיקה"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
