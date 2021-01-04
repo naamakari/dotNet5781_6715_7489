@@ -1,12 +1,96 @@
-﻿<Window x:Class="UIWpf.BusStationsWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UIWpf"
+        xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.BusStationsWindow"
         mc:Ignorable="d"
-        Title="BusStationsWindow" Height="450" Width="800">
+        Title="BusStationsWindow" Height="473.109" Width="800" >
+    <Window.Resources>
+        <CollectionViewSource x:Key="busStationBLViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:BusStationBL}, CreateList=True}"/>
+    </Window.Resources>
+
     <Grid>
-        
+
+        <DataGrid x:Name="busStationBLDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="432,106,9.6,149.2"  EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="busStationBLDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn x:Name="stationCodeColumn" Width="70" Header="קוד תחנה">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StationCode}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="stationNameColumn" Width="150" Header="שם התחנה">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StationName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="addressColumn" Width="130" Header="כתובת">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Address}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="searchStationTextBox" Text="" TextChanged="searchStationTextBox_TextChanged" TextAlignment="Right" HorizontalAlignment="Left" Height="37" Margin="589,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" />
+        <Label x:Name="searchStationLable" Content=":חיפוש" HorizontalContentAlignment="Right" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="693,53,0,0" VerticalAlignment="Top" Width="66" Height="37"/>
+        <Button x:Name="addStation" Content="הוספת תחנת אוטובוס" Click="addBusLine_Click" HorizontalAlignment="Left" Margin="514,310,0,0" VerticalAlignment="Top" Width="173" Height="45"  RenderTransformOrigin="0.436,2.063"/>
+        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" Click="backToNenu_Click" HorizontalAlignment="Left" Margin="531,364,0,0" VerticalAlignment="Top" Width="132" Height="32"  RenderTransformOrigin="0.634,0.784"/>
+        <Grid x:Name="busStationDetailes"  HorizontalAlignment="Left" Margin="70,32,0,0" VerticalAlignment="Top" Height="385" Width="288">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="143.2"/>
+                <ColumnDefinition Width="Auto" MinWidth="204"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="127.2"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,14.2,0,13.4" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="55"/>
+            <TextBlock x:Name="addressTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="3,19.2,0,18.4" Grid.Row="2" Text="{Binding Address}" VerticalAlignment="Center" Height="16" Width="0"/>
+            <Label Content="Collection Bus Lines:" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,62.8,0,44.2" Grid.Row="5" VerticalAlignment="Center" Height="25" Width="117"/>
+            <ListView x:Name="collectionBusLinesListView" DisplayMemberPath="CollectionBusLines" HorizontalAlignment="Left" Height="100"  Margin="10,19.8,0,12.2" Grid.Row="5" SelectionMode="Single" VerticalAlignment="Center" Width="268" Grid.ColumnSpan="2">
+                <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="numLine" Width="80" Header="מספר קו">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                    <TextBlock Margin="-6,-1" Text="{Binding BusNumLine}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                        <GridViewColumn x:Name="area" Width="150" Header="אזור">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="-6,-1" Text="{Binding AreaAtLand}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Content="Latitude:" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,19.6,0,8.2" Grid.Row="4" VerticalAlignment="Center" Height="25" Width="56"/>
+            <TextBlock x:Name="latitudeTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="3,24.6,0,12.2" Grid.Row="4" Text="{Binding Latitude}" VerticalAlignment="Center" Height="16" Width="0"/>
+            <Label Content="Longitude:" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,19.6,0,8.2" Grid.Row="4" VerticalAlignment="Center" Height="25" Width="66"/>
+            <TextBlock x:Name="longitudeTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="3,24.6,0,12.2" Grid.Row="4" Text="{Binding Longitude}" VerticalAlignment="Center" Height="16" Width="0"/>
+            <Label Content=":קוד תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,4,0,26.2" Grid.Row="0" VerticalAlignment="Center" Height="25" Width="80"/>
+            <TextBlock x:Name="stationCodeTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="3,8,0,31.2" Grid.Row="0" Text="{Binding StationCode}" VerticalAlignment="Center" Height="16" Width="0"/>
+            <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,8.8,0,18.8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="85"/>
+            <TextBlock x:Name="stationNameTextBlock" Grid.Column="0" HorizontalAlignment="Left" Margin="3,13.8,0,23.8" Grid.Row="1" Text="{Binding StationName}" VerticalAlignment="Center" Height="16" Width="0"/>
+            <Button x:Name="UpdateStation" Content="עדכון" IsEnabled="False" Click="UpdateBusLine_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="15.8,11.8,0,0.8" Grid.Row="6" VerticalAlignment="Center" Width="100" Height="25"  RenderTransformOrigin="0.495,1.793"/>
+            <Button x:Name="DeleteStation" Content="מחיקה" IsEnabled="False" Click="DeleteBusLine_Click" HorizontalAlignment="Left" Margin="17,12.8,0,1.8" Grid.Row="6" VerticalAlignment="Center" Width="113" RenderTransformOrigin="0.488,1.617" Height="23" />
+
+        </Grid>
+
     </Grid>
 </Window>
