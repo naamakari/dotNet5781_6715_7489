@@ -25,7 +25,6 @@ namespace UIWpf
     {
         ObservableCollection<BusLineBL> busLineBLs = new ObservableCollection<BusLineBL>();
         ObservableCollection<BusStation> busStations = new ObservableCollection<BusStation>();
-        BusLineBL BusLineBLSelectedItem;
         static int indexOfStation = 0;
         IBL bl;
         public BusLinesWindow(IBL _Bl)
@@ -56,7 +55,7 @@ namespace UIWpf
             UpdateGrid.Visibility = Visibility.Visible;
             RealyUpdateBusLine.IsEnabled = false;
             UpdateGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
-            areaAtLandTextBoxUpdate.ItemsSource=Enum.GetValues(typeof(Area));
+            areaAtLandTextBoxUpdate.ItemsSource = Enum.GetValues(typeof(Area));
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             if (busLineBL != null)
                 collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
@@ -122,29 +121,29 @@ namespace UIWpf
 
             var busLine = sender as FrameworkElement;//casting for bus
             BusStation busStation = busLine.DataContext as BusStation;
-           busStations.Remove(busStation);
+            busStations.Remove(busStation);
         }
 
         private void RealyAddBusLine_Click(object sender, RoutedEventArgs e)
         {
-            
-                // רשימה של ליסט וויו לאייאינאמראייבל 
-                IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
-                busStationsTemp.ToList().Clear();
-                busStations.Clone(busStationsTemp);
-                BusLineBL busLineBL = new BusLineBL
-                {
-                    BusNumLine = int.Parse(busNumLineTextBox.Text),
-                    AreaAtLand = (BO.Area)areaAtLandComboBox.SelectedItem,
-                    CollectionOfStation = busStationsTemp,
-                    NumberFirstStation = busStations[0].StationCode,
-                    NumberLastStation = busStations[busStations.Count() - 1].StationCode,
-                    FirstStation = busStations[0],
-                    LastStation = busStations[busStations.Count() - 1]
-                };
-                bl.AddBusLine(busLineBL);
-            
-          
+
+            // רשימה של ליסט וויו לאייאינאמראייבל 
+            IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
+            busStationsTemp.ToList().Clear();
+            busStations.Clone(busStationsTemp);
+            BusLineBL busLineBL = new BusLineBL
+            {
+                BusNumLine = int.Parse(busNumLineTextBox.Text),
+                AreaAtLand = (BO.Area)areaAtLandComboBox.SelectedItem,
+                CollectionOfStation = busStationsTemp,
+                NumberFirstStation = busStations[0].StationCode,
+                NumberLastStation = busStations[busStations.Count() - 1].StationCode,
+                FirstStation = busStations[0],
+                LastStation = busStations[busStations.Count() - 1]
+            };
+            bl.AddBusLine(busLineBL);
+
+
             //  busLineBLs.Add(busLineBL);
 
 
@@ -179,6 +178,13 @@ namespace UIWpf
             busNumLineTextBox.Text = null;
             busStations.Clear();
             collectionOfStationListViewAdd.DataContext = busStations;
+        }
+
+        private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text)||x.LastStation.StationName.Contains(searchStationTextBox.Text)
+            || x.BusNumLine.ToString().Contains(searchStationTextBox.Text)||x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
+            busLineBLListView.ItemsSource = busLinesCollection;
         }
     }
 }
