@@ -213,7 +213,7 @@
 
         <!--גריד לעדכון-->
 
-        <Grid x:Name="UpdateGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="24,36,0,0" VerticalAlignment="Top" Height="574" Width="483">
+        <Grid x:Name="UpdateGrid" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="620" Width="517" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="176"/>
@@ -224,41 +224,41 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,26.2,-89.6,15.6" Grid.Row="2" VerticalAlignment="Center" Height="39" Width="101"/>
-            <ComboBox x:Name="areaAtLandTextBoxUpdate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,27.2,57.4,27.6" Grid.Row="2" Text="{Binding AreaAtLand}" VerticalAlignment="Center" Height="26" Width="77"/>
+            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,-85.8,19.6" VerticalAlignment="Bottom" Height="39" Width="101" RenderTransformOrigin="0.326,-1.275" Grid.Row="1"/>
+            <ComboBox x:Name="areaAtLandTextBoxUpdate" Grid.Column="1" HorizontalAlignment="Right" Margin="0,1,57.2,32.2" Grid.Row="1" Text="{Binding AreaAtLand}" VerticalAlignment="Center" Height="26" Width="77"/>
 
-            <Label Content=":מזהה הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,15.6,-89.6,29.8" Grid.Row="1" VerticalAlignment="Center" Height="37" Width="101"/>
-            <Label x:Name="busIdTextBoxUpdate" HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold" Margin="0,13.8,57.6,30.2" Grid.Row="1" Content="מספר זה לא ניתן לעדכון" VerticalAlignment="Center" Height="40" Width="177" Grid.ColumnSpan="2"/>
+            <Label Content=":מזהה הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,64,-85.8,11.8" VerticalAlignment="Center" Height="37" Width="86"/>
+            <Label x:Name="busIdTextBoxUpdate" HorizontalAlignment="Right" FontSize="16" FontWeight="SemiBold" Margin="0,63,57.2,8.2" Content="מספר זה לא ניתן לעדכון" VerticalAlignment="Center" Height="40" Width="177" Grid.ColumnSpan="2"/>
 
-            <Label Content=":מספר הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,14,-89.6,28.4" Grid.Row="0" VerticalAlignment="Center" Height="40" Width="101"/>
-            <TextBox x:Name="busNumLineTextBoxUpdate" Grid.Column="1" MaxLength="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,14,48.4,27.4" Grid.Row="0" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="41" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown"/>
+            <Label Content=":מספר הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,14,-100.8,58" Grid.Row="0" VerticalAlignment="Center" Height="40" Width="101" RenderTransformOrigin="0.422,-0.038"/>
+            <TextBox x:Name="busNumLineTextBoxUpdate" Grid.Column="1" MaxLength="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,10,57.2,55.4" Grid.Row="0" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="41" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown"/>
 
-            <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,-89.6,151.8" Grid.Row="3" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="101"/>
-            <ListView x:Name="collectionOfStationListViewUpdate" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="179" ItemsSource="{Binding}" Margin="18,62,-89,-30.6" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="455" Grid.ColumnSpan="2">
+            <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,-52.2,244.8" Grid.Row="3" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="101"/>
+            <ListView x:Name="collectionOfStationListViewUpdate" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="179" ItemsSource="{Binding}" Margin="18,22.6,-85.8,35.2" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="455" Grid.ColumnSpan="2">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn x:Name="stationCodeUpdate" Width="80" Header="קוד התחנה">
+                        <GridViewColumn x:Name="stationCodeUpdate" Width="Auto" Header="קוד התחנה">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding StationCode}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="stationAddressUpdate" Width="150" Header="כתובת">
+                        <GridViewColumn x:Name="stationAddressUpdate" Width="Auto" Header="כתובת">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding Address}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="stationNameUpdate" Width="150" Header="שם התחנה">
+                        <GridViewColumn x:Name="stationNameUpdate" Width="Auto" Header="שם התחנה">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding StationName}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="DeleteStationUpdate" Width="150">
+                        <GridViewColumn x:Name="DeleteStationUpdate" Width="Auto">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Margin="-6,-1" Content="מחיקה"/>
@@ -268,7 +268,18 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="RealyUpdateBusLine" Content="עדכון" IsEnabled="False" HorizontalAlignment="Left" Margin="151,265,0,-106.4" Grid.Row="3" VerticalAlignment="Top" Width="125" Height="51" Click="UpdateBusLine_Click" RenderTransformOrigin="0.495,1.793" Grid.ColumnSpan="2"/>
+            <Button x:Name="RealyUpdateBusLine" Content="עדכון" IsEnabled="False" HorizontalAlignment="Left" Margin="162,358.2,0,-197.2" Grid.Row="3" VerticalAlignment="Top" Width="125" Height="51" Click="UpdateBusLine_Click" RenderTransformOrigin="0.495,1.793" Grid.ColumnSpan="2"/>
+            <Button x:Name="addStationToLine" Content="לחצ/י להוספת תחנה לקו" HorizontalAlignment="Left" Margin="106.4,232.6,-34.8,0" Grid.Row="3" VerticalAlignment="Top" Width="142" Grid.Column="1" Height="39" Click="addStationToLine_Click"/>
+            <ListBox x:Name="AllStationListBox" Visibility="Hidden" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="90" Margin="43,243.6,0,-89.6" VerticalAlignment="Top" Width="244" Grid.Row="3" Grid.ColumnSpan="2" SelectionChanged="AllStationListBox_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding StationName}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBox x:Name="indexOfNewStation" Visibility="Hidden" Text="" MaxLength="{Binding}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="125.4,310.6,0,-60.8" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" KeyDown="busNumLineTextBox_KeyDown" TextChanged="indexOfNewStation_TextChanged"/>
+            <Label x:Name="labelToAdd" Visibility="Hidden" Content="ציינ/י את מיקום התחנה בקו" Grid.Column="1" HorizontalAlignment="Left" Margin="106.4,276.6,-54.6,-27.4" Grid.Row="3" VerticalAlignment="Top" Width="161"/>
+            <CheckBox x:Name="finishAddStationCheckBox" Visibility="Hidden" Content="סיימתי" Grid.Column="1" HorizontalAlignment="Left" Margin="128.4,345.6,0,-77" Grid.Row="3" VerticalAlignment="Top" Height="25" Width="81" Checked="finishAddStationCheckBox_Checked"/>
 
         </Grid>
         <TextBox x:Name="searchStationTextBox" Text="" TextAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="232.2,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" TextChanged="searchTextBox_TextChanged"/>

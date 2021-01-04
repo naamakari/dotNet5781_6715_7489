@@ -25,6 +25,9 @@ namespace UIWpf
     {
         ObservableCollection<BusLineBL> busLineBLs = new ObservableCollection<BusLineBL>();
         ObservableCollection<BusStation> busStations = new ObservableCollection<BusStation>();
+        ObservableCollection<BusStation> SelectedItemBusStations = new ObservableCollection<BusStation>();
+        ObservableCollection<BusStation> AllbusStationLess = new ObservableCollection<BusStation>();
+        BusStation busStationSelected;
         static int indexOfStation = 0;
         IBL bl;
         public BusLinesWindow(IBL _Bl)
@@ -58,7 +61,11 @@ namespace UIWpf
             areaAtLandTextBoxUpdate.ItemsSource = Enum.GetValues(typeof(Area));
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             if (busLineBL != null)
+            {
                 collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
+                foreach (BusStation item in bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation)
+                    SelectedItemBusStations.Add(item);
+            }
         }
 
         private void DeleteBusLine_Click(object sender, RoutedEventArgs e)
@@ -71,6 +78,7 @@ namespace UIWpf
 
         private void busLineBLListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            busLineBLListView.ItemsSource = busLineBLs;
             DeleteBusLine.IsEnabled = true;
             UpdateBusLine.IsEnabled = true;
             DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
@@ -104,6 +112,7 @@ namespace UIWpf
 
         private void AllStationListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             BusStation busStation = AllStationListView.SelectedItem as BusStation;
             if (!busStations.Any(x => x.StationCode == busStation.StationCode))
             {
@@ -185,6 +194,89 @@ namespace UIWpf
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text)||x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text)||x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
+        }
+
+        private void addStationToLine_Click(object sender, RoutedEventArgs e)
+        {
+            
+            addStationToLine.IsEnabled = false;
+            AllStationListBox.Visibility = Visibility.Visible;
+            AllStationListBox.IsEnabled = true;
+            indexOfNewStation.Text = null;
+            finishAddStationCheckBox.IsChecked = false;
+            finishAddStationCheckBox.IsEnabled = false;
+            indexOfNewStation.Visibility = Visibility.Visible;
+            indexOfNewStation.IsEnabled = false;
+            labelToAdd.Visibility = Visibility.Visible;
+            finishAddStationCheckBox.Visibility = Visibility.Visible;
+            //foreach (BusStation item1 in bl.GetAllStations())
+            //    foreach (BusStation item2 in bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation)
+            //        if (item1.StationCode != item2.StationCode&&!busStationLess.Any(x=>x.StationCode==item1.StationCode))
+            //            busStationLess.Add(item1);
+            AllStationListBox.ItemsSource = bl.GetAllStations();
+            AllStationListBox.IsEnabled = true;
+        }
+
+        private void AllStationListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            indexOfNewStation.IsEnabled = true;
+            AllStationListBox.IsEnabled = false;
+            // indexOfNewStation.MaxLength=SelectedItemBusStations.Count()
+
+            busStationSelected = AllStationListBox.SelectedItem as BusStation;
+
+            if (SelectedItemBusStations.Any(x => x.StationCode == busStationSelected.StationCode))
+            {
+                MessageBox.Show("התחנה הזאת קיימת כבר בקו זה");
+                AllStationListBox.IsEnabled = true;
+            }
+
+
+        }
+
+        private void finishAddStationCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            bool isFirst=false;
+            bool isLast=false;
+            if (int.Parse(indexOfNewStation.Text) > SelectedItemBusStations.Count())
+            {
+                MessageBox.Show("האינדקס לא תואם את מספר התחנות בקו, הכנס/י מספר מתאים");
+                finishAddStationCheckBox.IsChecked = false;
+                finishAddStationCheckBox.IsEnabled = true;
+                indexOfNewStation.IsEnabled = true;
+            }
+            else
+            {
+                if (int.Parse(indexOfNewStation.Text) == 0)
+                    isFirst = true;
+                else if (int.Parse(indexOfNewStation.Text) == SelectedItemBusStations.Count())
+                    isLast = true;
+
+                StationInLine newStationInLine = new StationInLine
+                {
+                    IndexStationAtLine = int.Parse(indexOfNewStation.Text)
+                ,
+                    IsDeleted = false,
+                    IsFirstStation = isFirst,
+                    IsLastStation = isLast,
+                    LineId = int.Parse(busIdTextBlock.Text),
+                    StationCode = busStationSelected.StationCode
+                };
+                bl.AddStationToBus(newStationInLine);
+                collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation;
+                AllStationListBox.Visibility = Visibility.Hidden;
+                indexOfNewStation.Visibility = Visibility.Hidden;
+                labelToAdd.Visibility = Visibility.Hidden;
+                finishAddStationCheckBox.Visibility = Visibility.Hidden;
+                addStationToLine.IsEnabled = true;
+            }
+
+        }
+
+        private void indexOfNewStation_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (indexOfNewStation.Text != null)
+                finishAddStationCheckBox.IsEnabled = true;
         }
     }
 }
