@@ -430,11 +430,13 @@ namespace BL
         public BO.BusStationBL ToBusStationBL(DO.BusStation busStationDO)
 
         {
+            BO.BusStationBL busStationBL = new BO.BusStationBL();
             try
             {
                 //copy the basic properties
-                BO.BusStationBL busStationBL = new BO.BusStationBL();
+                
                 busStationDO.Clone(busStationBL);
+                busStationBL.Location= busStationBL.Latitude + "°N " +busStationBL.Longitude + "°E";
                 IEnumerable<DO.stationInLine> stationInLinesDAL = dal.GetStationInLineCollectionBy(item => item.StationCode == busStationDO.StationCode);
                 
                 //creat list of lines that arrive to this station
@@ -456,7 +458,7 @@ namespace BL
             }
             catch (DO.DalEmptyCollectionExeption ex)
             {
-                throw new BO.DalEmptyCollectionExeption("לא קיימים קווים העוברים בתחנה זו", ex);
+                return busStationBL;
             }
 
         }

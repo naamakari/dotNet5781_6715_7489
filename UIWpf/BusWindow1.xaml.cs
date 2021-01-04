@@ -45,8 +45,9 @@ namespace UIWpf
 
         private void busListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var fxElt = sender as FrameworkElement;//casting for bus
-            //BusDeatailsGrid.DataContext = fxElt.DataContext as Bus;
+            refule.IsEnabled = true;
+            treat.IsEnabled = true;
+            delete.IsEnabled = true;
             BusDeatailsGrid.DataContext = busListView.SelectedItem as Bus;
         }
 
@@ -92,6 +93,9 @@ namespace UIWpf
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
+            add.IsEnabled = false;
+            exit.Visibility = Visibility.Hidden;
+            cancle.Visibility = Visibility.Visible;
             BusDeatailsGrid.Visibility = Visibility.Hidden;
             addGrid.Visibility = Visibility.Visible;
             BusDeatailsGrid.DataContext = null;
@@ -361,6 +365,15 @@ namespace UIWpf
                     newLicenseNumber += licenseNumber[i];
             }
             return newLicenseNumber;
+        }
+
+        private void cancle_Click(object sender, RoutedEventArgs e)
+        {
+            add.IsEnabled = true;
+            exit.Visibility = Visibility.Visible;
+            cancle.Visibility = Visibility.Hidden;
+            BusDeatailsGrid.Visibility = Visibility.Visible;
+            addGrid.Visibility = Visibility.Hidden;
         }
     }
 }

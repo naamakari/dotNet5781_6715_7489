@@ -11,6 +11,7 @@ namespace BO
     /// </summary>
     public class BusStationBL:BusStation
     {
+        public string Location { get; set; }
       public  IEnumerable<BO.BusLine> CollectionBusLines { get; set; }
         public override string ToString()
         {
