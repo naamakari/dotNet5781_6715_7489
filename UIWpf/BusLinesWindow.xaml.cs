@@ -116,9 +116,7 @@ namespace UIWpf
 
             BusStation busStation = AllStationListView.SelectedItem as BusStation;
             if (!busStations.Any(x => x.StationCode == busStation.StationCode))
-            {
                 busStations.Add(busStation);
-            }
             collectionOfStationListViewAdd.DataContext = busStations;
 
             if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
@@ -140,14 +138,14 @@ namespace UIWpf
         {
 
             // רשימה של ליסט וויו לאייאינאמראייבל 
-            IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
-            busStationsTemp.ToList().Clear();
-            busStations.Clone(busStationsTemp);
+            //IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
+            //busStationsTemp.ToList().Clear();
+            //busStations.Clone(busStationsTemp);
             BusLineBL busLineBL = new BusLineBL
             {
                 BusNumLine = int.Parse(busNumLineTextBox.Text),
                 AreaAtLand = (BO.Area)areaAtLandComboBox.SelectedItem,
-                CollectionOfStation = busStationsTemp,
+                CollectionOfStation = busStations,
                 NumberFirstStation = busStations[0].StationCode,
                 NumberLastStation = busStations[busStations.Count() - 1].StationCode,
                 FirstStation = busStations[0],
