@@ -33,6 +33,9 @@ namespace UIWpf
             foreach (BusStationBL item in bl.GetAllStations())
                 stations.Add(item);
             busStationBLDataGrid.ItemsSource = stations;
+           
+
+           
 
 
         }
@@ -44,6 +47,12 @@ namespace UIWpf
 
         private void UpdateBusLine_Click(object sender, RoutedEventArgs e)
         {
+            busStationDetailes.Visibility = Visibility.Hidden;
+            updateGrid.DataContext = busStationBLDataGrid.SelectedItem as BusStationBL;
+            updateGrid.Visibility = Visibility.Visible;
+            BusStationBL busStationBL = busStationBLDataGrid.SelectedItem as BusStationBL;
+            if (busStationBL != null)
+                collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
 
         }
 
@@ -58,6 +67,7 @@ namespace UIWpf
         private void addBusStation_Click(object sender, RoutedEventArgs e)
         {
             busStationDetailes.Visibility = Visibility.Hidden;
+            updateGrid.Visibility = Visibility.Hidden;
             addBusStationGrid.Visibility = Visibility.Visible;
             addStation.IsEnabled = false;
         }
@@ -158,5 +168,37 @@ namespace UIWpf
             
             
             }
+
+        private void toCancle_Click(object sender, RoutedEventArgs e)
+        {
+            updateGrid.DataContext = null;
+            updateGrid.Visibility = Visibility.Hidden;
+            busStationDetailes.Visibility = Visibility.Visible;
+        }
+
+        private void toUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+            BusStation busStation = updateGrid.DataContext as BusStation;
+            try
+               {
+                bl.UpdateBusStation(busStation);
+                MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
+            catch(KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fxElt = sender as FrameworkElement;//casting for bus
+            BusLine busLine = fxElt.DataContext as BusLine;
+            //StationInLine stationInLine=bl.getstat
+            //bl.DeleteStationInLine()
+            MessageBox.Show("לא ממומש", "");
+        }
     }
 }
