@@ -25,6 +25,13 @@ namespace BO
         public DalAlreayExistExeption(string message) : base(message) { }
         public DalAlreayExistExeption(string message, Exception inner) : base(message, inner) { }
     }
+  
+    [Serializable]
+    public class DalAlreayExistFollowingStationsExeption : Exception
+    {
+        public DalAlreayExistFollowingStationsExeption(string message) : base(message) { }
+        public DalAlreayExistFollowingStationsExeption(string message, Exception inner) : base(message, inner) { }
+    }
     public class DalEmptyCollectionExeption : Exception
     {
         public DalEmptyCollectionExeption(string message) : base(message) { }

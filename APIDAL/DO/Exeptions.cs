@@ -25,6 +25,11 @@ namespace DO
     {
         public DalAlreayExistExeption(string message) : base(message) { }
     }
+    [Serializable]
+    public class DalAlreayExistFollowingStationsExeption : Exception
+    {
+        public DalAlreayExistFollowingStationsExeption(string message) : base(message) { }
+    }
     public class DalEmptyCollectionExeption : Exception
     {
         public DalEmptyCollectionExeption(string message) : base(message) { }

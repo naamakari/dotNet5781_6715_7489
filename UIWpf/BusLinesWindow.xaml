@@ -58,8 +58,10 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+
+        <!--גריד לפרטים-->
         <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" HorizontalAlignment="Left" Margin="134.2,427,0,0" VerticalAlignment="Top" Width="173" Height="45" Click="addBusLine_Click" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
-        <Grid x:Name="DetailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="24,36,0,0" VerticalAlignment="Top" Height="574" Width="483">
+        <Grid x:Name="DetailsGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="24,36,0,0" VerticalAlignment="Top" Height="574" Width="483">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="176"/>
@@ -113,9 +115,9 @@
         </Grid>
         <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" Grid.Column="1" HorizontalAlignment="Left" Margin="156.2,502,0,0" VerticalAlignment="Top" Width="132" Height="36" Click="Button_Click" RenderTransformOrigin="0.634,0.784"/>
 
-<!--גריד להוספה-->
+        <!--גריד להוספה-->
 
-        <Grid x:Name="AddBusLineGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Top" Height="610" Width="483">
+        <Grid x:Name="AddBusLineGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Top" Height="610" Width="483">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="148.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="158.4"/>
@@ -127,17 +129,17 @@
                 <RowDefinition Height="Auto" MinHeight="173.6"/>
                 <RowDefinition Height="Auto" MinHeight="173.6"/>
             </Grid.RowDefinitions>
-            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,10,-75.8,15.6" Grid.Row="2" VerticalAlignment="Center" Height="36" Width="103" RenderTransformOrigin="0.525,1.521"/>
-            <ComboBox x:Name="areaAtLandComboBox" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,9.6,65.2,17.4" Grid.Row="2" VerticalAlignment="Center" Height="33" Width="117" SelectionChanged="areaAtLandComboBox_SelectionChanged"/>
+            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,55.4,-76,46.2" Grid.Row="1" VerticalAlignment="Center" Height="36" Width="103" RenderTransformOrigin="0.525,1.521" Grid.RowSpan="2"/>
+            <ComboBox x:Name="areaAtLandComboBox" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,51,49" Grid.Row="1" VerticalAlignment="Bottom" Height="33" Width="117" SelectionChanged="areaAtLandComboBox_SelectionChanged" Grid.RowSpan="2"/>
 
-            <Label Content=":מזהה הקו" FontWeight="SemiBold" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,14.8,-75.8,13.6" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="88"/>
-            <Label x:Name="busIdLable" FontSize="16" FontWeight="SemiBold" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Right" Margin="0,16.8,49.2,14.8" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="243" Grid.ColumnSpan="2" RenderTransformOrigin="1.08,0.643"/>
+            <Label Content=":מזהה הקו" FontWeight="SemiBold" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,10.4,-76,24.4" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="88"/>
+            <Label x:Name="busIdLable" FontSize="16" FontWeight="SemiBold" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Right" Margin="0,9.8,49,23.4" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="243" Grid.ColumnSpan="2" RenderTransformOrigin="1.08,0.643"/>
 
             <Label Content=":מספר הקו" Grid.Column="1" FontWeight="SemiBold" FontSize="16" HorizontalAlignment="Right"  Margin="0,12,-75.8,9.8" Grid.Row="0" VerticalAlignment="Center" Height="39" Width="88"/>
-            <TextBox x:Name="busNumLineTextBox" Grid.Column="1" HorizontalAlignment="Right" Margin="0,12,49.2,10.4" Grid.Row="0" Text="{Binding BusNumLine, Mode=OneWayToSource}" VerticalAlignment="Center" Height="40" Width="82" MaxLength="3" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBox_TextChanged"/>
+            <TextBox x:Name="busNumLineTextBox" Grid.Column="1" HorizontalAlignment="Right" Margin="0,12,49,11" Grid.Row="0" Text="{Binding BusNumLine, Mode=OneWayToSource}" VerticalAlignment="Center" Height="35" Width="100" MaxLength="3" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBox_TextChanged"/>
 
             <Label Content=":תחנות הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,-75.8,140.4" Grid.Row="3" VerticalAlignment="Bottom" Height="37" RenderTransformOrigin="1.012,-0.227" Width="99"/>
-            <ListView x:Name="collectionOfStationListViewAdd" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="144" ItemsSource="{Binding}" Margin="0,32,-121,0.8" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="473" Grid.ColumnSpan="2">
+            <ListView x:Name="collectionOfStationListViewAdd" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="133" ItemsSource="{Binding}" Margin="0,44.2,-114.6,2.8" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="473" Grid.ColumnSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="stationCodeAdd" Width="65" Header="קוד התחנה">
@@ -147,24 +149,17 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="stationAddressAdd" Width="120" Header="כתובת">
+                        <GridViewColumn x:Name="stationAddressAdd" Width="150" Header="כתובת">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding Address}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="stationNameAdd" Width="120" Header="שם התחנה">
+                        <GridViewColumn x:Name="stationNameAdd" Width="150" Header="שם התחנה">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding StationName}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn x:Name="IndexOfStation" Header="מספר התחנה בקו" Width="50">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Label Content="{Binding indexOfStation}" Width="30"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -190,14 +185,14 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="allStationAddress" Width="120" Header="כתובת">
+                        <GridViewColumn x:Name="allStationAddress" Width="150" Header="כתובת">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding Address}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn x:Name="AllStationName" Width="120" Header="שם התחנה">
+                        <GridViewColumn x:Name="AllStationName" Width="150" Header="שם התחנה">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding StationName}"/>
@@ -207,7 +202,11 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="0.2,190.8,0,-53.2" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" RenderTransformOrigin="0.597,1.85" Grid.Column="1"/>
+            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="0.2,190.8,0,-53.2" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.Column="1"/>
+            <TextBox x:Name="AddDistance" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="130,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="AddTime" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="33,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown"/>
+            <RadioButton x:Name="finishDisAndTime" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="48.6,10.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="101" Grid.Column="1" Checked="finishDisAndTime_Checked"/>
+            <Label x:Name="AddTimeAndDisLable" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,20.8,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="27" Width="320"/>
         </Grid>
         <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="156.2,502,0,0" VerticalAlignment="Top" Width="132" Height="36" Click="cancleAddBus_Click"/>
 

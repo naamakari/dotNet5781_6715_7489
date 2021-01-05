@@ -29,14 +29,26 @@ namespace UIWpf
         ObservableCollection<BusStation> AllbusStation = new ObservableCollection<BusStation>();
         BusStation busStationSelected;
         IBL bl;
+        int index;
+
         public BusLinesWindow(IBL _Bl)
         {
             InitializeComponent();
             bl = _Bl;
-            foreach (BusLineBL item in bl.GetAllLines())
-                busLineBLs.Add(item);
-            busLineBLListView.ItemsSource = busLineBLs;
-
+            try
+            {
+                foreach (BusLineBL item in bl.GetAllLines())
+                    busLineBLs.Add(item);
+                busLineBLListView.ItemsSource = busLineBLs;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void addBusLine_Click(object sender, RoutedEventArgs e)
@@ -48,7 +60,18 @@ namespace UIWpf
             DetailsGrid.Visibility = Visibility.Hidden;
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
-            AllStationListView.DataContext = bl.GetAllStations();
+            try
+            {
+                AllStationListView.ItemsSource = bl.GetAllStations();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void UpdateBusLine_Click(object sender, RoutedEventArgs e)
@@ -59,13 +82,20 @@ namespace UIWpf
             UpdateGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             areaAtLandTextBoxUpdate.ItemsSource = Enum.GetValues(typeof(Area));
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
-            if (busLineBL != null)
+            try
             {
-                //collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
-                SelectedItemBusStations.Clear();
-                foreach (BusStation item in bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation)
-                    SelectedItemBusStations.Add(item);
-                collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
+                if (busLineBL != null)
+                {
+                    //collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
+                    SelectedItemBusStations.Clear();
+                    foreach (BusStation item in bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation)
+                        SelectedItemBusStations.Add(item);
+                    collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
+                }
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
@@ -75,6 +105,9 @@ namespace UIWpf
             busLineBLs.Remove(busLineBL);
             DetailsGrid.DataContext = null;
             collectionOfStationListView.ItemsSource = null;
+
+            MessageBox.Show(" קו אוטובוס מספר " + busLineBL.BusNumLine + " נמחק", "", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
         private void busLineBLListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,8 +117,16 @@ namespace UIWpf
             UpdateBusLine.IsEnabled = true;
             DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
-            if (busLineBL != null)
-                collectionOfStationListView.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
+            try
+            {
+                if (busLineBL != null)
+                    collectionOfStationListView.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -113,34 +154,122 @@ namespace UIWpf
 
         private void AllStationListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try
+            {
+                BusStation busStation = AllStationListView.SelectedItem as BusStation;
+                if (busStation != null)
+                {
+                    if (!busStations.Any(x => x.StationCode == busStation.StationCode))
+                        busStations.Add(busStation);
+                    collectionOfStationListViewAdd.DataContext = busStations;
 
-            BusStation busStation = AllStationListView.SelectedItem as BusStation;
-            if (!busStations.Any(x => x.StationCode == busStation.StationCode))
-                busStations.Add(busStation);
-            collectionOfStationListViewAdd.DataContext = busStations;
+                    if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+                        RealyAddBusLine.IsEnabled = true;
 
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
-                RealyAddBusLine.IsEnabled = true;
-            //חיבור של המספר של התחנה
+                    if (busStations.Count >= 2)
+                        try
+                        {
+                            for (index = 0; index < busStations.Count() - 1;)
+                            {
+                                bl.GetFollowingStations(new FollowingStations
+                                {
+                                    StationCode1 = busStations[index].StationCode,
+                                    StationCode2 = busStations[index + 1].StationCode
+                                });
+                                index++;
+                            }
+                        }
+                        catch (BO.DalAlreayExistFollowingStationsExeption ex)
+                        {
+                            AddDistance.Visibility = Visibility.Visible;
+                            AddTime.Visibility = Visibility.Visible;
+                            finishDisAndTime.Visibility = Visibility.Visible;
+                            AddTimeAndDisLable.Visibility = Visibility.Visible;
+                            finishDisAndTime.IsChecked = false;
+                            AddTimeAndDisLable.Content= " הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode + ":";
+                        }
 
+                }
+            }
+            catch (System.NullReferenceException ex)
+            {
+
+            }
         }
 
+        private void finishDisAndTime_Checked(object sender, RoutedEventArgs e)
+        {
+            if (AddDistance.Text != "" && AddTime.Text != "")
+            {
+                bl.AddFollowingStations(new FollowingStations
+                {
+                    StationCode1 = busStations[index].StationCode,
+                    StationCode2 = busStations[index + 1].StationCode,
+                    DistanceBetweenStations = float.Parse(AddDistance.Text),
+                    TimeTravelBetweenStations = float.Parse(AddTime.Text)
+                });
+                AddDistance.Visibility = Visibility.Hidden;
+                AddTime.Visibility = Visibility.Hidden;
+                finishDisAndTime.Visibility = Visibility.Hidden;
+                AddTimeAndDisLable.Visibility = Visibility.Hidden;
+                AddDistance.Text = "";
+                AddTime.Text = "";
+                index++;
+            }
+            else
+            {
+                MessageBox.Show("נא למלא את כל השדות", "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Warning);
+                finishDisAndTime.IsChecked = false;
+            }
 
+        }
+ 
         private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
         {
 
             var busLine = sender as FrameworkElement;//casting for bus
             BusStation busStation = busLine.DataContext as BusStation;
             busStations.Remove(busStation);
+
+            if (busStations.Count >= 2)
+                try
+                {
+                    for (index = 0; index < busStations.Count() - 1;)
+                    {
+                        bl.GetFollowingStations(new FollowingStations
+                        {
+                            StationCode1 = busStations[index].StationCode,
+                            StationCode2 = busStations[index + 1].StationCode
+                        });
+                        index++;
+                    }
+                }
+                catch (BO.DalAlreayExistFollowingStationsExeption ex)
+                {
+                    AddDistance.Visibility = Visibility.Visible;
+                    AddTime.Visibility = Visibility.Visible;
+                    finishDisAndTime.Visibility = Visibility.Visible;
+                    finishDisAndTime.IsChecked = false;
+                    AddDistance.Text = "הכנס/י את המרחק מתחנה " + busStations[index].StationCode + "לתחנה " + busStations[index + 1].StationCode + ":";
+                    AddTime.Text = "הכנס/י את הזמן בדקות מתחנה " + busStations[index].StationCode + "לתחנה " + busStations[index + 1].StationCode + ":";
+
+                }
+            else
+            {
+                AddDistance.Visibility = Visibility.Hidden;
+                AddTime.Visibility = Visibility.Hidden;
+                finishDisAndTime.Visibility = Visibility.Hidden;
+                finishDisAndTime.IsChecked = false;
+                AddTimeAndDisLable.Visibility = Visibility.Hidden;
+                AddDistance.Text = "";
+                AddTime.Text = "";
+            }
+
         }
 
         private void RealyAddBusLine_Click(object sender, RoutedEventArgs e)
         {
 
-            // רשימה של ליסט וויו לאייאינאמראייבל 
-            //IEnumerable<BusStation> busStationsTemp = bl.GetAllStations();
-            //busStationsTemp.ToList().Clear();
-            //busStations.Clone(busStationsTemp);
             BusLineBL busLineBL = new BusLineBL
             {
                 BusNumLine = int.Parse(busNumLineTextBox.Text),
@@ -151,11 +280,28 @@ namespace UIWpf
                 FirstStation = busStations[0],
                 LastStation = busStations[busStations.Count() - 1]
             };
-            bl.AddBusLine(busLineBL);
+            try
+            {
+                bl.AddBusLine(busLineBL);
+                busLineBLs.Add(busLineBL);
 
-
-            //  busLineBLs.Add(busLineBL);
-
+                areaAtLandComboBox.Text = null;
+                busNumLineTextBox.Text = null;
+                busStations.Clear();
+                collectionOfStationListViewAdd.ItemsSource = busStations;
+                AddBusLineGrid.Visibility = Visibility.Hidden;
+                DetailsGrid.Visibility = Visibility.Visible;
+                addBusLine.IsEnabled = true;
+                MessageBox.Show("קו האוטובוס נוסף בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (BO.DalAlreayExistExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (BO.DalAlreayExistFollowingStationsExeption ex)
+            {
+               // return;
+            }
 
         }
 
@@ -208,8 +354,16 @@ namespace UIWpf
             //    foreach (BusStation item2 in bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation)
             //        if (item1.StationCode != item2.StationCode&&!busStationLess.Any(x=>x.StationCode==item1.StationCode))
             //            busStationLess.Add(item1);
-            AllStationListBox.ItemsSource = bl.GetAllStations();
-            AllStationListBox.IsEnabled = true;
+            try
+            {
+                AllStationListBox.ItemsSource = bl.GetAllStations();
+                AllStationListBox.IsEnabled = true;
+            }
+            catch (BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
         }
 
         private void AllStationListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -256,13 +410,25 @@ namespace UIWpf
                     LineId = int.Parse(busIdTextBlock.Text),
                     StationCode = busStationSelected.StationCode
                 };
-                bl.AddStationToBus(newStationInLine);
-                collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation;
-                AllStationListBox.Visibility = Visibility.Hidden;
-                indexOfNewStation.Visibility = Visibility.Hidden;
-                labelToAdd.Visibility = Visibility.Hidden;
-                finishAddStationCheckBox.Visibility = Visibility.Hidden;
-                addStationToLine.IsEnabled = true;
+                try
+                {
+                    bl.AddStationToBus(newStationInLine);
+                    collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation;
+                    AllStationListBox.Visibility = Visibility.Hidden;
+                    indexOfNewStation.Visibility = Visibility.Hidden;
+                    labelToAdd.Visibility = Visibility.Hidden;
+                    finishAddStationCheckBox.Visibility = Visibility.Hidden;
+                    addStationToLine.IsEnabled = true;
+                }
+                catch (BO.DalAlreayExistExeption ex)
+                {
+                    MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+
             }
 
         }
@@ -299,9 +465,16 @@ namespace UIWpf
                 StationCode = busStation.StationCode,
                 LineId = int.Parse(busIdTextBlock.Text)
             };
-            bl.DeleteStationInLine(stationInLineDelete);
-            SelectedItemBusStations.Remove(busStation);
-            //collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
+            try
+            {
+                bl.DeleteStationInLine(stationInLineDelete);
+                SelectedItemBusStations.Remove(busStation);
+                //collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void areaAtLandTextBoxUpdate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -318,20 +491,35 @@ namespace UIWpf
 
         private void RealyUpdateBusLine_Click(object sender, RoutedEventArgs e)
         {
-            BusLine newBusLine = new BusLine { BusId = int.Parse(busIdTextBlock.Text),
+            BusLine newBusLine = new BusLine
+            {
+                BusId = int.Parse(busIdTextBlock.Text),
                 BusNumLine = int.Parse(busNumLineTextBoxUpdate.Text),
                 NumberFirstStation = SelectedItemBusStations[0].StationCode,
                 NumberLastStation = SelectedItemBusStations[SelectedItemBusStations.Count() - 1].StationCode,
                 AreaAtLand = (BO.Area)areaAtLandTextBoxUpdate.SelectedItem
             };
-            bl.UpdateBusLine(newBusLine);
-            busLineBLs.Clear();
-            foreach (BusLineBL item in bl.GetAllLines())
-                busLineBLs.Add(item);
-            busLineBLListView.ItemsSource = busLineBLs;
-            DetailsGrid.Visibility = Visibility.Visible;
-            UpdateGrid.Visibility = Visibility.Hidden;
-            collectionOfStationListView.ItemsSource = null;
+            try
+            {
+                bl.UpdateBusLine(newBusLine);
+                busLineBLs.Clear();
+                foreach (BusLineBL item in bl.GetAllLines())
+                    busLineBLs.Add(item);
+                busLineBLListView.ItemsSource = busLineBLs;
+                DetailsGrid.Visibility = Visibility.Visible;
+                UpdateGrid.Visibility = Visibility.Hidden;
+                collectionOfStationListView.ItemsSource = null;
+                MessageBox.Show("קו האוטובוס נוסף בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch (BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
+
     }
 }

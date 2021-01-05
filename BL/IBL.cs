@@ -47,9 +47,11 @@ namespace APIBL
         IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);//v
 
         //רננה
-       // void AddFollowingStations(FollowingStations following);
-       // void DeleteFollowingStations(FollowingStations following);
-       // void UpdateBusFollowingStations(FollowingStations following);
+       void AddFollowingStations(FollowingStations following);
+        FollowingStations GetFollowingStations(FollowingStations following);
+
+        // void DeleteFollowingStations(FollowingStations following);
+        // void UpdateBusFollowingStations(FollowingStations following);
         void DeleteStationInLine(StationInLine stationLine);//v
                                                             // void UpdateStationInLine(StationInLine stationLine);//v
 
