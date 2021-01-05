@@ -34,6 +34,7 @@ namespace APIBL
         BusStationBL GetBusStationBL(int stationID);//v
         IEnumerable<BusStationBL> GetAllStations();//v
         IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStationBL> condition);//v
+        StationInLine getStationInLine(int lineId, int stationCode);
 
 
         //נעמה

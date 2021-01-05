@@ -83,8 +83,8 @@
             <TextBlock x:Name="stationCodeTextBlock"  Grid.Column="0" HorizontalAlignment="Right" Margin="3,10,0,7.4" Grid.Row="0" Text="{Binding StationCode}" VerticalAlignment="Center" Height="25" Width="140"/>
             <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,8,0,18.8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="85"/>
             <TextBlock x:Name="stationNameTextBlock" Grid.Column="0" HorizontalAlignment="Right" Margin="3,14,0,13.8" Grid.Row="1" Text="{Binding StationName}" VerticalAlignment="Center" Height="25" Width="140"/>
-            <Button x:Name="UpdateStation" Content="עדכון" IsEnabled="False" Click="UpdateBusLine_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="15.8,11.6,0,1" Grid.Row="6" VerticalAlignment="Center" Width="100" Height="25"  RenderTransformOrigin="0.495,1.793"/>
-            <Button x:Name="DeleteStation" Content="מחיקה" IsEnabled="False" Click="DeleteBusLine_Click" HorizontalAlignment="Left" Margin="17,12.6,0,2" Grid.Row="6" VerticalAlignment="Center" Width="113" RenderTransformOrigin="0.488,1.617" Height="23" />
+            <Button x:Name="UpdateStation" Content="עדכון" IsEnabled="False" Click="UpdateBusLine_Click" Grid.Column="0" HorizontalAlignment="Left" Margin="15.8,11.6,0,1" Grid.Row="6" VerticalAlignment="Center" Width="100" Height="25"  RenderTransformOrigin="0.495,1.793"/>
+            <Button x:Name="DeleteStation" Content="מחיקה" IsEnabled="False" Click="DeleteBusLine_Click" HorizontalAlignment="Left" Grid.Column="1" Margin="17,12.6,0,2" Grid.Row="6" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.488,1.617" Height="25" />
 
         </Grid>
         <Grid x:Name="addBusStationGrid"  HorizontalAlignment="Left" Margin="68,85,0,0" Visibility="Hidden" VerticalAlignment="Top" Height="196" Width="270">

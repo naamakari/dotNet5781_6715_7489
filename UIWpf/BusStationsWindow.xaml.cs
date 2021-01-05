@@ -180,9 +180,19 @@ namespace UIWpf
         {
 
             BusStation busStation = updateGrid.DataContext as BusStation;
+            BusStationBL busStationBL;
             try
                {
                 bl.UpdateBusStation(busStation);
+                updateGrid.DataContext = null;
+                collectionBusLinesListView1.DataContext = null;
+                updateGrid.Visibility = Visibility.Hidden;
+                busStationBL = bl.GetBusStationBL(busStation.StationCode);
+                busStationDetailes.DataContext= busStationBL;
+                if (busStationBL != null)
+                    collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
+                busStationDetailes.Visibility = Visibility.Visible;
+
                 MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
@@ -194,11 +204,24 @@ namespace UIWpf
 
         private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
         {
-            var fxElt = sender as FrameworkElement;//casting for bus
-            BusLine busLine = fxElt.DataContext as BusLine;
-            //StationInLine stationInLine=bl.getstat
-            //bl.DeleteStationInLine()
-            MessageBox.Show("לא ממומש", "");
+            try
+            {
+                var fxElt = sender as FrameworkElement;//casting for bus
+                BusLine busLine = fxElt.DataContext as BusLine;
+                BusStation busStation = busStationBLDataGrid.SelectedItem as BusStation;
+                StationInLine stationInLine = bl.getStationInLine(busLine.BusId, busStation.StationCode);
+                bl.DeleteStationInLine(stationInLine);
+                BusStationBL busStationBL = bl.GetBusStationBL(busStation.StationCode);
+                if (busStationBL != null)
+                    collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
+
+            }
+            catch(KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            
+            //MessageBox.Show("לא ממומש", "");
         }
     }
 }

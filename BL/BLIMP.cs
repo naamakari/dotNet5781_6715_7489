@@ -780,6 +780,22 @@ namespace BL
         //         throw new KeyNotFoundException(ex.Message, ex);
         //     }
         // }
+        public BO.StationInLine getStationInLine(int lineId, int stationCode)
+        {
+
+            try
+            {
+                DO.stationInLine stationInLineDO = dal.GetStationInLine(lineId,stationCode);
+                BO.StationInLine stationInLineBO = new BO.StationInLine();
+                stationInLineDO.Clone(stationInLineBO);
+                return stationInLineBO;
+
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
         #endregion
 
         public void addUser(string name, string password)
