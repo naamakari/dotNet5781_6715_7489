@@ -258,12 +258,12 @@ namespace DL
             DataS.followingStations.Remove(tempFollowingStations);
         }
         #endregion
-
+       
         #region CRUD for station at line 
 
         public void AddStationInLine(stationInLine stationInLine)
         {
-            if (DataS.stationsInLine.Any(x => (x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)))
+            if (DataS.stationsInLine.Any(x =>(x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)))
                 throw new DalAlreayExistExeption("קיימת כבר במערכת " + stationInLine.LineId + " תחנת זו של קו");
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
