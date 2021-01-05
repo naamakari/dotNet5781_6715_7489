@@ -213,15 +213,16 @@ namespace DL
 
         public void AddFollowingStations(FollowingStations followingStations)
         {
-            if (DataS.followingStations.Any(x => x.StationCode1  == followingStations.StationCode1&& x.StationCode2 == followingStations.StationCode2))
-                throw new DalAlreayExistExeption("קיימות כבר במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו ");
+            if (DataS.followingStations.Any(x => x.StationCode1 == followingStations.StationCode1 && x.StationCode2 == followingStations.StationCode2))
+                return;
+                //throw new DalAlreayExistExeption("קיימות כבר במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו ");
             DataS.followingStations.Add(followingStations.Clone());
         }
         public FollowingStations GetFollowingStation(int stationCode1, int stationCode2)
         {
             FollowingStations followingStationsTemp = DataS.followingStations.Find(x => x.StationCode1 == stationCode1&& x.StationCode2 ==  stationCode2);
             if(followingStationsTemp==null)
-                throw new DalAlreayExistExeption("לא קיימות במערכת " + stationCode1 + " , " + stationCode2 + " תחנות עוקבות אלו ");
+                throw new DalAlreayExistFollowingStationsExeption("לא קיימות במערכת " + stationCode1 + " , " + stationCode2 + " תחנות עוקבות אלו ");
             return followingStationsTemp.Clone();
         }
         public IEnumerable<FollowingStations> GetFollowingStationsCollection()

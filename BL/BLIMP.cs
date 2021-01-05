@@ -725,19 +725,37 @@ namespace BL
         #endregion
         //רננה
         #region method for followingStations
-        //public void AddFollowingStations(BO.FollowingStations followingBO)
-        //{
-        //    DO.FollowingStations followingDO = new DO.FollowingStations();
-        //    followingBO.Clone(followingDO);
-        //    try
-        //    {
-        //        dal.AddFollowingStations(followingDO);
-        //    }
-        //    catch (DO.DalAlreayExistExeption ex)
-        //    {
-        //        //throw new BO.DalAlreayExistExeption(ex.Message, ex);
-        //    }
-        //}
+        public void AddFollowingStations(BO.FollowingStations followingBO)
+        {
+            DO.FollowingStations followingDO = new DO.FollowingStations();
+            followingBO.Clone(followingDO);
+            try
+            {
+                dal.AddFollowingStations(followingDO);
+            }
+            catch (DO.DalAlreayExistExeption ex)
+            {
+                //throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
+        }
+      public BO.FollowingStations GetFollowingStations(BO.FollowingStations following)
+        {
+            try
+            {
+                DO.FollowingStations followingStationsDO = dal.GetFollowingStation(following.StationCode1, following.StationCode2);
+                BO.FollowingStations followingStationsBO = new BO.FollowingStations();
+                followingStationsDO.Clone(followingStationsBO);
+                return followingStationsBO;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+            catch (DO.DalAlreayExistFollowingStationsExeption ex)
+            {
+                throw new BO.DalAlreayExistFollowingStationsExeption(ex.Message, ex);
+            }
+        }
         //public void DeleteFollowingStations(BO.FollowingStations followingBO)
         //{
         //    DO.FollowingStations followingDO = new DO.FollowingStations();
