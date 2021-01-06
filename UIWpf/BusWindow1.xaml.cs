@@ -69,6 +69,7 @@ namespace UIWpf
         private void treat_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
+            
             bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
             try
             {
