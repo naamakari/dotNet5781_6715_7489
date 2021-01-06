@@ -185,6 +185,7 @@ namespace UIWpf
                             AddTime.Visibility = Visibility.Visible;
                             finishDisAndTime.Visibility = Visibility.Visible;
                             AddTimeAndDisLable.Visibility = Visibility.Visible;
+                            AllStationListView.IsEnabled = false;
                             finishDisAndTime.IsChecked = false;
                             AddTimeAndDisLable.Content= " הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode + ":";
                         }
@@ -212,6 +213,7 @@ namespace UIWpf
                 AddTime.Visibility = Visibility.Hidden;
                 finishDisAndTime.Visibility = Visibility.Hidden;
                 AddTimeAndDisLable.Visibility = Visibility.Hidden;
+                AllStationListView.IsEnabled = true;
                 AddDistance.Text = "";
                 AddTime.Text = "";
                 index++;
@@ -331,7 +333,7 @@ namespace UIWpf
         }
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+       {
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text) || x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text) || x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
