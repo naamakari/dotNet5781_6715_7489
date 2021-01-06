@@ -203,8 +203,8 @@
                 </ListView.View>
             </ListView>
             <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="0.2,190.8,0,-53.2" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.Column="1"/>
-            <TextBox x:Name="AddDistance" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="130,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="AddTime" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="33,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown"/>
+            <TextBox x:Name="AddDistance" Text="" Visibility="Hidden" BorderBrush="Red" BorderThickness="1.5" HorizontalAlignment="Left" Height="24" Margin="130,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="AddTime" Text="" Visibility="Hidden" BorderBrush="Red" BorderThickness="1.5" HorizontalAlignment="Left" Height="24" Margin="33,10.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="busNumLineTextBox_KeyDown"/>
             <RadioButton x:Name="finishDisAndTime" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="48.6,10.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="101" Grid.Column="1" Checked="finishDisAndTime_Checked"/>
             <Label x:Name="AddTimeAndDisLable" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,20.8,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="27" Width="320"/>
         </Grid>
