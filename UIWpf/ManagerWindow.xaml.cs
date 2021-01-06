@@ -23,14 +23,15 @@ namespace UIWpf
     public partial class ManagerWindow : Window
     {
         IBL bl;   
-        public ManagerWindow(IBL _Bl)
+        public ManagerWindow(IBL _Bl,string name)
         {
             bl = _Bl;
             InitializeComponent();
 
-           // UserName.Content = " ,שלום"+ name;
+           UserName.Content = name+" שלום ";
+            UserName.Visibility = Visibility.Visible;
         }
-       // User user { get; set; }
+      
 
         private void Bus_Click(object sender, RoutedEventArgs e)
         {

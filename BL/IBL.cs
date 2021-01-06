@@ -25,7 +25,8 @@ namespace APIBL
         void UpdateBus(Bus bus);//v
         IEnumerable<Bus> GetAllBuses();//v
         IEnumerable<Bus> GetAllBusesBy(Predicate<BO.Bus> condition);//v
-        string setLicenseNumber(string licenseNumber);
+        string setLicenseNumberTo(string licenseNumber);
+        string setLicenseNumberFrom(string licenseNumber);
         //רננה
         void AddBusStation(BusStation busStation);//v
         BusStationBL ToBusStationBL(DO.BusStation busStationDO);//v
@@ -56,7 +57,7 @@ namespace APIBL
         void DeleteStationInLine(StationInLine stationLine);//v
                                                             // void UpdateStationInLine(StationInLine stationLine);//v
 
-        void addUser(string name, string password);
-        void isAllowEntry(string name, string password);
+        void addUser(string name, string password, bool isManager);
+        string isAllowEntry(string name, string password);
     }
 }

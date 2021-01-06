@@ -70,11 +70,11 @@ namespace APIDAL
         /// CRUD for user
         /// </summary>
         void AddUser(User user);
-        User GetUser(string UserName);
+        User GetUser(string userName, string password);
         IEnumerable<User> GetUsersCollection();
         IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
         void UpdateUser(User user);
-        void DeleteUser(string userName);
+        void DeleteUser(string userName, string password);
     }
 }
     

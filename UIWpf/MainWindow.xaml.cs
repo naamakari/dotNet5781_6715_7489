@@ -31,28 +31,61 @@ namespace UIWpf
 
         private void textName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (textName.Text != "" && textPas.Password != "")
+            if (textName.Text != "" && textPas.Password != "")
                 enter.IsEnabled = true;
         }
 
         private void textPas_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            //if (textName.Text != "" && textPas.Password != "")
+            if (textName.Text != "" && textPas.Password != "")
                 enter.IsEnabled = true;
         }
 
         private void enter_Click(object sender, RoutedEventArgs e)
         {
-            //בדיקה בנתונים שלנו אם הכל טוב
-            //ואם לא, להקפיץ הודעה שיש בעיה (לפי החריגה המתאימה), למחוק את מה שיש בשדות ולהפוך את כפתור הכניסה ללא זמין
-           ManagerWindow managerWindow = new ManagerWindow(bl);
-            managerWindow.ShowDialog();
+            try
+            {
+                string str = bl.isAllowEntry(textName.Text, textPas.Password);
+                if (str == "MANAGER")
+                {
+                    ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                    managerWindow.ShowDialog();
+                }
+                else if (str == "DRIVER")
+                {
+                    ;
+                }          
+            }
+            catch(KeyNotFoundException ex)
+            {
+                enter.IsEnabled = false;
+                error.Visibility = Visibility.Visible;
+                textName.Text = "";
+                textPas.Password = "";
+
+            }
+            
+                
+            
 
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void add_Click(object sender, RoutedEventArgs e)
         {
+            AddUser addUserWin = new AddUser(bl);
+            addUserWin.ShowDialog();
+            textName.Text = "";
+            textPas.Password = "";
+        } 
 
+        private void add_MouseEnter(object sender, MouseEventArgs e)
+        {
+            add.FontSize = 16;
+        }
+
+        private void add_MouseLeave(object sender, MouseEventArgs e)
+        {
+            add.FontSize = 14;
         }
     }
 }

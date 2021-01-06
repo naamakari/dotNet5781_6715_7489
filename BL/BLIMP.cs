@@ -270,7 +270,7 @@ namespace BL
                 DO.Bus busDO = dal.GetBus(lisenceNum);
                 BO.Bus busBO = new BO.Bus();
                 busDO.Clone(busBO);
-                busBO.LicenseNumber = setLicenseNumber(busBO.LicenseNumber);
+                busBO.LicenseNumber = setLicenseNumberTo(busBO.LicenseNumber);
 
                 return busBO;
                
@@ -312,7 +312,7 @@ namespace BL
                 IEnumerable<BO.Bus> buses = from item in dal.GetBusCollection()
                                             select new BO.Bus()
                                             {
-                                                LicenseNumber = setLicenseNumber(item.LicenseNumber),
+                                                LicenseNumber = setLicenseNumberTo(item.LicenseNumber),
                                                 StartDate=item.StartDate,
                                                 Kilometraz=item.Kilometraz,
                                                 KmSinceRefeul=item.KmSinceRefeul,
@@ -340,7 +340,7 @@ namespace BL
         /// </summary>
         /// <param name="licenseNumber"></param>
         /// <returns></returns>
-        public string setLicenseNumber(string licenseNumber)
+        public string setLicenseNumberTo(string licenseNumber)
         {
             string newLicenseNumber="";
             if (licenseNumber.Length == 8)
@@ -367,6 +367,29 @@ namespace BL
             }
             return newLicenseNumber;
             
+        }
+        public string setLicenseNumberFrom(string licenseNumber)
+        {
+            string newLicenseNumber = "";
+            if (licenseNumber.Length == 10)
+            {
+                for (int i = 0; i < 3; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 4; i < 6; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 7; i < 10; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            else if (licenseNumber.Length == 9)
+            {
+                for (int i = 0; i < 2; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 3; i < 6; i++)
+                    newLicenseNumber += licenseNumber[i];
+                for (int i = 7; i < 9; i++)
+                    newLicenseNumber += licenseNumber[i];
+            }
+            return newLicenseNumber;
         }
         #endregion
 
@@ -816,13 +839,38 @@ namespace BL
         }
         #endregion
 
-        public void addUser(string name, string password)
+        public void addUser(string name, string password, bool isManager)
         {
+            DO.User user = new DO.User()
+            {
+                UserName = name,
+                Password = password,
+                ManagePermission = isManager,
 
+            };
+            try
+            {
+                dal.AddUser(user);
+            }
+            catch(BO.DalAlreayExistExeption ex)
+            {
+                throw new BO.DalAlreayExistExeption(ex.Message, ex);
+            }
         }
-        public void isAllowEntry(string name, string password)
+        public string isAllowEntry(string name, string password)
         {
-
+            try
+            {
+                DO.User user = dal.GetUser(name,password);
+                if (user.ManagePermission)
+                    return "MANAGER";
+                else
+                    return "DRIVER";
+            }
+            catch(KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
         }
     }
 }

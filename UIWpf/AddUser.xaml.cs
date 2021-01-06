@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BO;
+using APIBL;
 
 namespace UIWpf
 {
@@ -19,9 +21,11 @@ namespace UIWpf
     /// </summary>
     public partial class AddUser : Window
     {
-        public AddUser()
+        IBL bl;
+        public AddUser(IBL _bl)
         {
             InitializeComponent();
+            bl = _bl;
         }
 
         private void manager_Checked(object sender, RoutedEventArgs e)
@@ -30,6 +34,10 @@ namespace UIWpf
                driver.IsEnabled = false;
             else
                 driver.IsEnabled = true;
+            if (textName.Text.Length >= 5 && textPas.Text.Length >= 6 && (manager.IsChecked == true || driver.IsChecked == true))
+            {
+                add.IsEnabled = true;
+            }
         }
 
         private void driver_Checked(object sender, RoutedEventArgs e)
@@ -38,20 +46,42 @@ namespace UIWpf
                manager.IsEnabled = false;
             else
                 manager.IsEnabled = true;
+            if (textName.Text.Length >= 5 && textPas.Text.Length >= 6 && (manager.IsChecked == true || driver.IsChecked == true))
+            {
+                add.IsEnabled = true;
+            }
         }
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            //הוספת המשתמש החדש לנתונים
-            //אם הוא מנהל
-           // ManagerWindow managerWindow = new ManagerWindow();
-            //לשלוח את היוזר
-            this.Close();
-            //managerWindow.ShowDialog();
-            //אם הוא נוסע
-            //פןתח חלון לנוסע
+            try
+            {
+                bl.addUser(textName.Text, textPas.Text,(bool)manager.IsChecked);
+                this.Close();
+            }
+            catch (BO.DalAlreayExistExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            
 
             
+        }
+
+        private void textName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(textName.Text.Length>=5&& textPas.Text.Length>=6&&(manager.IsChecked==true||driver.IsChecked==true))
+            {
+                add.IsEnabled = true;
+            }
+        }
+
+        private void textPas_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (textName.Text.Length >= 5 && textPas.Text.Length >= 6 && (manager.IsChecked == true || driver.IsChecked == true))
+            {
+                add.IsEnabled = true;
+            }
         }
     }
 }

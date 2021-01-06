@@ -54,11 +54,17 @@ namespace UIWpf
         private void refule_Click(object sender, RoutedEventArgs e)
         {
             Bus bus= busListView.SelectedItem as Bus;
-            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
+            Bus newBus;
+            buses.Remove(bus);
+            bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
             try
             {
                 bl.SendToRefuel(bus);
-                BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
+                newBus= bl.GetBus(bus.LicenseNumber);
+                BusDeatailsGrid.DataContext = newBus;
+               // bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
+                busListView.SelectedItem = newBus;
+                buses.Add(newBus);
             }
             catch (KeyNotFoundException ex)
             {
@@ -69,12 +75,17 @@ namespace UIWpf
         private void treat_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
-            
-            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
+            Bus newBus;
+            buses.Remove(bus);
+            bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
             try
             {
                 bl.SendToTreat(bus);
-                BusDeatailsGrid.DataContext = bl.GetBus(bus.LicenseNumber);
+                newBus= bl.GetBus(bus.LicenseNumber);
+                BusDeatailsGrid.DataContext = newBus;
+                //bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
+                busListView.SelectedItem = newBus;
+                buses.Add(newBus);
             }
             catch (KeyNotFoundException ex)
             {
@@ -86,7 +97,7 @@ namespace UIWpf
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
-            bus.LicenseNumber = setLicenseNumber(bus.LicenseNumber);
+            bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
             buses.Remove(bus);
             //bl.DeleteBus(bus.LicenseNumber);
             BusDeatailsGrid.DataContext = null;
@@ -331,7 +342,7 @@ namespace UIWpf
             try
             {
                 bl.AddBus(bus);
-                bus.LicenseNumber = bl.setLicenseNumber(bus.LicenseNumber);
+                bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 buses.Add(bus);
                 BusDeatailsGrid.Visibility = Visibility.Visible;
                 addGrid.Visibility = Visibility.Hidden;
@@ -344,29 +355,7 @@ namespace UIWpf
         }
 
         //The function returns a string of the license number without the'- '
-        string setLicenseNumber(string licenseNumber)
-        { 
-            string newLicenseNumber = "";
-            if (licenseNumber.Length == 10)
-            {
-                for (int i = 0; i < 3; i++)
-                    newLicenseNumber += licenseNumber[i];
-                for (int i = 4; i < 6; i++)
-                    newLicenseNumber += licenseNumber[i];
-                for (int i = 7; i < 10; i++)
-                    newLicenseNumber += licenseNumber[i];
-            }
-            else if (licenseNumber.Length == 9)
-            {
-                for (int i = 0; i < 2; i++)
-                    newLicenseNumber += licenseNumber[i];
-                for (int i = 3; i < 6; i++)
-                    newLicenseNumber += licenseNumber[i];
-                for (int i = 7; i < 9; i++)
-                    newLicenseNumber += licenseNumber[i];
-            }
-            return newLicenseNumber;
-        }
+      
 
         private void cancle_Click(object sender, RoutedEventArgs e)
         {

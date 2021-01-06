@@ -330,11 +330,11 @@ namespace DL
                 throw new DalAlreayExistExeption("כבר קיים במערכת " + user.UserName + " שם המשתמש");
             DataS.users.Add(user.Clone());
         }
-        public User GetUser(string UserName)
+        public User GetUser(string userName, string password)
         {
-            User user = DataS.users.Find(x => x.UserName == UserName);
+            User user = DataS.users.Find(x => x.UserName == userName&&x.Password==password);
             if(user==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + UserName + " המשתמש");
+                throw new KeyNotFoundException("לא קיים במערכת " + userName + " המשתמש");
             return user.Clone();
         }
         public IEnumerable<User> GetUsersCollection()
@@ -362,9 +362,9 @@ namespace DL
             DataS.users.Remove(user1);
             DataS.users.Add(user.Clone());
         }
-        public void DeleteUser(string userName)
+        public void DeleteUser(string userName, string password)
         {
-            User TempUser = DataS.users.Find(x => x.UserName == userName);
+            User TempUser = DataS.users.Find(x => x.UserName == userName&&x.Password==password);
             if(TempUser==null)
                 throw new KeyNotFoundException("כבר לא קיים במערכת " + userName + " המשתמש");
             if (!DataS.users.Remove(TempUser))
