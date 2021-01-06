@@ -79,7 +79,9 @@ namespace UIWpf
 
         private void searchStationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            IEnumerable<BusStationBL> busStationCollection = stations.Where(x => x.StationCode.ToString().Contains(searchStationTextBox.Text) || x.StationName.Contains(searchStationTextBox.Text)
+           || x.Address.Contains(searchStationTextBox.Text));//|| x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
+            busStationBLDataGrid.ItemsSource = busStationCollection;
         }
 
         private void busStationBLDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -190,8 +192,13 @@ namespace UIWpf
                 busStationBL = bl.GetBusStationBL(busStation.StationCode);
                 busStationDetailes.DataContext= busStationBL;
                 if (busStationBL != null)
-                    collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
+                    collectionBusLinesListView.ItemsSource = busStationBL.CollectionBusLines;
                 busStationDetailes.Visibility = Visibility.Visible;
+                stations.Add(busStationBL);
+                //stations.Clear();
+                //foreach (BusStationBL item in bl.GetAllStations())
+                //    stations.Add(item);
+                //busStationBLDataGrid.ItemsSource = stations;
 
                 MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -208,7 +215,8 @@ namespace UIWpf
             {
                 var fxElt = sender as FrameworkElement;//casting for bus
                 BusLine busLine = fxElt.DataContext as BusLine;
-                BusStation busStation = busStationBLDataGrid.SelectedItem as BusStation;
+                BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
+                stations.Remove(busStation);
                 StationInLine stationInLine = bl.getStationInLine(busLine.BusId, busStation.StationCode);
                 bl.DeleteStationInLine(stationInLine);
                 BusStationBL busStationBL = bl.GetBusStationBL(busStation.StationCode);
