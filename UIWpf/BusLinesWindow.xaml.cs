@@ -60,6 +60,7 @@ namespace UIWpf
             DetailsGrid.Visibility = Visibility.Hidden;
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
+            AllStationListView.IsEnabled = true;
             try
             {
                 AllStationListView.ItemsSource = bl.GetAllStations();
@@ -187,7 +188,7 @@ namespace UIWpf
                             AddTimeAndDisLable.Visibility = Visibility.Visible;
                             AllStationListView.IsEnabled = false;
                             finishDisAndTime.IsChecked = false;
-                            AddTimeAndDisLable.Content= " הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode + ":";
+                            AddTimeAndDisLable.Content= " :הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode ;
                         }
 
                 }
@@ -196,6 +197,24 @@ namespace UIWpf
             {
 
             }
+        }
+
+        private void AddDistance_KeyDown(object sender, KeyEventArgs e)
+        {
+            bool nonNumeriable = false;
+
+            //if the key is not a number from the up keyboard
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                //if the key is not a number from the side keyboard
+                if (e.Key < Key.NumPad0 || e.Key > Key.NumPad9)
+                    if (e.Key != Key.Decimal)
+                        nonNumeriable = true;
+            if (nonNumeriable == true)
+            {
+                e.Handled = true;
+
+            }
+           
         }
 
         private void finishDisAndTime_Checked(object sender, RoutedEventArgs e)
