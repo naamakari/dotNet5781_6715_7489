@@ -52,6 +52,7 @@ namespace UIWpf
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+
         }
 
         private void addBusLine_Click(object sender, RoutedEventArgs e)
@@ -64,6 +65,17 @@ namespace UIWpf
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
             AllStationListView.IsEnabled = true;
+
+            AddDistance.Visibility = Visibility.Hidden;
+            AddDistance.Text = "";
+            AddTime.Visibility = Visibility.Hidden;
+            AddTime.Text = "";
+            finishDisAndTime.Visibility = Visibility.Hidden;
+            AddTimeAndDisLable.Visibility = Visibility.Hidden;
+            TimeImage.Visibility = Visibility.Hidden;
+                DisImage.Visibility = Visibility.Hidden;
+
+
             try
             {
                 AllStationListView.ItemsSource = bl.GetAllStations();
@@ -280,9 +292,8 @@ namespace UIWpf
                     TimeImage.Visibility = Visibility.Visible;
                     DisImage.Visibility = Visibility.Visible;
                     finishDisAndTime.IsChecked = false;
-                    AddDistance.Text = "הכנס/י את המרחק מתחנה " + busStations[index].StationCode + "לתחנה " + busStations[index + 1].StationCode + ":";
-                    AddTime.Text = "הכנס/י את הזמן בדקות מתחנה " + busStations[index].StationCode + "לתחנה " + busStations[index + 1].StationCode + ":";
-
+                    AddTimeAndDisLable.Visibility = Visibility.Visible;
+                    AddTimeAndDisLable.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode;
                 }
             else
             {
@@ -367,6 +378,10 @@ namespace UIWpf
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text) || x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text) || x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
+            collectionOfStationListView.ItemsSource = null;
+            UpdateBusLine.IsEnabled = false;
+            DeleteBusLine.IsEnabled = false;
+          
         }
 
         private void addStationToLine_Click(object sender, RoutedEventArgs e)
@@ -690,7 +705,7 @@ namespace UIWpf
                         TimeTravelBetweenStations = float.Parse(AddTimeUpdate.Text)
                     });
                 }
-                else if(int.Parse(indexOfNewStation.Text)==1&&flag==true)
+                else if(flag == true&&int.Parse(indexOfNewStation.Text)==1)
                 {
                     bl.AddFollowingStations(new FollowingStations
                     {
@@ -717,6 +732,8 @@ namespace UIWpf
                 TimeImageUpdate.Visibility = Visibility.Hidden;
                 DisImageUpdate.Visibility = Visibility.Hidden;
                 AllStationListBox.IsEnabled = true;
+                ///RealyUpdateBusLine.IsEnabled = true;
+                 if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null)
                 RealyUpdateBusLine.IsEnabled = true;
                 AddDistanceUpdate.Text = "";
                 AddTimeUpdate.Text = "";
@@ -752,7 +769,7 @@ namespace UIWpf
             }
             else
             {
-                MessageBox.Show("נא למלא את כל השדות", "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("נא למלא את כל השדות", "הודעת מערכת", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 finishDisAndTimeUpdate.IsChecked = false;
             }
         }
