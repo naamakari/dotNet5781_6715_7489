@@ -58,10 +58,15 @@ namespace UIWpf
             {
                 bl.addUser(textName.Text, textPas.Text,(bool)manager.IsChecked);
                 this.Close();
+                ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                managerWindow.ShowDialog();
+                
             }
             catch (BO.DalAlreayExistExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                textName.Text = "";
+                add.IsEnabled = false;
             }
             
 

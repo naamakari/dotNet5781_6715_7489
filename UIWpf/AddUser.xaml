@@ -8,7 +8,7 @@
         Title="AddUser" Height="349.436" Width="330.7">
 
 
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Background="#FFFAF8B6">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="0.5*"/>
@@ -24,15 +24,23 @@
             <ColumnDefinition Width="1*"/>
 
         </Grid.ColumnDefinitions>
-        <Label x:Name="lab1" Content="יצירת משתמש חדש"  HorizontalAlignment="Left" Margin="74,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="28" Grid.ColumnSpan="2"/>
-        <Label x:Name="name" Content=":שם משתמש" HorizontalAlignment="Left" Margin="162,10.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="129" Height="43" FontSize="18" Grid.ColumnSpan="2"/>
-        <Label x:Name="password" Content=":סיסמא" HorizontalAlignment="Left" Margin="162,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="129" Height="43" FontSize="18" Grid.ColumnSpan="2"/>
-        <Label x:Name="lab2" Content="בחר שם משתמש וסיסמא"  HorizontalAlignment="Left" Margin="133,0,0,0" VerticalAlignment="Top" Width="190" Height="26" FontSize="14" HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <TextBox x:Name="textName" HorizontalAlignment="Left" Height="33" Margin="32,10.6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textName_TextChanged"/>
-        <TextBox x:Name="textPas" HorizontalAlignment="Left" Height="33" Margin="32,10.6,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textPas_TextChanged"/>
-        <CheckBox x:Name="manager" Content="מנהל" HorizontalAlignment="Left" Margin="74,7.4,0,0" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Checked="manager_Checked" />
-        <CheckBox x:Name="driver" Content="נוסע" HorizontalAlignment="Left" Margin="74,32.4,0,0" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Checked="driver_Checked" />
-        <Label x:Name="options" Content=":הכנס בתור" HorizontalAlignment="Left" Margin="162,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="43" FontSize="18" Grid.ColumnSpan="2" />
-        <Button x:Name="add" Content="הוסף" IsEnabled="false" HorizontalAlignment="Left" Margin="32,9.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="97" Height="33" Click="add_Click"/>
+        <Label x:Name="lab1" Content="יצירת משתמש חדש" FontWeight="SemiBold" Foreground="Blue"  HorizontalAlignment="Center" Margin="38,10,36,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="27" Grid.ColumnSpan="2"/>
+        <Label x:Name="name" Content=":שם משתמש" Foreground="Blue" FontWeight="Medium" HorizontalAlignment="Left" Margin="162,10.6,0,0" Grid.Row="2" VerticalAlignment="Top" Width="129" Height="43" FontSize="18" Grid.ColumnSpan="2"/>
+        <Label x:Name="password" Content=":סיסמא" Foreground="Blue"  FontWeight="Medium" HorizontalAlignment="Left" Margin="162,10,0,0" Grid.Row="3" VerticalAlignment="Top" Width="81" Height="43" FontSize="18" Grid.ColumnSpan="2"/>
+        <Label x:Name="lab2" Content="בחר/י שם משתמש וסיסמא" FontWeight="Medium" Foreground="Blue" HorizontalAlignment="Center" Margin="66,0,81,0" VerticalAlignment="Top" Width="177" Height="26" FontSize="14" HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <TextBox x:Name="textName" FontSize="16" Foreground="Blue" FontWeight="SemiBold" Background="LightYellow" BorderBrush="Blue" BorderThickness="1.5" HorizontalAlignment="Left" Height="33" Margin="32,10.6,0,0" Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textName_TextChanged">
+            <TextBox.ToolTip>
+                <TextBlock Text="שם המשתמש צריך להכיל לפחות 5 תווים" Foreground="Black" Background="WhiteSmoke"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBox x:Name="textPas" FontSize="16" FontWeight="SemiBold" Foreground="Blue" Background="LightYellow" BorderBrush="Blue" BorderThickness="1.5" HorizontalAlignment="Left" Height="33" Margin="32,10.6,0,0" Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="textPas_TextChanged">
+            <TextBox.ToolTip>
+                <TextBlock Text="הסיסמא צריכה להכיל לפחות 6 תווים" Foreground="Black" Background="WhiteSmoke"/>
+            </TextBox.ToolTip>
+        </TextBox>
+        <CheckBox x:Name="manager" Content="מנהל" BorderBrush="Blue" BorderThickness="1.5" Foreground="Blue"  FontWeight="Medium" HorizontalAlignment="Left" Margin="74,7.4,0,0" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Checked="manager_Checked" />
+        <CheckBox x:Name="driver" Content="נוסע" BorderBrush="Blue" BorderThickness="1.5" Foreground="Blue"  FontWeight="Medium" HorizontalAlignment="Left" Margin="74,32.4,0,0" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Checked="driver_Checked" />
+        <Label x:Name="options" Content=":הכנס/י בתור" Foreground="Blue"  FontWeight="Medium" HorizontalAlignment="Left" Margin="162,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="43" FontSize="18" Grid.ColumnSpan="2" />
+        <Button x:Name="add" Content="צור/י" IsEnabled="false" FontSize="16" Background="LightYellow" FontWeight="SemiBold" BorderBrush="Blue" BorderThickness="1.5" HorizontalAlignment="Left" Margin="32,9.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="97" Height="33" Click="add_Click"/>
     </Grid>
 </Window>

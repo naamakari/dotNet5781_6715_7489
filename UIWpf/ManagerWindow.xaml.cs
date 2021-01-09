@@ -28,7 +28,7 @@ namespace UIWpf
             bl = _Bl;
             InitializeComponent();
 
-           UserName.Content = name+" שלום ";
+           UserName.Content = ","+name+" שלום ";
             UserName.Visibility = Visibility.Visible;
         }
       

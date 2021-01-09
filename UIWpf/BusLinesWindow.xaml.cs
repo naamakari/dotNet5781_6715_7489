@@ -73,7 +73,7 @@ namespace UIWpf
             finishDisAndTime.Visibility = Visibility.Hidden;
             AddTimeAndDisLable.Visibility = Visibility.Hidden;
             TimeImage.Visibility = Visibility.Hidden;
-                DisImage.Visibility = Visibility.Hidden;
+            DisImage.Visibility = Visibility.Hidden;
 
 
             try
@@ -205,7 +205,7 @@ namespace UIWpf
                             DisImage.Visibility = Visibility.Visible;
                             AllStationListView.IsEnabled = false;
                             finishDisAndTime.IsChecked = false;
-                            AddTimeAndDisLable.Content= " :הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode ;
+                            AddTimeAndDisLable.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode;
                         }
 
                 }
@@ -231,7 +231,7 @@ namespace UIWpf
                 e.Handled = true;
 
             }
-           
+
         }
 
         private void finishDisAndTime_Checked(object sender, RoutedEventArgs e)
@@ -252,6 +252,7 @@ namespace UIWpf
                 TimeImage.Visibility = Visibility.Hidden;
                 DisImage.Visibility = Visibility.Hidden;
                 AllStationListView.IsEnabled = true;
+                collectionOfStationListViewAdd.IsEnabled = true;
                 AddDistance.Text = "";
                 AddTime.Text = "";
                 index++;
@@ -263,10 +264,9 @@ namespace UIWpf
             }
 
         }
- 
+
         private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
         {
-
             var busLine = sender as FrameworkElement;//casting for bus
             BusStation busStation = busLine.DataContext as BusStation;
             busStations.Remove(busStation);
@@ -293,6 +293,7 @@ namespace UIWpf
                     DisImage.Visibility = Visibility.Visible;
                     finishDisAndTime.IsChecked = false;
                     AddTimeAndDisLable.Visibility = Visibility.Visible;
+                    collectionOfStationListViewAdd.IsEnabled = false;
                     AddTimeAndDisLable.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + busStations[index].StationCode + " לתחנה " + busStations[index + 1].StationCode;
                 }
             else
@@ -304,6 +305,7 @@ namespace UIWpf
                 DisImage.Visibility = Visibility.Hidden;
                 finishDisAndTime.IsChecked = false;
                 AddTimeAndDisLable.Visibility = Visibility.Hidden;
+                collectionOfStationListViewAdd.IsEnabled = true;
                 AddDistance.Text = "";
                 AddTime.Text = "";
             }
@@ -343,7 +345,7 @@ namespace UIWpf
             }
             catch (BO.DalAlreayExistFollowingStationsExeption ex)
             {
-               // return;
+                // return;
             }
 
         }
@@ -374,14 +376,14 @@ namespace UIWpf
         }
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
-       {
+        {
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text) || x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text) || x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
             collectionOfStationListView.ItemsSource = null;
             UpdateBusLine.IsEnabled = false;
             DeleteBusLine.IsEnabled = false;
-          
+
         }
 
         private void addStationToLine_Click(object sender, RoutedEventArgs e)
@@ -397,7 +399,7 @@ namespace UIWpf
             indexOfNewStation.IsEnabled = false;
             labelToAdd.Visibility = Visibility.Visible;
             finishAddStationCheckBox.Visibility = Visibility.Visible;
-           
+
             try
             {
                 AllStationListBox.ItemsSource = bl.GetAllStations();
@@ -433,7 +435,7 @@ namespace UIWpf
             bool isFirst = false;
             bool isLast = false;
             indexOfStation = int.Parse(indexOfNewStation.Text);
-            if (int.Parse(indexOfNewStation.Text) > SelectedItemBusStations.Count()|| int.Parse(indexOfNewStation.Text)<=0)
+            if (int.Parse(indexOfNewStation.Text) > SelectedItemBusStations.Count() + 1 || int.Parse(indexOfNewStation.Text) <= 0)
             {
                 MessageBox.Show("האינדקס לא מתאים למספר התחנות בקו, הכנס/י מספר מתאים");
                 finishAddStationCheckBox.IsChecked = false;
@@ -471,8 +473,9 @@ namespace UIWpf
                     labelToAdd.Visibility = Visibility.Hidden;
                     finishAddStationCheckBox.Visibility = Visibility.Hidden;
                     addStationToLine.IsEnabled = true;
+                    collectionOfStationListViewAdd.IsEnabled = true;
                     flag = true;
-                    if(int.Parse(indexOfNewStation.Text) ==1)
+                    if (int.Parse(indexOfNewStation.Text) == 1)
                         try
                         {
                             bl.GetFollowingStations(new FollowingStations
@@ -481,12 +484,12 @@ namespace UIWpf
                                 StationCode2 = SelectedItemBusStations[1].StationCode
                             });
                         }
-                        catch(BO.DalAlreayExistFollowingStationsExeption ex)
+                        catch (BO.DalAlreayExistFollowingStationsExeption ex)
                         {
                             AddDistanceUpdate.Visibility = Visibility.Visible;
                             AddTimeUpdate.Visibility = Visibility.Visible;
                             finishDisAndTimeUpdate.Visibility = Visibility.Visible;
-                           AddTimeAndDisLableUpdate.Visibility = Visibility.Visible;
+                            AddTimeAndDisLableUpdate.Visibility = Visibility.Visible;
                             TimeImageUpdate.Visibility = Visibility.Visible;
                             DisImageUpdate.Visibility = Visibility.Visible;
                             AllStationListBox.IsEnabled = false;
@@ -494,7 +497,7 @@ namespace UIWpf
                             RealyUpdateBusLine.IsEnabled = false;
                             AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[0].StationCode + " לתחנה " + SelectedItemBusStations[1].StationCode;
                         }
-                    else if(int.Parse(indexOfNewStation.Text) == SelectedItemBusStations.Count()-1)
+                    else if (int.Parse(indexOfNewStation.Text) == SelectedItemBusStations.Count() - 1)
                     {
                         try
                         {
@@ -522,16 +525,16 @@ namespace UIWpf
                     {
                         try
                         {
-                           
-                            
-                            
-                                bl.GetFollowingStations(new FollowingStations
-                                {
-                                    StationCode1 = SelectedItemBusStations[indexOfStation - 2].StationCode,
-                                    StationCode2 = SelectedItemBusStations[indexOfStation - 1].StationCode
-                                });
-                               
-                           
+
+
+
+                            bl.GetFollowingStations(new FollowingStations
+                            {
+                                StationCode1 = SelectedItemBusStations[indexOfStation - 2].StationCode,
+                                StationCode2 = SelectedItemBusStations[indexOfStation - 1].StationCode
+                            });
+
+
                         }
                         catch (BO.DalAlreayExistFollowingStationsExeption ex)
                         {
@@ -544,11 +547,11 @@ namespace UIWpf
                             AllStationListBox.IsEnabled = false;
                             finishDisAndTimeUpdate.IsChecked = false;
                             RealyUpdateBusLine.IsEnabled = false;
-                            AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text)-2].StationCode + " לתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text)-1].StationCode;
+                            AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text) - 2].StationCode + " לתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text) - 1].StationCode;
                         }
                     }
 
-                    
+
 
                 }
                 catch (BO.DalAlreayExistExeption ex)
@@ -592,7 +595,7 @@ namespace UIWpf
             bool isLast = false;
             var busLine = sender as FrameworkElement;//casting for bus
             BusStation busStation = busLine.DataContext as BusStation;
-             indexOfDelete = SelectedItemBusStations.IndexOf(busStation);
+            indexOfDelete = SelectedItemBusStations.IndexOf(busStation);
             if (indexOfDelete == 0)
                 isFirst = true;
             else if (indexOfDelete == SelectedItemBusStations.Count() - 1)
@@ -612,14 +615,14 @@ namespace UIWpf
                 SelectedItemBusStations.Remove(busStation);
                 //collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
 
-                if(indexOfDelete != 0&& indexOfDelete != SelectedItemBusStations.Count())
+                if (indexOfDelete != 0 && indexOfDelete != SelectedItemBusStations.Count())
                 {
                     try
                     {
 
                         bl.GetFollowingStations(new FollowingStations
                         {
-                            StationCode1 = SelectedItemBusStations[indexOfDelete-1].StationCode,
+                            StationCode1 = SelectedItemBusStations[indexOfDelete - 1].StationCode,
                             StationCode2 = SelectedItemBusStations[indexOfDelete].StationCode
                         });
 
@@ -635,6 +638,7 @@ namespace UIWpf
                         AllStationListBox.IsEnabled = false;
                         finishDisAndTimeUpdate.IsChecked = false;
                         RealyUpdateBusLine.IsEnabled = false;
+                        collectionOfStationListViewUpdate.IsEnabled = false;
                         AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[indexOfDelete - 1].StationCode + " לתחנה " + SelectedItemBusStations[indexOfDelete].StationCode;
                         flag = false;
                     }
@@ -692,10 +696,10 @@ namespace UIWpf
 
         private void finishDisAndTimeUpdate_Checked(object sender, RoutedEventArgs e)
         {
-            
+
             if (AddDistanceUpdate.Text != "" && AddTimeUpdate.Text != "")
             {
-                if (flag == true&& int.Parse(indexOfNewStation.Text)!=1)
+                if (flag == true && int.Parse(indexOfNewStation.Text) != 1)
                 {
                     bl.AddFollowingStations(new FollowingStations
                     {
@@ -705,7 +709,7 @@ namespace UIWpf
                         TimeTravelBetweenStations = float.Parse(AddTimeUpdate.Text)
                     });
                 }
-                else if(flag == true&&int.Parse(indexOfNewStation.Text)==1)
+                else if (flag == true && int.Parse(indexOfNewStation.Text) == 1)
                 {
                     bl.AddFollowingStations(new FollowingStations
                     {
@@ -732,20 +736,23 @@ namespace UIWpf
                 TimeImageUpdate.Visibility = Visibility.Hidden;
                 DisImageUpdate.Visibility = Visibility.Hidden;
                 AllStationListBox.IsEnabled = true;
+                collectionOfStationListViewUpdate.IsEnabled = true;
                 ///RealyUpdateBusLine.IsEnabled = true;
-                 if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null)
-                RealyUpdateBusLine.IsEnabled = true;
+                if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && areaAtLandTextBoxUpdate.SelectedItem != null)
+                    RealyUpdateBusLine.IsEnabled = true;
+                else
+                    RealyUpdateBusLine.IsEnabled = false;
                 AddDistanceUpdate.Text = "";
                 AddTimeUpdate.Text = "";
-                if (helpIndex == 0&&flag==true)
+                if (helpIndex == 0 && flag == true)
                 {
                     try
                     {
 
                         bl.GetFollowingStations(new FollowingStations
                         {
-                            StationCode1 = SelectedItemBusStations[indexOfStation - 1].StationCode,
-                            StationCode2 = SelectedItemBusStations[indexOfStation].StationCode
+                            StationCode1 = SelectedItemBusStations[indexOfStation - 2].StationCode,
+                            StationCode2 = SelectedItemBusStations[indexOfStation-1].StationCode
                         });
 
                         helpIndex++;
@@ -761,6 +768,7 @@ namespace UIWpf
                         AllStationListBox.IsEnabled = false;
                         finishDisAndTimeUpdate.IsChecked = false;
                         RealyUpdateBusLine.IsEnabled = false;
+                        collectionOfStationListViewUpdate.IsEnabled = false;
                         AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text) - 1].StationCode + " לתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text)].StationCode;
                         helpIndex++;
                     }

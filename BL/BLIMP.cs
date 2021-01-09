@@ -852,7 +852,7 @@ namespace BL
             {
                 dal.AddUser(user);
             }
-            catch(BO.DalAlreayExistExeption ex)
+            catch(DO.DalAlreayExistExeption ex)
             {
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }

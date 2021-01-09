@@ -50,6 +50,7 @@ namespace UIWpf
                 {
                     ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
                     managerWindow.ShowDialog();
+                    this.Close();
                 }
                 else if (str == "DRIVER")
                 {
@@ -72,10 +73,19 @@ namespace UIWpf
 
         private void add_Click(object sender, RoutedEventArgs e)
         {
-            AddUser addUserWin = new AddUser(bl);
-            addUserWin.ShowDialog();
-            textName.Text = "";
-            textPas.Password = "";
+            try
+            {
+
+                AddUser addUserWin = new AddUser(bl);
+                addUserWin.ShowDialog();
+                textName.Text = "";
+                textPas.Password = "";
+                this.Close();
+            }
+            catch(BO.DalAlreayExistExeption ex)
+            {
+
+            }
         } 
 
         private void add_MouseEnter(object sender, MouseEventArgs e)
