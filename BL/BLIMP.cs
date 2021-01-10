@@ -11,7 +11,16 @@ namespace BL
 
     public class BLIMP : IBL
     {
-
+        #region singelton
+        static readonly BLIMP instance = new BLIMP();
+        static BLIMP() { }
+        BLIMP() { }
+        public static BLIMP Instance { get => instance; }
+        #endregion
+       
+        
+        
+        
         readonly IDAL dal = DalFactory.GetDal();
         /// <summary>
         /// refule the bus

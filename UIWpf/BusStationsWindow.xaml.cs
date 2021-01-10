@@ -56,7 +56,7 @@ namespace UIWpf
 
         }
 
-        private void DeleteBusLine_Click(object sender, RoutedEventArgs e)
+        private void DeleteBusStation_Click(object sender, RoutedEventArgs e)
         {
             BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
             stations.Remove(busStation);

@@ -679,9 +679,13 @@ namespace UIWpf
                 foreach (BusLineBL item in bl.GetAllLines())
                     busLineBLs.Add(item);
                 busLineBLListView.ItemsSource = busLineBLs;
+                BusLineBL busLineBLNew = new BusLineBL();
+                busLineBLNew = bl.GetBusLineBL(newBusLine.BusId);
+                DetailsGrid.DataContext = busLineBLNew;
+                collectionOfStationListView.ItemsSource = busLineBLNew.CollectionOfStation;
                 DetailsGrid.Visibility = Visibility.Visible;
                 UpdateGrid.Visibility = Visibility.Hidden;
-                collectionOfStationListView.ItemsSource = null;
+                
                 MessageBox.Show("קו האוטובוס עודכן בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (KeyNotFoundException ex)
