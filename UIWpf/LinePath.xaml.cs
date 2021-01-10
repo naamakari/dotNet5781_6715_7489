@@ -70,7 +70,6 @@ namespace UIWpf
             //string timerText = stopWatch.Elapsed.ToString();
             // timerText = timerText.Substring(0, 8);
             //this.timerTextBlock.Text = timerText;
-
         }
 
 
