@@ -12,29 +12,31 @@
 
     <Grid>
 
-        <DataGrid x:Name="busStationBLDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="386,106,9.6,149.2"  EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="busStationBLDataGrid_SelectionChanged">
+        <DataGrid x:Name="busStationBLDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="386,106,9.6,149.2" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="busStationBLDataGrid_SelectionChanged" HorizontalContentAlignment="Center">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="stationCodeColumn" Width="70" Header="קוד תחנה">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding StationCode}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="stationNameColumn" Width="150" Header="שם התחנה">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding StationName}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="addressColumn" Width="130" Header="כתובת">
+                <DataGridTemplateColumn x:Name="addressColumn" Width="150" Header="כתובת">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Address}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="stationNameColumn" Width="170" Header="שם התחנה">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StationName}" TextAlignment="Right"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="stationCodeColumn" Width="80" Header="קוד תחנה">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StationCode}" TextAlignment="Right"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="searchStationTextBox" Text="" TextChanged="searchStationTextBox_TextChanged" TextAlignment="Right" HorizontalAlignment="Left" Height="37" Margin="589,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" />
