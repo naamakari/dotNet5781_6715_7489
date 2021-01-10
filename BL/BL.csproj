@@ -48,6 +48,7 @@
     <Compile Include="BO\BusLineBL.cs" />
     <Compile Include="BO\BusStation.cs" />
     <Compile Include="BO\BusStationBL.cs" />
+    <Compile Include="BO\LineTiming.cs" />
     <Compile Include="Cloning.cs" />
     <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\FollowingStations.cs" />

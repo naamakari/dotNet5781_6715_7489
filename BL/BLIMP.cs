@@ -209,7 +209,7 @@ namespace BL
         /// <param name="lastStationCode"></param>
         /// <param name="lineId"></param>
         /// <returns></returns>
-        public float TimeBetweenStations(int startStationCode, int lastStationCode, int lineId)
+        public TimeSpan TimeBetweenStations(int startStationCode, int lastStationCode, int lineId)
         { 
             try
             {
@@ -228,7 +228,7 @@ namespace BL
                 }
                 if (i == stationsList.Count - 1&&lastStationCode!= stationsList[i].StationCode)
                     throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
-                return sumTime;
+                return TimeSpan.Parse(sumTime.ToString());
             }
             catch (KeyNotFoundException ex)
             {
@@ -254,6 +254,19 @@ namespace BL
             float dis= (float)Math.Sqrt(Math.Pow(start.Latitude - destination.Latitude, 2) + Math.Pow(start.Longitude - destination.Longitude, 2));
             dis = (float)(dis * 1.5);//To be closer to reality
             return dis;
+        }
+
+
+        public BO.LineTiming GetLineTiming(BO.BusLineBL CurrentBusLineBL, BO.BusStation CurrentBusStation)
+        {
+            TimeSpan.FromMinutes(2.3);// timeSpan = TimeSpan.Parse(TimeBetweenStations(CurrentBusLineBL.NumberFirstStation, CurrentBusStation.StationCode, CurrentBusLineBL.BusId).ToString());
+
+        }
+        public IEnumerable<BO.LineTiming> GetLineTimingsAccordingLine(IEnumerable<BO.BusLineBL> busLineBLs, BO.BusStation CurrentBusStation)
+        {
+            IEnumerable<BO.LineTiming> lineTimings = from item in busLineBLs
+                                                     select GetLineTiming(item, CurrentBusStation);
+            return lineTimings;
         }
 
         //נעמה
