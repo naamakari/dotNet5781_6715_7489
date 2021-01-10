@@ -54,7 +54,9 @@ namespace UIWpf
                 }
                 else if (str == "DRIVER")
                 {
-                    ;
+                    LinePath linePath = new LinePath(bl);
+                    linePath.ShowDialog();
+                    
                 }          
             }
             catch(KeyNotFoundException ex)

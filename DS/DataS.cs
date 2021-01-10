@@ -556,6 +556,8 @@ namespace DS
             users.Add(new User { UserName = "RenanaC", Password = "RenanaC123", ManagePermission = true });
             users.Add(new User { UserName = "NaamaK", Password = "Naama206", ManagePermission = false });
             users.Add(new User { UserName = "naama", Password = "123", ManagePermission = true });
+            users.Add(new User { UserName = "naamaa", Password = "123", ManagePermission = false });
+
             #endregion
         }
     }
