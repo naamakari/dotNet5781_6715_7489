@@ -125,22 +125,14 @@ namespace UIWpf
 
         private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (firstStationComboBox.SelectedItem != null && lastStationComboBox.SelectedItem != null && (firstStationComboBox.SelectedItem != lastStationComboBox.SelectedItem))
+            if (firstStationComboBox.SelectedItem != null && lastStationComboBox.SelectedItem != null && (firstStationComboBox.SelectedItem.ToString() != lastStationComboBox.SelectedItem.ToString()))
                 searchLines.IsEnabled = true;
-            else if (firstStationComboBox.SelectedItem == lastStationComboBox.SelectedItem&&firstStationComboBox.SelectedItem!=null)
+            else if (firstStationComboBox.SelectedItem != null&& lastStationComboBox.SelectedItem != null&&firstStationComboBox.SelectedItem.ToString() == lastStationComboBox.SelectedItem.ToString())
             {
                 MessageBox.Show("תחנת המוצא והיעד לא אפשריות, בחר/י תחנות מוצא ויעד אחרות", "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 firstStationComboBox.SelectedItem = null;
                 lastStationComboBox.SelectedItem = null;
             }
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource lineTimingViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineTimingViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // lineTimingViewSource.Source = [generic data source]
         }
     }
 }

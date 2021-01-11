@@ -7,9 +7,7 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.BusLinesWindow"
         mc:Ignorable="d"
         Title="BusLinesWindow" Height="650" Width="1000">
-    <Window.Resources>
-        <CollectionViewSource x:Key="busLineBLViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:BusLineBL}, CreateList=True}"/>
-    </Window.Resources>
+   
 
     <Grid x:Name="MainGrid" Margin="0,0,-0.4,0" RenderTransformOrigin="0.724,0.46" Background="#FFF9D6D4" >
 

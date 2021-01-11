@@ -591,6 +591,23 @@ namespace DS
                 EndAt = new TimeSpan(20, 00, 00),
                 Frequency = 15
             });
+            lineTrips.Add(new LineTrip
+            {
+                LineId = 1114,
+                NumLine = 418,
+                StartAt = new TimeSpan(20, 00, 00),
+
+                EndAt = new TimeSpan(23, 00, 00),
+                Frequency = 20
+            }); lineTrips.Add(new LineTrip
+            {
+                LineId = 1111,
+                NumLine = 1,
+                StartAt = new TimeSpan(20, 00, 00),
+
+                EndAt = new TimeSpan(23, 00, 00),
+                Frequency = 15
+            });
             #endregion
         }
 
