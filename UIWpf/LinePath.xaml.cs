@@ -32,14 +32,17 @@ namespace UIWpf
         private bool isTimerRun=false;
         BackgroundWorker timerworker;
         string str;
+        IEnumerable<BusLineBL> busLineBLsPossiblePath;
         IBL bl;
+
         public LinePath(IBL _bl)
         {
             bl = _bl;
             InitializeComponent();
-            firstStationListBox.ItemsSource = bl.GetAllStations();
-            LastStationListBox.ItemsSource = bl.GetAllStations();
 
+        
+            firstStationComboBox.ItemsSource = bl.GetAllStations();
+            lastStationComboBox.ItemsSource = bl.GetAllStations();
 
 
             // stopWatch = new Stopwatch();
@@ -68,11 +71,13 @@ namespace UIWpf
 
         private void Timerworker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            BusStation currBusStation = firstStationComboBox.SelectedItem as BusStation;
             str = DateTime.Now.ToString();
             timer.Text = str.Substring(10, 9);
             //string timerText = stopWatch.Elapsed.ToString();
             // timerText = timerText.Substring(0, 8);
             //this.timerTextBlock.Text = timerText;
+            lineTimingDataGrid.DataContext = bl.GetLineTimingsAccordingLine(busLineBLsPossiblePath, currBusStation);
         }
 
 
@@ -102,17 +107,40 @@ namespace UIWpf
 
         private void searchLines_Click(object sender, RoutedEventArgs e)
         {
-            BusStation firstStation = firstStationListBox.SelectedItem as BusStation;
-            BusStation lastStation = LastStationListBox.SelectedItem as BusStation;
+            BusStation firstStation = firstStationComboBox.SelectedItem as BusStation;
+            BusStation lastStation = lastStationComboBox.SelectedItem as BusStation;
+          //  string first = firstStationComboBox.SelectedItem as string;
+
             try
             {
+                busLineBLsPossiblePath= bl.GetPossiblePath(firstStation.StationCode, lastStation.StationCode);
+                busLineBLDataGrid.ItemsSource = busLineBLsPossiblePath;
 
-                busLineBLDataGrid.ItemsSource = bl.GetPossiblePath(firstStation.StationCode, lastStation.StationCode);
             }
-            catch(BO.DalEmptyCollectionExeption)
+            catch (BO.DalEmptyCollectionExeption)
             {
-
+               // busLineBLDataGrid.ItemsSource = null;
             }
+        }
+
+        private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (firstStationComboBox.SelectedItem != null && lastStationComboBox.SelectedItem != null && (firstStationComboBox.SelectedItem != lastStationComboBox.SelectedItem))
+                searchLines.IsEnabled = true;
+            else if (firstStationComboBox.SelectedItem == lastStationComboBox.SelectedItem&&firstStationComboBox.SelectedItem!=null)
+            {
+                MessageBox.Show("תחנת המוצא והיעד לא אפשריות, בחר/י תחנות מוצא ויעד אחרות", "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                firstStationComboBox.SelectedItem = null;
+                lastStationComboBox.SelectedItem = null;
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource lineTimingViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineTimingViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineTimingViewSource.Source = [generic data source]
         }
     }
 }

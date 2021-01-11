@@ -131,6 +131,7 @@
     <None Include="Properties\DataSources\BO.Bus.datasource" />
     <None Include="Properties\DataSources\BO.BusLineBL.datasource" />
     <None Include="Properties\DataSources\BO.BusStationBL.datasource" />
+    <None Include="Properties\DataSources\BO.LineTiming.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

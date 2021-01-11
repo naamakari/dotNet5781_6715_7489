@@ -324,7 +324,7 @@ namespace DS
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1122, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false });
 
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 8, AreaAtLand = Area.North, NumberFirstStation = 1137, NumberLastStation = 1147, IsDeleted = false });
@@ -571,6 +571,24 @@ namespace DS
                 NumLine = 1,
                 StartAt = new TimeSpan(11, 00, 00),
                 EndAt = new TimeSpan(13, 00, 00),
+                Frequency = 15
+            });
+            lineTrips.Add(new LineTrip
+            {
+                LineId = 1111,
+                NumLine = 1,
+                StartAt = new TimeSpan(16, 00, 00),
+
+                EndAt = new TimeSpan(20, 00, 00),
+                Frequency = 15
+            });
+            lineTrips.Add(new LineTrip
+            {
+                LineId = 1114,
+                NumLine = 418,
+                StartAt = new TimeSpan(16, 00, 00),
+
+                EndAt = new TimeSpan(20, 00, 00),
                 Frequency = 15
             });
             #endregion
