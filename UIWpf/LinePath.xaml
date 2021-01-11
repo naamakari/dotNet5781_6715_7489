@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:UIWpf"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.LinePath"
         mc:Ignorable="d"
-        Title="LinePath" Height="450" Width="720">
+        Title="LinePath" Height="450" Width="350">
 
 
     <Grid x:Name="mainGrid">
-        <Label Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="243,10,0,0" VerticalAlignment="Top" Width="186"/>
 
-        <Grid x:Name="insertDetailsGrid" >
-            <Label Content=":אני נמצא/ת ב" HorizontalAlignment="Left" Margin="608,49,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.935,0.764"/>
-            <ComboBox x:Name="firstStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" HorizontalContentAlignment="Right" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="385,49,110.6,334" SelectedValuePath="StationName">
+        <Label Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="81,10,0,0" VerticalAlignment="Top" Width="186" FontSize="18" FontWeight="Bold"/>
+
+        <Grid x:Name="insertDetailsGrid" Margin="0,0,9.6,0" >
+            <Label Content=":אני נמצא/ת ב" HorizontalAlignment="Left" Margin="214,43,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.935,0.764"/>
+            <ComboBox x:Name="firstStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" HorizontalContentAlignment="Right" Height="25" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="10,77,120.4,318" SelectedValuePath="StationName">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -22,8 +23,8 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
 
-            <Label Content=":רוצה להגיע ל" HorizontalAlignment="Left" Margin="266,49,0,0" VerticalAlignment="Top" Width="96"/>
-            <ComboBox x:Name="lastStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" HorizontalContentAlignment="Right" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="27,49,468.6,334" SelectedValuePath="StationName">
+            <Label Content=":רוצה להגיע ל" HorizontalAlignment="Left" Margin="214,100,0,0" VerticalAlignment="Top" Width="96"/>
+            <ComboBox x:Name="lastStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" Height="25" HorizontalContentAlignment="Right" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="10,138,120.4,257" SelectedValuePath="StationName">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -32,7 +33,7 @@
             </ComboBox>
 
 
-            <DataGrid x:Name="busLineBLDataGrid" AutoGenerateColumns="False" HorizontalContentAlignment="Center" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="458,139,61.6,150" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid x:Name="busLineBLDataGrid" AutoGenerateColumns="False" HorizontalContentAlignment="Center" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
 
                     <DataGridTemplateColumn x:Name="lastStationColumn" Header="         תחנת יעד" Width="120">
@@ -51,42 +52,46 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="LookAtTimeOfLines" Content="לצפייה בזמני&#xA;      הגעת&#xA; האוטובוסים" HorizontalAlignment="Left" Margin="433,319,0,0" VerticalAlignment="Top" Width="78" Height="62" Click="LookAtTimeOfLines_Click" RenderTransformOrigin="4.331,0.631"/>
-            <TextBlock x:Name="timer" HorizontalAlignment="Left" Margin="27,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-            <Button x:Name="StopWatch" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="577,336,0,0" VerticalAlignment="Top" Width="75" Height="45" Click="StopWatch_Click"/>
-            <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="287,113,0,0" VerticalAlignment="Top" Width="75" Click="searchLines_Click"/>
-            <DataGrid x:Name="lineTimingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="27,147,351.6,73" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <Button x:Name="LookAtTimeOfLines" IsEnabled="False" Content="לצפייה בזמני&#xA;      הגעת&#xA; האוטובוסים" HorizontalAlignment="Left" Margin="73,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="LookAtTimeOfLines_Click" RenderTransformOrigin="4.331,0.631"/>
+            <TextBlock x:Name="timer"  HorizontalAlignment="Center" Visibility="Hidden" Foreground="White" Margin="214,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107" Height="25" FontSize="14" FontWeight="Bold" Background="Black"/>
+            <Button x:Name="StopWatch" IsEnabled="False" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="177,358,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="StopWatch_Click"/>
+            <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="75" Click="searchLines_Click"/>
+            <DataGrid x:Name="lineTimingDataGrid" Visibility="Hidden" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn x:Name="busNumLineColumn1" Header="Bus Num Line" Width="SizeToHeader">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding BusNumLine}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="lastStationColumn1" Header="Last Station" Width="SizeToHeader">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding LastStation}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="timingColumn" Header="Timing" Width="SizeToHeader">
+                    <DataGridTemplateColumn x:Name="timingColumn" Header=":יגיע בעוד" Width="60">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Timing}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="tripStartColumn" Header="Trip Start" Width="SizeToHeader">
+
+                    <DataGridTemplateColumn x:Name="tripStartColumn" Header="שעת יציאה" Width="70">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding TripStart}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="lastStationColumn1" Header="                 תחנה סופית" Width="140">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding LastStation}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="busNumLineColumn1" Header="   קו" Width="35">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding BusNumLine}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            <TextBox x:Name="search1" HorizontalAlignment="Left" Height="23" Margin="94,47,0,0" TextWrapping="Wrap" Text=""  BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.161,0.385" TextChanged="search1_TextChanged"/>
+            <TextBox x:Name="search2" HorizontalAlignment="Left" Height="23" Margin="94,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" Width="120" RenderTransformOrigin="0.161,0.385" TextChanged="search2_TextChanged"/>
+            <Label x:Name="exeption" Content="לא נמצאו קווים המגיעים בזמן הקרוב" HorizontalAlignment="Left" Margin="96,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="214" Height="26"/>
 
 
         </Grid>
