@@ -209,7 +209,7 @@ namespace BL
         /// <param name="lastStationCode"></param>
         /// <param name="lineId"></param>
         /// <returns></returns>
-        public TimeSpan TimeBetweenStations(int startStationCode, int lastStationCode, int lineId)
+        public float TimeBetweenStations(int startStationCode, int lastStationCode, int lineId)
         { 
             try
             {
@@ -228,7 +228,7 @@ namespace BL
                 }
                 if (i == stationsList.Count - 1&&lastStationCode!= stationsList[i].StationCode)
                     throw new KeyNotFoundException("לא נמצאה ברשימה " + lastStationCode + " תחנה מספר");
-                return TimeSpan.Parse(sumTime.ToString());
+                return sumTime;
             }
             catch (KeyNotFoundException ex)
             {
@@ -259,7 +259,28 @@ namespace BL
 
         public BO.LineTiming GetLineTiming(BO.BusLineBL CurrentBusLineBL, BO.BusStation CurrentBusStation)
         {
-            TimeSpan.FromMinutes(2.3);// timeSpan = TimeSpan.Parse(TimeBetweenStations(CurrentBusLineBL.NumberFirstStation, CurrentBusStation.StationCode, CurrentBusLineBL.BusId).ToString());
+          TimeSpan timeBetweenStations=  TimeSpan.FromMinutes(TimeBetweenStations(CurrentBusLineBL.NumberFirstStation, CurrentBusStation.StationCode, CurrentBusLineBL.BusId));
+          //calculate the range time for exit of the bus
+          TimeSpan rangeExitBus= TimeSpan.FromMinutes(DateTime.Now.Minute - timeBetweenStations.Minutes);
+          //this predicate return the line trip that according the current time and the line id
+            Predicate<DO.LineTrip> condition = x => (x.LineId == CurrentBusLineBL.BusId && (rangeExitBus > x.StartAt && rangeExitBus < x.EndAt));
+            DO.LineTrip OurLineTrip = dal.GetLineTripBy(condition);
+            TimeSpan curreuntTime;
+            for ( curreuntTime=OurLineTrip.StartAt; curreuntTime < rangeExitBus; curreuntTime += TimeSpan.FromMinutes(OurLineTrip.Frequency))
+            {
+            }
+            //casting for minutes
+            TimeSpan totalMinutesForTiming = TimeSpan.FromMinutes(timeBetweenStations.Minutes + timeBetweenStations.Hours * 60 -
+                (DateTime.Now.Minute + DateTime.Now.Hour * 60+DateTime.Now.Second/60 - curreuntTime.Minutes + curreuntTime.Hours * 60));
+            BO.LineTiming lineTiming = new BO.LineTiming
+            {
+                BusNumLine = OurLineTrip.NumLine,
+                LineId = OurLineTrip.LineId,
+                TripStart = curreuntTime,
+                LastStation = CurrentBusLineBL.LastStation.StationName,
+                Timing = totalMinutesForTiming
+            };
+            return lineTiming;
 
         }
         public IEnumerable<BO.LineTiming> GetLineTimingsAccordingLine(IEnumerable<BO.BusLineBL> busLineBLs, BO.BusStation CurrentBusStation)

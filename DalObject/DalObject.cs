@@ -371,5 +371,16 @@ namespace DL
                 throw new CanNotRemoveException("לא מצליח להסיר את המשתמש");
         }
         #endregion
+
+      public LineTrip GetLineTripBy(Predicate<LineTrip> predicate)
+        {
+           LineTrip lineTrips =(from item in DataS.lineTrips
+                                                       where predicate(item)
+                                                       select item.Clone()).FirstOrDefault();
+            if (lineTrips == null)
+                throw new DalEmptyCollectionExeption("לא קיימת יציאת קו העונה לדרישה ");
+            return lineTrips;
+        }
+
     }
 }

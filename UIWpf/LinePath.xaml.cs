@@ -49,9 +49,12 @@ namespace UIWpf
             timerworker.ProgressChanged += Timerworker_ProgressChanged;
             timerworker.WorkerReportsProgress = true;
             float num = (float)130.5;
-           MessageBox.Show( TimeSpan.FromMinutes(num).ToString());
-          //  timeSpan = TimeSpan.Parse(num.ToString());
-           // MessageBox.Show(timeSpan.ToString());
+            // MessageBox.Show( TimeSpan.FromMinutes(num).ToString());
+            //  timeSpan = TimeSpan.Parse(num.ToString());
+            // MessageBox.Show(timeSpan.ToString());
+            //MessageBox.Show(DateTime.Now.Hour+DateTime.Now.Minute.ToString()+DateTime.Now.Second);
+            
+
         }
 
         private void Timerworker_DoWork(object sender, DoWorkEventArgs e)

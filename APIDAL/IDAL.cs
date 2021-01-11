@@ -75,6 +75,8 @@ namespace APIDAL
         IEnumerable<User> GetUserCollectionBy(Predicate<User> predicate);
         void UpdateUser(User user);
         void DeleteUser(string userName, string password);
+
+        LineTrip GetLineTripBy(Predicate<LineTrip> predicate);
     }
 }
     

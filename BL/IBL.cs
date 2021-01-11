@@ -15,7 +15,7 @@ namespace APIBL
         void UpdateLastStation(int code, int busId);//v
         IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);//v
         BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);//v
-        TimeSpan TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);//v
+        float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);//v
         float Distance(int startStationCode, int destStationCode);//v
         LineTiming GetLineTiming(BusLineBL CurrentBusLineBL, BusStation CurrentBusStation);
         IEnumerable<LineTiming> GetLineTimingsAccordingLine(IEnumerable<BusLineBL> busLineBLs ,BO.BusStation CurrentBusStation);

@@ -15,6 +15,7 @@ namespace DS
         public static List<stationInLine> stationsInLine = new List<stationInLine>();
         public static List<FollowingStations> followingStations = new List<FollowingStations>();
         public static List<User> users = new List<User>();
+        public static List<LineTrip> lineTrips = new List<LineTrip>();
 
         static DataS()
         {
@@ -24,6 +25,7 @@ namespace DS
             initStationsInLine();
             initFollowingStation();
             initUser();
+            initLineTrip();
         }
         static void initBuses()
         {
@@ -31,222 +33,222 @@ namespace DS
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111111",
-                StartDate = new DateTime(2017,1,1),
+                StartDate = new DateTime(2017, 1, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,1)
+                DateSinceLastTreat = new DateTime(2020, 4, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "2222222",
-                StartDate = new DateTime(2017,1,2),
+                StartDate = new DateTime(2017, 1, 2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,1,1)
+                DateSinceLastTreat = new DateTime(2020, 1, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "33333333",
-                StartDate = new DateTime(2017,3,1),
+                StartDate = new DateTime(2017, 3, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,1,1)
+                DateSinceLastTreat = new DateTime(2020, 1, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111112",
-                StartDate = new DateTime(2017,1,4),
+                StartDate = new DateTime(2017, 1, 4),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,3,1)
+                DateSinceLastTreat = new DateTime(2020, 3, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111113",
-                StartDate = new DateTime(2017,1,5),
+                StartDate = new DateTime(2017, 1, 5),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,1,5)
+                DateSinceLastTreat = new DateTime(2020, 1, 5)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111145",
-                StartDate = new DateTime(2017,6,1),
+                StartDate = new DateTime(2017, 6, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,6,1)
+                DateSinceLastTreat = new DateTime(2020, 6, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111167",
-                StartDate = new DateTime(2017,1,7),
+                StartDate = new DateTime(2017, 1, 7),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,7,1)
+                DateSinceLastTreat = new DateTime(2020, 7, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111189",
-                StartDate = new DateTime(2017,1,8),
+                StartDate = new DateTime(2017, 1, 8),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,1,8)
+                DateSinceLastTreat = new DateTime(2020, 1, 8)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1101111",
-                StartDate = new DateTime(2017,9,1),
+                StartDate = new DateTime(2017, 9, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,1,7)
+                DateSinceLastTreat = new DateTime(2020, 1, 7)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111312",
-                StartDate = new DateTime(2017,10,1),
+                StartDate = new DateTime(2017, 10, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,10,1)
+                DateSinceLastTreat = new DateTime(2020, 10, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111415",
-                StartDate = new DateTime(2017,1,1),
+                StartDate = new DateTime(2017, 1, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,11,1)
+                DateSinceLastTreat = new DateTime(2020, 11, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111617",
-                StartDate = new DateTime(2017,1,2),
+                StartDate = new DateTime(2017, 1, 2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,12,1)
+                DateSinceLastTreat = new DateTime(2020, 12, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111819",
-                StartDate = new DateTime(2017,10,1),
+                StartDate = new DateTime(2017, 10, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,1)
+                DateSinceLastTreat = new DateTime(2020, 4, 1)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111120",
-                StartDate = new DateTime(2017,1,2),
+                StartDate = new DateTime(2017, 1, 2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,11,4)
+                DateSinceLastTreat = new DateTime(2020, 11, 4)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111121",
-                StartDate = new DateTime(2017,1,4),
+                StartDate = new DateTime(2017, 1, 4),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,12,4)
+                DateSinceLastTreat = new DateTime(2020, 12, 4)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111122",
-                StartDate = new DateTime(2017,3,1),
+                StartDate = new DateTime(2017, 3, 1),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,10)
+                DateSinceLastTreat = new DateTime(2020, 4, 10)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111123",
-                StartDate = new DateTime(2017,7,14),
+                StartDate = new DateTime(2017, 7, 14),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,13)
+                DateSinceLastTreat = new DateTime(2020, 4, 13)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111124",
-                StartDate = new DateTime(2017,1,15),
+                StartDate = new DateTime(2017, 1, 15),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,14)
+                DateSinceLastTreat = new DateTime(2020, 4, 14)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111125",
-                StartDate = new DateTime(2017,1,16),
+                StartDate = new DateTime(2017, 1, 16),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,15)
+                DateSinceLastTreat = new DateTime(2020, 4, 15)
             });
             buses.Add(new Bus()
             {
                 LicenseNumber = "1111126",
-                StartDate = new DateTime(2017,1,2),
+                StartDate = new DateTime(2017, 1, 2),
                 Kilometraz = 8000,
                 KmSinceRefeul = 500,
                 BusState = BusStatus.ready,
                 IsDeleted = false,
                 KmSinceLastTreat = 2000,
-                DateSinceLastTreat = new DateTime(2020,4,16)
+                DateSinceLastTreat = new DateTime(2020, 4, 16)
             });
             #endregion
         }
@@ -267,7 +269,7 @@ namespace DS
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17250, Latitude = (float)34.84085, Address = "בני בנימין 11 הרצליה", StationName = "בני בנימין/גיסין" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17445, Latitude = (float)34.83959, Address = "כנפי נשרים 4 הרצליה", StationName = "כנפי נשרים/נתן אלתרמן" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)32.17382, Latitude = (float)34.83684, Address = "דור שמעוני 4 הרצליה", StationName = "דוד שמעוני/יהודה אלקלעי" });
-            
+
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24265, Latitude = (float)34.79775, Address = "יהושע חנקין 2 באר שבע", StationName = "ת.מרכזית/עירוניים לדרום" });
             busStations.Add(new BusStation() { StationCode = Configuration.GetBusStationRunNum(), Longitude = (float)31.24171, Latitude = (float)34.79647, Address = "שדרות דוד חכם 80 באר שבע", StationName = "שדרות דוד חכם/תחנה מרכזית" });
             //1125                                                                                          1125
@@ -319,16 +321,16 @@ namespace DS
         static void initBusLine()
         {
             #region initilized the lines of bus
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false});
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 1, AreaAtLand = Area.Center, NumberFirstStation = 1111, NumberLastStation = 1120, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 2, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false});
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false});
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false});
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 3, AreaAtLand = Area.South, NumberFirstStation = 1123, NumberLastStation = 1135, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 418, AreaAtLand = Area.General, NumberFirstStation = 1123, NumberLastStation = 1120, IsDeleted = false });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 415, AreaAtLand = Area.General, NumberFirstStation = 1111, NumberLastStation = 1123, IsDeleted = false });
 
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 8, AreaAtLand = Area.North, NumberFirstStation = 1137, NumberLastStation = 1147, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 13, AreaAtLand = Area.North, NumberFirstStation = 1147, NumberLastStation = 1138, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 5, AreaAtLand = Area.Center, NumberFirstStation = 1161, NumberLastStation = 1153, IsDeleted = false });
-            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1159, NumberLastStation = 1138, IsDeleted = false  });
+            busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1159, NumberLastStation = 1138, IsDeleted = false });
             busLines.Add(new BusLine() { BusId = Configuration.GetBusLineRunNum(), BusNumLine = 836, AreaAtLand = Area.General, NumberFirstStation = 1138, NumberLastStation = 1159, IsDeleted = false });
 
             #endregion
@@ -336,7 +338,7 @@ namespace DS
         static void initStationsInLine()
         {
             #region initilized the station in line
-            stationsInLine.Add(new stationInLine() { LineId = 1111, StationCode = 1111, IndexStationAtLine = 1, IsDeleted = false,IsFirstStation=true,IsLastStation=false });
+            stationsInLine.Add(new stationInLine() { LineId = 1111, StationCode = 1111, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1111, StationCode = 1112, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1111, StationCode = 1113, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1111, StationCode = 1114, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
@@ -356,10 +358,10 @@ namespace DS
             stationsInLine.Add(new stationInLine() { LineId = 1112, StationCode = 1129, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1112, StationCode = 1131, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1112, StationCode = 1133, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1112, StationCode = 1135, IndexStationAtLine = 10, IsDeleted = false,IsFirstStation = false, IsLastStation = true });
+            stationsInLine.Add(new stationInLine() { LineId = 1112, StationCode = 1135, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
             stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1123, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1124, IndexStationAtLine = 2, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1124, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1125, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1126, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1113, StationCode = 1128, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
@@ -378,7 +380,7 @@ namespace DS
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1119, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1120, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1121, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1122, IndexStationAtLine = 10, IsDeleted = false , IsFirstStation = false, IsLastStation = true });
+            stationsInLine.Add(new stationInLine() { LineId = 1114, StationCode = 1122, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1111, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1112, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
@@ -387,30 +389,30 @@ namespace DS
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1125, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1130, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1135, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1132, IndexStationAtLine = 8, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1132, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1124, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1115, StationCode = 1123, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1137, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1136, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1139, IndexStationAtLine = 3, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1139, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1140, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1141, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1142, IndexStationAtLine = 6, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1142, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1143, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1144, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1145, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1146, IndexStationAtLine = 10, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1146, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1116, StationCode = 1147, IndexStationAtLine = 11, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
 
-            stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1147, IndexStationAtLine = 1, IsDeleted = false , IsFirstStation = true, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1147, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1148, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1149, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1145, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1144, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1142, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1150, IndexStationAtLine = 7, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1150, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1136, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1137, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1117, StationCode = 1138, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
@@ -423,23 +425,23 @@ namespace DS
             stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1157, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1155, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1156, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1154, IndexStationAtLine = 9, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1153, IndexStationAtLine = 10, IsDeleted = false , IsFirstStation = false, IsLastStation = true });
+            stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1154, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1118, StationCode = 1153, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1159, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1160, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1151, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1161, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1142, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1144, IndexStationAtLine = 6, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1144, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1141, IndexStationAtLine = 7, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1140, IndexStationAtLine = 8, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1136, IndexStationAtLine = 9, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1136, IndexStationAtLine = 9, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1119, StationCode = 1138, IndexStationAtLine = 10, IsDeleted = false, IsFirstStation = false, IsLastStation = true });
 
             stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1138, IndexStationAtLine = 1, IsDeleted = false, IsFirstStation = true, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1136, IndexStationAtLine = 2, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
-            stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1140, IndexStationAtLine = 3, IsDeleted = false , IsFirstStation = false, IsLastStation = false });
+            stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1140, IndexStationAtLine = 3, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1141, IndexStationAtLine = 4, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1144, IndexStationAtLine = 5, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
             stationsInLine.Add(new stationInLine() { LineId = 1120, StationCode = 1142, IndexStationAtLine = 6, IsDeleted = false, IsFirstStation = false, IsLastStation = false });
@@ -560,5 +562,20 @@ namespace DS
 
             #endregion
         }
+        static void initLineTrip()
+        {
+            #region initilized line trip
+            lineTrips.Add(new LineTrip
+            {
+                LineId = 1111,
+                NumLine = 1,
+                StartAt = new TimeSpan(11, 00, 00),
+                EndAt = new TimeSpan(13, 00, 00),
+                Frequency = 15
+            });
+            #endregion
+        }
+
+
     }
 }
