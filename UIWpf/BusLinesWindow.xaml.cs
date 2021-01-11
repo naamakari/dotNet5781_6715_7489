@@ -591,27 +591,28 @@ namespace UIWpf
 
         private void DeleteStationUpdate_Click(object sender, RoutedEventArgs e)
         {
-            bool isFirst = false;
-            bool isLast = false;
-            var busLine = sender as FrameworkElement;//casting for bus
+            //bool isFirst = false;
+            //bool isLast = false;
+            var busLine = sender as FrameworkElement;//casting for bus line
             BusStation busStation = busLine.DataContext as BusStation;
-            indexOfDelete = SelectedItemBusStations.IndexOf(busStation);
-            if (indexOfDelete == 0)
-                isFirst = true;
-            else if (indexOfDelete == SelectedItemBusStations.Count() - 1)
-                isLast = true;
-            StationInLine stationInLineDelete = new StationInLine
-            {
-                IsDeleted = false,
-                IndexStationAtLine = indexOfDelete,
-                IsFirstStation = isFirst,
-                IsLastStation = isLast,
-                StationCode = busStation.StationCode,
-                LineId = int.Parse(busIdTextBlock.Text)
-            };
+            //indexOfDelete = SelectedItemBusStations.IndexOf(busStation);
+            //if (indexOfDelete == 0)
+            //    isFirst = true;
+            //else if (indexOfDelete == SelectedItemBusStations.Count() - 1)
+            //    isLast = true;
+            //StationInLine stationInLineDelete = new StationInLine
+            //{
+            //    IsDeleted = false,
+            //    IndexStationAtLine = indexOfDelete,
+            //    IsFirstStation = isFirst,
+            //    IsLastStation = isLast,
+            //    StationCode = busStation.StationCode,
+            //    LineId = int.Parse(busIdTextBlock.Text)
+            //};
             try
             {
-                bl.DeleteStationInLine(stationInLineDelete);
+               StationInLine stationInLineDelete1= bl.getStationInLine(int.Parse(busIdTextBlock.Text), busStation.StationCode);
+                bl.DeleteStationInLine(stationInLineDelete1);
                 SelectedItemBusStations.Remove(busStation);
                 //collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
 

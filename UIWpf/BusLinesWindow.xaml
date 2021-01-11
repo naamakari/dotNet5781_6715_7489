@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:UIWpf"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.BusLinesWindow"
         mc:Ignorable="d"
-        Title="BusLinesWindow" Height="650" Width="1000">
-   
+        Title="BusLinesWindow" Height="750" Width="1000">
+
 
     <Grid x:Name="MainGrid" Margin="0,0,-0.4,0" RenderTransformOrigin="0.724,0.46" Background="#FFF9D6D4" >
 
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="223*"/>
 
         </Grid.ColumnDefinitions>
-        <ListView x:Name="busLineBLListView" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" ItemsSource="{Binding}" SelectionMode="Single" Margin="0.2,71,0.6,201" SelectionChanged="busLineBLListView_SelectionChanged" Padding="1" Background="#FFF7EBEA" Foreground="#FF161922" >
+        <ListView x:Name="busLineBLListView" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" ItemsSource="{Binding}" SelectionMode="Single" Margin="0.2,92,0.6,242.8" SelectionChanged="busLineBLListView_SelectionChanged" Padding="1" Background="#FFF7EBEA" Foreground="#FF161922" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="lastStationColumn" Width="135" Header="תחנת יעד">
@@ -60,8 +60,8 @@
         </ListView>
 
         <!--גריד לפרטים-->
-        <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" FontSize="16"  FontWeight="Medium" HorizontalAlignment="Left" Margin="136.2,437,0,0" VerticalAlignment="Top" Width="173" Height="45" Click="addBusLine_Click" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
-        <Grid x:Name="DetailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="600" Width="497">
+        <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" FontSize="16"  FontWeight="Medium" HorizontalAlignment="Left" Margin="156.2,514,0,0" VerticalAlignment="Top" Width="154" Height="62" Click="addBusLine_Click" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
+        <Grid x:Name="DetailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="10,10,0,-0.2" VerticalAlignment="Top" Height="711" Width="497">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="176"/>
@@ -83,21 +83,22 @@
             <TextBlock x:Name="busNumLineTextBlock" Foreground="Brown" TextAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,13,0" Text="{Binding BusNumLine}" VerticalAlignment="Bottom" Height="24" Width="77" RenderTransformOrigin="0.816,0.254" Grid.Row="1"/>
 
             <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,-91,227.6" Grid.Row="3" VerticalAlignment="Bottom" Height="30" RenderTransformOrigin="1.012,-0.227" Width="101" Grid.RowSpan="2"/>
-            <ListView x:Name="collectionOfStationListView" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" Height="243" ItemsSource="{Binding}" Margin="0,28.6,-91.6,-20.4" Grid.Row="4" SelectionMode="Single" Width="490" Grid.ColumnSpan="2" BorderBrush="#FF2F3237">
+            <ListView x:Name="collectionOfStationListView" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" ItemsSource="{Binding}" Margin="1,29.4,-91,-74.8" Grid.Row="4" SelectionMode="Single" Width="490" Grid.ColumnSpan="2" BorderBrush="#FF2F3237">
 
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn x:Name="stationName" Width="190" Header="שם התחנה">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding StationName}"  FontSize="12" TextAlignment="Right"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+
                         <GridViewColumn x:Name="stationAddress" Width="190" Header="כתובת">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Margin="-6,-1" Text="{Binding Address}"  FontSize="12" TextAlignment="Right"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="stationName" Width="190" Header="שם התחנה">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="-6,-1" Text="{Binding StationName}"  FontSize="12" TextAlignment="Right"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -113,8 +114,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="UpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Right" Margin="0,354.6,-13.6,-150.6" Grid.Row="4" VerticalAlignment="Top" Width="145" Height="44" Click="UpdateBusLine_Click" RenderTransformOrigin="0.495,1.793" Grid.Column="1"/>
-            <Button x:Name="DeleteBusLine" Content="מחיקה" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="71,354.6,0,-148.2" Grid.Row="4" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.488,1.617" Height="44" Click="DeleteBusLine_Click">
+            <Button x:Name="UpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Right" Margin="0,394.4,-15.4,-189" Grid.Row="4" VerticalAlignment="Top" Width="133" Height="53" Click="UpdateBusLine_Click" RenderTransformOrigin="0.495,1.793" Grid.Column="1"/>
+            <Button x:Name="DeleteBusLine" Content="מחיקה" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="68,394.4,0,-191.4" Grid.Row="4" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.488,1.617" Height="53" Click="DeleteBusLine_Click">
                 <Button.ToolTip>
                     <ToolTip>
                         <DockPanel Width="50" Height="50">
@@ -126,11 +127,11 @@
             </Button>
 
         </Grid>
-        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="156.2,502,0,0" VerticalAlignment="Top" Width="132" Height="36" Click="Button_Click" RenderTransformOrigin="0.634,0.784"/>
+        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,597,0,0" VerticalAlignment="Top" Width="116" Height="41" Click="Button_Click" RenderTransformOrigin="0.634,0.784"/>
 
         <!--גריד להוספה-->
 
-        <Grid x:Name="AddBusLineGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="24,0,0,0" VerticalAlignment="Top" Height="610" Width="483">
+        <Grid x:Name="AddBusLineGrid" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="711" Width="507">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="148.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="158.4"/>
@@ -139,22 +140,21 @@
                 <RowDefinition Height="Auto" MinHeight="56.8"/>
                 <RowDefinition Height="62.9"/>
                 <RowDefinition Height="32.1"/>
-                <RowDefinition Height="45.5"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="145.6"/>
                 <RowDefinition Height="Auto" MinHeight="173.6"/>
                 <RowDefinition Height="Auto" MinHeight="173.6"/>
             </Grid.RowDefinitions>
-            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,14,1.2,27.6" Grid.Row="2" VerticalAlignment="Center" Height="36" Width="103" RenderTransformOrigin="0.525,1.521" Grid.RowSpan="2"/>
-            <ComboBox x:Name="areaAtLandComboBox" Foreground="Brown" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,108.4,30.6" Grid.Row="2" VerticalAlignment="Bottom" Height="33" Width="117" SelectionChanged="areaAtLandComboBox_SelectionChanged" Grid.RowSpan="2"/>
+            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,78.2,0.6,29" Grid.Row="1" VerticalAlignment="Center" Height="36" Width="103" RenderTransformOrigin="0.525,1.521" Grid.RowSpan="2"/>
+            <ComboBox x:Name="areaAtLandComboBox" Foreground="Brown" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right" Margin="0,0,110,1" Grid.Row="1" VerticalAlignment="Bottom" Height="33" Width="117" SelectionChanged="areaAtLandComboBox_SelectionChanged" Grid.Column="1"/>
 
-            <Label Content=":מזהה הקו" FontWeight="SemiBold" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,33.2,3.2,24" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="88" Grid.RowSpan="2"/>
-            <Label x:Name="busIdLable" Foreground="Brown"  FontSize="16" FontWeight="SemiBold" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Left" Margin="134,33.2,0,24" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="243" Grid.ColumnSpan="2" RenderTransformOrigin="1.08,0.643" Grid.RowSpan="2"/>
+            <Label Content=":מזהה הקו" FontWeight="SemiBold" FontSize="16" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,34.2,0,39" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="88"/>
+            <Label x:Name="busIdLable" Foreground="Brown"  FontSize="16" FontWeight="SemiBold" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Left" Margin="153,34.2,0,39" Grid.Row="1" VerticalAlignment="Center" Height="38" Width="243" Grid.ColumnSpan="2" RenderTransformOrigin="1.08,0.643"/>
 
-            <Label Content=":מספר הקו" Grid.Column="1" FontWeight="SemiBold" FontSize="16" HorizontalAlignment="Right"  Margin="0,46,6.2,35" Grid.Row="0" VerticalAlignment="Center" Height="39" Width="88" Grid.RowSpan="2"/>
-            <TextBox x:Name="busNumLineTextBox" TextAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="Brown" Grid.Column="1" HorizontalAlignment="Right" Margin="0,46,106.4,41" Grid.Row="0" Text="{Binding BusNumLine, Mode=OneWayToSource}" VerticalAlignment="Center" Height="21" Width="100" MaxLength="3" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBox_TextChanged" Grid.RowSpan="2"/>
+            <Label Content=":מספר הקו" Grid.Column="1" FontWeight="SemiBold" FontSize="16" HorizontalAlignment="Right"  Margin="0,47,4,82" VerticalAlignment="Center" Height="39" Width="88" Grid.RowSpan="2"/>
+            <TextBox x:Name="busNumLineTextBox" TextAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="Brown" Grid.Column="1" HorizontalAlignment="Right" Margin="0,2.2,99,88" Text="{Binding BusNumLine, Mode=OneWayToSource}" VerticalAlignment="Center" Height="21" Width="100" MaxLength="3" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBox_TextChanged" Grid.Row="1"/>
 
-            <Label Content=":תחנות הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,10.6,0" Grid.Row="3" VerticalAlignment="Bottom" Height="37" RenderTransformOrigin="1.012,-0.227" Width="89" Grid.RowSpan="2"/>
-            <ListView x:Name="collectionOfStationListViewAdd" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="154" ItemsSource="{Binding}" Margin="0,16.4,0,61.6" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="473" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <Label Content=":תחנות הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,8,134.6" Grid.Row="2" VerticalAlignment="Bottom" Height="37" RenderTransformOrigin="1.012,-0.227" Width="89" Grid.RowSpan="2"/>
+            <ListView x:Name="collectionOfStationListViewAdd" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="160" ItemsSource="{Binding}" Margin="9,11,0,278.6" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="487" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="delete" Width="50">
@@ -189,9 +189,9 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content=":בחר/י תחנות "  FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,9.2,22.6" Grid.Row="5" VerticalAlignment="Bottom" Height="34" RenderTransformOrigin="1.012,-0.227" Width="104"/>
+            <Label Content=":בחר/י תחנות "  FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,8,190.6" Grid.Row="4" VerticalAlignment="Bottom" Height="34" RenderTransformOrigin="1.012,-0.227" Width="104"/>
 
-            <ListView x:Name="AllStationListView" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="133" Margin="0,191.4,0,98.8" Grid.Row="5" SelectionMode="Single" VerticalAlignment="Center" Width="473" Grid.ColumnSpan="2" SelectionChanged="AllStationListView_SelectionChanged" Grid.RowSpan="2">
+            <ListView x:Name="AllStationListView" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="131" Margin="10,118.4,0,54.6" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="484" Grid.ColumnSpan="2" SelectionChanged="AllStationListView_SelectionChanged">
                 <ListView.ToolTip>
                     <TextBlock Text="סדר התחנות יקבע לפי סדר הבחירה שלך" TextAlignment="Center" Width="230" Foreground="Brown" Background="WhiteSmoke"/>
                 </ListView.ToolTip>
@@ -223,20 +223,20 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="171,123.4,0,0" Grid.Row="6" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="AddDistance" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="45,3,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="AddDistance_KeyDown"/>
-            <TextBox x:Name="AddTime" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="46,2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="AddDistance_KeyDown"/>
-            <RadioButton x:Name="finishDisAndTime" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="130,19,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTime_Checked" Grid.RowSpan="2"/>
-            <Label x:Name="AddTimeAndDisLable" FontWeight="ExtraBlack" FontSize="12" Foreground="Blue"  Visibility="Hidden" HorizontalAlignment="Left" Margin="16,31,0,0" VerticalAlignment="Top" Height="26" Width="330" Grid.RowSpan="3" Grid.Row="3" Grid.ColumnSpan="2"/>
-            <Image x:Name="TimeImage" Visibility="Hidden" Source="https://dapey-avoda.info/wp-content/uploads/2014/05/%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%A9%D7%A2%D7%95%D7%9F.gif"  HorizontalAlignment="Left" Height="22" Margin="21,3,0,0" Grid.Row="3" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.518,1.179"/>
-            <Image x:Name="DisImage" Visibility="Hidden" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%AA%D7%A7%D7%A6%D7%99%D7%A8-%D7%9C%D7%9C%D7%9B%D7%AA-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%90%D7%95%D7%A4%D7%A7-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp21311214.jpg" HorizontalAlignment="Left" Height="23" Margin="23,4,0,0" Grid.Row="2" VerticalAlignment="Top" Width="25"/>
+            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="162,286.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <TextBox x:Name="AddDistance" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="88,37.4,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" KeyDown="AddDistance_KeyDown"/>
+            <TextBox x:Name="AddTime" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="32,37.4,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" KeyDown="AddDistance_KeyDown"/>
+            <RadioButton x:Name="finishDisAndTime" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="41,66.4,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTime_Checked" RenderTransformOrigin="0.675,0.272"/>
+            <Label x:Name="AddTimeAndDisLable" FontWeight="ExtraBlack" Visibility="Hidden" FontSize="12" Foreground="Blue"   HorizontalAlignment="Left" Margin="162,35.4,0,0" VerticalAlignment="Top" Height="26" Width="330" Grid.Row="4" Grid.ColumnSpan="2"/>
+            <Image x:Name="TimeImage" Visibility="Hidden" Source="https://dapey-avoda.info/wp-content/uploads/2014/05/%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%A9%D7%A2%D7%95%D7%9F.gif"  HorizontalAlignment="Left" Height="22" Margin="6,38.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.518,1.179"/>
+            <Image x:Name="DisImage" Visibility="Hidden" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%AA%D7%A7%D7%A6%D7%99%D7%A8-%D7%9C%D7%9C%D7%9B%D7%AA-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%90%D7%95%D7%A4%D7%A7-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp21311214.jpg" HorizontalAlignment="Left" Height="23" Margin="124,38.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="25"/>
 
         </Grid>
-        <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="156.2,502,0,0" VerticalAlignment="Top" Width="132" Height="36" Click="cancleAddBus_Click"/>
+        <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,596,0,0" VerticalAlignment="Top" Width="116" Height="42" Click="cancleAddBus_Click"/>
 
         <!--גריד לעדכון-->
 
-        <Grid x:Name="UpdateGrid" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="620" Width="517" Grid.ColumnSpan="2">
+        <Grid x:Name="UpdateGrid" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="711" Width="517" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="176"/>
@@ -249,8 +249,8 @@
                 <RowDefinition Height="41.9"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,7.6,447" VerticalAlignment="Bottom" Height="39" Width="101" RenderTransformOrigin="0.326,-1.275" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
-            <ComboBox x:Name="areaAtLandTextBoxUpdate"  Foreground="Brown" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,17.2,80.4,454" Text="{Binding AreaAtLand}" VerticalAlignment="Center" Height="32" Width="84" BorderThickness="2" SelectionChanged="areaAtLandTextBoxUpdate_SelectionChanged" Grid.Row="3" Grid.RowSpan="2"/>
+            <Label Content=":אזור פעילות" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,11.2,460.4" VerticalAlignment="Bottom" Height="39" Width="101" RenderTransformOrigin="0.326,-1.275" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2"/>
+            <ComboBox x:Name="areaAtLandTextBoxUpdate"  Foreground="Brown" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,16.4,97,466.8" Text="{Binding AreaAtLand}" VerticalAlignment="Center" Height="32" Width="84" BorderThickness="2" SelectionChanged="areaAtLandTextBoxUpdate_SelectionChanged" Grid.Row="3" Grid.RowSpan="2"/>
 
             <Label Content=":מזהה הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,7.6,8.4,33" VerticalAlignment="Center" Height="37" Width="86" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="2"/>
             <Label x:Name="busIdTextBoxUpdate"  Foreground="Brown" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right" Margin="0,5.6,79.4,32" Content="מספר זה לא ניתן לעדכון" VerticalAlignment="Center" Height="40" Width="177" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="2"/>
@@ -258,8 +258,8 @@
             <Label Content=":מספר הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,2.4,29.6" Grid.Row="0" VerticalAlignment="Bottom" Height="42" Width="95" RenderTransformOrigin="0.422,-0.038" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
             <TextBox x:Name="busNumLineTextBoxUpdate"  Foreground="Brown" TextAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" MaxLength="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,3.8,78.4,0.4" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="27" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBoxUpdate_TextChanged" Grid.Row="1"/>
 
-            <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,10.6,406" Grid.Row="4" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="91" Grid.ColumnSpan="2"/>
-            <ListView x:Name="collectionOfStationListViewUpdate" BorderBrush="#FF2F3237" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="188" ItemsSource="{Binding}" Margin="13,49.8,0,223" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="486" Grid.ColumnSpan="3">
+            <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,12.2,412.4" Grid.Row="4" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="91" Grid.ColumnSpan="2"/>
+            <ListView x:Name="collectionOfStationListViewUpdate" BorderBrush="#FF2F3237" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="157" ItemsSource="{Binding}" Margin="10,47,0,266.4" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="486" Grid.ColumnSpan="3">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="DeleteStationUpdate" Width="70">
@@ -296,13 +296,13 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="RealyUpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="163,362.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="128" Height="43" RenderTransformOrigin="0.495,1.793" Grid.ColumnSpan="2" Click="RealyUpdateBusLine_Click">
+            <Button x:Name="RealyUpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="159,452,0,-31" Grid.Row="4" VerticalAlignment="Top" Width="128" Height="43" RenderTransformOrigin="0.495,1.793" Grid.ColumnSpan="2" Click="RealyUpdateBusLine_Click">
                 <Button.ToolTip>
                     <TextBox Text="כפתור לעדכון" Foreground="Brown" Background="WhiteSmoke" TextAlignment="Center" />
                 </Button.ToolTip>
             </Button>
-            <Button x:Name="addStationToLine"  Content="לחצ/י להוספת תחנה לקו" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="1.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="106,243.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="142" Grid.Column="1" Height="39" Click="addStationToLine_Click" Grid.ColumnSpan="2"/>
-            <ListBox x:Name="AllStationListBox" Visibility="Hidden" BorderBrush="#FF2F3237" HorizontalContentAlignment="Right" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="101" Margin="19,250.8,0,0" VerticalAlignment="Top" Width="268" Grid.Row="4" Grid.ColumnSpan="2" SelectionChanged="AllStationListBox_SelectionChanged">
+            <Button x:Name="addStationToLine"  Content="לחצ/י להוספת תחנה לקו" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="1.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="102.6,250.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="142" Grid.Column="1" Height="39" Click="addStationToLine_Click"/>
+            <ListBox x:Name="AllStationListBox" Visibility="Hidden" BorderBrush="#FF2F3237" HorizontalContentAlignment="Right" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="152" Margin="19,279.8,0,0" VerticalAlignment="Top" Width="268" Grid.Row="4" Grid.ColumnSpan="2" SelectionChanged="AllStationListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding StationName}" TextAlignment="Right"/>
@@ -310,35 +310,26 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
-            <TextBox x:Name="indexOfNewStation" Visibility="Hidden" BorderBrush="Brown" BorderThickness="1.5" Text="" MaxLength="{Binding}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="124,322.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="84" KeyDown="busNumLineTextBox_KeyDown" TextChanged="indexOfNewStation_TextChanged">
+            <TextBox x:Name="indexOfNewStation" Visibility="Hidden" BorderBrush="Brown" BorderThickness="1.5" Text="" MaxLength="{Binding}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="97,363.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" KeyDown="busNumLineTextBox_KeyDown" TextChanged="indexOfNewStation_TextChanged" RenderTransformOrigin="0.573,0.665">
                 <TextBox.ToolTip>
                     <TextBlock Text=" מספר בין אחד למספר התחנות הקיימות כבר בקו ועוד אחד" Foreground="Brown" Background="WhiteSmoke" TextAlignment="Center"/>
                 </TextBox.ToolTip>
             </TextBox>
-            <Label x:Name="labelToAdd" Visibility="Hidden" FontWeight="SemiBold" Content="ציינ/י את מיקום התחנה בקו" Grid.Column="1" HorizontalAlignment="Left" Margin="96,290.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="161" Grid.ColumnSpan="2"/>
-            <CheckBox x:Name="finishAddStationCheckBox" Visibility="Hidden" BorderBrush="Brown" BorderThickness="1.5" Content="סיימתי" Grid.Column="1" HorizontalAlignment="Left" Margin="127.6,358.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25" Width="81" Checked="finishAddStationCheckBox_Checked"/>
-            <Button x:Name="cancledUpdateClick" Content="ביטול" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="194,416.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="72" Height="24" RenderTransformOrigin="-0.036,0.538" Click="cancledUpdateClick_Click" Grid.ColumnSpan="2"/>
+            <Label x:Name="labelToAdd" Visibility="Hidden" FontWeight="SemiBold" Content="ציינ/י את מיקום התחנה בקו" Grid.Column="1" HorizontalAlignment="Left" Margin="96.6,312.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="161"/>
+            <CheckBox x:Name="finishAddStationCheckBox" Visibility="Hidden" BorderBrush="Brown" BorderThickness="1.5" Content="סיימתי" Grid.Column="1" HorizontalAlignment="Left" Margin="164,363.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25" Width="81" Checked="finishAddStationCheckBox_Checked"/>
+            <Button x:Name="cancledUpdateClick" Content="ביטול" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="188,508,0,-63.2" Grid.Row="4" VerticalAlignment="Top" Width="72" Height="24" RenderTransformOrigin="-0.036,0.538" Click="cancledUpdateClick_Click" Grid.ColumnSpan="2"/>
 
 
-            <TextBox x:Name="AddDistanceUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="52,0.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="AddDistance_KeyDown"/>
-            <TextBox x:Name="AddTimeUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="54,35.2,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="76" KeyDown="AddDistance_KeyDown" RenderTransformOrigin="0.568,-0.712" Grid.RowSpan="2"/>
-            <RadioButton x:Name="finishDisAndTimeUpdate" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="139,22.2,0,0" Grid.Row="3" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTimeUpdate_Checked" RenderTransformOrigin="1.303,0.496" Grid.RowSpan="2">
-                <RadioButton.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="-12.095"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="-2.763"/>
-                    </TransformGroup>
-                </RadioButton.RenderTransform>
-            </RadioButton>
-            <Label x:Name="AddTimeAndDisLableUpdate" FontWeight="ExtraBlack" FontSize="12" Foreground="Blue"  Visibility="Hidden" HorizontalAlignment="Left" Margin="40,19.8,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="27" Width="340"/>
-            <Image x:Name="TimeImageUpdate" Visibility="Hidden" Source="https://dapey-avoda.info/wp-content/uploads/2014/05/%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%A9%D7%A2%D7%95%D7%9F.gif"  HorizontalAlignment="Left" Height="24" Margin="29,36.2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.518,1.179" Grid.RowSpan="2"/>
-            <Image x:Name="DisImageUpdate" Visibility="Hidden" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%AA%D7%A7%D7%A6%D7%99%D7%A8-%D7%9C%D7%9C%D7%9B%D7%AA-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%90%D7%95%D7%A4%D7%A7-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp21311214.jpg" HorizontalAlignment="Left" Height="24" Margin="29,0.2,0,0" Grid.Row="3" VerticalAlignment="Top" Width="23"/>
+            <TextBox x:Name="AddDistanceUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="90,219.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" KeyDown="AddDistance_KeyDown"/>
+            <TextBox x:Name="AddTimeUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="35,219.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" KeyDown="AddDistance_KeyDown" RenderTransformOrigin="0.568,-0.712"/>
+            <RadioButton x:Name="finishDisAndTimeUpdate" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="41,248.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTimeUpdate_Checked" RenderTransformOrigin="1.303,0.496"/>
+            <Label x:Name="AddTimeAndDisLableUpdate"  Visibility="Hidden" FontWeight="ExtraBlack" FontSize="12" Foreground="Blue" HorizontalAlignment="Left" Margin="160,216.8,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="27" Width="340"/>
+            <Image x:Name="TimeImageUpdate" Visibility="Hidden" Source="https://dapey-avoda.info/wp-content/uploads/2014/05/%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%A9%D7%A2%D7%95%D7%9F.gif"  HorizontalAlignment="Left" Height="24" Margin="9,220.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.518,1.179"/>
+            <Image x:Name="DisImageUpdate" Visibility="Hidden" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%AA%D7%A7%D7%A6%D7%99%D7%A8-%D7%9C%D7%9C%D7%9B%D7%AA-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%90%D7%95%D7%A4%D7%A7-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp21311214.jpg" HorizontalAlignment="Left" Height="24" Margin="123,220.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="23"/>
 
         </Grid>
-        <TextBox x:Name="searchStationTextBox" Text="" BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" Grid.Column="1" Margin="251.2,36,124.6,558" TextWrapping="Wrap" TextChanged="searchTextBox_TextChanged"/>
+        <TextBox x:Name="searchStationTextBox" Text="" BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" Grid.Column="1" Margin="251.2,36,124.6,654.8" TextWrapping="Wrap" TextChanged="searchTextBox_TextChanged"/>
         <Label x:Name="searchStationLable" Content=":חיפוש" HorizontalContentAlignment="Right" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Left" Margin="357.2,29,0,0" VerticalAlignment="Top" Width="60" Height="37"/>
-        <Image Source="https://www.idigital.co.il/files/spot_icon.png" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="216.2,34,0,0" VerticalAlignment="Top" Width="27"/>
+        <Image Source="https://www.idigital.co.il/files/spot_icon.png" Grid.Column="1" HorizontalAlignment="Left" Height="25" Margin="219.2,36,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
     </Grid>
 </Window>
