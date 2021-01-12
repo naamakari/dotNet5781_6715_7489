@@ -11,9 +11,9 @@
 
     <Grid x:Name="mainGrid">
 
-        <Label Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="81,10,0,0"  Foreground="#FF4C0122" VerticalAlignment="Top" Width="186" FontSize="18" FontWeight="Bold"/>
-
         <Grid x:Name="insertDetailsGrid" Background="#FFD4F9AB" Margin="0,0,-0.4,0" >
+            <Label x:Name="lable" Foreground="Black" Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top" Width="232" FontSize="18" FontWeight="Bold"/>
+
             <Label Content=":אני נמצא/ת ב" HorizontalAlignment="Left" Margin="276,43,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.935,0.764" FontWeight="Bold" Foreground="#FF4C0122"/>
             <ComboBox x:Name="firstStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" HorizontalContentAlignment="Right" Height="25" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="10,77,23,318" SelectedValuePath="StationName">
                 <ComboBox.ItemsPanel>
@@ -94,7 +94,7 @@
             <Label x:Name="exeption2" Content="אין מסלול ישיר בין התחנות" HorizontalAlignment="Left" Margin="96,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="214" Height="26" FontWeight="Bold" FontSize="14"/>
             <Image x:Name="image1" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="129,45,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
             <Image x:Name="image2" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="131,105,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
-            <Image x:Name="image3" Source="https://urban-shop.co.il/media/catalog/product/cache/5080f00f360d5bec7cd2eec6cc6895b0/2/9/293116.jpg" Height="20" Margin="359,165,12,0" VerticalAlignment="Top" RenderTransformOrigin="0.363,0.732"/>
+            <Image x:Name="image3" Source="https://urban-shop.co.il/media/catalog/product/cache/5080f00f360d5bec7cd2eec6cc6895b0/2/9/293116.jpg" Height="26" Margin="341,168,23,0" VerticalAlignment="Top" RenderTransformOrigin="0.363,0.732"/>
 
         </Grid>
     </Grid>
