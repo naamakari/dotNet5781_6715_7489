@@ -66,6 +66,8 @@ namespace UIWpf
 
         private void addBusStation_Click(object sender, RoutedEventArgs e)
         {
+            backToNenu.Visibility = Visibility.Hidden;
+            cancle1.Visibility = Visibility.Visible;
             busStationDetailes.Visibility = Visibility.Hidden;
             updateGrid.Visibility = Visibility.Hidden;
             addBusStationGrid.Visibility = Visibility.Visible;
@@ -126,6 +128,7 @@ namespace UIWpf
 
         private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Check whether the location is within the country
             if (latitudeTextBox.Text != "")
             {
                 if (float.Parse(latitudeTextBox.Text) < 34.2 || float.Parse(latitudeTextBox.Text) > 35.5)
@@ -138,6 +141,7 @@ namespace UIWpf
 
         private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //Check whether the location is within the country
             if (longitudeTextBox.Text != "")
             {
                 if (float.Parse(longitudeTextBox.Text) < 29.4 || float.Parse(longitudeTextBox.Text) > 33.3)
@@ -172,6 +176,8 @@ namespace UIWpf
                     stations.Add(item);
                 busStationDetailes.DataContext = null;
                 collectionBusLinesListView.ItemsSource = null;
+                backToNenu.Visibility = Visibility.Visible;
+                cancle1.Visibility = Visibility.Hidden;
                 busStationDetailes.Visibility = Visibility.Visible;
                 addBusStationGrid.Visibility = Visibility.Hidden;
                 MessageBox.Show("התחנה נוספה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -211,11 +217,6 @@ namespace UIWpf
                     collectionBusLinesListView.ItemsSource = busStationBL.CollectionBusLines;
                 busStationDetailes.Visibility = Visibility.Visible;
                 stations.Add(busStationBL);
-                //stations.Clear();
-                //foreach (BusStationBL item in bl.GetAllStations())
-                //    stations.Add(item);
-                //busStationBLDataGrid.ItemsSource = stations;
-
                 MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
@@ -229,7 +230,7 @@ namespace UIWpf
         {
             try
             {
-                var fxElt = sender as FrameworkElement;//casting for bus
+                var fxElt = sender as FrameworkElement;//casting for bus station
                 BusLine busLine = fxElt.DataContext as BusLine;
                 BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
                 stations.Remove(busStation);
@@ -244,8 +245,49 @@ namespace UIWpf
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            
-            //MessageBox.Show("לא ממומש", "");
+        }
+
+        private void longitudeTextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //Check whether the location is within the country
+            toUpdate.IsEnabled = false;
+            if (longitudeTextBox1.Text != "")
+            {
+                if (float.Parse(longitudeTextBox1.Text) < 29.4 || float.Parse(longitudeTextBox1.Text) > 33.3)
+                    longInvalid1.Visibility = Visibility.Visible;
+                else
+                {
+                    longInvalid1.Visibility = Visibility.Hidden;
+                    toUpdate.IsEnabled = true;
+                }
+            }
+        }
+
+        private void latitudeTextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //Check whether the location is within the country
+            toUpdate.IsEnabled = false;
+            if (latitudeTextBox1.Text != "")
+            {
+                if (float.Parse(latitudeTextBox1.Text) < 34.2 || float.Parse(latitudeTextBox1.Text) > 35.5)
+                    latInvalid1.Visibility = Visibility.Visible;
+                else
+                {
+                    latInvalid1.Visibility = Visibility.Hidden;
+                    toUpdate.IsEnabled = true;
+                }
+            }
+        }
+
+        private void cancle1_Click(object sender, RoutedEventArgs e)
+        {
+            busStationDetailes.DataContext = null;
+            collectionBusLinesListView.ItemsSource = null;
+            backToNenu.Visibility = Visibility.Visible;
+            cancle1.Visibility = Visibility.Hidden;
+            busStationDetailes.Visibility = Visibility.Visible;
+            addBusStationGrid.Visibility = Visibility.Hidden;
+            addStation.IsEnabled = true;
         }
     }
 }
