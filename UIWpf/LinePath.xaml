@@ -11,7 +11,7 @@
 
     <Grid x:Name="mainGrid">
 
-        <Label Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="81,10,0,0" FontStyle="" Foreground="#FF4C0122" VerticalAlignment="Top" Width="186" FontSize="18" FontWeight="Bold"/>
+        <Label Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="81,10,0,0"  Foreground="#FF4C0122" VerticalAlignment="Top" Width="186" FontSize="18" FontWeight="Bold"/>
 
         <Grid x:Name="insertDetailsGrid" Background="#FFD4F9AB" Margin="0,0,-0.4,0" >
             <Label Content=":אני נמצא/ת ב" HorizontalAlignment="Left" Margin="276,43,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.935,0.764" FontWeight="Bold" Foreground="#FF4C0122"/>
