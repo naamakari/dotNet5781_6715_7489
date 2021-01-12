@@ -7,17 +7,15 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.BusWindow1"
         mc:Ignorable="d"
         Title="BusWindow1" Height="450" Width="750" >
-    <Window.Resources>
-        <CollectionViewSource x:Key="busViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Bus}, CreateList=True}"/>
-    </Window.Resources>
-    <Grid x:Name="MainGrid" Margin="0,0,-0.4,0" >
+
+    <Grid x:Name="MainGrid" Margin="0,0,-0.4,0" Background="#FFDAE9F9" >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="44*"/>
 
         </Grid.ColumnDefinitions>
-        <Grid x:Name="BusDeatailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="65,31,0,0" VerticalAlignment="Top" Height="308" Width="259" >
+        <Grid x:Name="BusDeatailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" Height="400" Width="345" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -31,28 +29,33 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content=":מספר רישוי" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="licenseNumberTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":מספר רישוי" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,5,-27.4,4.2" Grid.Row="0" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="licenseNumberTextBox" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 
-            <Label Content=":תאריך ייצור" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock x:Name="startDate" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding StartDate}" VerticalAlignment="Center"/>
-            <Label Content=":סטטוס" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock x:Name="busStateTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="2" Grid.Row="2" Text="{Binding BusState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content=":תאריך טיפול אחרון" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock x:Name="dateSinceLastTreatDate"   Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding DateSinceLastTreat}"  VerticalAlignment="Center"/>
-            <Label Content=":'קילומטראז" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kilometrazTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Kilometraz, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content=":ק''מ מאז טיפול" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmSinceLastTreatTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding KmSinceLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content=":ק''מ מאז התדלוק" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBlock x:Name="kmSinceRefeulTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding KmSinceRefeul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Button x:Name="refule" IsEnabled="False" Content="לחץ לתדלוק" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="7" VerticalAlignment="Center" Width="90" Height="25" Click="refule_Click" />
-            <Button x:Name="treat" IsEnabled="False" Content="שליחה לטיפול" Grid.Column="0" HorizontalAlignment="Center" Margin="19,0,18.2,0.2" Grid.Row="7" VerticalAlignment="Bottom" Width="90" Height="25" Click="treat_Click"/>
-            <Button x:Name="delete" IsEnabled="false" Content="מחיקה" HorizontalAlignment="Left" Margin="95,0,0,-30" Grid.Row="8" VerticalAlignment="Bottom" Width="61" Click="delete_Click" Height="20" Grid.ColumnSpan="2"/>
+            <Label Content=":תאריך ייצור" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,4.2,-26.6,4" Grid.Row="1" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="startDate" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding StartDate}" VerticalAlignment="Center"/>
+
+            <Label Content=":סטטוס" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,4,-25.8,3.6" Grid.Row="2" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="busStateTextBox" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="2" Grid.Row="2" Text="{Binding BusState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Content=":תאריך טיפול אחרון" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,4.6,-24.2,4.6" Grid.Row="4" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="dateSinceLastTreatDate" FontWeight="SemiBold" FontSize="15" TextAlignment="Center"  Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding DateSinceLastTreat}"  VerticalAlignment="Center"/>
+
+            <Label Content=":'קילומטראז" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,3.8,-25,3.8" Grid.Row="3" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="kilometrazTextBox" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Kilometraz, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Content=":ק''מ מאז טיפול" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,3.8,-23.4,3.8" Grid.Row="5" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="kmSinceLastTreatTextBox" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding KmSinceLastTreat, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Label Content=":ק''מ מאז התדלוק" FontWeight="SemiBold" FontSize="15" HorizontalContentAlignment="Right" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,3.6,-22.6,3" Grid.Row="6" VerticalAlignment="Center" Width="147"/>
+            <TextBlock x:Name="kmSinceRefeulTextBox" FontWeight="SemiBold" FontSize="15" TextAlignment="Center" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding KmSinceRefeul, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+            <Button x:Name="refule" IsEnabled="False" Content="לחצ/י לתדלוק" FontSize="15" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" Grid.Column="1" HorizontalAlignment="Center" Margin="16.6,12,11.2,-24" Grid.Row="7" VerticalAlignment="Center" Width="109" Height="40" Click="refule_Click" />
+            <Button x:Name="treat" IsEnabled="False" Content="שליחה לטיפול" FontSize="15" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" Grid.Column="0" HorizontalAlignment="Center" Margin="16,0,19.4,-23.2" Grid.Row="7" VerticalAlignment="Bottom" Width="109" Height="40" Click="treat_Click"/>
+            <Button x:Name="delete" IsEnabled="false" Content="מחיקה" FontSize="15" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" HorizontalAlignment="Left" Margin="101,0,0,-74" Grid.Row="7" VerticalAlignment="Bottom" Width="65" Click="delete_Click" Height="30" Grid.ColumnSpan="2"/>
         </Grid>
-        <ListView x:Name="busListView" Grid.Column="1" ItemsSource="{Binding}" Margin="10.2,31,10.4,145" SelectionMode="Single" SelectionChanged="busListView_SelectionChanged">
+        <ListView x:Name="busListView" FontWeight="SemiBold" FontSize="14" BorderBrush="Black" Background="WhiteSmoke" ItemsSource="{Binding}" Margin="31,31,18,145" SelectionMode="Single" SelectionChanged="busListView_SelectionChanged" Grid.Column="1">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -61,26 +64,27 @@
             </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="licenseNumberColumn" Header="מספר רישוי" Width="100">
+                    <GridViewColumn x:Name="busStateColumn" Header="סטטוס" Width="110">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="-6,-1" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                                <TextBlock Margin="6,-1,-6,-1" TextAlignment="Center" Text="{Binding BusState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn x:Name="busStateColumn" Header="סטטוס" Width="80">
+                    <GridViewColumn x:Name="licenseNumberColumn" Header="מספר רישוי" Width="140">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Margin="6,-1,-6,-1" Text="{Binding BusState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                <TextBlock Margin="-6,-1" TextAlignment="Center" Text="{Binding LicenseNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="add" Content="להוספת אוטובוס" Click="add_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="51.2,301,0,0" VerticalAlignment="Top" Width="156" Height="38"/>
-        <Button x:Name="exit" Content="לחזרה לתפריט הראשי" Grid.Column="1" HorizontalAlignment="Left" Margin="65.2,362,0,0" VerticalAlignment="Top" Width="130" Height="25" Click="exit_Click"/>
-        <Button x:Name="cancle" Content="ביטול" Visibility="Hidden" Click="cancle_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="65.2,362,0,0" VerticalAlignment="Top" Width="130" Height="25"/>
+        <Button x:Name="add" Content="להוספת אוטובוס" FontSize="16" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" Click="add_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="96,299,0,0" VerticalAlignment="Top" Width="156" Height="38"/>
+        <Button x:Name="exit" Content="לחזרה לתפריט הראשי" BorderThickness="1.5" BorderBrush="#FF2525FA" FontWeight="Medium" Grid.Column="1" HorizontalAlignment="Left" Margin="110,358,0,0" VerticalAlignment="Top" Width="130" Height="25" Click="exit_Click"/>
+        <Button x:Name="cancle" Content="ביטול" Visibility="Hidden" Click="cancle_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="62,362,0,0" VerticalAlignment="Top" Width="130" Height="25"/>
         <Grid x:Name="addGrid"  Visibility="Hidden" HorizontalAlignment="Left" Margin="65,31,0,0" VerticalAlignment="Top" Height="308" Width="259">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
