@@ -154,7 +154,8 @@ namespace UIWpf
 
         private void firstStationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            exeption2.Visibility = Visibility.Hidden;
+            exeption1.Visibility = Visibility.Hidden;
             if (firstStationComboBox.SelectedItem != null && lastStationComboBox.SelectedItem != null && (firstStationComboBox.SelectedItem.ToString() != lastStationComboBox.SelectedItem.ToString()))
                 searchLines.IsEnabled = true;
             else if (firstStationComboBox.SelectedItem != null && lastStationComboBox.SelectedItem != null && firstStationComboBox.SelectedItem.ToString() == lastStationComboBox.SelectedItem.ToString())

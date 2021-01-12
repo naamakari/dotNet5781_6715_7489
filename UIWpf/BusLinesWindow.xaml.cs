@@ -380,9 +380,9 @@ namespace UIWpf
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text) || x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text) || x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
-            collectionOfStationListView.ItemsSource = null;
-            UpdateBusLine.IsEnabled = false;
-            DeleteBusLine.IsEnabled = false;
+            //collectionOfStationListView.ItemsSource = null;
+            //UpdateBusLine.IsEnabled = false;
+            //DeleteBusLine.IsEnabled = false;
 
         }
 
