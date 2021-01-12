@@ -126,18 +126,33 @@ namespace UIWpf
 
         private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (latitudeTextBox.Text != "")
+            {
+                if (float.Parse(latitudeTextBox.Text) < 34.2 || float.Parse(latitudeTextBox.Text) > 35.5)
+                    latInvalid.Visibility = Visibility.Visible;
+                else
+                    latInvalid.Visibility = Visibility.Hidden;
+            }
             enable();
         }
 
         private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (longitudeTextBox.Text != "")
+            {
+                if (float.Parse(longitudeTextBox.Text) < 29.4 || float.Parse(longitudeTextBox.Text) > 33.3)
+                    longInvalid.Visibility = Visibility.Visible;
+                else
+                    longInvalid.Visibility = Visibility.Hidden;
+            }
             enable();
         }
         private void enable()
         {
             if (stationNameTextBox.Text != "" && addressTextBox.Text != "" && latitudeTextBox.Text != "" &&
                 longitudeTextBox.Text != "")
-                toAdd.IsEnabled = true;
+                if(longInvalid.Visibility==Visibility.Hidden&&latInvalid.Visibility==Visibility.Hidden)
+                     toAdd.IsEnabled = true;
         }
 
         private void toAdd_Click(object sender, RoutedEventArgs e)
@@ -156,6 +171,7 @@ namespace UIWpf
                 foreach (BusStationBL item in bl.GetAllStations())
                     stations.Add(item);
                 busStationDetailes.DataContext = null;
+                collectionBusLinesListView.ItemsSource = null;
                 busStationDetailes.Visibility = Visibility.Visible;
                 addBusStationGrid.Visibility = Visibility.Hidden;
                 MessageBox.Show("התחנה נוספה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);

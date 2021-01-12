@@ -12,7 +12,7 @@
     <Grid x:Name="mainGrid">
 
         <Grid x:Name="insertDetailsGrid" Background="#FFD4F9AB" Margin="0,0,-0.4,0" >
-            <Label x:Name="lable" Foreground="Black" Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="46,10,0,0" VerticalAlignment="Top" Width="232" FontSize="18" FontWeight="Bold"/>
+            <Label x:Name="lable" Foreground="#FF4C0122" Content="?לאן תרצה/י להגיע" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="84,7,0,0" VerticalAlignment="Top" Width="232" FontSize="22" FontWeight="Bold"/>
 
             <Label Content=":אני נמצא/ת ב" HorizontalAlignment="Left" Margin="276,43,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.935,0.764" FontWeight="Bold" Foreground="#FF4C0122"/>
             <ComboBox x:Name="firstStationComboBox" SelectionChanged="firstStationComboBox_SelectionChanged" HorizontalContentAlignment="Right" Height="25" DisplayMemberPath="StationName" ItemsSource="{Binding}" Margin="10,77,23,318" SelectedValuePath="StationName">
@@ -54,7 +54,7 @@
             <Button x:Name="LookAtTimeOfLines" IsEnabled="False" Content="לצפייה בזמני&#xA;      הגעת&#xA; האוטובוסים" HorizontalAlignment="Left" Margin="100,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="LookAtTimeOfLines_Click" RenderTransformOrigin="4.331,0.631" Background="#FFDADCD9"/>
             <TextBlock x:Name="timer"  HorizontalAlignment="Center" Text="בדיקה" Visibility="Visible" TextAlignment="Center" Foreground="#FF4C0122" Margin="264,166,51,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Height="25" FontSize="14" FontWeight="Bold" OpacityMask="Black" />
             <Button x:Name="StopWatch" IsEnabled="False" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="201,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="StopWatch_Click"/>
-            <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="75" Click="searchLines_Click" Background="#FFE2E4E1"/>
+            <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="80" Click="searchLines_Click" Background="#FFE2E4E1" Height="28"/>
             <DataGrid x:Name="lineTimingDataGrid" Visibility="Hidden" Background="#FFF8FFF2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="timingColumn" Header=":יגיע בעוד" Width="60">
@@ -90,11 +90,11 @@
             </DataGrid>
             <TextBox x:Name="search1" HorizontalAlignment="Left" Height="23" Margin="156,47,0,0" TextWrapping="Wrap" Text=""  BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.161,0.385" TextChanged="search1_TextChanged"/>
             <TextBox x:Name="search2" HorizontalAlignment="Left" Height="23" Margin="157,107,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="1" TextAlignment="Right" FontSize="15" Width="120" RenderTransformOrigin="0.161,0.385" TextChanged="search2_TextChanged"/>
-            <Label x:Name="exeption1" Content="לא נמצאו קווים המגיעים בזמן הקרוב" HorizontalAlignment="Left" Margin="96,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="214" Height="26" FontSize="14"/>
-            <Label x:Name="exeption2" Content="אין מסלול ישיר בין התחנות" HorizontalAlignment="Left" Margin="96,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="214" Height="26" FontWeight="Bold" FontSize="14"/>
+            <Label x:Name="exeption1" Content="לא נמצאו קווים המגיעים בזמן הקרוב" HorizontalAlignment="Left" Margin="96,186,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="291" Height="38" FontSize="14" FontWeight="Bold"/>
+            <Label x:Name="exeption2" Content="אין מסלול ישיר בין התחנות" HorizontalAlignment="Left" Margin="157,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="230" Height="39" FontWeight="Bold" FontSize="14"/>
             <Image x:Name="image1" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="129,45,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
             <Image x:Name="image2" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="131,105,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
-            <Image x:Name="image3" Source="https://urban-shop.co.il/media/catalog/product/cache/5080f00f360d5bec7cd2eec6cc6895b0/2/9/293116.jpg" Height="26" Margin="341,168,23,0" VerticalAlignment="Top" RenderTransformOrigin="0.363,0.732"/>
+            <Image x:Name="image3" Height="26" Margin="341,168,23,0" VerticalAlignment="Top" RenderTransformOrigin="0.363,0.732"/>
 
         </Grid>
     </Grid>
