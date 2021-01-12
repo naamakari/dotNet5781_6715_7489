@@ -10,9 +10,9 @@
         <CollectionViewSource x:Key="busStationBLViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:BusStationBL}, CreateList=True}"/>
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="#FFFFD7B3">
 
-        <DataGrid x:Name="busStationBLDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="386,106,9.6,149.2" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="busStationBLDataGrid_SelectionChanged" HorizontalContentAlignment="Center">
+        <DataGrid x:Name="busStationBLDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="386,106,9.6,149.2" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="busStationBLDataGrid_SelectionChanged" HorizontalContentAlignment="Center" Background="#FFFAEEE2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn x:Name="addressColumn" Width="150" Header="כתובת">
                     <DataGridTemplateColumn.CellTemplate>
@@ -35,15 +35,15 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                
+
+
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="searchStationTextBox" Text="" TextChanged="searchStationTextBox_TextChanged" TextAlignment="Right" HorizontalAlignment="Left" Height="37" Margin="589,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" />
         <Label x:Name="searchStationLable" Content=":חיפוש" HorizontalContentAlignment="Right" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="693,53,0,0" VerticalAlignment="Top" Width="66" Height="37"/>
-        <Button x:Name="addStation" Content="הוספת תחנת אוטובוס" Click="addBusStation_Click" HorizontalAlignment="Left" Margin="514,310,0,0" VerticalAlignment="Top" Width="173" Height="45"  RenderTransformOrigin="0.436,2.063"/>
-        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" Click="backToNenu_Click" HorizontalAlignment="Left" Margin="531,364,0,0" VerticalAlignment="Top" Width="132" Height="32"  RenderTransformOrigin="0.634,0.784"/>
-        <Grid x:Name="busStationDetailes" Visibility="Visible" HorizontalAlignment="Left" Margin="68,27,0,0" VerticalAlignment="Top" Height="385" Width="288">
+        <Button x:Name="addStation" Content="הוספת תחנת אוטובוס" Click="addBusStation_Click" HorizontalAlignment="Left" Margin="514,310,0,0" VerticalAlignment="Top" Width="173" Height="45" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke"  RenderTransformOrigin="0.436,2.063"/>
+        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" Click="backToNenu_Click" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="531,364,0,0" VerticalAlignment="Top" Width="132" Height="32"  RenderTransformOrigin="0.634,0.784"/>
+        <Grid x:Name="busStationDetailes" Visibility="Hidden" HorizontalAlignment="Left" Margin="68,27,0,0" VerticalAlignment="Top" Height="385" Width="288">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="143.2"/>
                 <ColumnDefinition Width="Auto" MinWidth="204"/>
@@ -59,7 +59,7 @@
             <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,14.2,0,12.6" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="55"/>
             <TextBlock x:Name="addressTextBlock" Grid.Column="0" HorizontalAlignment="Right"  Margin="3,12.2,0,5.2" Grid.Row="2" Text="{Binding Address}" VerticalAlignment="Center" Height="25" Width="140"/>
             <Label Content=":קווים העוברים בתחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,62.6,0,44.4" Grid.Row="5" VerticalAlignment="Center" Height="25" Width="117"/>
-            <ListView x:Name="collectionBusLinesListView" DisplayMemberPath="CollectionBusLines" HorizontalAlignment="Left" Height="100"  Margin="10,19.6,0,12.4" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="268" Grid.ColumnSpan="2" >
+            <ListView x:Name="collectionBusLinesListView" DisplayMemberPath="CollectionBusLines" HorizontalAlignment="Left" Height="100"  Margin="10,19.6,0,12.4" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="268" Grid.ColumnSpan="2" Background="#FFFAEEE2" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="numLine" Width="80" Header="מספר קו">
@@ -85,36 +85,38 @@
             <TextBlock x:Name="stationCodeTextBlock"  Grid.Column="0" HorizontalAlignment="Right" Margin="3,10,0,7.4" Grid.Row="0" Text="{Binding StationCode}" VerticalAlignment="Center" Height="25" Width="140"/>
             <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="8.8,8,0,18.8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="85"/>
             <TextBlock x:Name="stationNameTextBlock" Grid.Column="0" HorizontalAlignment="Right" Margin="3,14,0,13.8" Grid.Row="1" Text="{Binding StationName}" VerticalAlignment="Center" Height="25" Width="140"/>
-            <Button x:Name="UpdateStation" Content="עדכון" IsEnabled="False" Click="UpdateBusLine_Click" Grid.Column="0" HorizontalAlignment="Left" Margin="15.8,11.6,0,1" Grid.Row="6" VerticalAlignment="Center" Width="100" Height="25"  RenderTransformOrigin="0.495,1.793"/>
-            <Button x:Name="DeleteStation" Content="מחיקה" IsEnabled="False" Click="DeleteBusStation_Click" HorizontalAlignment="Left" Grid.Column="1" Margin="17,12.6,0,2" Grid.Row="6" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.488,1.617" Height="25" />
+            <Button x:Name="UpdateStation" Content="עדכון" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" IsEnabled="False" Click="UpdateBusLine_Click" Grid.Column="0" HorizontalAlignment="Left" Margin="15.8,11.6,0,1" Grid.Row="6" VerticalAlignment="Center" Width="100" Height="25"  RenderTransformOrigin="0.495,1.793"/>
+            <Button x:Name="DeleteStation" Content="מחיקה" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" IsEnabled="False" Click="DeleteBusStation_Click" HorizontalAlignment="Left" Grid.Column="1" Margin="17,12.6,0,2" Grid.Row="6" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.488,1.617" Height="25" />
 
         </Grid>
-        <Grid x:Name="addBusStationGrid"  HorizontalAlignment="Left" Margin="68,85,0,0" Visibility="Hidden" VerticalAlignment="Top" Height="196" Width="270">
+        <Grid x:Name="addBusStationGrid"  HorizontalAlignment="Left" Margin="68,85,0,0" Visibility="Hidden" VerticalAlignment="Top" Height="270" Width="270">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="9*" MinHeight="48"/>
+                <RowDefinition Height="9*" MinHeight="48"/>
+                <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
-            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="addressTextBox_TextChanged"/>
-            <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="latitudeTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyDown="latitudeTextBox_KeyDown" TextChanged="latitudeTextBox_TextChanged"/>
-            <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyDown="latitudeTextBox_KeyDown" TextChanged="longitudeTextBox_TextChanged" />
-            <Label Content="קוד תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label x:Name="stationCodeLabel" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="stationNameTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding StationName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="stationNameTextBox_TextChanged"/>
-            <Button x:Name="toAdd" Content="הוספה" Click="toAdd_Click" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="5" Width="100" Height="30" Grid.ColumnSpan="2"/>
+            <Label Content=":כתובת" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,8.2,0,7.4" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="47"/>
+            <TextBox x:Name="addressTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="24" Margin="0,9.2,3.2,8.4" Grid.Row="2" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="addressTextBox_TextChanged"/>
+            <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,7.6,0,14.4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="52"/>
+            <TextBox x:Name="latitudeTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="0,9.2,3.2,19" Grid.Row="4" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyDown="latitudeTextBox_KeyDown" TextChanged="latitudeTextBox_TextChanged"/>
+            <Label x:Name="latInvalid" Content="קו הרוחב לא בתחום השירות" HorizontalAlignment="Left" Margin="0,0,0,31.4" Grid.Row="4" VerticalAlignment="Bottom" Width="138" Height="29" FontSize="10" FontStyle="Italic" Foreground="Red" Visibility="Hidden" Grid.RowSpan="2"/>
+            <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,6.6,0,22" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="52"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="0,9.6,3.2,21" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" KeyDown="latitudeTextBox_KeyDown" TextChanged="longitudeTextBox_TextChanged" />
+            <Label x:Name="longInvalid" Content="קו האורך לא בתחום השירות" HorizontalAlignment="Left" Margin="0,0,0,47.2" Grid.Row="3" VerticalAlignment="Bottom" Width="138" Height="29" FontSize="10" FontStyle="Italic" Foreground="Red" Visibility="Hidden" Grid.RowSpan="2"/>
+            <Label Content="קוד תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,5,0,12.4" Grid.Row="0" VerticalAlignment="Center" Height="25" Width="60"/>
+            <Label x:Name="stationCodeLabel" Content="מספר מזהה יינתן על ידי המערכת" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,12.4" Grid.Row="0" VerticalAlignment="Center" Height="25" Width="179"/>
+            <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,5.6,0,10.8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="64"/>
+            <TextBox x:Name="stationNameTextBox" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="0,7.6,3.2,11.8" Grid.Row="1" Text="{Binding StationName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="stationNameTextBox_TextChanged"/>
+            <Button x:Name="toAdd" Content="הוספה" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Click="toAdd_Click" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="5" Height="30" Margin="79,5,7.2,7.4"/>
         </Grid>
-        <Grid x:Name="updateGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="68,27,0,0" VerticalAlignment="Top" Height="385" Width="288">
+        <Grid x:Name="updateGrid" Visibility="vi" HorizontalAlignment="Left" Margin="68,27,0,0" VerticalAlignment="Top" Height="385" Width="288">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="141.6"/>
 
@@ -152,23 +154,23 @@
                         <GridViewColumn x:Name="delete" Width="80">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="deleteFromNewListButton" Content="מחיקה" Click="deleteFromNewListButton_Click"/>
+                                    <Button x:Name="deleteFromNewListButton" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Content="מחיקה" Click="deleteFromNewListButton_Click"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,9.8,0,9.2" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="51"/>
-            <TextBox x:Name="latitudeTextBox1" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3,9.8,0,11.2" Grid.Row="3" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,11.8,0,7" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="51"/>
-            <TextBox x:Name="longitudeTextBox1" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3,13.8,0,8" Grid.Row="4" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,1.8,0,17.2" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="51"/>
+            <TextBox x:Name="latitudeTextBox1" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3,5.8,0,15.2" Grid.Row="3" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,3.8,0,15" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="51"/>
+            <TextBox x:Name="longitudeTextBox1" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3,7.8,0,14" Grid.Row="4" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content=":קוד תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,4,0,4.4" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="63"/>
             <Label x:Name="stationCodeLabel1" Content="{Binding StationCode}" Grid.Column="0" HorizontalAlignment="Left" Margin="3,12,0,12.4" Grid.Row="0" VerticalAlignment="Center" Height="10" Width="10"/>
             <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="2.6,3.6,0,14.4" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="64"/>
             <TextBox x:Name="stationNameTextBox1" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="3,5.6,0,15.4" Grid.Row="1" Text="{Binding StationName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Button x:Name="toUpdate" Content="עדכון" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Margin="0" Height="25" Width="102" Click="toUpdate_Click"/>
-            <Button x:Name="toCancle" Content="ביטול" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center" Grid.Row="6" Width="102" Height="25" Margin="0" Click="toCancle_Click"/>
+            <Button x:Name="toUpdate" Content="עדכון" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" Margin="0" Height="25" Width="102" Click="toUpdate_Click"/>
+            <Button x:Name="toCancle" Content="ביטול" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Center" Grid.Row="6" Width="102" Height="25" Margin="0" Click="toCancle_Click"/>
         </Grid>
 
     </Grid>
