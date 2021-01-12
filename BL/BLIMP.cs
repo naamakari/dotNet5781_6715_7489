@@ -64,6 +64,21 @@ namespace BL
                 DO.Bus busDO = dal.GetBus(bus.LicenseNumber);
                 busDO.KmSinceLastTreat = (float)0.0;
                 busDO.DateSinceLastTreat = DateTime.Now;
+                busDO.BusState = DO.BusStatus.inTreat;
+                dal.UpdateBus(busDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+
+        }
+        public void ReturnFromTreat(BO.Bus bus)
+        {
+            try
+            {
+                DO.Bus busDO = dal.GetBus(bus.LicenseNumber);
+                busDO.BusState = DO.BusStatus.ready;
                 dal.UpdateBus(busDO);
             }
             catch (KeyNotFoundException ex)

@@ -26,7 +26,7 @@ namespace UIWpf
     /// </summary>
     public partial class BusWindow1 : Window
     {
-        ObservableCollection<Bus> buses=new ObservableCollection<Bus>();
+        ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         IBL bl;
         BackgroundWorker refuelBackground;
         BackgroundWorker treatBackground;
@@ -41,15 +41,16 @@ namespace UIWpf
                     buses.Add(item);
                 busListView.ItemsSource = buses;
             }
-            catch(BO.DalEmptyCollectionExeption ex)
+            catch (BO.DalEmptyCollectionExeption ex)
             {
-                MessageBox.Show(ex.Message,"הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             }
         }
 
         private void busListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             refule.IsEnabled = true;
             treat.IsEnabled = true;
             delete.IsEnabled = true;
@@ -58,7 +59,43 @@ namespace UIWpf
 
         private void refule_Click(object sender, RoutedEventArgs e)
         {
-            Bus bus= busListView.SelectedItem as Bus;
+
+            Bus bus = busListView.SelectedItem as Bus;
+            if (bus == null)
+            {
+                if (licenseNumberTextBox.Text == "")
+                    return;
+                else
+                {
+                    string clearLicense = bl.setLicenseNumberFrom(licenseNumberTextBox.Text);
+                    bus = bl.GetBus(clearLicense);
+                    buses.Clear();
+                    foreach (var item in bl.GetAllBuses())
+                    {
+                      if(  item.LicenseNumber != licenseNumberTextBox.Text)
+                        buses.Add(item);
+                    }
+                    busListView.ItemsSource = buses;
+
+                }
+            }
+            if (bus.BusState == BusStatus.בטיפול)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (bus.BusState == BusStatus.בנסיעה)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (bus.BusState == BusStatus.בתדלוק)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            refule.IsEnabled = false;
+            treat.IsEnabled = false;
             Bus newBus;
             buses.Remove(bus);
             bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
@@ -68,12 +105,14 @@ namespace UIWpf
             try
             {
                 bl.SendToRefuel(bus);
-                newBus= bl.GetBus(bus.LicenseNumber);
-                refuelBackground.RunWorkerAsync(newBus.LicenseNumber);
+                newBus = bl.GetBus(bus.LicenseNumber);
+                refuelBackground.RunWorkerAsync(newBus);
                 BusDeatailsGrid.DataContext = newBus;
-               // bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
+                // bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 busListView.SelectedItem = newBus;
                 buses.Add(newBus);
+                refule.IsEnabled = false;
+                treat.IsEnabled = false;
 
             }
             catch (KeyNotFoundException ex)
@@ -88,23 +127,15 @@ namespace UIWpf
         }
         private void RefuelBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            string lisence = (string)e.Result;
-            MessageBox.Show(" אוטובוס מספר " + lisence + " תודלק בהצלחה", "סיום התדלוק", MessageBoxButton.OK, MessageBoxImage.Information);
-           string ClearLicence = bl.setLicenseNumberFrom(lisence);
-           Bus returnBus = bl.GetBus(ClearLicence);
-
-            returnBus.LicenseNumber = ClearLicence;
-            buses.Remove(returnBus);
-            // returnBus.LicenseNumber = bl.setLicenseNumberFrom(returnBus.LicenseNumber);
-            //returnBus.LicenseNumber = bl.setLicenseNumberFrom(returnBus.LicenseNumber);
-           
-            returnBus.LicenseNumber=ClearLicence;
-
-            bl.ReturnFromRefuel(returnBus);
-            Bus TheNewBus = bl.GetBus(returnBus.LicenseNumber);
-            BusDeatailsGrid.DataContext = TheNewBus;
-            buses.Add(TheNewBus);
-
+            Bus bus = (BO.Bus)e.Result;
+            MessageBox.Show(" אוטובוס מספר " + bus.LicenseNumber + " תודלק בהצלחה", "סיום התדלוק", MessageBoxButton.OK, MessageBoxImage.Information);
+            buses.Remove(bus);
+            bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
+            bl.ReturnFromRefuel(bus);
+            Bus newBus = bl.GetBus(bus.LicenseNumber);
+            BusDeatailsGrid.DataContext = newBus;
+            if(!buses.Any(x=>x.LicenseNumber==newBus.LicenseNumber))
+            buses.Add(newBus);
         }
 
 
@@ -112,17 +143,60 @@ namespace UIWpf
         private void treat_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
+
+            if (bus == null)
+            {
+                if (licenseNumberTextBox.Text == "")
+                    return;
+                else
+                {
+                    string clearLicense = bl.setLicenseNumberFrom(licenseNumberTextBox.Text);
+                    bus = bl.GetBus(clearLicense);
+                    buses.Clear();
+                    foreach (var item in bl.GetAllBuses())
+                    {
+                        if (item.LicenseNumber != licenseNumberTextBox.Text)
+                            buses.Add(item);
+                    }
+                    busListView.ItemsSource = buses;
+                }
+            }
+            if (bus.BusState == BusStatus.בטיפול)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא כבר בטיפול", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (bus.BusState == BusStatus.בנסיעה)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בנסיעה", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (bus.BusState == BusStatus.בתדלוק)
+            {
+                MessageBox.Show("האוטובוס לא יכול ללכת לתדלוק כי הוא בתדלוק", "הודעת שגיאה", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            refule.IsEnabled = false;
+            treat.IsEnabled = false;
+
+
             Bus newBus;
             buses.Remove(bus);
             bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
+            treatBackground = new BackgroundWorker();
+            treatBackground.DoWork += TreatBackground_DoWork;
+            treatBackground.RunWorkerCompleted += TreatBackground_RunWorkerCompleted;
             try
             {
                 bl.SendToTreat(bus);
-                newBus= bl.GetBus(bus.LicenseNumber);
+                newBus = bl.GetBus(bus.LicenseNumber);
+                treatBackground.RunWorkerAsync(newBus);
                 BusDeatailsGrid.DataContext = newBus;
                 //bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 busListView.SelectedItem = newBus;
                 buses.Add(newBus);
+                refule.IsEnabled = false;
+                treat.IsEnabled = false;
             }
             catch (KeyNotFoundException ex)
             {
@@ -131,6 +205,23 @@ namespace UIWpf
 
         }
 
+        private void TreatBackground_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = e.Argument;
+            Thread.Sleep(1440);
+        }
+        private void TreatBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Bus bus = (BO.Bus)e.Result;
+            MessageBox.Show(" אוטובוס מספר " + bus.LicenseNumber + " טופל בהצלחה", "סיום התדלוק", MessageBoxButton.OK, MessageBoxImage.Information);
+            buses.Remove(bus);
+            bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
+            bl.ReturnFromTreat(bus);
+            Bus newBus = bl.GetBus(bus.LicenseNumber);
+            BusDeatailsGrid.DataContext = newBus;
+            if (!buses.Any(x => x.LicenseNumber == newBus.LicenseNumber))
+                buses.Add(newBus);
+        }
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
@@ -253,7 +344,7 @@ namespace UIWpf
                 else
                     NumEror.Visibility = Visibility.Hidden;
             }
-           
+
 
             this.errors();
         }
@@ -349,7 +440,7 @@ namespace UIWpf
             //The function verifies if all the fields are filled in and if the content is 
             //correct and there are no discrepancies between the fields
             if (kmSinceLastTreatTextBox1.Text != "" && kmSinceRefeulTextBox1.Text != "" && licenseNumberTextBox1.Text != "" && kilometrazTextBox1.Text != ""
-               && dateSinceLastTreatDatePicker.SelectedDate != null && startDateDatePicker.SelectedDate != null&& busStateComboBox!=null)
+               && dateSinceLastTreatDatePicker.SelectedDate != null && startDateDatePicker.SelectedDate != null && busStateComboBox != null)
                 if (NumEror.Visibility == Visibility.Hidden && DateEror.Visibility == Visibility.Hidden
              && Km1Eror.Visibility == Visibility.Hidden && Km2Eror.Visibility == Visibility.Hidden
              && dateInvalid2.Visibility == Visibility.Hidden && dateInvalid1.Visibility == Visibility.Hidden)
@@ -369,12 +460,12 @@ namespace UIWpf
             {
                 LicenseNumber = licenseNumberTextBox1.Text,
                 Kilometraz = float.Parse(kilometrazTextBox1.Text),
-                KmSinceLastTreat=float.Parse(kmSinceLastTreatTextBox1.Text),
-                KmSinceRefeul=float.Parse(kmSinceRefeulTextBox1.Text),
-                DateSinceLastTreat=(DateTime)dateSinceLastTreatDatePicker.SelectedDate,
-                StartDate=(DateTime)startDateDatePicker.SelectedDate,
-                IsDeleted=false,
-                BusState= (BO.BusStatus)busStateComboBox.SelectedItem,
+                KmSinceLastTreat = float.Parse(kmSinceLastTreatTextBox1.Text),
+                KmSinceRefeul = float.Parse(kmSinceRefeulTextBox1.Text),
+                DateSinceLastTreat = (DateTime)dateSinceLastTreatDatePicker.SelectedDate,
+                StartDate = (DateTime)startDateDatePicker.SelectedDate,
+                IsDeleted = false,
+                BusState = (BO.BusStatus)busStateComboBox.SelectedItem,
             };
             try
             {
@@ -385,14 +476,14 @@ namespace UIWpf
                 addGrid.Visibility = Visibility.Hidden;
                 MessageBox.Show("אוטובוס מספר " + licenseNumberTextBox1.Text + " נוסף בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch(BO.DalAlreayExistExeption ex)
+            catch (BO.DalAlreayExistExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
         //The function returns a string of the license number without the'- '
-      
+
 
         private void cancle_Click(object sender, RoutedEventArgs e)
         {

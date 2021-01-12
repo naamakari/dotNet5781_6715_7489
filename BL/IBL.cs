@@ -13,6 +13,8 @@ namespace APIBL
          void ReturnFromRefuel(Bus bus);
 
         void SendToTreat(Bus bus);//v
+        void ReturnFromTreat(Bus bus);
+
         void UpdateFirstStation(int code, int busId);//v
         void UpdateLastStation(int code, int busId);//v
         IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);//v
