@@ -10,6 +10,8 @@ namespace APIBL
     public interface IBL
     {
         void SendToRefuel(Bus bus);//v
+         void ReturnFromRefuel(Bus bus);
+
         void SendToTreat(Bus bus);//v
         void UpdateFirstStation(int code, int busId);//v
         void UpdateLastStation(int code, int busId);//v

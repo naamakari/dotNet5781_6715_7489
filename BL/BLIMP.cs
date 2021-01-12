@@ -32,6 +32,20 @@ namespace BL
             {
                 DO.Bus busDO = dal.GetBus(bus.LicenseNumber);
                 busDO.KmSinceRefeul = (float)0.0;
+                busDO.BusState = DO.BusStatus.inRefule;
+                dal.UpdateBus(busDO);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new KeyNotFoundException(ex.Message, ex);
+            }
+        }
+        public void ReturnFromRefuel(BO.Bus bus)
+        {
+            try
+            {
+                DO.Bus busDO = dal.GetBus(bus.LicenseNumber);
+                busDO.BusState = DO.BusStatus.ready;
                 dal.UpdateBus(busDO);
             }
             catch (KeyNotFoundException ex)

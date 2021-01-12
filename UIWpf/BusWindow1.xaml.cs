@@ -15,6 +15,9 @@ using BL;
 using BO;
 using APIBL;
 using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
+using System.Threading;
+using System.ComponentModel;
 
 namespace UIWpf
 {
@@ -25,6 +28,8 @@ namespace UIWpf
     {
         ObservableCollection<Bus> buses=new ObservableCollection<Bus>();
         IBL bl;
+        BackgroundWorker refuelBackground;
+        BackgroundWorker treatBackground;
         public BusWindow1(IBL _Bl)
         {
             InitializeComponent();
@@ -57,20 +62,52 @@ namespace UIWpf
             Bus newBus;
             buses.Remove(bus);
             bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
+            refuelBackground = new BackgroundWorker();
+            refuelBackground.DoWork += RefuelBackground_DoWork;
+            refuelBackground.RunWorkerCompleted += RefuelBackground_RunWorkerCompleted;
             try
             {
                 bl.SendToRefuel(bus);
                 newBus= bl.GetBus(bus.LicenseNumber);
+                refuelBackground.RunWorkerAsync(newBus.LicenseNumber);
                 BusDeatailsGrid.DataContext = newBus;
                // bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 busListView.SelectedItem = newBus;
                 buses.Add(newBus);
+
             }
             catch (KeyNotFoundException ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+        private void RefuelBackground_DoWork(object sender, DoWorkEventArgs e)
+        {
+            e.Result = e.Argument;
+            Thread.Sleep(1200);
+        }
+        private void RefuelBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            string lisence = (string)e.Result;
+            MessageBox.Show(" אוטובוס מספר " + lisence + " תודלק בהצלחה", "סיום התדלוק", MessageBoxButton.OK, MessageBoxImage.Information);
+           string ClearLicence = bl.setLicenseNumberFrom(lisence);
+           Bus returnBus = bl.GetBus(ClearLicence);
+
+            returnBus.LicenseNumber = ClearLicence;
+            buses.Remove(returnBus);
+            // returnBus.LicenseNumber = bl.setLicenseNumberFrom(returnBus.LicenseNumber);
+            //returnBus.LicenseNumber = bl.setLicenseNumberFrom(returnBus.LicenseNumber);
+           
+            returnBus.LicenseNumber=ClearLicence;
+
+            bl.ReturnFromRefuel(returnBus);
+            Bus TheNewBus = bl.GetBus(returnBus.LicenseNumber);
+            BusDeatailsGrid.DataContext = TheNewBus;
+            buses.Add(TheNewBus);
+
+        }
+
+
 
         private void treat_Click(object sender, RoutedEventArgs e)
         {

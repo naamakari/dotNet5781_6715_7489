@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public enum BusStatus { מוכן , בנסיעה, בתדלוק, בטיפול };
+    public enum BusStatus { זמין , בנסיעה, בתדלוק, בטיפול };
     public enum Area { צפון, דרום, מרכז, ירושלים, כללי };
 }
