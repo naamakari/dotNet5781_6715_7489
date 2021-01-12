@@ -100,6 +100,7 @@ namespace UIWpf
                 str = DateTime.Now.ToString();
                 timer.Text = str.Substring(10, 9);
                 timer.Visibility = Visibility.Visible;
+                labelTimer.Visibility = Visibility.Visible;
                 isTimerRun = true;
                 timerworker.RunWorkerAsync();
             }
@@ -111,6 +112,7 @@ namespace UIWpf
             {
                 //stopWatch.Stop();
                 timer.Visibility = Visibility.Hidden;
+                labelTimer.Visibility = Visibility.Hidden;
                 isTimerRun = false;
             }
             searchLines.IsEnabled = true;

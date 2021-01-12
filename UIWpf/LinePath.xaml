@@ -42,7 +42,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="busNumLineColumn" Header="   מספר קו" Width="SizeToHeader">
+                    <DataGridTemplateColumn x:Name="busNumLineColumn" Header="              מספר קו" Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding BusNumLine}" TextAlignment="Center"/>
@@ -52,12 +52,12 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="LookAtTimeOfLines" IsEnabled="False" BorderBrush="#FF0507A3" BorderThickness="2" Content="לצפייה בזמני&#xA;      הגעת&#xA; האוטובוסים" HorizontalAlignment="Left" Margin="100,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="LookAtTimeOfLines_Click" RenderTransformOrigin="4.331,0.631" Background="#FFDADCD9"/>
-            <TextBlock x:Name="timer"  HorizontalAlignment="Center" Text="בדיקה" Visibility="Visible" TextAlignment="Center" Foreground="#FF0507A3" Margin="10,374,305,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Height="25" FontSize="14" FontWeight="Bold" OpacityMask="Black" />
-            <Button x:Name="StopWatch" IsEnabled="False" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="201,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="StopWatch_Click"/>
+            <TextBlock x:Name="timer"  HorizontalAlignment="Center" Text="" Visibility="Visible" TextAlignment="Center" Foreground="#FF0507A3" Margin="12,385,303,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Height="25" FontSize="14" FontWeight="Bold" OpacityMask="Black" />
+            <Button x:Name="StopWatch" BorderBrush="#FF0507A3" BorderThickness="2" IsEnabled="False" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="201,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="StopWatch_Click"/>
             <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="80" Click="searchLines_Click" Background="#FFE2E4E1" BorderBrush="#FF0507A3" BorderThickness="2" Height="28"/>
-            <DataGrid x:Name="lineTimingDataGrid" Visibility="Hidden" Background="#FFF8FFF2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid x:Name="lineTimingDataGrid" Visibility="Visible" Background="#FFF8FFF2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" FontSize="14" FontWeight="Bold" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn x:Name="timingColumn" Header=":יגיע בעוד" Width="60">
+                    <DataGridTemplateColumn x:Name="timingColumn" Header="  :יגיע בעוד" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Timing}"/>
@@ -65,21 +65,21 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn x:Name="tripStartColumn" Header="שעת יציאה" Width="70">
+                    <DataGridTemplateColumn x:Name="tripStartColumn" Header="שעת יציאה" Width="82">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding TripStart}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="lastStationColumn1" Header="                 תחנה סופית" Width="140">
+                    <DataGridTemplateColumn x:Name="lastStationColumn1" Header="                 תחנה סופית" Width="160">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding LastStation}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn x:Name="busNumLineColumn1" Header="   קו" Width="35">
+                    <DataGridTemplateColumn x:Name="busNumLineColumn1" Header="     קו" Width="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding BusNumLine}"/>
@@ -94,7 +94,7 @@
             <Label x:Name="exeption2" Content="אין מסלול ישיר בין התחנות" HorizontalAlignment="Left" Margin="157,185,0,0"  HorizontalContentAlignment="Right" Visibility="Hidden" Foreground="red" VerticalAlignment="Top" Width="230" Height="39" FontWeight="Bold" FontSize="14"/>
             <Image x:Name="image1" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="129,45,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
             <Image x:Name="image2" Source="https://www.idigital.co.il/files/spot_icon.png" HorizontalAlignment="Left" Height="25" Margin="131,105,0,0" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.363,0.732"/>
-            <Image x:Name="image3" Height="26" Margin="341,168,23,0" VerticalAlignment="Top" RenderTransformOrigin="0.363,0.732"/>
+            <Label x:Name="labelTimer" Content="השעה הנוכחית" Foreground="#FF0507A3" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Width="90"/>
 
         </Grid>
     </Grid>
