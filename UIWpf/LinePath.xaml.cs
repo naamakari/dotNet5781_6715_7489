@@ -82,7 +82,7 @@ namespace UIWpf
 
             lineTimingDataGrid.DataContext = lineTimings;
             if (lineTimings.Count() == 0)
-                exeption.Visibility = Visibility.Visible;
+                exeption1.Visibility = Visibility.Visible;
 
 
         }
@@ -113,13 +113,18 @@ namespace UIWpf
                 timer.Visibility = Visibility.Hidden;
                 isTimerRun = false;
             }
-            exeption.Visibility = Visibility.Hidden;
+            searchLines.IsEnabled = true;
+            busLineBLDataGrid.ItemsSource = null;
+            busLineBLDataGrid.Visibility = Visibility.Visible;
+            lineTimingDataGrid.Visibility = Visibility.Hidden;
+            exeption1.Visibility = Visibility.Hidden;
+            exeption2.Visibility = Visibility.Hidden;
             LookAtTimeOfLines.IsEnabled = false;
             searchLines.IsEnabled = false;
             StopWatch.IsEnabled = false;
             search1.Text = "";
             search2.Text = "";
-            firstStationComboBox.SelectedItem = null;
+            firstStationComboBox.SelectedItem =null;
             lastStationComboBox.SelectedItem = null;
         }
 
@@ -127,19 +132,23 @@ namespace UIWpf
         {
             BusStation firstStation = firstStationComboBox.SelectedItem as BusStation;
             BusStation lastStation = lastStationComboBox.SelectedItem as BusStation;
-            LookAtTimeOfLines.IsEnabled = true;
-            searchLines.IsEnabled = true;
-            //  string first = firstStationComboBox.SelectedItem as string;
-
+            searchLines.IsEnabled = false;
             try
             {
                 busLineBLsPossiblePath = bl.GetPossiblePath(firstStation.StationCode, lastStation.StationCode);
                 busLineBLDataGrid.ItemsSource = busLineBLsPossiblePath;
+                LookAtTimeOfLines.IsEnabled = true;
+                StopWatch.IsEnabled = true;
+               // searchLines.IsEnabled = true;
 
             }
-            catch (BO.DalEmptyCollectionExeption)
+            catch (BO.DalEmptyCollectionExeption ex)
             {
-                ;
+                MessageBox.Show("", ex.Message);
+            }
+            catch (BO.invalidRequestExeption)
+            {
+                exeption2.Visibility = Visibility.Visible;
             }
         }
 
