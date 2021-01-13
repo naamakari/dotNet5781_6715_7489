@@ -50,14 +50,17 @@ namespace UIWpf
                 {
                     ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
                     managerWindow.ShowDialog();
-                    this.Close();
+                    
                 }
                 else if (str == "DRIVER")
                 {
                     LinePath linePath = new LinePath(bl);
                     linePath.ShowDialog();
                     
-                }          
+                }
+                error.Visibility = Visibility.Hidden;
+                password.Content = "";
+                name.Content = "";
             }
             catch(KeyNotFoundException ex)
             {

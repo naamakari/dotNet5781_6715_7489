@@ -64,6 +64,7 @@ namespace UIWpf
             DetailsGrid.Visibility = Visibility.Hidden;
             AddBusLineGrid.Visibility = Visibility.Visible;
             areaAtLandComboBox.ItemsSource = Enum.GetValues(typeof(Area));
+            frequency.ItemsSource = Enum.GetValues(typeof(Frequency));
             AllStationListView.IsEnabled = true;
 
             AddDistance.Visibility = Visibility.Hidden;
@@ -179,7 +180,7 @@ namespace UIWpf
                         busStations.Add(busStation);
                     collectionOfStationListViewAdd.DataContext = busStations;
 
-                    if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+                    if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2&&frequency.SelectedItem!=null)
                         RealyAddBusLine.IsEnabled = true;
 
                     if (busStations.Count >= 2)
@@ -331,13 +332,15 @@ namespace UIWpf
 
                 bl.AddLineTrip((BO.Frequency)frequency.SelectedItem, newLineID, busLineBL.BusNumLine);
                 busLineBLs.Add(busLineBL);
-
+                frequency.Text = null;
                 areaAtLandComboBox.Text = null;
                 busNumLineTextBox.Text = null;
                 busStations.Clear();
                 collectionOfStationListViewAdd.ItemsSource = busStations;
                 AddBusLineGrid.Visibility = Visibility.Hidden;
                 DetailsGrid.Visibility = Visibility.Visible;
+                cancledAddBus.Visibility = Visibility.Hidden;
+                backToNenu.Visibility = Visibility.Visible;
                 addBusLine.IsEnabled = true;
                 MessageBox.Show("קו האוטובוס נוסף בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -354,13 +357,13 @@ namespace UIWpf
 
         private void areaAtLandComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2&&frequency.SelectedItem!=null)
                 RealyAddBusLine.IsEnabled = true;
         }
 
         private void busNumLineTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2)
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && frequency.SelectedItem != null)
                 RealyAddBusLine.IsEnabled = true;
         }
 
@@ -372,6 +375,7 @@ namespace UIWpf
             DetailsGrid.Visibility = Visibility.Visible;
             AddBusLineGrid.Visibility = Visibility.Hidden;
             areaAtLandComboBox.Text = null;
+            frequency.Text = null;
             busNumLineTextBox.Text = null;
             busStations.Clear();
             collectionOfStationListViewAdd.DataContext = busStations;
@@ -787,6 +791,12 @@ namespace UIWpf
                 MessageBox.Show("נא למלא את כל השדות", "הודעת מערכת", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 finishDisAndTimeUpdate.IsChecked = false;
             }
+        }
+
+        private void frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && frequency.SelectedItem != null)
+                RealyAddBusLine.IsEnabled = true;
         }
     }
 }

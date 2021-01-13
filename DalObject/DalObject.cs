@@ -22,16 +22,16 @@ namespace DL
         public void AddBus(Bus bus)
         {
             if (DataS.buses.Any(x => x.LicenseNumber == bus.LicenseNumber))
-                throw new DalAlreayExistExeption("קיים כבר במערכת " + bus.LicenseNumber + " אוטובוס");
+                throw new DalAlreayExistExeption(" אוטובוס" + bus.LicenseNumber + "קיים כבר במערכת ");
             DataS.buses.Add(bus.Clone());
         }
         public Bus GetBus(string Id)
         {    
             Bus tempBus = DataS.buses.Find(x => x.LicenseNumber == Id);
             if(tempBus==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + Id + " אוטובוס");
+                throw new KeyNotFoundException(" אוטובוס" + Id + "לא קיים במערכת ");
             if (tempBus.IsDeleted == true)
-                throw new KeyNotFoundException("לא פעיל " + Id + " אוטובוס");
+                throw new KeyNotFoundException(" אוטובוס" + Id +  "לא פעיל ");
             return tempBus.Clone();
         }
         public IEnumerable<Bus> GetBusCollection()
@@ -65,9 +65,9 @@ namespace DL
         {                
             Bus TempBus = DataS.buses.Find(x => x.LicenseNumber == bus.LicenseNumber);
             if(TempBus==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + bus.LicenseNumber + " אוטובוס");
+                throw new KeyNotFoundException(" אוטובוס" + bus.LicenseNumber + "לא קיים במערכת ");
             if (TempBus.IsDeleted)
-                throw new KeyNotFoundException("לא פעיל " + TempBus.LicenseNumber + " אוטובוס");
+                throw new KeyNotFoundException( " אוטובוס" + TempBus.LicenseNumber + "לא פעיל ");
             DataS.buses.Remove(DataS.buses.Find(x => x.LicenseNumber == bus.LicenseNumber));
             DataS.buses.Add(bus.Clone());
         }
@@ -75,7 +75,7 @@ namespace DL
         {              
             Bus bus = DataS.buses.Find(x => x.LicenseNumber == liscenceNum);
             if(bus==null)
-                throw new KeyNotFoundException("כבר לא קיים במערכת " + liscenceNum + " אוטובוס");
+                throw new KeyNotFoundException(" אוטובוס" + liscenceNum +"כבר לא קיים במערכת ");
             bus.IsDeleted = true;
         }
         #endregion
@@ -87,7 +87,7 @@ namespace DL
             busLine.BusId = Configuration.GetBusLineRunNum();
             //צריך את הבדיקה הזו?
             if (DataS.busLines.Any(x => x.BusId == busLine.BusId))
-                throw new DalAlreayExistExeption("קיים כבר במערכת " + busLine.BusId + " קו אוטובוס מספר");
+                throw new DalAlreayExistExeption(" קו אוטובוס מספר" + busLine.BusId +  "קיים כבר במערכת ");
             DataS.busLines.Add(busLine.Clone());
             return busLine.BusId;
         }
@@ -95,9 +95,9 @@ namespace DL
         {
             BusLine tempBusLine = DataS.busLines.Find(x => x.BusId == busId);
             if(tempBusLine==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + busId + " קו אוטובוס מספר");
+                throw new KeyNotFoundException(" קו אוטובוס מספר" + busId + "לא קיים במערכת ");
             if (tempBusLine.IsDeleted == true)
-                throw new KeyNotFoundException("לא פעיל " + busId + " קו אוטובוס מספר");
+                throw new KeyNotFoundException(" קו אוטובוס מספר" + busId +"לא פעיל ");
             return tempBusLine.Clone();
         }
         public IEnumerable<BusLine> GetBusLineCollection()
@@ -130,9 +130,9 @@ namespace DL
         {
             BusLine TempBusLine = DataS.busLines.Find(x => x.BusId == busLine.BusId);
             if(TempBusLine==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + busLine.BusId + " קו אוטובוס מספר");
+                throw new KeyNotFoundException(" קו אוטובוס מספר" + busLine.BusId +"לא קיים במערכת ");
             if (TempBusLine.IsDeleted)
-                throw new KeyNotFoundException("לא פעיל " + TempBusLine.BusId + " אוטובוס");
+                throw new KeyNotFoundException(" אוטובוס" + TempBusLine.BusId +  "לא פעיל ");
             DataS.busLines.Remove(TempBusLine);
             DataS.busLines.Add(busLine.Clone());
         }
@@ -140,7 +140,7 @@ namespace DL
         {
             BusLine tempBusLine = DataS.busLines.Find(x => x.BusId ==busId);
             if(tempBusLine==null)
-                    throw new KeyNotFoundException("כבר לא קיים במערכת " + busId + " קו אוטובוס מספר");
+                    throw new KeyNotFoundException(" קו אוטובוס מספר"  + busId + "כבר לא קיים במערכת ");
             tempBusLine.IsDeleted = true;
         }
         #endregion
@@ -151,16 +151,16 @@ namespace DL
             busStation.StationCode = Configuration.GetBusStationRunNum();
             //צריך את הבדיקה הזו?
             if (DataS.busStations.Any(x => x.StationCode == busStation.StationCode))
-                throw new DalAlreayExistExeption("קיימת כבר במערכת " + busStation.StationCode + " תחנה מספר");
+                throw new DalAlreayExistExeption( " תחנה מספר" + busStation.StationCode + "קיימת כבר במערכת ");
             DataS.busStations.Add(busStation.Clone());
         }
         public BusStation GetBusStation(int stationCode)
         {
             BusStation tempBusStation = DataS.busStations.Find(x => x.StationCode == stationCode);
             if(tempBusStation==null)
-                throw new KeyNotFoundException("לא קיימת במערכת " + stationCode + " תחנה מספר");
+                throw new KeyNotFoundException( " תחנה מספר" + stationCode + "לא קיימת במערכת ");
             if (tempBusStation.IsDeleted == true)
-                throw new KeyNotFoundException("לא פעילה " + stationCode + " תחנה מספר");
+                throw new KeyNotFoundException( " תחנה מספר" + stationCode + "לא פעילה ");
             return tempBusStation.Clone();
         }
         public IEnumerable<BusStation> GetBusStationCollection()
@@ -195,9 +195,9 @@ namespace DL
         {
             BusStation TempBusStation = DataS.busStations.Find(x => x.StationCode == busStation.StationCode);
             if(TempBusStation==null)
-                throw new KeyNotFoundException("לא קיימת במערכת " + busStation.StationCode + " תחנה מספר");
+                throw new KeyNotFoundException(" תחנה מספר" + busStation.StationCode + "לא קיימת במערכת ");
             if (TempBusStation.IsDeleted)
-                throw new KeyNotFoundException("לא פעילה " + busStation.StationCode + " תחנה");
+                throw new KeyNotFoundException( " תחנה" + busStation.StationCode + "לא פעילה ");
             DataS.busStations.Remove(DataS.busStations.Find(x => x.StationCode == busStation.StationCode));
             DataS.busStations.Add(busStation.Clone());
         }
@@ -205,7 +205,7 @@ namespace DL
         {
             BusStation busStation = DataS.busStations.Find(x => x.StationCode == busStationCode);
             if(busStation==null)
-                throw new KeyNotFoundException("כבר לא קיימת במערכת " + busStationCode + " תחנה מספר");
+                throw new KeyNotFoundException( " תחנה מספר" + busStationCode + "כבר לא קיימת במערכת ");
             busStation.IsDeleted = true;
         }
         #endregion
@@ -215,15 +215,14 @@ namespace DL
         public void AddFollowingStations(FollowingStations followingStations)
         {
             if (DataS.followingStations.Any(x => x.StationCode1 == followingStations.StationCode1 && x.StationCode2 == followingStations.StationCode2))
-                return;
-                //throw new DalAlreayExistExeption("קיימות כבר במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו ");
+                return;//It does not matter to the user if there are a couple of such stations but we do not need to add
             DataS.followingStations.Add(followingStations.Clone());
         }
         public FollowingStations GetFollowingStation(int stationCode1, int stationCode2)
         {
             FollowingStations followingStationsTemp = DataS.followingStations.Find(x => x.StationCode1 == stationCode1&& x.StationCode2 ==  stationCode2);
             if(followingStationsTemp==null)
-                throw new DalAlreayExistFollowingStationsExeption("לא קיימות במערכת " + stationCode1 + " , " + stationCode2 + " תחנות עוקבות אלו ");
+                throw new DalAlreayExistFollowingStationsExeption( " תחנות עוקבות אלו " + stationCode1 + " , " + stationCode2 + "לא קיימות במערכת ");
             return followingStationsTemp.Clone();
         }
         public IEnumerable<FollowingStations> GetFollowingStationsCollection()
@@ -248,7 +247,7 @@ namespace DL
         {
             FollowingStations followingStations1 = DataS.followingStations.Find(x => x.StationCode1 == followingStations.StationCode1 &&x.StationCode2== followingStations.StationCode2);
             if(followingStations1==null)
-                throw new KeyNotFoundException("לא קיימות במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו ");
+                throw new KeyNotFoundException(" תחנות עוקבות אלו " + followingStations.StationCode1 + " , " + followingStations.StationCode2 +  "לא קיימות במערכת ");
             DataS.followingStations.Remove(followingStations1);
             DataS.followingStations.Add(followingStations.Clone());
         }
@@ -256,7 +255,7 @@ namespace DL
         {
             FollowingStations tempFollowingStations = DataS.followingStations.Find(x => x.StationCode1 == followingStations.StationCode1&& x.StationCode2  == followingStations.StationCode2);
             if(tempFollowingStations==null)
-                throw new KeyNotFoundException("כבר לא קיימות במערכת " + followingStations.StationCode1 + " , " + followingStations.StationCode2 + " תחנות עוקבות אלו");
+                throw new KeyNotFoundException(" תחנות עוקבות אלו" + followingStations.StationCode1 + " , " + followingStations.StationCode2 +  "כבר לא קיימות במערכת ");
             DataS.followingStations.Remove(tempFollowingStations);
         }
         #endregion
@@ -266,16 +265,16 @@ namespace DL
         public void AddStationInLine(stationInLine stationInLine)
         {
             if (DataS.stationsInLine.Any(x =>(x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)))
-                throw new DalAlreayExistExeption("קיימת כבר במערכת " + stationInLine.LineId + " תחנת זו של קו");
+                throw new DalAlreayExistExeption(  " תחנת זו של קו" + stationInLine.LineId + "קיימת כבר במערכת ");
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
         public stationInLine GetStationInLine(int lineId, int stationCode)
         {
             stationInLine tempStationInLine = DataS.stationsInLine.Find(x => (x.LineId == lineId) && (x.StationCode == stationCode));
           if(tempStationInLine==null)
-                throw new KeyNotFoundException("לא קיימת במערכת " + lineId + " תחנת קו");
+                throw new KeyNotFoundException(" תחנת קו" + lineId + "לא קיימת במערכת ");
             if (tempStationInLine.IsDeleted == true)
-                throw new KeyNotFoundException("לא פעילה " + lineId + " תחנה זו של קו");
+                throw new KeyNotFoundException(" תחנה זו של קו" + lineId + "לא פעילה ");
             return tempStationInLine.Clone();
         }
         public IEnumerable<stationInLine> GetStationInLineCollection()
@@ -309,9 +308,9 @@ namespace DL
         {
             stationInLine TempstationInLine = DataS.stationsInLine.Find(x => (x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode));
            if(TempstationInLine==null)
-                throw new KeyNotFoundException("לא קיימת במערכת " + stationInLine.LineId + " תחנת קו");
+                throw new KeyNotFoundException( " תחנת קו" + stationInLine.LineId + "לא קיימת במערכת ");
             if (TempstationInLine.IsDeleted)
-                throw new KeyNotFoundException("לא פעילה " + TempstationInLine.LineId + " תחנת קו");
+                throw new KeyNotFoundException( " תחנת קו" + TempstationInLine.LineId + "לא פעילה ");
             DataS.stationsInLine.Remove(TempstationInLine);
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
@@ -319,7 +318,7 @@ namespace DL
         {
             stationInLine stationInLine1= DataS.stationsInLine.Find(x => x.LineId == stationInLine.LineId && x.StationCode == stationInLine.StationCode);
        if(stationInLine1==null)
-                throw new KeyNotFoundException("כבר לא קיימת במערכת " + stationInLine.LineId + " תחנת קו");
+                throw new KeyNotFoundException( " תחנת קו" + stationInLine.LineId + "כבר לא קיימת במערכת ");
             stationInLine1.IsDeleted = true;
         }
         #endregion
@@ -328,14 +327,14 @@ namespace DL
         public void AddUser(User user)
         {
             if (DataS.users.Any(x => x.UserName == user.UserName))
-                throw new DalAlreayExistExeption("כבר קיים במערכת " + user.UserName + " שם המשתמש");
+                throw new DalAlreayExistExeption(" שם המשתמש" + user.UserName +"כבר קיים במערכת ");
             DataS.users.Add(user.Clone());
         }
         public User GetUser(string userName, string password)
         {
             User user = DataS.users.Find(x => x.UserName == userName&&x.Password==password);
             if(user==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + userName + " המשתמש");
+                throw new KeyNotFoundException( " המשתמש" + userName + "לא קיים במערכת ");
             return user.Clone();
         }
         public IEnumerable<User> GetUsersCollection()
@@ -359,7 +358,7 @@ namespace DL
         {
             User user1 = DataS.users.Find(x => x.UserName == user.UserName);
             if(user1==null)
-                throw new KeyNotFoundException("לא קיים במערכת " + user.UserName + " משתמש");
+                throw new KeyNotFoundException(" משתמש" + user.UserName + "לא קיים במערכת ");
             DataS.users.Remove(user1);
             DataS.users.Add(user.Clone());
         }
@@ -367,7 +366,7 @@ namespace DL
         {
             User TempUser = DataS.users.Find(x => x.UserName == userName&&x.Password==password);
             if(TempUser==null)
-                throw new KeyNotFoundException("כבר לא קיים במערכת " + userName + " המשתמש");
+                throw new KeyNotFoundException(" המשתמש" + userName + "כבר לא קיים במערכת ");
             if (!DataS.users.Remove(TempUser))
                 throw new CanNotRemoveException("לא מצליח להסיר את המשתמש");
         }

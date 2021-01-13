@@ -29,7 +29,7 @@ namespace UIWpf
     public partial class LinePath : Window
     {
 
-        private Stopwatch stopWatch;
+        
         private bool isTimerRun = false;
         BackgroundWorker timerworker;
         string str;
@@ -48,17 +48,14 @@ namespace UIWpf
             lastStationComboBox.ItemsSource = stations;
 
 
-            // stopWatch = new Stopwatch();
+           
 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Timerworker_DoWork;
             timerworker.ProgressChanged += Timerworker_ProgressChanged;
             timerworker.WorkerReportsProgress = true;
 
-            // MessageBox.Show( TimeSpan.FromMinutes(num).ToString());
-            //  timeSpan = TimeSpan.Parse(num.ToString());
-            // MessageBox.Show(timeSpan.ToString());
-            //MessageBox.Show(DateTime.Now.Hour+DateTime.Now.Minute.ToString()+DateTime.Now.Second);
+            
 
 
         }
@@ -92,11 +89,13 @@ namespace UIWpf
         {
             lineTimingDataGrid.Visibility = Visibility.Visible;
             timer.Visibility = Visibility.Visible;
+            firstStationComboBox.IsEnabled = false;
+            lastStationComboBox.IsEnabled = false;
             StopWatch.IsEnabled = true;
 
             if (!isTimerRun)
             {
-                // stopWatch.Restart();
+                
                 str = DateTime.Now.ToString();
                 timer.Text = str.Substring(10, 9);
                 timer.Visibility = Visibility.Visible;
@@ -110,11 +109,12 @@ namespace UIWpf
         {
             if (isTimerRun)
             {
-                //stopWatch.Stop();
                 timer.Visibility = Visibility.Hidden;
                 labelTimer.Visibility = Visibility.Hidden;
                 isTimerRun = false;
             }
+            firstStationComboBox.IsEnabled = true;
+            lastStationComboBox.IsEnabled = true;
             searchLines.IsEnabled = true;
             busLineBLDataGrid.ItemsSource = null;
             busLineBLDataGrid.Visibility = Visibility.Visible;
@@ -166,6 +166,9 @@ namespace UIWpf
                 firstStationComboBox.SelectedItem = null;
                 lastStationComboBox.SelectedItem = null;
             }
+            busLineBLDataGrid.ItemsSource = null;
+            LookAtTimeOfLines.IsEnabled = false;
+            StopWatch.IsEnabled = false;
         }
 
         private void search1_TextChanged(object sender, TextChangedEventArgs e)

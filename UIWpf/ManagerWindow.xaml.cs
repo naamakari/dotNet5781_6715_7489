@@ -50,5 +50,10 @@ namespace UIWpf
             BusLinesWindow busLineWindow = new BusLinesWindow(bl);
             busLineWindow.ShowDialog();
         }
+
+        private void exit1_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
