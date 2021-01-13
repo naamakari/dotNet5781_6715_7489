@@ -64,7 +64,7 @@ namespace APIBL
                                                             // void UpdateStationInLine(StationInLine stationLine);//v
 
         void addUser(string name, string password, bool isManager);
-        string isAllowEntry(string name, string password);
+        BO.Permission isAllowEntry(string name, string password);
 
         void AddLineTrip(Frequency frequency, int lineId, int numLine);
     }

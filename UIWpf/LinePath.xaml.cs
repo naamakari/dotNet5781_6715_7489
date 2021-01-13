@@ -146,7 +146,7 @@ namespace UIWpf
             }
             catch (BO.DalEmptyCollectionExeption ex)
             {
-                MessageBox.Show("", ex.Message);
+                MessageBox.Show(ex.Message,"הודעת מערכת");
             }
             catch (BO.invalidRequestExeption)
             {

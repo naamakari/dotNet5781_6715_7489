@@ -430,7 +430,7 @@ namespace UIWpf
             {
                 if (SelectedItemBusStations.Any(x => x.StationCode == busStationSelected.StationCode))
                 {
-                    MessageBox.Show("תחנה זאת קיימת כבר בקו זה");
+                    MessageBox.Show("תחנה זאת קיימת כבר בקו זה","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     AllStationListBox.IsEnabled = true;
                 }
             }
@@ -444,7 +444,7 @@ namespace UIWpf
             indexOfStation = int.Parse(indexOfNewStation.Text);
             if (int.Parse(indexOfNewStation.Text) > SelectedItemBusStations.Count() + 1 || int.Parse(indexOfNewStation.Text) <= 0)
             {
-                MessageBox.Show("האינדקס לא מתאים למספר התחנות בקו, הכנס/י מספר מתאים");
+                MessageBox.Show("האינדקס לא מתאים למספר התחנות בקו, הכנס/י מספר מתאים","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 finishAddStationCheckBox.IsChecked = false;
                 finishAddStationCheckBox.IsEnabled = true;
                 indexOfNewStation.IsEnabled = true;

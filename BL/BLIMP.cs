@@ -958,15 +958,15 @@ namespace BL
             }
         }
         //The function returns whether the user is driving or traveling
-        public string isAllowEntry(string name, string password)
+        public BO.Permission isAllowEntry(string name, string password)
         {
             try
             {
                 DO.User user = dal.GetUser(name,password);
                 if (user.ManagePermission)
-                    return "MANAGER";
+                    return BO.Permission.מנהל;
                 else
-                    return "DRIVER";
+                    return BO.Permission.נוסע;
             }
             catch(KeyNotFoundException ex)
             {

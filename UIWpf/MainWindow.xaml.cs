@@ -45,19 +45,31 @@ namespace UIWpf
         {
             try
             {
-                string str = bl.isAllowEntry(textName.Text, textPas.Password);
-                if (str == "MANAGER")
+                BO.Permission role = bl.isAllowEntry(textName.Text, textPas.Password);
+                switch(role)
                 {
-                    ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
-                    managerWindow.ShowDialog();
-                    
+                    case Permission.מנהל:
+                        ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                        managerWindow.ShowDialog();
+                        break;
+                    case Permission.נוסע:
+                        LinePath linePath = new LinePath(bl);
+                        linePath.ShowDialog();
+                        break;
                 }
-                else if (str == "DRIVER")
-                {
-                    LinePath linePath = new LinePath(bl);
-                    linePath.ShowDialog();
-                    
-                }
+                //if (str == "MANAGER")
+                //{
+                //ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                //managerWindow.ShowDialog();
+                //break;
+
+                //}
+                //else if (str == "DRIVER")
+                //{
+                //    LinePath linePath = new LinePath(bl);
+                //    linePath.ShowDialog();
+
+                //}
                 error.Visibility = Visibility.Hidden;
                 password.Content = "";
                 name.Content = "";
@@ -87,7 +99,7 @@ namespace UIWpf
                 textPas.Password = "";
                 this.Close();
             }
-            catch(BO.DalAlreayExistExeption ex)
+            catch(BO.DalAlreayExistExeption)
             {
 
             }
