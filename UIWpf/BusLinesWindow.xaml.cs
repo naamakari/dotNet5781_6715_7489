@@ -120,6 +120,7 @@ namespace UIWpf
         {
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             busLineBLs.Remove(busLineBL);
+            bl.DeleteBusLine(busLineBL);
             DetailsGrid.DataContext = null;
             collectionOfStationListView.ItemsSource = null;
 

@@ -77,6 +77,7 @@ namespace DL
             if(bus==null)
                 throw new KeyNotFoundException(" אוטובוס" + liscenceNum +"כבר לא קיים במערכת ");
             bus.IsDeleted = true;
+            
         }
         #endregion
 
@@ -142,6 +143,8 @@ namespace DL
             if(tempBusLine==null)
                     throw new KeyNotFoundException(" קו אוטובוס מספר"  + busId + "כבר לא קיים במערכת ");
             tempBusLine.IsDeleted = true;
+           
+
         }
         #endregion
 
@@ -207,6 +210,7 @@ namespace DL
             if(busStation==null)
                 throw new KeyNotFoundException( " תחנה מספר" + busStationCode + "כבר לא קיימת במערכת ");
             busStation.IsDeleted = true;
+            
         }
         #endregion
 
@@ -320,6 +324,7 @@ namespace DL
        if(stationInLine1==null)
                 throw new KeyNotFoundException( " תחנת קו" + stationInLine.LineId + "כבר לא קיימת במערכת ");
             stationInLine1.IsDeleted = true;
+          
         }
         #endregion
 

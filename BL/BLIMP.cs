@@ -165,6 +165,7 @@ namespace BL
         {
             IEnumerable<DO.BusLine> LinesInStartStation;
             IEnumerable<DO.BusLine> LinesInLastStation;
+            //get all the lines that pass in thr start station
             try
             {
                 LinesInStartStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == startStationCode)
@@ -175,6 +176,7 @@ namespace BL
             {
                 throw new BO.DalEmptyCollectionExeption(startStationCode+" לא קיימים קווים העוברים בתחנה ", ex);
             }
+            //get all the lines that pass in thr last station
             try
             {
                 LinesInLastStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == lastStationCode)

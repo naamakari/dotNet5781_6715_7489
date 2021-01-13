@@ -60,6 +60,7 @@ namespace UIWpf
         {
             BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
             stations.Remove(busStation);
+            bl.DeleteBusStation(busStation.StationCode);
             busStationDetailes.DataContext = null;
             collectionBusLinesListView.ItemsSource = null;
         }
