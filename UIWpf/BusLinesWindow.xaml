@@ -16,7 +16,7 @@
             <ColumnDefinition Width="223*"/>
 
         </Grid.ColumnDefinitions>
-        <ListView x:Name="busLineBLListView" BorderBrush="Gray" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" ItemsSource="{Binding}" SelectionMode="Single" Margin="0.2,92,0.6,242.8" SelectionChanged="busLineBLListView_SelectionChanged" Padding="1" Background="#FFF7EBEA" Foreground="#FF161922" >
+        <ListView x:Name="busLineBLListView" BorderBrush="Brown" BorderThickness="2" FontSize="16" FontWeight="SemiBold"  Grid.Column="1" ItemsSource="{Binding}" SelectionMode="Single" Margin="0.2,92,0.6,242.8" SelectionChanged="busLineBLListView_SelectionChanged" Padding="1" Background="#FFF7EBEA" Foreground="#FF161922" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="lastStationColumn" Width="135" Header="תחנת יעד">
@@ -60,7 +60,7 @@
         </ListView>
 
         <!--גריד לפרטים-->
-        <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" FontSize="16"  FontWeight="Medium" HorizontalAlignment="Left" Margin="156.2,514,0,0" VerticalAlignment="Top" Width="154" Height="62" Click="addBusLine_Click" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
+        <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" FontSize="16"  FontWeight="Medium" HorizontalAlignment="Left" Margin="156.2,514,0,0" VerticalAlignment="Top" Width="154" Height="62" Click="addBusLine_Click" BorderBrush="Brown" BorderThickness="3" Background="WhiteSmoke" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
         <Grid x:Name="DetailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="10,10,0,-0.2" VerticalAlignment="Top" Height="711" Width="497">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
@@ -83,7 +83,8 @@
             <TextBlock x:Name="busNumLineTextBlock" Foreground="Brown" TextAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,13,0" Text="{Binding BusNumLine}" VerticalAlignment="Bottom" Height="24" Width="77" RenderTransformOrigin="0.816,0.254" Grid.Row="1"/>
 
             <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,-91,227.6" Grid.Row="3" VerticalAlignment="Bottom" Height="30" RenderTransformOrigin="1.012,-0.227" Width="101" Grid.RowSpan="2"/>
-            <ListView x:Name="collectionOfStationListView" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" ItemsSource="{Binding}" Margin="1,29.4,-91,-74.8" Grid.Row="4" SelectionMode="Single" Width="490" Grid.ColumnSpan="2" BorderBrush="#FF2F3237">
+
+                <ListView x:Name="collectionOfStationListView" BorderBrush="Black" Background="#FFF7EBEA" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0"  ItemsSource="{Binding}" Margin="1,29.4,-91,-74.8" Grid.Row="4" SelectionMode="Single" Width="490" Grid.ColumnSpan="2" >
 
                 <ListView.View>
                     <GridView>
@@ -113,6 +114,12 @@
 
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Button x:Name="UpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Right" Margin="0,394.4,-15.4,-189" Grid.Row="4" VerticalAlignment="Top" Width="133" Height="53" Click="UpdateBusLine_Click" RenderTransformOrigin="0.495,1.793" Grid.Column="1"/>
             <Button x:Name="DeleteBusLine" Content="מחיקה" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="68,394.4,0,-191.4" Grid.Row="4" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.488,1.617" Height="53" Click="DeleteBusLine_Click">
@@ -127,7 +134,7 @@
             </Button>
 
         </Grid>
-        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,597,0,0" VerticalAlignment="Top" Width="116" Height="41" Click="Button_Click" RenderTransformOrigin="0.634,0.784"/>
+        <Button x:Name="backToNenu" Content="חזרה לתפריט הראשי" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,597,0,0" VerticalAlignment="Top" Width="116" Height="41" Click="Button_Click" RenderTransformOrigin="0.634,0.784"/>
 
         <!--גריד להוספה-->
 
@@ -154,7 +161,7 @@
             <TextBox x:Name="busNumLineTextBox" TextAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="Brown" Grid.Column="1" HorizontalAlignment="Right" Margin="0,2.2,99,88" Text="{Binding BusNumLine, Mode=OneWayToSource}" VerticalAlignment="Center" Height="21" Width="100" MaxLength="3" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBox_TextChanged" Grid.Row="1"/>
 
             <Label Content=":תחנות הקו" FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,8,134.6" Grid.Row="2" VerticalAlignment="Bottom" Height="37" RenderTransformOrigin="1.012,-0.227" Width="89" Grid.RowSpan="2"/>
-            <ListView x:Name="collectionOfStationListViewAdd" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="160" ItemsSource="{Binding}" Margin="9,11,0,278.6" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="487" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ListView x:Name="collectionOfStationListViewAdd" Foreground="Brown" Background="#FFF7EBEA" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="160" ItemsSource="{Binding}" Margin="9,11,0,278.6" Grid.Row="3" SelectionMode="Single" VerticalAlignment="Center" Width="487" Grid.ColumnSpan="2" Grid.RowSpan="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="delete" Width="50">
@@ -188,10 +195,16 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Label Content=":בחר/י תחנות "  FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Right"  Margin="0,0,8,190.6" Grid.Row="4" VerticalAlignment="Bottom" Height="34" RenderTransformOrigin="1.012,-0.227" Width="104"/>
 
-            <ListView x:Name="AllStationListView" Foreground="Brown" Background="WhiteSmoke" FontSize="14" FontWeight="SemiBold" Grid.Column="0" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="131" Margin="10,118.4,0,54.6" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="484" Grid.ColumnSpan="2" SelectionChanged="AllStationListView_SelectionChanged">
+            <ListView x:Name="AllStationListView" Foreground="Brown" Background="#FFF7EBEA" FontSize="14" FontWeight="SemiBold" Grid.Column="0" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="131" Margin="10,118.4,0,54.6" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="484" Grid.ColumnSpan="2" SelectionChanged="AllStationListView_SelectionChanged">
                 <ListView.ToolTip>
                     <TextBlock Text="סדר התחנות יקבע לפי סדר הבחירה שלך" TextAlignment="Center" Width="230" Foreground="Brown" Background="WhiteSmoke"/>
                 </ListView.ToolTip>
@@ -222,6 +235,12 @@
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="30,286.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.RowSpan="2"/>
             <TextBox x:Name="AddDistance" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="88,37.4,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" KeyDown="AddDistance_KeyDown"/>
@@ -234,7 +253,7 @@
             <Label x:Name="lableFrec" Content="בחר/י את רמת תדירות הקו"  FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="9.6,259.4,0,0"  Grid.Row="4" VerticalAlignment="Top" Height="37" Width="253" />
 
         </Grid>
-        <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,596,0,0" VerticalAlignment="Top" Width="116" Height="42" Click="cancleAddBus_Click"/>
+        <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,596,0,0" VerticalAlignment="Top" Width="116" Height="42" Click="cancleAddBus_Click"/>
 
         <!--גריד לעדכון-->
 
@@ -261,7 +280,7 @@
             <TextBox x:Name="busNumLineTextBoxUpdate"  Foreground="Brown" TextAlignment="Center" FontSize="16" FontWeight="SemiBold" Grid.Column="1" MaxLength="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,3.8,78.4,0.4" Text="{Binding BusNumLine}" VerticalAlignment="Center" Height="27" Width="86" RenderTransformOrigin="0.816,0.254" KeyDown="busNumLineTextBox_KeyDown" TextChanged="busNumLineTextBoxUpdate_TextChanged" Grid.Row="1"/>
 
             <Label Content=":תחנות הקו" Grid.Column="1" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Right"  Margin="0,0,12.2,412.4" Grid.Row="4" VerticalAlignment="Bottom" Height="40" RenderTransformOrigin="1.012,-0.227" Width="91" Grid.ColumnSpan="2"/>
-            <ListView x:Name="collectionOfStationListViewUpdate" BorderBrush="#FF2F3237" Background="WhiteSmoke" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="157" ItemsSource="{Binding}" Margin="10,47,0,266.4" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="486" Grid.ColumnSpan="3">
+            <ListView x:Name="collectionOfStationListViewUpdate" BorderBrush="#FF2F3237" Background="#FFF7EBEA" Foreground="Brown" FontSize="14" FontWeight="SemiBold" Grid.Column="0" DisplayMemberPath="CollectionOfStation" HorizontalAlignment="Left" Height="157" ItemsSource="{Binding}" Margin="10,47,0,266.4" Grid.Row="4" SelectionMode="Single" VerticalAlignment="Center" Width="486" Grid.ColumnSpan="3">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn x:Name="DeleteStationUpdate" Width="70">
@@ -274,14 +293,14 @@
                         <GridViewColumn x:Name="stationNameUpdate" Width="160" Header="שם התחנה">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding StationName}" FontSize="12" TextAlignment="Center"/>
+                                    <TextBlock Margin="-6,-1" Text="{Binding StationName}" FontSize="12" TextAlignment="Right"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="stationAddressUpdate" Width="160" Header="כתובת">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding Address}" TextAlignment="Center"  FontSize="12"/>
+                                    <TextBlock Margin="-6,-1" Text="{Binding Address}" TextAlignment="Right"  FontSize="12"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -297,6 +316,12 @@
 
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Button x:Name="RealyUpdateBusLine" Content="עדכון" IsEnabled="False" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="159,452,0,-31" Grid.Row="4" VerticalAlignment="Top" Width="128" Height="43" RenderTransformOrigin="0.495,1.793" Grid.ColumnSpan="2" Click="RealyUpdateBusLine_Click">
                 <Button.ToolTip>

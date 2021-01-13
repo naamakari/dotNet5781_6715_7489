@@ -269,7 +269,7 @@ namespace DL
         public void AddStationInLine(stationInLine stationInLine)
         {
             if (DataS.stationsInLine.Any(x =>(x.LineId == stationInLine.LineId) && (x.StationCode == stationInLine.StationCode)))
-                throw new DalAlreayExistExeption(  " תחנת זו של קו" + stationInLine.LineId + "קיימת כבר במערכת ");
+                throw new DalAlreayExistExeption(  " תחנה זו של קו" + stationInLine.LineId + "קיימת כבר במערכת ");
             DataS.stationsInLine.Add(stationInLine.Clone());
         }
         public stationInLine GetStationInLine(int lineId, int stationCode)
