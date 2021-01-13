@@ -61,7 +61,7 @@
 
         <!--גריד לפרטים-->
         <Button x:Name="addBusLine" Content="הוספת קו אוטובוס" FontSize="16"  FontWeight="Medium" HorizontalAlignment="Left" Margin="156.2,514,0,0" VerticalAlignment="Top" Width="154" Height="62" Click="addBusLine_Click" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" RenderTransformOrigin="0.436,2.063"/>
-        <Grid x:Name="DetailsGrid" Visibility="Visible" HorizontalAlignment="Left" Margin="10,10,0,-0.2" VerticalAlignment="Top" Height="711" Width="497">
+        <Grid x:Name="DetailsGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,10,0,-0.2" VerticalAlignment="Top" Height="711" Width="497">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="204.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="176"/>
@@ -131,7 +131,7 @@
 
         <!--גריד להוספה-->
 
-        <Grid x:Name="AddBusLineGrid" Visibility="Hidden" HorizontalAlignment="Left" VerticalAlignment="Top" Height="711" Width="507">
+        <Grid x:Name="AddBusLineGrid" Visibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="711" Width="507">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="148.8"/>
                 <ColumnDefinition Width="Auto" MinWidth="158.4"/>
@@ -223,13 +223,15 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="162,286.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+            <Button x:Name="RealyAddBusLine" FontSize="20" FontWeight="Bold" BorderBrush="Brown" BorderThickness="2.5" Background="WhiteSmoke" Content="הוספה" IsEnabled="False" HorizontalAlignment="Left" Margin="30,286.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="129" Height="44" Click="RealyAddBusLine_Click" Grid.RowSpan="2"/>
             <TextBox x:Name="AddDistance" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="88,37.4,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" KeyDown="AddDistance_KeyDown"/>
             <TextBox x:Name="AddTime" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="32,37.4,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="36" KeyDown="AddDistance_KeyDown"/>
             <RadioButton x:Name="finishDisAndTime" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="41,66.4,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTime_Checked" RenderTransformOrigin="0.675,0.272"/>
             <Label x:Name="AddTimeAndDisLable" FontWeight="ExtraBlack" Visibility="Hidden" FontSize="12" Foreground="Blue"   HorizontalAlignment="Left" Margin="162,35.4,0,0" VerticalAlignment="Top" Height="26" Width="330" Grid.Row="4" Grid.ColumnSpan="2"/>
             <Image x:Name="TimeImage" Visibility="Hidden" Source="https://dapey-avoda.info/wp-content/uploads/2014/05/%D7%9C%D7%99%D7%9E%D7%95%D7%93-%D7%A9%D7%A2%D7%95%D7%9F.gif"  HorizontalAlignment="Left" Height="22" Margin="6,38.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="26" RenderTransformOrigin="0.518,1.179"/>
             <Image x:Name="DisImage" Visibility="Hidden" Source="https://cdn.xl.thumbs.canstockphoto.co.il/%D7%AA%D7%A7%D7%A6%D7%99%D7%A8-%D7%9C%D7%9C%D7%9B%D7%AA-%D7%9B%D7%91%D7%99%D7%A9-%D7%9E%D7%94%D7%99%D7%A8-%D7%90%D7%95%D7%A4%D7%A7-%D7%A7%D7%9C%D7%99%D7%A4-%D7%90%D7%A8%D7%98-%D7%95%D7%A7%D7%98%D7%95%D7%A8%D7%99_csp21311214.jpg" HorizontalAlignment="Left" Height="23" Margin="124,38.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="25"/>
+            <ComboBox x:Name="frequency" Grid.Column="1" HorizontalAlignment="Left" Margin="10.4,296.4,0,0" Grid.Row="4" VerticalAlignment="Top" Width="211" Height="30" Grid.RowSpan="2"/>
+            <Label x:Name="lableFrec" Content="בחר/י את רמת תדירות הקו"  FontSize="16" FontWeight="SemiBold" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="9.6,259.4,0,0"  Grid.Row="4" VerticalAlignment="Top" Height="37" Width="253" />
 
         </Grid>
         <Button x:Name="cancledAddBus" Content="ביטול" Visibility="Hidden" FontSize="12" FontWeight="Medium" BorderBrush="Gray" BorderThickness="2" Background="WhiteSmoke" Grid.Column="1" HorizontalAlignment="Left" Margin="172.2,596,0,0" VerticalAlignment="Top" Width="116" Height="42" Click="cancleAddBus_Click"/>

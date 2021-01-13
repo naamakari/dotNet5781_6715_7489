@@ -24,7 +24,7 @@ namespace APIDAL
         /// <summary>
         /// CRUD for bus line
         /// </summary>
-        void AddBusLine(BusLine busLine);
+        int AddBusLine(BusLine busLine);
         BusLine GetBusLine(int busId);
         IEnumerable<BusLine> GetBusLineCollection();
         IEnumerable<BusLine> GetAllBusLinesCollection();
@@ -77,6 +77,7 @@ namespace APIDAL
         void DeleteUser(string userName, string password);
 
         LineTrip GetLineTripBy(Predicate<LineTrip> predicate);
+        void AddLineTrip(LineTrip lineTrip);
     }
 }
     

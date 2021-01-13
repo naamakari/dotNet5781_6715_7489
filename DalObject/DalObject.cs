@@ -82,13 +82,14 @@ namespace DL
 
         #region CRUD for bus line
 
-        public void AddBusLine(BusLine busLine)
+        public int AddBusLine(BusLine busLine)
         {
             busLine.BusId = Configuration.GetBusLineRunNum();
             //צריך את הבדיקה הזו?
             if (DataS.busLines.Any(x => x.BusId == busLine.BusId))
                 throw new DalAlreayExistExeption("קיים כבר במערכת " + busLine.BusId + " קו אוטובוס מספר");
             DataS.busLines.Add(busLine.Clone());
+            return busLine.BusId;
         }
         public BusLine GetBusLine(int busId)
         {
@@ -380,6 +381,10 @@ namespace DL
             //if (lineTrips == null)
                // throw new DalEmptyCollectionExeption("לא קיימת יציאת קו העונה לדרישה ");
             return lineTrips;
+        }
+        public void AddLineTrip(LineTrip lineTrip)
+        {
+            DataS.lineTrips.Add(lineTrip.Clone());
         }
 
     }

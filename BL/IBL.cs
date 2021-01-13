@@ -45,7 +45,7 @@ namespace APIBL
 
 
         //נעמה
-        void AddBusLine(BusLineBL busLine);//V
+        int AddBusLine(BusLineBL busLine);//V
         BusLineBL ToBusLineBL(DO.BusLine busLineDO);//v
         void DeleteBusLine(BusLineBL busLine);//v 
         void UpdateBusLine(BusLine busLine);//v
@@ -65,5 +65,7 @@ namespace APIBL
 
         void addUser(string name, string password, bool isManager);
         string isAllowEntry(string name, string password);
+
+        void AddLineTrip(Frequency frequency, int lineId, int numLine);
     }
 }

@@ -8,4 +8,6 @@ namespace BO
 {
     public enum BusStatus { זמין , בנסיעה, בתדלוק, בטיפול };
     public enum Area { צפון, דרום, מרכז, ירושלים, כללי };
+    public enum Frequency {גבוהה, בינונית, נמוכה};
+    public enum Permission { מנהל, נוסע};
 }

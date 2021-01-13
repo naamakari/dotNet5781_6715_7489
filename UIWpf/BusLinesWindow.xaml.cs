@@ -327,7 +327,9 @@ namespace UIWpf
             };
             try
             {
-                bl.AddBusLine(busLineBL);
+                int newLineID=bl.AddBusLine(busLineBL);
+
+                bl.AddLineTrip((BO.Frequency)frequency.SelectedItem, newLineID, busLineBL.BusNumLine);
                 busLineBLs.Add(busLineBL);
 
                 areaAtLandComboBox.Text = null;

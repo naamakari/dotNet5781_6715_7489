@@ -55,7 +55,7 @@
             <Button x:Name="treat" IsEnabled="False" Content="שליחה לטיפול" FontSize="15" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" Grid.Column="0" HorizontalAlignment="Center" Margin="16,0,19.4,-23.2" Grid.Row="7" VerticalAlignment="Bottom" Width="109" Height="40" Click="treat_Click"/>
             <Button x:Name="delete" IsEnabled="false" Content="מחיקה" FontSize="15" FontWeight="SemiBold" BorderThickness="2" BorderBrush="#FF2525FA" HorizontalAlignment="Left" Margin="101,0,0,-74" Grid.Row="7" VerticalAlignment="Bottom" Width="65" Click="delete_Click" Height="30" Grid.ColumnSpan="2"/>
         </Grid>
-        <ListView x:Name="busListView" FontWeight="SemiBold" FontSize="14" BorderBrush="Black" Background="WhiteSmoke" ItemsSource="{Binding}" Margin="31,31,18,145" SelectionMode="Single" SelectionChanged="busListView_SelectionChanged" Grid.Column="1">
+        <ListView x:Name="busListView" FontWeight="SemiBold" FontSize="14" BorderBrush="#FF2525FA" BorderThickness="3" Background="WhiteSmoke" ItemsSource="{Binding}" Margin="31,31,18,145" SelectionMode="Single" SelectionChanged="busListView_SelectionChanged" Grid.Column="1">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>

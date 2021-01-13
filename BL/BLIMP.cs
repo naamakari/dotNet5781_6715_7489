@@ -303,7 +303,7 @@ namespace BL
                 for (SoonExitBusTime = OurLineTrip.StartAt; SoonExitBusTime < rangeExitBus; SoonExitBusTime += TimeSpan.FromMinutes(OurLineTrip.Frequency))
                 {
                 }
-                //casting for minutes
+                //casting for minutes and calculate the time left to wait for the bus to arrive
                 TimeSpan totalMinutesForTiming;
                 if (SoonExitBusTime < TimeSpan.FromSeconds(DateTime.Now.Hour * 60 * 60 + DateTime.Now.Minute * 60 + DateTime.Now.Second))
                 {
@@ -316,6 +316,7 @@ namespace BL
                     totalMinutesForTiming = TimeSpan.FromSeconds(timeBetweenStations.Hours * 60 * 60 + timeBetweenStations.Minutes*60 + timeBetweenStations.Seconds +
                                  ( SoonExitBusTime.Hours * 60 * 60 +SoonExitBusTime.Minutes*60 + SoonExitBusTime.Seconds- DateTime.Now.Hour * 60 * 60 - DateTime.Now.Minute * 60 - DateTime.Now.Second));
                 }
+                //Creates a new lineTiming to represent the line schedule in the UI
                 BO.LineTiming lineTiming = new BO.LineTiming
                 {
                     BusNumLine = OurLineTrip.NumLine,
@@ -611,14 +612,14 @@ namespace BL
 
         //נעמה
         #region method for bus-line
-        public void AddBusLine(BO.BusLineBL busLineBO)
+        public int AddBusLine(BO.BusLineBL busLineBO)
         {
             try
             {
                 //add the new busLine to the data
                 DO.BusLine busLineDO = new DO.BusLine();
                 busLineBO.Clone(busLineDO);
-                dal.AddBusLine(busLineDO);
+                int newLineID=dal.AddBusLine(busLineDO);
 
                 //busLineDO = dal.GetBusLine();
                 //add all the station of the line
@@ -653,6 +654,7 @@ namespace BL
                         TimeTravelBetweenStations=dis,
                     });
                 }
+                return newLineID;
 
             }
             catch (DO.DalAlreayExistExeption ex)
@@ -934,7 +936,7 @@ namespace BL
             }
         }
         #endregion
-
+        //add user to the data
         public void addUser(string name, string password, bool isManager)
         {
             DO.User user = new DO.User()
@@ -953,6 +955,7 @@ namespace BL
                 throw new BO.DalAlreayExistExeption(ex.Message, ex);
             }
         }
+        //The function returns whether the user is driving or traveling
         public string isAllowEntry(string name, string password)
         {
             try
@@ -967,6 +970,101 @@ namespace BL
             {
                 throw new KeyNotFoundException(ex.Message, ex);
             }
+        }
+        //add timetable to the data according the frequency
+        public void AddLineTrip(BO.Frequency frequency, int lineId, int numLine)
+        {
+            switch(frequency)
+            {
+               
+                case BO.Frequency.גבוהה:
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(06, 00, 00),
+                        EndAt = new TimeSpan(09, 00, 00),
+                        Frequency = 5,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(09, 00, 00),
+                        EndAt = new TimeSpan(13, 00, 00),
+                        Frequency = 30,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(13, 00, 00),
+                        EndAt = new TimeSpan(17, 00, 00),
+                        Frequency = 10,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(17, 00, 00),
+                        EndAt = new TimeSpan(20, 30, 00),
+                        Frequency = 15,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(20, 31, 00),
+                        EndAt = new TimeSpan(00, 30, 00),
+                        Frequency = 30,
+                    });
+                    break;
+                case BO.Frequency.בינונית:
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(06, 00, 00),
+                        EndAt = new TimeSpan(10, 00, 00),
+                        Frequency = 15,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(13, 00, 00),
+                        EndAt = new TimeSpan(20, 30, 00),
+                        Frequency = 30,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(20, 31, 00),
+                        EndAt = new TimeSpan(00, 31, 00),
+                        Frequency = 60,
+                    });
+                    break;
+                case BO.Frequency.נמוכה:
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(06, 00, 00),
+                        EndAt = new TimeSpan(10, 00, 00),
+                        Frequency = 30,
+                    });
+                    dal.AddLineTrip(new DO.LineTrip
+                    {
+                        LineId = lineId,
+                        NumLine = numLine,
+                        StartAt = new TimeSpan(13, 00, 00),
+                        EndAt = new TimeSpan(22, 30, 00),
+                        Frequency = 90,
+                    });
+                    break;
+            }
+            
         }
     }
 }
