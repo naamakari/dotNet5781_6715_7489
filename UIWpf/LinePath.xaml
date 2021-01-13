@@ -55,7 +55,7 @@
             <TextBlock x:Name="timer"  HorizontalAlignment="Center" Text="" Visibility="Visible" TextAlignment="Center" Foreground="#FF0507A3" Margin="12,385,303,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83" Height="25" FontSize="14" FontWeight="Bold" OpacityMask="Black" />
             <Button x:Name="StopWatch" BorderBrush="#FF0507A3" BorderThickness="2" IsEnabled="False" Content="סיים חיפוש" HorizontalAlignment="Left" Margin="201,357,0,0" VerticalAlignment="Top" Width="98" Height="53" Click="StopWatch_Click"/>
             <Button x:Name="searchLines" Content="חפש קווים" IsEnabled="False" HorizontalAlignment="Left" Margin="16,166,0,0" VerticalAlignment="Top" Width="80" Click="searchLines_Click" Background="#FFE2E4E1" BorderBrush="#FF0507A3" BorderThickness="2" Height="28"/>
-            <DataGrid x:Name="lineTimingDataGrid" Visibility="Visible" Background="#FFF8FFF2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" FontSize="14" FontWeight="Bold" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid x:Name="lineTimingDataGrid" Visibility="Hidden" Background="#FFF8FFF2" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" FontSize="14" FontWeight="Bold" Margin="16,211,10.4,68" RowDetailsVisibilityMode="VisibleWhenSelected">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn x:Name="timingColumn" Header="  :יגיע בעוד" Width="80">
                         <DataGridTemplateColumn.CellTemplate>
