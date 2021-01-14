@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UIWpf"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="UIWpf.LinePath"
         mc:Ignorable="d"
-        Title="LinePath" Height="450" Width="520" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+        Title="מציאת מסלול נסיעה" Height="450" Width="520" HorizontalAlignment="Center" VerticalAlignment="Stretch">
 
 
     <Grid x:Name="mainGrid">
