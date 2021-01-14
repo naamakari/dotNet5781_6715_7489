@@ -24,8 +24,8 @@ namespace UIWpf
     {
         private bool nonNumeriable = false;
         IBL bl;
-        ObservableCollection<BusStationBL> stations=new ObservableCollection<BusStationBL>();
-        ObservableCollection<BusLine> busLines=new ObservableCollection<BusLine>();
+        ObservableCollection<BusStationBL> stations = new ObservableCollection<BusStationBL>();
+        ObservableCollection<BusLine> busLines = new ObservableCollection<BusLine>();
         public BusStationsWindow(IBL _Bl)
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace UIWpf
                 foreach (BusStationBL item in bl.GetAllStations())
                     stations.Add(item);
             }
-            catch(BO.DalEmptyCollectionExeption ex)
+            catch (BO.DalEmptyCollectionExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -43,18 +43,7 @@ namespace UIWpf
             {
                 busStationBLDataGrid.ItemsSource = stations;
             }
-
-
-
-
-
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void UpdateBusLine_Click(object sender, RoutedEventArgs e)
         {
             busStationDetailes.Visibility = Visibility.Hidden;
@@ -64,9 +53,7 @@ namespace UIWpf
             BusStationBL busStationBL = busStationBLDataGrid.SelectedItem as BusStationBL;
             if (busStationBL != null)
                 collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
-
         }
-
         private void DeleteBusStation_Click(object sender, RoutedEventArgs e)
         {
             BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
@@ -75,7 +62,6 @@ namespace UIWpf
             busStationDetailes.DataContext = null;
             collectionBusLinesListView.ItemsSource = null;
         }
-
         private void addBusStation_Click(object sender, RoutedEventArgs e)
         {
             backToNenu.Visibility = Visibility.Hidden;
@@ -85,31 +71,26 @@ namespace UIWpf
             addBusStationGrid.Visibility = Visibility.Visible;
             addStation.IsEnabled = false;
         }
-
         private void backToNenu_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
         private void searchStationTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             IEnumerable<BusStationBL> busStationCollection = stations.Where(x => x.StationCode.ToString().Contains(searchStationTextBox.Text) || x.StationName.Contains(searchStationTextBox.Text)
            || x.Address.Contains(searchStationTextBox.Text));//|| x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busStationBLDataGrid.ItemsSource = busStationCollection;
         }
-
         private void busStationBLDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             DeleteStation.IsEnabled = true;
             UpdateStation.IsEnabled = true;
             BusStationBL busStation = busStationBLDataGrid.SelectedItem as BusStationBL;
             busStationDetailes.DataContext = busStation;
             if (busStation != null)
                 collectionBusLinesListView.ItemsSource = busStation.CollectionBusLines;
-            
         }
-
         private void latitudeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             nonNumeriable = false;
@@ -167,8 +148,8 @@ namespace UIWpf
         {
             if (stationNameTextBox.Text != "" && addressTextBox.Text != "" && latitudeTextBox.Text != "" &&
                 longitudeTextBox.Text != "")
-                if(longInvalid.Visibility==Visibility.Hidden&&latInvalid.Visibility==Visibility.Hidden)
-                     toAdd.IsEnabled = true;
+                if (longInvalid.Visibility == Visibility.Hidden && latInvalid.Visibility == Visibility.Hidden)
+                    toAdd.IsEnabled = true;
         }
 
         private void toAdd_Click(object sender, RoutedEventArgs e)
@@ -180,8 +161,8 @@ namespace UIWpf
                 Latitude = float.Parse(latitudeTextBox.Text),
                 Longitude = float.Parse(longitudeTextBox.Text),
             };
-            busStation.Location= busStation.Latitude + "°N " + busStation.Longitude + "°E";
-            try 
+            busStation.Location = busStation.Latitude + "°N " + busStation.Longitude + "°E";
+            try
             {
                 bl.AddBusStation(busStation);
                 foreach (BusStationBL item in bl.GetAllStations())
@@ -196,14 +177,14 @@ namespace UIWpf
                 addStation.IsEnabled = true;
 
             }
-               
+
             catch (BO.DalAlreayExistExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            
-            
-            }
+
+
+        }
 
         private void toCancle_Click(object sender, RoutedEventArgs e)
         {
@@ -219,13 +200,13 @@ namespace UIWpf
             BusStation busStation = updateGrid.DataContext as BusStation;
             BusStationBL busStationBL;
             try
-               {
+            {
                 bl.UpdateBusStation(busStation);
                 updateGrid.DataContext = null;
                 collectionBusLinesListView1.DataContext = null;
                 updateGrid.Visibility = Visibility.Hidden;
                 busStationBL = bl.GetBusStationBL(busStation.StationCode);
-                busStationDetailes.DataContext= busStationBL;
+                busStationDetailes.DataContext = busStationBL;
                 if (busStationBL != null)
                     collectionBusLinesListView.ItemsSource = busStationBL.CollectionBusLines;
                 busStationDetailes.Visibility = Visibility.Visible;
@@ -234,7 +215,7 @@ namespace UIWpf
                 MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -255,7 +236,7 @@ namespace UIWpf
                     collectionBusLinesListView1.ItemsSource = busStationBL.CollectionBusLines;
 
             }
-            catch(KeyNotFoundException ex)
+            catch (KeyNotFoundException ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
