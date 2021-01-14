@@ -78,6 +78,8 @@ namespace APIDAL
 
         LineTrip GetLineTripBy(Predicate<LineTrip> predicate);
         void AddLineTrip(LineTrip lineTrip);
+
+        
     }
 }
     

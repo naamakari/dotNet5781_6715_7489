@@ -50,6 +50,231 @@ namespace DL
         }
         public IEnumerable<Bus> GetBusCollection()
         {
+            List<Bus> buses = new List<Bus>();
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111111",
+                StartDate = new DateTime(2017, 1, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "2222222",
+                StartDate = new DateTime(2017, 1, 2),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 1, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "3333333",
+                StartDate = new DateTime(2017, 3, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 1, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111112",
+                StartDate = new DateTime(2017, 1, 4),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 3, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111113",
+                StartDate = new DateTime(2017, 1, 5),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 1, 5)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111145",
+                StartDate = new DateTime(2017, 6, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 6, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111167",
+                StartDate = new DateTime(2017, 1, 7),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 7, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111189",
+                StartDate = new DateTime(2017, 1, 8),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 1, 8)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1101111",
+                StartDate = new DateTime(2017, 9, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 1, 7)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111312",
+                StartDate = new DateTime(2017, 10, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 10, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111415",
+                StartDate = new DateTime(2017, 1, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 11, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111617",
+                StartDate = new DateTime(2017, 1, 2),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 12, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111819",
+                StartDate = new DateTime(2017, 10, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 1)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111120",
+                StartDate = new DateTime(2017, 1, 2),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 11, 4)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111121",
+                StartDate = new DateTime(2017, 1, 4),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 12, 4)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111122",
+                StartDate = new DateTime(2017, 3, 1),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 10)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111123",
+                StartDate = new DateTime(2017, 7, 14),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 13)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111124",
+                StartDate = new DateTime(2017, 1, 15),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 14)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111125",
+                StartDate = new DateTime(2017, 1, 16),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 15)
+            });
+            buses.Add(new Bus()
+            {
+                LicenseNumber = "1111126",
+                StartDate = new DateTime(2017, 1, 2),
+                Kilometraz = 8000,
+                KmSinceRefeul = 500,
+                BusState = BusStatus.ready,
+                IsDeleted = false,
+                KmSinceLastTreat = 2000,
+                DateSinceLastTreat = new DateTime(2020, 4, 16)
+            });
+            XMLTools.SaveListToXMLSerializer(buses, busesPath);
+
+
+
             List<Bus> ListBuses = XMLTools.LoadListFromXMLSerializer<Bus>(busesPath);
             IEnumerable<Bus> TempBus = from Bus item in ListBuses
                                        where item.IsDeleted == false
@@ -478,6 +703,15 @@ namespace DL
         #endregion
 
         #region LineTrip
+        //Checks that the lineTrip2 is not in lineTrip1 time frame
+        //public bool isAtTime(LineTrip lineTrip1, LineTrip lineTrip2)
+        //{
+        //    if ((lineTrip1.StartAt > lineTrip2.EndAt && lineTrip1.EndAt < lineTrip2.EndAt) ||
+        //        (lineTrip1.StartAt < lineTrip2.StartAt && lineTrip1.EndAt < lineTrip2.StartAt)
+        //        return true;
+        //    return false;
+
+        //}
         public LineTrip GetLineTripBy(Predicate<LineTrip> predicate)
         {
             XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
@@ -496,17 +730,17 @@ namespace DL
         public void AddLineTrip(LineTrip lineTrip)
         {
             XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
-            //XElement linetrip=(from item in lineTripElement.Elements()
-            //                   where int.Parse(item.Element("ID").Value)==lin)
-            //צריך לבדוק את הקטע של  המפתח ייחודי
-            XElement lineTripEl = new XElement("LineTrip",
-                new XElement("Id", lineTrip.Id),
+            //XElement lineTrip1 = (from item in lineTripElement.Elements()
+            //                     where int.Parse((item.Element("LineId").Value) == lineTrip.LineId)&&isAtTime(item,lineTrip)
+
+
+            XElement lineTripXEl = new XElement("LineTrip",
                 new XElement("LineId", lineTrip.LineId),
                 new XElement("NumLine", lineTrip.NumLine),
                 new XElement("StartAt", lineTrip.StartAt),
                 new XElement("EndAt", lineTrip.EndAt),
                 new XElement("Frequency", lineTrip.Frequency));
-            lineTripElement.Add(lineTripEl);
+            lineTripElement.Add(lineTripXEl);
             XMLTools.SaveListToXMLElement(lineTripElement, LineTripsPath);
         }
         #endregion
