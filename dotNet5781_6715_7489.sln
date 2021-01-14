@@ -24,7 +24,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{94C0C9A4-0F1B-40E0-87BC-2EB659771D72}"
 	ProjectSection(SolutionItems) = preProject
 		bin\config.xml = bin\config.xml
-		configuration.xml = configuration.xml
+		configurationXml.xml = configurationXml.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIWpf", "UIWpf\UIWpf.csproj", "{706129CF-B3D7-4068-B0CE-90AC55788D1E}"

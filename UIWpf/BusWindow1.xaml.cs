@@ -34,6 +34,7 @@ namespace UIWpf
         {
             InitializeComponent();
             bl = _Bl;
+            
             busStateComboBox.ItemsSource = Enum.GetValues(typeof(BusStatus));
             try
             {
