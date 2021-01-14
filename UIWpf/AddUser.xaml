@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UIWpf"
         mc:Ignorable="d"
-        Title="AddUser" Height="349.436" Width="330.7">
+        Title="הוספת משתמש" Height="349.436" Width="330.7">
 
 
     <Grid x:Name="MainGrid" Background="#FFFAF8B6">
