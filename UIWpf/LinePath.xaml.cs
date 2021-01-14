@@ -192,5 +192,10 @@ namespace UIWpf
             else
                 lastStationComboBox.ItemsSource = bl.GetAllStations();
         }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

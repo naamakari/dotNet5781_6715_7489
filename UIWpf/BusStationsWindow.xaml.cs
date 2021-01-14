@@ -48,6 +48,7 @@ namespace UIWpf
         private void UpdateBusLine_Click(object sender, RoutedEventArgs e)
         {
             busStationDetailes.Visibility = Visibility.Hidden;
+            busStationBLDataGrid.IsEnabled = false;
             updateGrid.DataContext = busStationBLDataGrid.SelectedItem as BusStationBL;
             updateGrid.Visibility = Visibility.Visible;
             BusStationBL busStationBL = busStationBLDataGrid.SelectedItem as BusStationBL;
@@ -199,6 +200,7 @@ namespace UIWpf
             updateGrid.DataContext = null;
             updateGrid.Visibility = Visibility.Hidden;
             busStationDetailes.Visibility = Visibility.Visible;
+            busStationBLDataGrid.IsEnabled = true;
         }
 
         private void toUpdate_Click(object sender, RoutedEventArgs e)
@@ -217,6 +219,7 @@ namespace UIWpf
                 if (busStationBL != null)
                     collectionBusLinesListView.ItemsSource = busStationBL.CollectionBusLines;
                 busStationDetailes.Visibility = Visibility.Visible;
+                busStationBLDataGrid.IsEnabled = true;
                 stations.Add(busStationBL);
                 MessageBox.Show("התחנה עודכנה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
 

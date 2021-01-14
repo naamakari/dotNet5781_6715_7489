@@ -50,29 +50,21 @@ namespace UIWpf
                 {
                     case Permission.מנהל:
                         ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                        error.Visibility = Visibility.Hidden;
+                        password.Content = "";
+                        name.Content = "";
                         managerWindow.ShowDialog();
                         break;
                     case Permission.נוסע:
                         LinePath linePath = new LinePath(bl);
+                        error.Visibility = Visibility.Hidden;
+                        password.Content = "";
+                        name.Content = "";
                         linePath.ShowDialog();
                         break;
                 }
-                //if (str == "MANAGER")
-                //{
-                //ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
-                //managerWindow.ShowDialog();
-                //break;
-
-                //}
-                //else if (str == "DRIVER")
-                //{
-                //    LinePath linePath = new LinePath(bl);
-                //    linePath.ShowDialog();
-
-                //}
-                error.Visibility = Visibility.Hidden;
-                password.Content = "";
-                name.Content = "";
+                
+               
             }
             catch(KeyNotFoundException ex)
             {

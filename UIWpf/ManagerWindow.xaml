@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UIWpf"
         mc:Ignorable="d"
-        Title="ManagerWindow" Height="450" Width="801" FontWeight="Bold" FontFamily="Lucida Sans Unicode">
+        Title="חלון ניהול" Height="450" Width="801" FontWeight="Bold" FontFamily="Lucida Sans Unicode">
     <Grid x:Name="MainGrid" Background="PapayaWhip">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -44,7 +44,7 @@
         <Label x:Name="BusStationLable" Content="תחנות אוטובוס" FontSize="14" HorizontalAlignment="Left" Margin="43.4,139.89,0,0" Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal" />
         <Label x:Name="BusLable" Content="אוטובוסים" FontSize="14" HorizontalAlignment="Left" Margin="93.2,139.89,0,0" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal"/>
         <Label x:Name="BusLineLable" Content="קווי אוטובוס" FontSize="14" HorizontalAlignment="Left" Margin="134,139.89,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" RenderTransformOrigin="1.71,0.184" FontWeight="Normal"/>
-        <Label Name="UserName" HorizontalContentAlignment="Right" Foreground="Gray"  Grid.Column="1" HorizontalAlignment="Left" Margin="139.2,48,0,0" VerticalAlignment="Top" Width="311" FontFamily="Arial Nova" Height="48" FontSize="18" Grid.ColumnSpan="2"/>
+        <Label Name="UserName" HorizontalContentAlignment="Right" Foreground="Gray"  Grid.Column="1" HorizontalAlignment="Left" Margin="128.2,48,0,0" VerticalAlignment="Top" Width="322" FontFamily="Arial Nova" Height="82" FontSize="25" Grid.ColumnSpan="2"/>
         <Button x:Name="exit1" Content="יציאה" HorizontalAlignment="Left" BorderBrush="Gray" BorderThickness="2" Click="exit1_Click" Margin="43,192,0,0" Grid.Row="1" VerticalAlignment="Top" Width="116" Height="45" Background="WhiteSmoke"/>
     </Grid>
 </Window>
