@@ -480,11 +480,34 @@ namespace DL
         #region LineTrip
         public LineTrip GetLineTripBy(Predicate<LineTrip> predicate)
         {
-            
+            XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            return (from item in lineTripElement.Elements()
+                    let lineTrip = new LineTrip()
+                    {
+                        LineId = Int32.Parse(item.Element("LineId").Value),
+                        NumLine = Int32.Parse(item.Element("NumLine").Value),
+                        StartAt = TimeSpan.Parse(item.Element("StartAt").Value),
+                        EndAt = TimeSpan.Parse(item.Element("EndAt").Value),
+                        Frequency = Int32.Parse(item.Element("Frequency").Value),
+                    }
+                    where predicate(lineTrip)
+                    select lineTrip).FirstOrDefault();
         }
         public void AddLineTrip(LineTrip lineTrip)
         {
-           
+            XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            //XElement linetrip=(from item in lineTripElement.Elements()
+            //                   where int.Parse(item.Element("ID").Value)==lin)
+            //צריך לבדוק את הקטע של  המפתח ייחודי
+            XElement lineTripEl = new XElement("LineTrip",
+                new XElement("Id", lineTrip.Id),
+                new XElement("LineId", lineTrip.LineId),
+                new XElement("NumLine", lineTrip.NumLine),
+                new XElement("StartAt", lineTrip.StartAt),
+                new XElement("EndAt", lineTrip.EndAt),
+                new XElement("Frequency", lineTrip.Frequency));
+            lineTripElement.Add(lineTripEl);
+            XMLTools.SaveListToXMLElement(lineTripElement, LineTripsPath);
         }
         #endregion
 
