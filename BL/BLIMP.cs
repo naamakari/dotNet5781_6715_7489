@@ -189,8 +189,8 @@ namespace BL
             }
             IEnumerable<DO.BusLine> directLinePath = from start in LinesInStartStation
                                                          from last in LinesInLastStation
-                                                         where start.BusId == last.BusId
-                                                         select start;
+                                                         where ifFirstRealyFirstAndLastRealyLast(start,last, startStationCode, lastStationCode)
+                                                     select start;
             try
             {
                 if (directLinePath.Count() == 0)
@@ -208,7 +208,22 @@ namespace BL
 
 
         }
-        
+      public bool ifFirstRealyFirstAndLastRealyLast(DO.BusLine busLine1,DO.BusLine busLine2 ,int firstStation, int lastStation)
+        {
+            DO.stationInLine stationInLine1;
+            DO.stationInLine stationInLine2;
+
+            if (busLine1.BusId == busLine2.BusId)
+            {
+                stationInLine1 = dal.GetStationInLine(busLine1.BusId, firstStation);
+                stationInLine2 = dal.GetStationInLine(busLine1.BusId, lastStation);
+                if (stationInLine1.IndexStationAtLine < stationInLine2.IndexStationAtLine)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
         /// <summary>
         /// return the short path between all the lines in the recived collection
         /// </summary>

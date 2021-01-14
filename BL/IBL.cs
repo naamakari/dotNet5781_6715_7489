@@ -18,6 +18,8 @@ namespace APIBL
         void UpdateFirstStation(int code, int busId);//v
         void UpdateLastStation(int code, int busId);//v
         IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);//v
+        bool ifFirstRealyFirstAndLastRealyLast(DO.BusLine busLine1, DO.BusLine busLine2, int firstStation, int lastStation);
+
         BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);//v
         float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);//v
         float Distance(int startStationCode, int destStationCode);//v
