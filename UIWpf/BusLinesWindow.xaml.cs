@@ -120,12 +120,22 @@ namespace UIWpf
         {
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             busLineBLs.Remove(busLineBL);
-            bl.DeleteBusLine(busLineBL);
-            DetailsGrid.DataContext = null;
-            collectionOfStationListView.ItemsSource = null;
+            try
+            {
+                bl.DeleteBusLine(busLineBL);
+                DetailsGrid.DataContext = null;
+                collectionOfStationListView.ItemsSource = null;
 
-            MessageBox.Show(" קו אוטובוס מספר " + busLineBL.BusNumLine + " נמחק", "", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                MessageBox.Show(" קו אוטובוס מספר " + busLineBL.BusNumLine + " נמחק", "", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(KeyNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            catch(BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void busLineBLListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -430,7 +440,7 @@ namespace UIWpf
             {
                 if (SelectedItemBusStations.Any(x => x.StationCode == busStationSelected.StationCode))
                 {
-                    MessageBox.Show("תחנה זאת קיימת כבר בקו זה","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    MessageBox.Show("תחנה זאת קיימת כבר בקו זה");
                     AllStationListBox.IsEnabled = true;
                 }
             }
@@ -444,7 +454,7 @@ namespace UIWpf
             indexOfStation = int.Parse(indexOfNewStation.Text);
             if (int.Parse(indexOfNewStation.Text) > SelectedItemBusStations.Count() + 1 || int.Parse(indexOfNewStation.Text) <= 0)
             {
-                MessageBox.Show("האינדקס לא מתאים למספר התחנות בקו, הכנס/י מספר מתאים","", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("האינדקס לא מתאים למספר התחנות בקו, הכנס/י מספר מתאים");
                 finishAddStationCheckBox.IsChecked = false;
                 finishAddStationCheckBox.IsEnabled = true;
                 indexOfNewStation.IsEnabled = true;
