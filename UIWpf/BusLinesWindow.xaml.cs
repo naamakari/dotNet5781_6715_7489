@@ -106,7 +106,6 @@ namespace UIWpf
             {
                 if (busLineBL != null)
                 {
-                    //collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation;
                     SelectedItemBusStations.Clear();
                     foreach (BusStation item in bl.GetBusLineBL(busLineBL.BusId).CollectionOfStation)
                         SelectedItemBusStations.Add(item);
@@ -282,7 +281,7 @@ namespace UIWpf
 
         private void deleteFromNewListButton_Click(object sender, RoutedEventArgs e)
         {
-            var busLine = sender as FrameworkElement;//casting for bus
+            var busLine = sender as FrameworkElement;//casting for busLine
             BusStation busStation = busLine.DataContext as BusStation;
             busStations.Remove(busStation);
 
@@ -364,7 +363,6 @@ namespace UIWpf
             }
             catch (BO.DalAlreayExistFollowingStationsExeption ex)
             {
-                // return;
             }
 
         }
@@ -400,9 +398,7 @@ namespace UIWpf
             IEnumerable<BusLineBL> busLinesCollection = busLineBLs.Where(x => x.FirstStation.StationName.Contains(searchStationTextBox.Text) || x.LastStation.StationName.Contains(searchStationTextBox.Text)
             || x.BusNumLine.ToString().Contains(searchStationTextBox.Text) || x.AreaAtLand.ToString().Contains(searchStationTextBox.Text));
             busLineBLListView.ItemsSource = busLinesCollection;
-            //collectionOfStationListView.ItemsSource = null;
-            //UpdateBusLine.IsEnabled = false;
-            //DeleteBusLine.IsEnabled = false;
+          
 
         }
 
@@ -436,7 +432,6 @@ namespace UIWpf
         {
             indexOfNewStation.IsEnabled = true;
             AllStationListBox.IsEnabled = false;
-            // indexOfNewStation.MaxLength=SelectedItemBusStations.Count()
 
             busStationSelected = AllStationListBox.SelectedItem as BusStation;
             if (busStationSelected != null)
@@ -483,7 +478,6 @@ namespace UIWpf
                 try
                 {
                     bl.AddStationToBus(newStationInLine);
-                    //collectionOfStationListViewUpdate.ItemsSource = bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation;
                     SelectedItemBusStations.Clear();
                     foreach (BusStation item in bl.GetBusLineBL(int.Parse(busIdTextBlock.Text)).CollectionOfStation)
                         SelectedItemBusStations.Add(item);
@@ -545,16 +539,11 @@ namespace UIWpf
                     {
                         try
                         {
-
-
-
                             bl.GetFollowingStations(new FollowingStations
                             {
                                 StationCode1 = SelectedItemBusStations[indexOfStation - 2].StationCode,
                                 StationCode2 = SelectedItemBusStations[indexOfStation - 1].StationCode
                             });
-
-
                         }
                         catch (BO.DalAlreayExistFollowingStationsExeption ex)
                         {
@@ -570,9 +559,6 @@ namespace UIWpf
                             AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text) - 2].StationCode + " לתחנה " + SelectedItemBusStations[int.Parse(indexOfNewStation.Text) - 1].StationCode;
                         }
                     }
-
-
-
                 }
                 catch (BO.DalAlreayExistExeption ex)
                 {
@@ -611,42 +597,22 @@ namespace UIWpf
 
         private void DeleteStationUpdate_Click(object sender, RoutedEventArgs e)
         {
-            //bool isFirst = false;
-            //bool isLast = false;
             var busLine = sender as FrameworkElement;//casting for bus line
             BusStation busStation = busLine.DataContext as BusStation;
-            //indexOfDelete = SelectedItemBusStations.IndexOf(busStation);
-            //if (indexOfDelete == 0)
-            //    isFirst = true;
-            //else if (indexOfDelete == SelectedItemBusStations.Count() - 1)
-            //    isLast = true;
-            //StationInLine stationInLineDelete = new StationInLine
-            //{
-            //    IsDeleted = false,
-            //    IndexStationAtLine = indexOfDelete,
-            //    IsFirstStation = isFirst,
-            //    IsLastStation = isLast,
-            //    StationCode = busStation.StationCode,
-            //    LineId = int.Parse(busIdTextBlock.Text)
-            //};
             try
             {
                StationInLine stationInLineDelete1= bl.getStationInLine(int.Parse(busIdTextBlock.Text), busStation.StationCode);
                 bl.DeleteStationInLine(stationInLineDelete1);
                 SelectedItemBusStations.Remove(busStation);
-                //collectionOfStationListViewUpdate.ItemsSource = SelectedItemBusStations;
-
                 if (indexOfDelete != 0 && indexOfDelete != SelectedItemBusStations.Count())
                 {
                     try
                     {
-
                         bl.GetFollowingStations(new FollowingStations
                         {
                             StationCode1 = SelectedItemBusStations[indexOfDelete - 1].StationCode,
                             StationCode2 = SelectedItemBusStations[indexOfDelete].StationCode
                         });
-
                     }
                     catch (BO.DalAlreayExistFollowingStationsExeption ex)
                     {
@@ -718,7 +684,6 @@ namespace UIWpf
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
         private void finishDisAndTimeUpdate_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -762,7 +727,6 @@ namespace UIWpf
                 DisImageUpdate.Visibility = Visibility.Hidden;
                 AllStationListBox.IsEnabled = true;
                 collectionOfStationListViewUpdate.IsEnabled = true;
-                ///RealyUpdateBusLine.IsEnabled = true;
                 if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && areaAtLandTextBoxUpdate.SelectedItem != null)
                     RealyUpdateBusLine.IsEnabled = true;
                 else
@@ -773,13 +737,11 @@ namespace UIWpf
                 {
                     try
                     {
-
                         bl.GetFollowingStations(new FollowingStations
                         {
                             StationCode1 = SelectedItemBusStations[indexOfStation - 2].StationCode,
                             StationCode2 = SelectedItemBusStations[indexOfStation-1].StationCode
                         });
-
                         helpIndex++;
                     }
                     catch (BO.DalAlreayExistFollowingStationsExeption ex)
@@ -798,7 +760,6 @@ namespace UIWpf
                         helpIndex++;
                     }
                 }
-
             }
             else
             {
@@ -806,7 +767,6 @@ namespace UIWpf
                 finishDisAndTimeUpdate.IsChecked = false;
             }
         }
-
         private void frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && frequency.SelectedItem != null)

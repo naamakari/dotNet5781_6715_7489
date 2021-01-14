@@ -112,7 +112,6 @@ namespace UIWpf
                 newBus = bl.GetBus(bus.LicenseNumber);
                 refuelBackground.RunWorkerAsync(newBus);
                 BusDeatailsGrid.DataContext = newBus;
-                // bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 busListView.SelectedItem = newBus;
                 buses.Add(newBus);
                 refule.IsEnabled = false;
@@ -127,7 +126,7 @@ namespace UIWpf
         private void RefuelBackground_DoWork(object sender, DoWorkEventArgs e)
         {
             e.Result = e.Argument;
-            Thread.Sleep(1200);
+            Thread.Sleep(12000);
         }
         private void RefuelBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -141,9 +140,6 @@ namespace UIWpf
             if(!buses.Any(x=>x.LicenseNumber==newBus.LicenseNumber))
             buses.Add(newBus);
         }
-
-
-
         private void treat_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
@@ -196,7 +192,6 @@ namespace UIWpf
                 newBus = bl.GetBus(bus.LicenseNumber);
                 treatBackground.RunWorkerAsync(newBus);
                 BusDeatailsGrid.DataContext = newBus;
-                //bus.LicenseNumber = bl.setLicenseNumberTo(bus.LicenseNumber);
                 busListView.SelectedItem = newBus;
                 buses.Add(newBus);
                 refule.IsEnabled = false;
@@ -212,7 +207,7 @@ namespace UIWpf
         private void TreatBackground_DoWork(object sender, DoWorkEventArgs e)
         {
             e.Result = e.Argument;
-            Thread.Sleep(1440);
+            Thread.Sleep(144000);
         }
         private void TreatBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -229,9 +224,10 @@ namespace UIWpf
         private void delete_Click(object sender, RoutedEventArgs e)
         {
             Bus bus = busListView.SelectedItem as Bus;
+            //The function returns a string of the license number without the'- '
             bus.LicenseNumber = bl.setLicenseNumberFrom(bus.LicenseNumber);
             buses.Remove(bus);
-            //bl.DeleteBus(bus.LicenseNumber);
+            bl.DeleteBus(bus.LicenseNumber);
             BusDeatailsGrid.DataContext = null;
         }
 
@@ -485,10 +481,6 @@ namespace UIWpf
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
-
-        //The function returns a string of the license number without the'- '
-
-
         private void cancle_Click(object sender, RoutedEventArgs e)
         {
             add.IsEnabled = true;
