@@ -30,10 +30,16 @@ namespace DO
     {
         public DalAlreayExistFollowingStationsExeption(string message) : base(message) { }
     }
+    /// <summary>
+    ///  Represents errors during we ask for empty collection
+    /// </summary>
     public class DalEmptyCollectionExeption : Exception
     {
         public DalEmptyCollectionExeption(string message) : base(message) { }
     }
+    /// <summary>
+    ///  Represents errors during the remove from the list isnot working
+    /// </summary>
     [Serializable]
     public class CanNotRemoveException : Exception
     {
@@ -41,6 +47,9 @@ namespace DO
         public CanNotRemoveException(string message, Exception inner) : base(message, inner) { }
 
     }
+    /// <summary>
+    ///  Represents errors when there is a problem opening the XML file
+    /// </summary>
     public class XMLFileLoadCreateException: Exception
     {
         public string xmlFilePath;

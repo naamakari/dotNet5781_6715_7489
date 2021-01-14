@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// class for exit of line
+    /// </summary>
     public class LineTrip
     { 
         public int LineId { get; set; }

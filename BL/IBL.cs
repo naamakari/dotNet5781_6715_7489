@@ -9,61 +9,53 @@ namespace APIBL
 {
     public interface IBL
     {
-        void SendToRefuel(Bus bus);//v
+        void SendToRefuel(Bus bus);
          void ReturnFromRefuel(Bus bus);
 
-        void SendToTreat(Bus bus);//v
+        void SendToTreat(Bus bus);
         void ReturnFromTreat(Bus bus);
 
-        void UpdateFirstStation(int code, int busId);//v
-        void UpdateLastStation(int code, int busId);//v
-        IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);//v
+        void UpdateFirstStation(int code, int busId);
+        void UpdateLastStation(int code, int busId);
+        IEnumerable<BusLineBL> GetPossiblePath(int startStationCode, int lastStationCode);
         bool ifFirstRealyFirstAndLastRealyLast(DO.BusLine busLine1, DO.BusLine busLine2, int firstStation, int lastStation);
 
-        BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);//v
-        float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);//v
+        BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);
+        float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);
         float Distance(int startStationCode, int destStationCode);//v
         LineTiming GetLineTiming(BusLineBL CurrentBusLineBL, BusStation CurrentBusStation, BO.BusStation LastCurrentBusStation);
         IEnumerable<LineTiming> GetLineTimingsAccordingLine(IEnumerable<BusLineBL> busLineBLs ,BO.BusStation CurrentBusStation, BO.BusStation LastCurrentBusStation);
 
-        //נעמה
-        void AddBus(Bus bus);//v
-        Bus GetBus(string lisenceNum);//v
-        void DeleteBus(string lisenceNum);//v
-        void UpdateBus(Bus bus);//v
-        IEnumerable<Bus> GetAllBuses();//v
-        IEnumerable<Bus> GetAllBusesBy(Predicate<BO.Bus> condition);//v
+        void AddBus(Bus bus);
+        Bus GetBus(string lisenceNum);
+        void DeleteBus(string lisenceNum);
+        void UpdateBus(Bus bus);
+        IEnumerable<Bus> GetAllBuses();
+        IEnumerable<Bus> GetAllBusesBy(Predicate<BO.Bus> condition);
         string setLicenseNumberTo(string licenseNumber);
         string setLicenseNumberFrom(string licenseNumber);
-        //רננה
-        void AddBusStation(BusStation busStation);//v
-        BusStationBL ToBusStationBL(DO.BusStation busStationDO);//v
-        void DeleteBusStation(int code);//v
-        void UpdateBusStation(BusStation busStation);//v
-        BusStationBL GetBusStationBL(int stationID);//v
-        IEnumerable<BusStationBL> GetAllStations();//v
-        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStationBL> condition);//v
+        void AddBusStation(BusStation busStation);
+        BusStationBL ToBusStationBL(DO.BusStation busStationDO);
+        void DeleteBusStation(int code);
+        void UpdateBusStation(BusStation busStation);
+        BusStationBL GetBusStationBL(int stationID);
+        IEnumerable<BusStationBL> GetAllStations();
+        IEnumerable<BusStationBL> GetAllStationsBy(Predicate<BO.BusStationBL> condition);
         StationInLine getStationInLine(int lineId, int stationCode);
 
+        int AddBusLine(BusLineBL busLine);
+        BusLineBL ToBusLineBL(DO.BusLine busLineDO);
+        void DeleteBusLine(BusLineBL busLine);
+        void UpdateBusLine(BusLine busLine);
+        void AddStationToBus(StationInLine stationLine);
+        BusLineBL GetBusLineBL(int busID);
+        IEnumerable<BusLineBL> GetAllLines();
+        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);
 
-        //נעמה
-        int AddBusLine(BusLineBL busLine);//V
-        BusLineBL ToBusLineBL(DO.BusLine busLineDO);//v
-        void DeleteBusLine(BusLineBL busLine);//v 
-        void UpdateBusLine(BusLine busLine);//v
-        void AddStationToBus(StationInLine stationLine);//v
-        BusLineBL GetBusLineBL(int busID);//v
-        IEnumerable<BusLineBL> GetAllLines();//v
-        IEnumerable<BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition);//v
-
-        //רננה
        void AddFollowingStations(FollowingStations following);
         FollowingStations GetFollowingStations(FollowingStations following);
 
-        // void DeleteFollowingStations(FollowingStations following);
-        // void UpdateBusFollowingStations(FollowingStations following);
-        void DeleteStationInLine(StationInLine stationLine);//v
-                                                            // void UpdateStationInLine(StationInLine stationLine);//v
+        void DeleteStationInLine(StationInLine stationLine);
 
         void addUser(string name, string password, bool isManager);
         BO.Permission isAllowEntry(string name, string password);

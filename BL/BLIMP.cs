@@ -40,6 +40,10 @@ namespace BL
                 throw new KeyNotFoundException(ex.Message, ex);
             }
         }
+        /// <summary>
+        /// bus return from refule
+        /// </summary>
+        /// <param name="bus"></param>
         public void ReturnFromRefuel(BO.Bus bus)
         {
             try
@@ -73,6 +77,10 @@ namespace BL
             }
 
         }
+        /// <summary>
+        /// bus return from treat
+        /// </summary>
+        /// <param name="bus"></param>
         public void ReturnFromTreat(BO.Bus bus)
         {
             try
@@ -375,7 +383,7 @@ namespace BL
 
         }
         /// <summary>
-        /// return collection of the ines that eill be come
+        /// return collection of the lines that will be come
         /// </summary>
         /// <param name="busLineBLs"></param>
         /// <param name="CurrentBusStation"></param>
@@ -392,7 +400,6 @@ namespace BL
             return lineTimings;
         }
 
-        //נעמה
         #region methods for bus
         public void AddBus(BO.Bus busBO)
         {
@@ -538,7 +545,6 @@ namespace BL
         }
         #endregion
 
-        //רננה
         #region methods for bus-staion
         public void AddBusStation(BO.BusStation busStationBO)
         {
@@ -558,19 +564,16 @@ namespace BL
             BO.StationInLine stationInLineBO = new BO.StationInLine();
             try
             { 
+                //return all the station in line that pass at the station we want to delete
                 List<DO.stationInLine>stationInLinesDAL = dal.GetStationInLineCollectionBy(item => item.StationCode == code).ToList();
 
                 foreach (DO.stationInLine item in stationInLinesDAL)
                 {
+                    //delete each organ at the list that we get
                     item.Clone(stationInLineBO);
-                    //if (item.IsFirstStation)
-                    //    UpdateFirstStation(code, item.LineId);
-                    //else if (item.IsLastStation)
-                    //    UpdateLastStation(code, item.LineId);
-                    //else
-                    //יירקתי כי בפונקציה שעכשיו שולחים אליה היא שולחת לעדכון
                     DeleteStationInLine(stationInLineBO);
                 }
+                //delete the bus
                 dal.DeleteBusStation(code);
             }
             catch (KeyNotFoundException exc)
@@ -636,6 +639,7 @@ namespace BL
             try
             {
                 DO.BusStation busStationDO = dal.GetBusStation(stationID);
+                //this function convert the "DO.BusStation" object to BL one
                 return ToBusStationBL(busStationDO);
             }
             catch (KeyNotFoundException ex)
@@ -646,6 +650,7 @@ namespace BL
         public IEnumerable<BO.BusStationBL> GetAllStations()
         {
             IEnumerable<BO.BusStationBL> busStationBLs = from item in dal.GetBusStationCollection()
+                                                             //this function convert the "DO.BusStation" object to BL one
                                                          select ToBusStationBL(item);
             return busStationBLs;
         }
@@ -658,7 +663,6 @@ namespace BL
         }
         #endregion
 
-        //נעמה
         #region method for bus-line
         public int AddBusLine(BO.BusLineBL busLineBO)
         {
@@ -894,7 +898,7 @@ namespace BL
         }
 
         #endregion
-        //רננה
+        
         #region method for followingStations
         public void AddFollowingStations(BO.FollowingStations followingBO)
         {
@@ -906,13 +910,14 @@ namespace BL
             }
             catch (DO.DalAlreayExistExeption ex)
             {
-                
+                //the user didnt need to know if this following stations is exist already because he adds them indirectly
             }
         }
       public BO.FollowingStations GetFollowingStations(BO.FollowingStations following)
         {
             try
             {
+                //return the following station that suitable to the following station that got
                 DO.FollowingStations followingStationsDO = dal.GetFollowingStation(following.StationCode1, following.StationCode2);
                 BO.FollowingStations followingStationsBO = new BO.FollowingStations();
                 followingStationsDO.Clone(followingStationsBO);
@@ -927,48 +932,16 @@ namespace BL
                 throw new BO.DalAlreayExistFollowingStationsExeption(ex.Message, ex);
             }
         }
-        //public void DeleteFollowingStations(BO.FollowingStations followingBO)
-        //{
-        //    DO.FollowingStations followingDO = new DO.FollowingStations();
-        //    followingBO.Clone(followingDO);
-        //    try
-        //    {
-        //        dal.DeleteFollowingStations(followingDO);
-        //    }
-        //    catch (KeyNotFoundException ex)
-        //    {
-        //        throw new KeyNotFoundException(ex.Message, ex);
-        //    }
-        //}
-        //public void UpdateBusFollowingStations(BO.FollowingStations followingBO)
-        //{
-        //    DO.FollowingStations followingDO = new DO.FollowingStations();
-        //    followingBO.Clone(followingDO);
-        //    try
-        //    {
-        //        dal.UpdateFollowingStations(followingDO);
-        //    }
-        //    catch (KeyNotFoundException ex)
-        //    {
-        //        throw new KeyNotFoundException(ex.Message, ex);
-        //    }
-        //}
         #endregion
 
         #region method station in line
-        //public void UpdateStationInLine(BO.StationInLine stationLineBO)
-        // {
-        //     DO.stationInLine stationLineDO = new DO.stationInLine();
-        //     stationLineBO.Clone(stationLineDO);
-        //     try
-        //     {
-        //         dal.UpdateStationInLine(stationLineDO);
-        //     }
-        //     catch (KeyNotFoundException ex)
-        //     {
-        //         throw new KeyNotFoundException(ex.Message, ex);
-        //     }
-        // }
+
+        /// <summary>
+        /// return specific station in line
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="stationCode"></param>
+        /// <returns></returns>
         public BO.StationInLine getStationInLine(int lineId, int stationCode)
         {
 
@@ -986,7 +959,15 @@ namespace BL
             }
         }
         #endregion
-        //add user to the data
+
+        #region User
+
+        /// <summary>
+        /// add user to the data
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <param name="isManager"></param>
         public void addUser(string name, string password, bool isManager)
         {
             DO.User user = new DO.User()
@@ -1021,6 +1002,9 @@ namespace BL
                 throw new KeyNotFoundException(ex.Message, ex);
             }
         }
+        #endregion
+
+        #region Line trip
         //add timetable to the data according the frequency
         public void AddLineTrip(BO.Frequency frequency, int lineId, int numLine)
         {
@@ -1117,5 +1101,6 @@ namespace BL
             
         }
     }
+    #endregion
 }
 

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DO
 {
+    /// <summary>
+    /// class for user that inter to the system
+    /// </summary>
    public class User
     {
         public string UserName { get; set; }
