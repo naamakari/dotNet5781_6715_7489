@@ -110,12 +110,17 @@ namespace DL
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
 
             XElement helpXelement = XElement.Load(@"configurationXml.xml");
-            busLine.BusId = helpXelement.Element("BusLineRunNum").Value;
+            busLine.BusId =int.Parse(helpXelement.Element("BusLineRunNum").Value);
 
-            busLine.BusId = Configuration.GetBusLineRunNum();
+            int kidum = int.Parse(helpXelement.Element("BusLineRunNum").Value);
+            kidum+=11;
+            helpXelement.Element("BusLineRunNum").Value = kidum.ToString();
+            helpXelement.Save(@"configurationXml.xml");
+
+
             //צריך את הבדיקה הזו?
-            if (ListBusLines.Any(x => x.BusId == busLine.BusId))
-                throw new DalAlreayExistExeption(" קו אוטובוס מספר" + busLine.BusId + "קיים כבר במערכת ");
+            //if (ListBusLines.Any(x => x.BusId == busLine.BusId))
+               // throw new DalAlreayExistExeption(" קו אוטובוס מספר" + busLine.BusId + "קיים כבר במערכת ");
             ListBusLines.Add(busLine);
 
             XMLTools.SaveListToXMLSerializer(ListBusLines, busLinesPath);
@@ -195,10 +200,17 @@ namespace DL
         {
             List<BusStation> ListBusStation = XMLTools.LoadListFromXMLSerializer<BusStation>(busStationsPath);
 
-            busStation.StationCode = Configuration.GetBusStationRunNum();
+            XElement helpXelement = XElement.Load(@"configurationXml.xml");
+            busStation.StationCode = int.Parse(helpXelement.Element("BusStationRunNum").Value);
+
+            int kidum = int.Parse(helpXelement.Element("BusStationRunNum").Value);
+            kidum+=7;
+            helpXelement.Element("BusStationRunNum").Value = kidum.ToString();
+            helpXelement.Save(@"configurationXml.xml");
+
             //צריך את הבדיקה הזו?
-            if (ListBusStation.Any(x => x.StationCode == busStation.StationCode))
-                throw new DalAlreayExistExeption(" תחנה מספר" + busStation.StationCode + "קיימת כבר במערכת ");
+            //if (ListBusStation.Any(x => x.StationCode == busStation.StationCode))
+              //  throw new DalAlreayExistExeption(" תחנה מספר" + busStation.StationCode + "קיימת כבר במערכת ");
             ListBusStation.Add(busStation);
             XMLTools.SaveListToXMLSerializer(ListBusStation, busStationsPath);
 
