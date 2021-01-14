@@ -570,7 +570,7 @@ namespace DS
                 LineId = 1111,
                 NumLine = 1,
                 StartAt = new TimeSpan(11, 00, 00),
-                EndAt = new TimeSpan(13, 00, 00),
+                EndAt = new TimeSpan(16, 00, 00),
                 Frequency = 15
             });
             lineTrips.Add(new LineTrip
@@ -580,7 +580,7 @@ namespace DS
                 StartAt = new TimeSpan(16, 00, 00),
 
                 EndAt = new TimeSpan(20, 00, 00),
-                Frequency = 15
+                Frequency = 20
             });
             lineTrips.Add(new LineTrip
             {

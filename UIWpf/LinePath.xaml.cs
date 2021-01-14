@@ -73,9 +73,10 @@ namespace UIWpf
         {
 
             BusStation currBusStation = firstStationComboBox.SelectedItem as BusStation;
+            BusStation LastCurrBusStation = lastStationComboBox.SelectedItem as BusStation;
             str = DateTime.Now.ToString();
             timer.Text = str.Substring(10, 9);
-            IEnumerable<LineTiming> lineTimings = bl.GetLineTimingsAccordingLine(busLineBLsPossiblePath, currBusStation);
+            IEnumerable<LineTiming> lineTimings = bl.GetLineTimingsAccordingLine(busLineBLsPossiblePath, currBusStation, LastCurrBusStation);
 
             lineTimingDataGrid.DataContext = lineTimings;
             if (lineTimings.Count() == 0)

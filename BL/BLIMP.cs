@@ -165,7 +165,7 @@ namespace BL
         {
             IEnumerable<DO.BusLine> LinesInStartStation;
             IEnumerable<DO.BusLine> LinesInLastStation;
-            //get all the lines that pass in thr start station
+            //get all the lines that pass in the start station
             try
             {
                 LinesInStartStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == startStationCode)
@@ -176,7 +176,7 @@ namespace BL
             {
                 throw new BO.DalEmptyCollectionExeption(startStationCode+" לא קיימים קווים העוברים בתחנה ", ex);
             }
-            //get all the lines that pass in thr last station
+            //get all the lines that pass in the last station
             try
             {
                 LinesInLastStation = from item in dal.GetStationInLineCollectionBy(item => item.StationCode == lastStationCode)
@@ -208,7 +208,7 @@ namespace BL
 
 
         }
-
+        
         /// <summary>
         /// return the short path between all the lines in the recived collection
         /// </summary>
@@ -288,11 +288,13 @@ namespace BL
         }
 
 
-        public BO.LineTiming GetLineTiming(BO.BusLineBL CurrentBusLineBL, BO.BusStation CurrentBusStation)
+        public BO.LineTiming GetLineTiming(BO.BusLineBL CurrentBusLineBL, BO.BusStation CurrentBusStation, BO.BusStation LastCurrBusStation)
         {
             try
             {
                 TimeSpan timeBetweenStations = TimeSpan.FromMinutes(TimeBetweenStations(CurrentBusLineBL.NumberFirstStation, CurrentBusStation.StationCode, CurrentBusLineBL.BusId));
+               
+                TimeSpan timeBetweenTheLastAndTheFirst= TimeSpan.FromMinutes(TimeBetweenStations(CurrentBusStation.StationCode, LastCurrBusStation.StationCode, CurrentBusLineBL.BusId));
                 //calculate the range time for exit of the bus
                 TimeSpan rangeExitBus = TimeSpan.FromSeconds(DateTime.Now.Hour * 60 * 60 + DateTime.Now.Minute * 60 + DateTime.Now.Second - timeBetweenStations.Hours * 60 * 60 - timeBetweenStations.Minutes * 60 - timeBetweenStations.Seconds);
                 //this predicate return the line trip that according the current time and the line id
@@ -318,6 +320,9 @@ namespace BL
                     totalMinutesForTiming = TimeSpan.FromSeconds(timeBetweenStations.Hours * 60 * 60 + timeBetweenStations.Minutes*60 + timeBetweenStations.Seconds +
                                  ( SoonExitBusTime.Hours * 60 * 60 +SoonExitBusTime.Minutes*60 + SoonExitBusTime.Seconds- DateTime.Now.Hour * 60 * 60 - DateTime.Now.Minute * 60 - DateTime.Now.Second));
                 }
+               TimeSpan destinationTime= TimeSpan.FromSeconds(DateTime.Now.Hour * 60 * 60 + DateTime.Now.Minute * 60 + DateTime.Now.Second + timeBetweenTheLastAndTheFirst.Hours*60*60+ timeBetweenTheLastAndTheFirst.Minutes*60+ timeBetweenTheLastAndTheFirst.Seconds + totalMinutesForTiming.Hours*60*60+totalMinutesForTiming.Minutes*60+totalMinutesForTiming.Seconds);
+
+
                 //Creates a new lineTiming to represent the line schedule in the UI
                 BO.LineTiming lineTiming = new BO.LineTiming
                 {
@@ -325,7 +330,8 @@ namespace BL
                     LineId = OurLineTrip.LineId,
                     TripStart = SoonExitBusTime,
                     LastStation = CurrentBusLineBL.LastStation.StationName,
-                    Timing = totalMinutesForTiming
+                    Timing = totalMinutesForTiming,
+                    TimingForDest= destinationTime
                 };
                 return lineTiming;
             }
@@ -335,11 +341,11 @@ namespace BL
             }
 
         }
-        public IEnumerable<BO.LineTiming> GetLineTimingsAccordingLine(IEnumerable<BO.BusLineBL> busLineBLs, BO.BusStation CurrentBusStation)
+        public IEnumerable<BO.LineTiming> GetLineTimingsAccordingLine(IEnumerable<BO.BusLineBL> busLineBLs, BO.BusStation CurrentBusStation, BO.BusStation LastCurrBusStation)
         {
 
             IEnumerable<BO.LineTiming> lineTimings = from item in busLineBLs
-                                                     let lineTimingForPresentation = GetLineTiming(item, CurrentBusStation)
+                                                     let lineTimingForPresentation = GetLineTiming(item, CurrentBusStation, LastCurrBusStation)
                                                      where lineTimingForPresentation != null
                                                      select lineTimingForPresentation;
 

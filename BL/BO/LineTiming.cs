@@ -13,5 +13,6 @@ namespace BO
         public int BusNumLine { get; set; }
         public string LastStation { get; set; }
         public TimeSpan Timing { get; set; }
+        public TimeSpan TimingForDest { get; set; }
     }
 }

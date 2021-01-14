@@ -21,8 +21,8 @@ namespace APIBL
         BusLineBL ReturnShortPath(int startStationCode, int lastStationCode);//v
         float TimeBetweenStations(int startStationCode, int lastStationCode,int numLine);//v
         float Distance(int startStationCode, int destStationCode);//v
-        LineTiming GetLineTiming(BusLineBL CurrentBusLineBL, BusStation CurrentBusStation);
-        IEnumerable<LineTiming> GetLineTimingsAccordingLine(IEnumerable<BusLineBL> busLineBLs ,BO.BusStation CurrentBusStation);
+        LineTiming GetLineTiming(BusLineBL CurrentBusLineBL, BusStation CurrentBusStation, BO.BusStation LastCurrentBusStation);
+        IEnumerable<LineTiming> GetLineTimingsAccordingLine(IEnumerable<BusLineBL> busLineBLs ,BO.BusStation CurrentBusStation, BO.BusStation LastCurrentBusStation);
 
         //נעמה
         void AddBus(Bus bus);//v

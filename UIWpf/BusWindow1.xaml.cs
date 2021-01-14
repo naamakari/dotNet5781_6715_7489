@@ -39,12 +39,15 @@ namespace UIWpf
             {
                 foreach (var item in bl.GetAllBuses())
                     buses.Add(item);
-                busListView.ItemsSource = buses;
             }
             catch (BO.DalEmptyCollectionExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
+            }
+            finally
+            {
+                busListView.ItemsSource = buses;
             }
         }
 

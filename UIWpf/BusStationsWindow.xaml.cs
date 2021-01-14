@@ -30,12 +30,22 @@ namespace UIWpf
         {
             InitializeComponent();
             bl = _Bl;
-            foreach (BusStationBL item in bl.GetAllStations())
-                stations.Add(item);
-            busStationBLDataGrid.ItemsSource = stations;
-           
+            try
+            {
+                foreach (BusStationBL item in bl.GetAllStations())
+                    stations.Add(item);
+            }
+            catch(BO.DalEmptyCollectionExeption ex)
+            {
+                MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            finally
+            {
+                busStationBLDataGrid.ItemsSource = stations;
+            }
 
-           
+
+
 
 
         }

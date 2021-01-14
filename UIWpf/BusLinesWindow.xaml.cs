@@ -42,7 +42,6 @@ namespace UIWpf
             {
                 foreach (BusLineBL item in bl.GetAllLines())
                     busLineBLs.Add(item);
-                busLineBLListView.ItemsSource = busLineBLs;
             }
             catch (KeyNotFoundException ex)
             {
@@ -51,6 +50,10 @@ namespace UIWpf
             catch (BO.DalEmptyCollectionExeption ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            finally
+            {
+                busLineBLListView.ItemsSource = busLineBLs;
             }
 
         }
