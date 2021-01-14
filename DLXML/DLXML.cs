@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using APIDAL;
 using DO;
 
@@ -106,6 +108,9 @@ namespace DL
         public int AddBusLine(BusLine busLine)
         {
             List<BusLine> ListBusLines = XMLTools.LoadListFromXMLSerializer<BusLine>(busLinesPath);
+
+            XElement helpXelement = XElement.Load(@"configurationXml.xml");
+            busLine.BusId = helpXelement.Element("BusLineRunNum").Value;
 
             busLine.BusId = Configuration.GetBusLineRunNum();
             //צריך את הבדיקה הזו?
