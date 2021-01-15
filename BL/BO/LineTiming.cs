@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-   public class LineTiming
+    /// <summary>
+    /// class for line bus schedule view
+    /// </summary>
+    public class LineTiming
     {
         public TimeSpan TripStart { get; set; }
         public int LineId { get; set; }

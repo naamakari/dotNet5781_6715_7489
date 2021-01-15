@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// class for presentation for  UI
+    /// class for presentation bus for  UI, with details of the route of the stations of the line
     /// </summary>
     public class BusLineBL:BusLine
     {

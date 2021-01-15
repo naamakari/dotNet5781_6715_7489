@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BO
 {
     /// <summary>
-    /// class for presentation of all the lines that pass there
+    /// class for presentation of bus station for UI with details of the lines that pass through it all the lines that pass there
     /// </summary>
     public class BusStationBL:BusStation
     {
