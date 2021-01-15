@@ -14,14 +14,14 @@
 
         <DataGrid x:Name="busStationBLDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Foreground="#FFB60000" Margin="386,106,9.6,149.2" BorderBrush="#FFB60000" FontSize="12" FontWeight="SemiBold"  EnableRowVirtualization="True" AutoGenerateColumns="False" BorderThickness="3" SelectionChanged="busStationBLDataGrid_SelectionChanged" HorizontalContentAlignment="Center" Background="#FFFAEEE2">
             <DataGrid.Columns>
-                <DataGridTemplateColumn x:Name="addressColumn" Width="150" Header="                        כתובת">
+                <DataGridTemplateColumn x:Name="addressColumn" Width="150" Header="                  כתובת">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Address}" TextAlignment="Right"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="stationNameColumn" Width="150" Header="                       שם התחנה">
+                <DataGridTemplateColumn x:Name="stationNameColumn" Width="150" Header="                שם התחנה">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding StationName}" TextAlignment="Right"/>
@@ -31,13 +31,17 @@
                 <DataGridTemplateColumn x:Name="stationCodeColumn" Width="59" Header="קוד תחנה">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding StationCode}" TextAlignment="Right"/>
+                            <TextBlock Text="{Binding StationCode}" TextAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
-
             </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
         </DataGrid>
         <TextBox x:Name="searchStationTextBox" Text="" FontSize="16" TextChanged="searchStationTextBox_TextChanged" TextAlignment="Right" HorizontalAlignment="Left" Height="37" Margin="589,53,0,0" BorderBrush="#FFB60000" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" FontWeight="Bold" />
         <Label x:Name="searchStationLable" Content=":חיפוש" HorizontalContentAlignment="Right" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="693,53,0,0" VerticalAlignment="Top" Width="66" Height="37"/>
@@ -66,19 +70,25 @@
                         <GridViewColumn x:Name="area" Width="180" Header="אזור" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding AreaAtLand}" TextAlignment="Right" />
+                                    <TextBlock Margin="-6,-1" Text="{Binding AreaAtLand}" TextAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="numLine" Width="80" Header="מספר קו">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding BusNumLine}" TextAlignment="Right"/>
+                                    <TextBlock Margin="-6,-1" Text="{Binding BusNumLine}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Label Content=":מיקום" Grid.Column="1" HorizontalAlignment="Left" Margin="11.6,7,0,14.4" Grid.Row="3" VerticalAlignment="Center" Height="29" Width="66" FontSize="14" FontWeight="Bold"/>
             <TextBlock x:Name="locationTextBlock" Foreground="#FFB60000" FontSize="14" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,13,0.4,13.4" Grid.Row="3" Text="{Binding Location}" VerticalAlignment="Center" Height="24" Width="174"/>
@@ -148,19 +158,25 @@
                         <GridViewColumn x:Name="area1" Width="80" Header="אזור פעילות">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding AreaAtLand}"/>
+                                    <TextBlock Margin="-6,-1" Text="{Binding AreaAtLand}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="numLine1" Width="60" Header="מספר קו">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Margin="-6,-1" Text="{Binding BusNumLine}"/>
+                                    <TextBlock Margin="-6,-1" Text="{Binding BusNumLine}" TextAlignment="Center"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                     </GridView>
                 </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
             </ListView>
             <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="3,2,0,10" Grid.Row="4" VerticalAlignment="Center" Height="32" Width="81" FontSize="14" FontWeight="Bold"/>
             <TextBox x:Name="latitudeTextBox1" Grid.Column="0"  Foreground="#FFB60000" FontSize="14" FontWeight="Bold" BorderBrush="#FFB60000" HorizontalAlignment="Right" Height="23" Margin="0,6,2,15" Grid.Row="4" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="180" TextChanged="latitudeTextBox1_TextChanged"/>
