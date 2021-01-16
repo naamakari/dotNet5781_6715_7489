@@ -17,10 +17,10 @@ namespace BL
         BLIMP() { }
         public static BLIMP Instance { get => instance; }
         #endregion
-       
-        
-        
-        
+
+
+
+
         readonly IDAL dal = DalFactory.GetDal();
         /// <summary>
         /// refule the bus

@@ -27,6 +27,7 @@ namespace APIDAL
         int AddBusLine(BusLine busLine);
         BusLine GetBusLine(int busId);
         IEnumerable<BusLine> GetBusLineCollection();
+        void RunBusLine(int number);
         IEnumerable<BusLine> GetAllBusLinesCollection();
         IEnumerable<BusLine> GetBusLineCollectionBy(Predicate<BusLine> predicate);
         void UpdateBusLine(BusLine busLine);

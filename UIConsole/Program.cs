@@ -16,9 +16,9 @@ namespace UIConsole
         static void Main(string[] args)
         {
             bl = BlFactory.GetBL();
-            bl.GetAllBuses();
-            
-
+            // bl.GetAllBuses();
+            bl.GetAllLines();
+            Console.WriteLine("hi");
             Console.ReadKey();
         }
        

@@ -13,6 +13,7 @@ namespace APIBL
         public static IBL GetBL()
         {
             return BLIMP.Instance;
+            //return new BLIMP();
         }
     }
 }
