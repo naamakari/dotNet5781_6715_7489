@@ -146,8 +146,10 @@ namespace UIWpf
             busLineBLListView.ItemsSource = busLineBLs;
             DeleteBusLine.IsEnabled = true;
             UpdateBusLine.IsEnabled = true;
-            DetailsGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
+            DetailsGrid.DataContext = busLineBL;
+            
+            
             try
             {
                 if (busLineBL != null)
@@ -345,6 +347,7 @@ namespace UIWpf
                 int newLineID=bl.AddBusLine(busLineBL);
 
                 bl.AddLineTrip((BO.Frequency)frequency.SelectedItem, newLineID, busLineBL.BusNumLine);
+                busLineBL.BusId = newLineID;
                 busLineBLs.Add(busLineBL);
                 frequency.Text = null;
                 areaAtLandComboBox.Text = null;
@@ -774,14 +777,14 @@ namespace UIWpf
         private void frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 &&
-                frequency.SelectedItem != null && frequency1.SelectedItem != null)
+                frequency.SelectedItem != null)
                 RealyAddBusLine.IsEnabled = true;
         }
 
         private void frequency1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && 
-                frequency.SelectedItem != null&&frequency1.SelectedItem!=null)
+                frequency1.SelectedItem!=null)
                 RealyAddBusLine.IsEnabled = true;
 
         }

@@ -35,4 +35,25 @@
     <EndAt>23:00:00</EndAt>
     <Frequency>15</Frequency>
   </LineTrip>
+  <LineTrip>
+    <LineId>11199</LineId>
+    <NumLine>21</NumLine>
+    <StartAt>06:00:00</StartAt>
+    <EndAt>12:00:00</EndAt>
+    <Frequency>15</Frequency>
+  </LineTrip>
+  <LineTrip>
+    <LineId>11199</LineId>
+    <NumLine>21</NumLine>
+    <StartAt>15:00:00</StartAt>
+    <EndAt>21:00:00</EndAt>
+    <Frequency>30</Frequency>
+  </LineTrip>
+  <LineTrip>
+    <LineId>11199</LineId>
+    <NumLine>21</NumLine>
+    <StartAt>21:00:00</StartAt>
+    <EndAt>23:00:00</EndAt>
+    <Frequency>60</Frequency>
+  </LineTrip>
 </ArrayOfLineTrips>

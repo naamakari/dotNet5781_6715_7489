@@ -486,4 +486,22 @@
     <DistanceBetweenStations>2.3</DistanceBetweenStations>
     <TimeTravelBetweenStations>2.3</TimeTravelBetweenStations>
   </FollowingStations>
+  <FollowingStations>
+    <StationCode1>1142</StationCode1>
+    <StationCode2>1138</StationCode2>
+    <DistanceBetweenStations>5.3</DistanceBetweenStations>
+    <TimeTravelBetweenStations>16</TimeTravelBetweenStations>
+  </FollowingStations>
+  <FollowingStations>
+    <StationCode1>1126</StationCode1>
+    <StationCode2>1142</StationCode2>
+    <DistanceBetweenStations>201</DistanceBetweenStations>
+    <TimeTravelBetweenStations>150</TimeTravelBetweenStations>
+  </FollowingStations>
+  <FollowingStations>
+    <StationCode1>1113</StationCode1>
+    <StationCode2>1118</StationCode2>
+    <DistanceBetweenStations>5.6</DistanceBetweenStations>
+    <TimeTravelBetweenStations>16.2</TimeTravelBetweenStations>
+  </FollowingStations>
 </ArrayOfFollowingStations>

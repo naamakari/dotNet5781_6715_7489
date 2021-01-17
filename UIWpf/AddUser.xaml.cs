@@ -58,8 +58,16 @@ namespace UIWpf
             {
                 bl.addUser(textName.Text, textPas.Text,(bool)manager.IsChecked);
                 this.Close();
-                ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
-                managerWindow.ShowDialog();
+                if ((bool)manager.IsChecked == true)
+                {
+                    ManagerWindow managerWindow = new ManagerWindow(bl, textName.Text);
+                    managerWindow.ShowDialog();
+                }
+                else
+                {
+                    LinePath linePath = new LinePath(bl);
+                    linePath.ShowDialog();
+                }
                 
             }
             catch (BO.DalAlreayExistExeption ex)

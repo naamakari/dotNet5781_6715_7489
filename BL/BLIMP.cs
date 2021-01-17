@@ -1079,7 +1079,7 @@ namespace BL
                         LineId = lineId,
                         NumLine = numLine,
                         StartAt = new TimeSpan(21, 00, 00),
-                        EndAt = new TimeSpan(00, 00, 00),
+                        EndAt = new TimeSpan(23, 00, 00),
                         Frequency = 60,
                     });
                     break;
@@ -1097,7 +1097,7 @@ namespace BL
                         LineId = lineId,
                         NumLine = numLine,
                         StartAt = new TimeSpan(13, 00, 00),
-                        EndAt = new TimeSpan(22, 30, 00),
+                        EndAt = new TimeSpan(23, 00, 00),
                         Frequency = 90,
                     });
                     break;

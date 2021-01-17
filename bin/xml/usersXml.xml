@@ -20,4 +20,19 @@
     <Password>123</Password>
     <ManagePermission>false</ManagePermission>
   </User>
+  <User>
+    <UserName>naamaKari</UserName>
+    <Password>naama123</Password>
+    <ManagePermission>true</ManagePermission>
+  </User>
+  <User>
+    <UserName>mosheCohen</UserName>
+    <Password>haimLevi</Password>
+    <ManagePermission>false</ManagePermission>
+  </User>
+  <User>
+    <UserName>saraLevi</UserName>
+    <Password>sarush12</Password>
+    <ManagePermission>false</ManagePermission>
+  </User>
 </ArrayOfUser>
