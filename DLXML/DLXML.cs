@@ -483,7 +483,7 @@ namespace DL
         #endregion
 
         #region LineTrip
-        //Checks that the lineTrip2 is not in lineTrip1 time frame
+        ////Checks that the lineTrip2 is not in lineTrip1 time frame
         //public bool isAtTime(LineTrip lineTrip1, LineTrip lineTrip2)
         //{
         //    if ((lineTrip1.StartAt > lineTrip2.EndAt && lineTrip1.EndAt < lineTrip2.EndAt) ||
@@ -523,13 +523,35 @@ namespace DL
             lineTripElement.Add(lineTripXEl);
             XMLTools.SaveListToXMLElement(lineTripElement, LineTripsPath);
         }
-        public IEnumerable<LineTrip> getLineTripBy(Predicate<LineTrip> condition)
+        public IEnumerable<LineTrip> getLineTripsBy(Predicate<LineTrip> condition)
         {
-
+            XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            return from item in lineTripElement.Elements()
+                    let lineTrip = new LineTrip()
+                    {
+                        LineId = Int32.Parse(item.Element("LineId").Value),
+                        NumLine = Int32.Parse(item.Element("NumLine").Value),
+                        StartAt = TimeSpan.ParseExact(item.Element("StartAt").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        EndAt = TimeSpan.ParseExact(item.Element("EndAt").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        Frequency = Int32.Parse(item.Element("Frequency").Value),
+                    }
+                    where condition(lineTrip)
+                    select lineTrip;
         }
 
-        public void deleteLineTrip(LineTrip lineTrip)
+        public void deleteLineTrip(LineTrip lineTripToDel)
         {
+            XElement lineTripElement = XMLTools.LoadListFromXMLElement(LineTripsPath);
+            XElement delLineTrip = (from item in lineTripElement.Elements()
+                                  where int.Parse(item.Element("LineId").Value) == lineTripToDel.LineId
+                                  select item).FirstOrDefault();
+            if(delLineTrip!=null)
+            {
+                delLineTrip.Remove();
+                XMLTools.SaveListToXMLElement(lineTripElement, LineTripsPath);
+            }
+            else
+                throw new KeyNotFoundException(" יציאת קו" + lineTripToDel.LineId + "כבר לא קיימת במערכת ");
 
         }
         #endregion

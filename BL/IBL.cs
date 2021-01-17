@@ -61,6 +61,6 @@ namespace APIBL
         BO.Permission isAllowEntry(string name, string password);
 
         void AddLineTrip(Frequency frequency, int lineId, int numLine);
-        
+        void UpdateLineTrip(Frequency frequency, int lineId, int numLine);
     }
 }

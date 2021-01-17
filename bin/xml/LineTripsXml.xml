@@ -35,25 +35,4 @@
     <EndAt>23:00:00</EndAt>
     <Frequency>15</Frequency>
   </LineTrip>
-  <LineTrip>
-    <LineId>11111</LineId>
-    <NumLine>13</NumLine>
-    <StartAt>PT6H</StartAt>
-    <EndAt>PT10H</EndAt>
-    <Frequency>15</Frequency>
-  </LineTrip>
-  <LineTrip>
-    <LineId>11111</LineId>
-    <NumLine>13</NumLine>
-    <StartAt>PT13H</StartAt>
-    <EndAt>PT20H30M</EndAt>
-    <Frequency>30</Frequency>
-  </LineTrip>
-  <LineTrip>
-    <LineId>11111</LineId>
-    <NumLine>13</NumLine>
-    <StartAt>PT20H31M</StartAt>
-    <EndAt>PT31M</EndAt>
-    <Frequency>60</Frequency>
-  </LineTrip>
 </ArrayOfLineTrips>

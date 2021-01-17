@@ -101,6 +101,7 @@ namespace UIWpf
             RealyUpdateBusLine.IsEnabled = false;
             UpdateGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             areaAtLandTextBoxUpdate.ItemsSource = Enum.GetValues(typeof(Area));
+            frequency1.ItemsSource = Enum.GetValues(typeof(Frequency));
             BusLineBL busLineBL = busLineBLListView.SelectedItem as BusLineBL;
             try
             {
@@ -639,13 +640,15 @@ namespace UIWpf
 
         private void areaAtLandTextBoxUpdate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null)
+            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null&&
+                areaAtLandTextBoxUpdate.SelectedItem != null && frequency1.SelectedItem != null)
                 RealyUpdateBusLine.IsEnabled = true;
         }
 
         private void busNumLineTextBoxUpdate_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && areaAtLandTextBoxUpdate.SelectedItem != null)
+            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && 
+                areaAtLandTextBoxUpdate.SelectedItem != null&& frequency1.SelectedItem != null)
                 RealyUpdateBusLine.IsEnabled = true;
         }
 
@@ -659,6 +662,7 @@ namespace UIWpf
                 NumberLastStation = SelectedItemBusStations[SelectedItemBusStations.Count() - 1].StationCode,
                 AreaAtLand = (BO.Area)areaAtLandTextBoxUpdate.SelectedItem
             };
+            bl.UpdateLineTrip((BO.Frequency)frequency1.SelectedItem, newBusLine.BusId, newBusLine.BusNumLine);
             try
             {
                 bl.UpdateBusLine(newBusLine);
@@ -769,8 +773,17 @@ namespace UIWpf
         }
         private void frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && frequency.SelectedItem != null)
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 &&
+                frequency.SelectedItem != null && frequency1.SelectedItem != null)
                 RealyAddBusLine.IsEnabled = true;
+        }
+
+        private void frequency1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && 
+                frequency.SelectedItem != null&&frequency1.SelectedItem!=null)
+                RealyAddBusLine.IsEnabled = true;
+
         }
     }
 }

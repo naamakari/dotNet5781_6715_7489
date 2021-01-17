@@ -723,9 +723,10 @@ namespace BL
             {
                 //Delete all stations through which the line passes
                 foreach(var item in busLineBO.CollectionOfStation)
-                {
                     dal.DeleteStationInLine(dal.GetStationInLine(busLineBO.BusId, item.StationCode));
-                }
+                //delete all the lineTrips
+                foreach(var item in dal.getLineTripsBy(x=>x.LineId==busLineBO.BusId))
+                    dal.deleteLineTrip(item);
                 //delete the bus
                 dal.DeleteBusLine(busLineBO.BusId);
             }
@@ -1102,6 +1103,14 @@ namespace BL
                     break;
             }
             
+        }
+        public void UpdateLineTrip(BO.Frequency frequency, int lineId, int numLine)
+        {
+            //delete the old lineTrips
+            foreach (var item in dal.getLineTripsBy(x => x.LineId == lineId))
+                dal.deleteLineTrip(item);
+            //add the update lineTrips
+            AddLineTrip(frequency, lineId, numLine);
         }
     }
     #endregion
