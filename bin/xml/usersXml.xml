@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User>
+    <UserName>RenanaC</UserName>
+    <Password>RenanaC123</Password>
+    <ManagePermission>true</ManagePermission>
+  </User>
+  <User>
+    <UserName>NaamaK</UserName>
+    <Password>Naama206</Password>
+    <ManagePermission>false</ManagePermission>
+  </User>
+  <User>
+    <UserName>naama</UserName>
+    <Password>123</Password>
+    <ManagePermission>true</ManagePermission>
+  </User>
+  <User>
+    <UserName>naamaa</UserName>
+    <Password>123</Password>
+    <ManagePermission>false</ManagePermission>
+  </User>
+</ArrayOfUser>

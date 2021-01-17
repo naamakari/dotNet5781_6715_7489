@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<ArrayOfBusStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BusStation>
+    <StationCode>1111</StationCode>
+    <Longitude>32.1707</Longitude>
+    <Latitude>34.82964</Latitude>
+    <Address>הנדיב 2 הרצליה</Address>
+    <StationName>הנדיב/ז'בוטינסקי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1112</StationCode>
+    <Longitude>32.16843</Longitude>
+    <Latitude>34.83031</Latitude>
+    <Address>פינסקר 2 הרצליה</Address>
+    <StationName>פינסקר/ז'בוטינסקי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1113</StationCode>
+    <Longitude>32.1678</Longitude>
+    <Latitude>34.83265</Latitude>
+    <Address>צבי מנדלבליט 2 הרצליה</Address>
+    <StationName>צבי מנדלבליט/שמואל הנגיד</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1114</StationCode>
+    <Longitude>32.16448</Longitude>
+    <Latitude>34.83541</Latitude>
+    <Address>ויצמן 2 הרצליה</Address>
+    <StationName>בית ספר ויצמן/ויצמן</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1115</StationCode>
+    <Longitude>32.1644</Longitude>
+    <Latitude>34.84276</Latitude>
+    <Address>בן גוריון 10 הרצליה</Address>
+    <StationName>בן גוריון/העצמאות</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1116</StationCode>
+    <Longitude>32.1648</Longitude>
+    <Latitude>34.84333</Latitude>
+    <Address>העצמאות 2 הרצליה</Address>
+    <StationName>העצמאות/בן גוריון</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1117</StationCode>
+    <Longitude>32.16694</Longitude>
+    <Latitude>34.84254</Latitude>
+    <Address>בן גוריון 30 הרצליה</Address>
+    <StationName>קניון לב העיר</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1118</StationCode>
+    <Longitude>32.17035</Longitude>
+    <Latitude>34.84037</Latitude>
+    <Address>טשרניחובסקי 1 הרצליה</Address>
+    <StationName>טשרניחובסקי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1119</StationCode>
+    <Longitude>32.17111</Longitude>
+    <Latitude>34.83991</Latitude>
+    <Address>בני בנימין 2 הרצליה</Address>
+    <StationName>בני בנימין/סמילנסקי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1120</StationCode>
+    <Longitude>32.1725</Longitude>
+    <Latitude>34.84085</Latitude>
+    <Address>בני בנימין 11 הרצליה</Address>
+    <StationName>בני בנימין/גיסין</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1121</StationCode>
+    <Longitude>32.17445</Longitude>
+    <Latitude>34.83959</Latitude>
+    <Address>כנפי נשרים 4 הרצליה</Address>
+    <StationName>כנפי נשרים/נתן אלתרמן</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1122</StationCode>
+    <Longitude>32.17382</Longitude>
+    <Latitude>34.83684</Latitude>
+    <Address>דור שמעוני 4 הרצליה</Address>
+    <StationName>דוד שמעוני/יהודה אלקלעי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1123</StationCode>
+    <Longitude>31.24265</Longitude>
+    <Latitude>34.79775</Latitude>
+    <Address>יהושע חנקין 2 באר שבע</Address>
+    <StationName>ת.מרכזית/עירוניים לדרום</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1124</StationCode>
+    <Longitude>31.24171</Longitude>
+    <Latitude>34.79647</Latitude>
+    <Address>שדרות דוד חכם 80 באר שבע</Address>
+    <StationName>שדרות דוד חכם/תחנה מרכזית</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1125</StationCode>
+    <Longitude>31.24502</Longitude>
+    <Latitude>34.79589</Latitude>
+    <Address>יצחק רגר 10 באר שבע</Address>
+    <StationName>דואר/יצחק רגר</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1126</StationCode>
+    <Longitude>31.24428</Longitude>
+    <Latitude>34.79591</Latitude>
+    <Address>יצחק בן צבי 2 באר שבע</Address>
+    <StationName>קניון הנגב/יצחק בן צבי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1127</StationCode>
+    <Longitude>31.2469</Longitude>
+    <Latitude>34.79789</Latitude>
+    <Address>הנרייטה סולד 8 באר שבע</Address>
+    <StationName>הנרייטה סולד/מדרחוב התקווה</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1128</StationCode>
+    <Longitude>31.24753</Longitude>
+    <Latitude>34.80236</Latitude>
+    <Address>הנרייטה סולד 28 באר שבע</Address>
+    <StationName>קופת חולים ג/הנרייטה סולד</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1129</StationCode>
+    <Longitude>31.25147</Longitude>
+    <Latitude>34.80166</Latitude>
+    <Address>דרך השלום 100 באר שבע</Address>
+    <StationName>תיכון מקיף א/דרך השלום</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1130</StationCode>
+    <Longitude>31.25294</Longitude>
+    <Latitude>34.80366</Latitude>
+    <Address>דרך השלום 34 באר שבע</Address>
+    <StationName>דרך השלום/יד ושם</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1131</StationCode>
+    <Longitude>31.25203</Longitude>
+    <Latitude>34.80689</Latitude>
+    <Address>דרך השלום 2 באר שבע</Address>
+    <StationName>דרך השלום/ארלוזורוב</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1132</StationCode>
+    <Longitude>31.24908</Longitude>
+    <Latitude>34.80917</Latitude>
+    <Address>ז'בוטינסקי 10 באר שבע</Address>
+    <StationName>בי''ס דגניה/ז'בוטינסקי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1133</StationCode>
+    <Longitude>31.25752</Longitude>
+    <Latitude>34.81208</Latitude>
+    <Address>שדרות דוד בן גוריון 100 באר שבע</Address>
+    <StationName>שדרות דוד בן גוריון/דרך השלום</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1134</StationCode>
+    <Longitude>31.25776</Longitude>
+    <Latitude>34.81337</Latitude>
+    <Address>יהושע הצורף 2 באר שבע</Address>
+    <StationName>יהושע הצורף/יהודה הנחתום</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1135</StationCode>
+    <Longitude>31.25682</Longitude>
+    <Latitude>34.81534</Latitude>
+    <Address>יהושע הצורף 15 באר שבע</Address>
+    <StationName>יהושע הצורף</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1136</StationCode>
+    <Longitude>32.79467</Longitude>
+    <Latitude>35.52932</Latitude>
+    <Address>ברנר 3 טבריה</Address>
+    <StationName>ברנר/יהודה הנשיא</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1137</StationCode>
+    <Longitude>32.78921</Longitude>
+    <Latitude>35.5301</Latitude>
+    <Address>ברנר 17 טבריה</Address>
+    <StationName>ברנר/התנא נחום</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1138</StationCode>
+    <Longitude>32.78765</Longitude>
+    <Latitude>35.53683</Latitude>
+    <Address>הירדן 23 טבריה</Address>
+    <StationName>תחנה מרכזית טבריה</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1139</StationCode>
+    <Longitude>32.79837</Longitude>
+    <Latitude>35.53193</Latitude>
+    <Address>אחד העם 11 טבריה</Address>
+    <StationName>אחד העם/נחמני</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1140</StationCode>
+    <Longitude>32.79877</Longitude>
+    <Latitude>35.52865</Latitude>
+    <Address>שמעון דהאן 5 טבריה</Address>
+    <StationName>ארליך/שמעון דהאן</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1141</StationCode>
+    <Longitude>32.79917</Longitude>
+    <Latitude>35.523</Latitude>
+    <Address>וינגייט 2 טבריה</Address>
+    <StationName>וינגייט/לח''י</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1142</StationCode>
+    <Longitude>32.79758</Longitude>
+    <Latitude>35.52285</Latitude>
+    <Address>שדרות מנחם בגין 141 טבריה</Address>
+    <StationName>שדרות מנחם בגין/וינגייט</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1143</StationCode>
+    <Longitude>32.79509</Longitude>
+    <Latitude>35.52054</Latitude>
+    <Address>בר כוכבא 52 טבריה</Address>
+    <StationName>בר כוכבא/דוד המלך</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1144</StationCode>
+    <Longitude>32.79105</Longitude>
+    <Latitude>35.51652</Latitude>
+    <Address>שדרות מנחם בגין 301 טבריה</Address>
+    <StationName>שדרות מנחם בגין/ספיר</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1145</StationCode>
+    <Longitude>32.78296</Longitude>
+    <Latitude>35.52135</Latitude>
+    <Address>שדרות ספיר 102 טבריה עילית</Address>
+    <StationName>שדרות ספיר/רקפת</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1146</StationCode>
+    <Longitude>32.78278</Longitude>
+    <Latitude>35.51814</Latitude>
+    <Address>ירושלים 74 טבריה עילית</Address>
+    <StationName>ירושלים/שד. אלנטאון</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1147</StationCode>
+    <Longitude>32.7803</Longitude>
+    <Latitude>35.51916</Latitude>
+    <Address>הנשיא וייצמן 10 טבריה עילית</Address>
+    <StationName>מלון צמרת/וייצמן</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1148</StationCode>
+    <Longitude>32.77788</Longitude>
+    <Latitude>35.51029</Latitude>
+    <Address>יצחק בן צבי 82 טבריה</Address>
+    <StationName>יצחק בן צבי/הרצוג</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1149</StationCode>
+    <Longitude>32.7745</Longitude>
+    <Latitude>35.51264</Latitude>
+    <Address>לוי אשכול 20 טבריה</Address>
+    <StationName>לוי אשכול/משה שרת</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1150</StationCode>
+    <Longitude>32.78218</Longitude>
+    <Latitude>35.52589</Latitude>
+    <Address>חרצית 1 טבריה</Address>
+    <StationName>חרצית/כליל החורש</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1151</StationCode>
+    <Longitude>32.07501</Longitude>
+    <Latitude>34.81992</Latitude>
+    <Address>שדרות ירושלים 105 רמת גן</Address>
+    <StationName>שד' ירושלים/דרך בן גוריון</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1152</StationCode>
+    <Longitude>32.07241</Longitude>
+    <Latitude>34.82301</Latitude>
+    <Address>עוזיאל 33 רמת גן</Address>
+    <StationName>ביה''ס חורב/עוזיאל</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1153</StationCode>
+    <Longitude>32.0636024</Longitude>
+    <Latitude>34.82343</Latitude>
+    <Address>הרא''ה 6 רמת גן</Address>
+    <StationName>הרא''ה/פנחס רוטנברג</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1154</StationCode>
+    <Longitude>32.07031</Longitude>
+    <Latitude>34.82799</Latitude>
+    <Address>דרך נגבה 14 רמת גן</Address>
+    <StationName>נגבה/הירדן</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1155</StationCode>
+    <Longitude>32.06336</Longitude>
+    <Latitude>34.82828</Latitude>
+    <Address>הירדן 212 רמת גן</Address>
+    <StationName>הירדן/פנחס</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1156</StationCode>
+    <Longitude>32.06024</Longitude>
+    <Latitude>34.83117</Latitude>
+    <Address>נווה יהושע 5 רמת גן</Address>
+    <StationName>נווה יהושע/סטופ</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1157</StationCode>
+    <Longitude>32.06596</Longitude>
+    <Latitude>34.83287</Latitude>
+    <Address>אריה בן אליעזר 62 רמת גן</Address>
+    <StationName>בן אליעזר/אצ''ל</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1158</StationCode>
+    <Longitude>32.06982</Longitude>
+    <Latitude>34.83767</Latitude>
+    <Address>אצ''ל 22 רמת גן</Address>
+    <StationName>אצ''ל/הרב לנדס</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1159</StationCode>
+    <Longitude>32.07299</Longitude>
+    <Latitude>34.83309</Latitude>
+    <Address>חזון אי''ש 55 בני ברק</Address>
+    <StationName>חזון אי''ש/מרום נווה</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1160</StationCode>
+    <Longitude>32.07479</Longitude>
+    <Latitude>34.83081</Latitude>
+    <Address>שדרות ירושלים 14 רמת גן</Address>
+    <StationName>שדרות ירושלים/מולכו</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>1161</StationCode>
+    <Longitude>32.08216</Longitude>
+    <Latitude>34.82066</Latitude>
+    <Address>דוד בן גוריון 98 רמת גן</Address>
+    <StationName>בן גוריון/החץ</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+  <BusStation>
+    <StationCode>11181</StationCode>
+    <Longitude>32.15244</Longitude>
+    <Latitude>34.21026</Latitude>
+    <Address>המכבים 8 גבעת זאב</Address>
+    <StationName>בי"ס מקומי</StationName>
+    <IsDeleted>false</IsDeleted>
+  </BusStation>
+</ArrayOfBusStation>
