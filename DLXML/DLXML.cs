@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -498,8 +500,8 @@ namespace DL
                     {
                         LineId = Int32.Parse(item.Element("LineId").Value),
                         NumLine = Int32.Parse(item.Element("NumLine").Value),
-                        StartAt = TimeSpan.Parse(item.Element("StartAt").Value),
-                        EndAt = TimeSpan.Parse(item.Element("EndAt").Value),
+                        StartAt = TimeSpan.ParseExact(item.Element("StartAt").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture),
+                        EndAt = TimeSpan.ParseExact(item.Element("EndAt").Value,"hh\\:mm\\:ss", CultureInfo.InvariantCulture),
                         Frequency = Int32.Parse(item.Element("Frequency").Value),
                     }
                     where predicate(lineTrip)
@@ -515,11 +517,20 @@ namespace DL
             XElement lineTripXEl = new XElement("LineTrip",
                 new XElement("LineId", lineTrip.LineId),
                 new XElement("NumLine", lineTrip.NumLine),
-                new XElement("StartAt", lineTrip.StartAt),
-                new XElement("EndAt", lineTrip.EndAt),
+                new XElement("StartAt", lineTrip.StartAt.ToString()),
+                new XElement("EndAt", lineTrip.EndAt.ToString()),
                 new XElement("Frequency", lineTrip.Frequency));
             lineTripElement.Add(lineTripXEl);
             XMLTools.SaveListToXMLElement(lineTripElement, LineTripsPath);
+        }
+        public IEnumerable<LineTrip> getLineTripBy(Predicate<LineTrip> condition)
+        {
+
+        }
+
+        public void deleteLineTrip(LineTrip lineTrip)
+        {
+
         }
         #endregion
 
