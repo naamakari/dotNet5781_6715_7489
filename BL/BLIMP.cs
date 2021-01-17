@@ -333,6 +333,7 @@ namespace BL
         {
             try
             {
+
                 TimeSpan timeBetweenStations = TimeSpan.FromMinutes(TimeBetweenStations(CurrentBusLineBL.NumberFirstStation, CurrentBusStation.StationCode, CurrentBusLineBL.BusId));
                
                 TimeSpan timeBetweenTheLastAndTheFirst= TimeSpan.FromMinutes(TimeBetweenStations(CurrentBusStation.StationCode, LastCurrBusStation.StationCode, CurrentBusLineBL.BusId));
@@ -889,6 +890,7 @@ namespace BL
                                                    select ToBusLineBL(item);
             return busLineBLs;
         }
+     
         public IEnumerable<BO.BusLineBL> GetAllLinesBy(Predicate<BO.BusLine> condition)
         {
             IEnumerable<BO.BusLineBL> busLineBLs = from item in GetAllLines()
@@ -900,6 +902,7 @@ namespace BL
         #endregion
         
         #region method for followingStations
+     
         public void AddFollowingStations(BO.FollowingStations followingBO)
         {
             DO.FollowingStations followingDO = new DO.FollowingStations();
@@ -1041,14 +1044,14 @@ namespace BL
                         LineId = lineId,
                         NumLine = numLine,
                         StartAt = new TimeSpan(17, 00, 00),
-                        EndAt = new TimeSpan(20, 30, 00),
+                        EndAt = new TimeSpan(21, 00, 00),
                         Frequency = 15,
                     });
                     dal.AddLineTrip(new DO.LineTrip
                     {
                         LineId = lineId,
                         NumLine = numLine,
-                        StartAt = new TimeSpan(20, 31, 00),
+                        StartAt = new TimeSpan(21, 00, 00),
                         EndAt = new TimeSpan(00, 30, 00),
                         Frequency = 30,
                     });
@@ -1059,23 +1062,23 @@ namespace BL
                         LineId = lineId,
                         NumLine = numLine,
                         StartAt = new TimeSpan(06, 00, 00),
-                        EndAt = new TimeSpan(10, 00, 00),
+                        EndAt = new TimeSpan(12, 00, 00),
                         Frequency = 15,
                     });
                     dal.AddLineTrip(new DO.LineTrip
                     {
                         LineId = lineId,
                         NumLine = numLine,
-                        StartAt = new TimeSpan(13, 00, 00),
-                        EndAt = new TimeSpan(20, 30, 00),
+                        StartAt = new TimeSpan(15, 00, 00),
+                        EndAt = new TimeSpan(21, 00, 00),
                         Frequency = 30,
                     });
                     dal.AddLineTrip(new DO.LineTrip
                     {
                         LineId = lineId,
                         NumLine = numLine,
-                        StartAt = new TimeSpan(20, 31, 00),
-                        EndAt = new TimeSpan(00, 31, 00),
+                        StartAt = new TimeSpan(21, 00, 00),
+                        EndAt = new TimeSpan(00, 00, 00),
                         Frequency = 60,
                     });
                     break;
@@ -1085,7 +1088,7 @@ namespace BL
                         LineId = lineId,
                         NumLine = numLine,
                         StartAt = new TimeSpan(06, 00, 00),
-                        EndAt = new TimeSpan(10, 00, 00),
+                        EndAt = new TimeSpan(12, 00, 00),
                         Frequency = 30,
                     });
                     dal.AddLineTrip(new DO.LineTrip

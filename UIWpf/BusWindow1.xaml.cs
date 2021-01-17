@@ -314,7 +314,7 @@ namespace UIWpf
         //The following functions check the input integrity logically
         private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (kmSinceLastTreatTextBox1.Text != "")
+            if (kmSinceLastTreatTextBox1.Text != ""&& kilometrazTextBox1.Text!="")
             {
                 if (double.Parse(kmSinceLastTreatTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the treat high from the kilometraz
                     Km1Eror.Visibility = Visibility.Visible;
@@ -322,7 +322,7 @@ namespace UIWpf
                     Km1Eror.Visibility = Visibility.Hidden;
             }
 
-            if (kmSinceRefeulTextBox1.Text != "")
+            if (kmSinceRefeulTextBox1.Text != ""&& kilometrazTextBox1.Text!="")
             {
                 if (double.Parse(kmSinceRefeulTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the reful high from the kilometraz
                     Km2Eror.Visibility = Visibility.Visible;
@@ -335,7 +335,7 @@ namespace UIWpf
 
         private void tbLiNum_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (startDateDatePicker.SelectedDate != null)
+            if (startDateDatePicker.SelectedDate != null&& licenseNumberTextBox1.Text!="")
             {
                 DateTime starDate = (DateTime)startDateDatePicker.SelectedDate;
                 //Checks the correctness of the vehicle number according to the year of manufacture
@@ -351,7 +351,7 @@ namespace UIWpf
 
         private void tbTreat_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (kilometrazTextBox1.Text != "")
+            if (kilometrazTextBox1.Text != "" && kmSinceLastTreatTextBox1.Text != "")
             {
                 if (double.Parse(kmSinceLastTreatTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the treat high from the kilometraz
                     Km1Eror.Visibility = Visibility.Visible;
@@ -363,7 +363,7 @@ namespace UIWpf
 
         private void tbRef_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (kilometrazTextBox1.Text != "")
+            if (kilometrazTextBox1.Text != ""&& kmSinceRefeulTextBox1.Text!="")
             {
                 if (double.Parse(kmSinceRefeulTextBox1.Text) > double.Parse(kilometrazTextBox1.Text))//if the filometers from the reful high from the kilometraz
                     Km2Eror.Visibility = Visibility.Visible;
@@ -375,7 +375,7 @@ namespace UIWpf
 
         private void dateSt_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (licenseNumberTextBox1.Text != "")
+            if (licenseNumberTextBox1.Text != ""&& startDateDatePicker.SelectedDate!=null)
             {
                 DateTime starDate = (DateTime)startDateDatePicker.SelectedDate;
                 //Checks the correctness of the vehicle number according to the year of manufacture
@@ -398,7 +398,7 @@ namespace UIWpf
 
             }
 
-            if (dateSinceLastTreatDatePicker.SelectedDate != null)
+            if (dateSinceLastTreatDatePicker.SelectedDate != null&& startDateDatePicker.SelectedDate!=null)
             {
                 TimeSpan diffDate1 = (DateTime)dateSinceLastTreatDatePicker.SelectedDate - (DateTime)startDateDatePicker.SelectedDate;
                 if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus
@@ -423,7 +423,7 @@ namespace UIWpf
             else
                 dateInvalid2.Visibility = Visibility.Hidden;
 
-            if (startDateDatePicker.SelectedDate != null)
+            if (startDateDatePicker.SelectedDate != null&& dateSinceLastTreatDatePicker.SelectedDate!=null)
             {
                 TimeSpan diffDate1 = (DateTime)dateSinceLastTreatDatePicker.SelectedDate - (DateTime)startDateDatePicker.SelectedDate;
                 if (diffDate1.TotalDays < 0)//If the date of the treatment is earlier than the date of commencement of the operation of the bus

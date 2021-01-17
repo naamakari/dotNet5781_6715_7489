@@ -17,5 +17,10 @@ namespace BO
         public string LastStation { get; set; }
         public TimeSpan Timing { get; set; }
         public TimeSpan TimingForDest { get; set; }
+        public override string ToString()
+        {
+            return HelpToString.ToStringProperty(this);
+        }
+
     }
 }

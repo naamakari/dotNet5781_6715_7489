@@ -48,17 +48,7 @@
     <DateSinceLastTreat>2020-01-05T00:00:00</DateSinceLastTreat>
     <KmSinceLastTreat>2000</KmSinceLastTreat>
     <BusState>ready</BusState>
-    <IsDeleted>false</IsDeleted>
-  </Bus>
-  <Bus>
-    <LicenseNumber>1111145</LicenseNumber>
-    <StartDate>2017-06-01T00:00:00</StartDate>
-    <Kilometraz>8000</Kilometraz>
-    <KmSinceRefeul>500</KmSinceRefeul>
-    <DateSinceLastTreat>2020-06-01T00:00:00</DateSinceLastTreat>
-    <KmSinceLastTreat>2000</KmSinceLastTreat>
-    <BusState>ready</BusState>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </Bus>
   <Bus>
     <LicenseNumber>1111167</LicenseNumber>
@@ -197,6 +187,26 @@
     <KmSinceRefeul>500</KmSinceRefeul>
     <DateSinceLastTreat>2020-04-16T00:00:00</DateSinceLastTreat>
     <KmSinceLastTreat>2000</KmSinceLastTreat>
+    <BusState>ready</BusState>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNumber>1111145</LicenseNumber>
+    <StartDate>2017-06-01T00:00:00</StartDate>
+    <Kilometraz>8000</Kilometraz>
+    <KmSinceRefeul>0</KmSinceRefeul>
+    <DateSinceLastTreat>2020-06-01T00:00:00</DateSinceLastTreat>
+    <KmSinceLastTreat>2000</KmSinceLastTreat>
+    <BusState>ready</BusState>
+    <IsDeleted>false</IsDeleted>
+  </Bus>
+  <Bus>
+    <LicenseNumber>44021202</LicenseNumber>
+    <StartDate>2020-11-09T00:00:00</StartDate>
+    <Kilometraz>2.3</Kilometraz>
+    <KmSinceRefeul>0.1</KmSinceRefeul>
+    <DateSinceLastTreat>2020-11-09T00:00:00</DateSinceLastTreat>
+    <KmSinceLastTreat>0.3</KmSinceLastTreat>
     <BusState>ready</BusState>
     <IsDeleted>false</IsDeleted>
   </Bus>
