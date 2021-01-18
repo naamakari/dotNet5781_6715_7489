@@ -17,14 +17,6 @@
     <IsDeleted>false</IsDeleted>
   </BusLine>
   <BusLine>
-    <BusId>1113</BusId>
-    <BusNumLine>3</BusNumLine>
-    <AreaAtLand>South</AreaAtLand>
-    <NumberFirstStation>1123</NumberFirstStation>
-    <NumberLastStation>1135</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
     <BusId>1114</BusId>
     <BusNumLine>418</BusNumLine>
     <AreaAtLand>General</AreaAtLand>
@@ -49,35 +41,11 @@
     <IsDeleted>false</IsDeleted>
   </BusLine>
   <BusLine>
-    <BusId>1117</BusId>
-    <BusNumLine>13</BusNumLine>
-    <AreaAtLand>North</AreaAtLand>
-    <NumberFirstStation>1147</NumberFirstStation>
-    <NumberLastStation>1138</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
-    <BusId>1118</BusId>
-    <BusNumLine>5</BusNumLine>
-    <AreaAtLand>Center</AreaAtLand>
-    <NumberFirstStation>1161</NumberFirstStation>
-    <NumberLastStation>1153</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
     <BusId>1119</BusId>
     <BusNumLine>836</BusNumLine>
     <AreaAtLand>General</AreaAtLand>
     <NumberFirstStation>1159</NumberFirstStation>
     <NumberLastStation>1138</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
-    <BusId>1120</BusId>
-    <BusNumLine>836</BusNumLine>
-    <AreaAtLand>General</AreaAtLand>
-    <NumberFirstStation>1138</NumberFirstStation>
-    <NumberLastStation>1159</NumberLastStation>
     <IsDeleted>false</IsDeleted>
   </BusLine>
   <BusLine>
@@ -150,6 +118,46 @@
     <AreaAtLand>South</AreaAtLand>
     <NumberFirstStation>1129</NumberFirstStation>
     <NumberLastStation>1131</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1113</BusId>
+    <BusNumLine>3</BusNumLine>
+    <AreaAtLand>North</AreaAtLand>
+    <NumberFirstStation>1124</NumberFirstStation>
+    <NumberLastStation>1135</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>11210</BusId>
+    <BusNumLine>146</BusNumLine>
+    <AreaAtLand>Jerusalem</AreaAtLand>
+    <NumberFirstStation>1112</NumberFirstStation>
+    <NumberLastStation>1115</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1118</BusId>
+    <BusNumLine>21</BusNumLine>
+    <AreaAtLand>Jerusalem</AreaAtLand>
+    <NumberFirstStation>1156</NumberFirstStation>
+    <NumberLastStation>1153</NumberLastStation>
+    <IsDeleted>true</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1117</BusId>
+    <BusNumLine>13</BusNumLine>
+    <AreaAtLand>North</AreaAtLand>
+    <NumberFirstStation>1148</NumberFirstStation>
+    <NumberLastStation>1138</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1120</BusId>
+    <BusNumLine>2</BusNumLine>
+    <AreaAtLand>General</AreaAtLand>
+    <NumberFirstStation>1144</NumberFirstStation>
+    <NumberLastStation>1159</NumberLastStation>
     <IsDeleted>false</IsDeleted>
   </BusLine>
 </ArrayOfBusLine>

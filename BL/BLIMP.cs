@@ -114,6 +114,8 @@ namespace BL
                     throw new BO.invalidRemoveExeption(" קיימות 2 תחנות, לא ניתן למחוק תחנה " + busId + " בקו");
                 List<DO.stationInLine> stationsList = stationsInLine.ToList();
                 stationsList.Remove(stationsList[0]);//now the first station is the next station
+                stationsList[0].IsFirstStation = true;
+                dal.UpdateStationInLine(stationsList[0]);
                 newBusLine.NumberFirstStation = stationsList[0].StationCode;
                 dal.UpdateBusLine(newBusLine);
             }
@@ -145,6 +147,8 @@ namespace BL
                     throw new BO.invalidRemoveExeption(" קיימות 2 תחנות, לא ניתן למחוק תחנה " + busId + " בקו");
                 List<DO.stationInLine> stationsList = stationsInLine.ToList();
                 stationsList.Remove(stationsList[stationsList.Count - 1]);//now the last station is the previous station
+                stationsList[stationsList.Count - 1].IsLastStation = true;
+                dal.UpdateStationInLine(stationsList[stationsList.Count - 1]);
                 newBusLine.NumberLastStation = stationsList[stationsList.Count - 1].StationCode;
                 dal.UpdateBusLine(newBusLine);
             }
@@ -283,7 +287,11 @@ namespace BL
                 IEnumerable<DO.stationInLine> stations = dal.GetStationInLineCollectionBy(item => (item.LineId == lineId && item.IndexStationAtLine >= firstStation.IndexStationAtLine));
                 if (stations.Count()==0)
                     throw new KeyNotFoundException("לא נמצאה ברשימה " + startStationCode + " תחנה מספר");
-                List<DO.stationInLine> stationsList = stations.ToList();
+                IEnumerable<DO.stationInLine> stationsListTemp = from item in stations
+                               orderby item.IndexStationAtLine
+                               select item;
+                List<DO.stationInLine> stationsList = stationsListTemp.ToList();
+                
                 float sumTime = 0;
                 int i = 0;
                 while (stationsList[i].StationCode != lastStationCode && i < stationsList.Count - 1)
@@ -850,17 +858,21 @@ namespace BL
                 //get all stations in line
                 IEnumerable<DO.stationInLine> stationsOfLine = from item in dal.GetStationInLineCollectionBy(predicate)
                                                         where (item.IndexStationAtLine > stationLineBO.IndexStationAtLine)
+                                                        orderby item.IndexStationAtLine
                                                         select item;
                 List<DO.stationInLine> listStation = stationsOfLine.ToList();
                 //update the indexs from the station line that deleted
-                for(int i=0;i<listStation.Count()-1; i++)
+                for(int i=0;i<listStation.Count(); i++)
                 {
                     listStation[i].IndexStationAtLine--;
                     dal.UpdateStationInLine(listStation[i]);
                 }
 
                 if (stationLineBO.IsFirstStation)
+                {
                     UpdateFirstStation(stationLineBO.StationCode, stationLineBO.LineId);
+                  
+                }
                 else
                 if (stationLineBO.IsLastStation)
                     UpdateLastStation(stationLineBO.StationCode, stationLineBO.LineId);
@@ -936,11 +948,7 @@ namespace BL
                 throw new BO.DalAlreayExistFollowingStationsExeption(ex.Message, ex);
             }
         }
-        public void deleteFollowingStationBy(int statioCode)
-        {
-            foreach (var item in dal.GetFollowingStationsCollectionBy(x => (x.StationCode1 == statioCode || x.StationCode2 == statioCode)))
-                dal.DeleteFollowingStations(item);
-        }
+ 
         #endregion
 
         #region method station in line

@@ -344,9 +344,11 @@
             </TextBox>
             <Label x:Name="labelToAdd" Visibility="Hidden" FontWeight="SemiBold" Content="ציינ/י את מיקום התחנה בקו" Grid.Column="1" HorizontalAlignment="Left" Margin="96.6,312.8,0,0" Grid.Row="4" VerticalAlignment="Top" Width="161"/>
             <CheckBox x:Name="finishAddStationCheckBox" Visibility="Hidden" BorderBrush="Brown" BorderThickness="1.5" Content="סיימתי" Grid.Column="1" HorizontalAlignment="Left" Margin="164,363.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25" Width="81" Checked="finishAddStationCheckBox_Checked"/>
-            <Button x:Name="cancledUpdateClick" Content="ביטול" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="188,508,0,-63.2" Grid.Row="4" VerticalAlignment="Top" Width="72" Height="24" RenderTransformOrigin="-0.036,0.538" Click="cancledUpdateClick_Click" Grid.ColumnSpan="2"/>
-
-
+            <Button x:Name="cancledUpdateClick" Content="ביטול" FontSize="12" FontWeight="Medium" BorderBrush="Brown" BorderThickness="2" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="188,508,0,-63.2" Grid.Row="4" VerticalAlignment="Top" Width="72" Height="24" RenderTransformOrigin="-0.036,0.538" Click="cancledUpdateClick_Click" Grid.ColumnSpan="2">
+                <Button.ToolTip>
+                    <TextBlock Text="הביטול אינו תקף אם מחקת תחנות ברשימה" Background="WhiteSmoke"/>
+                </Button.ToolTip>
+            </Button>
             <TextBox x:Name="AddDistanceUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="90,219.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" KeyDown="AddDistance_KeyDown"/>
             <TextBox x:Name="AddTimeUpdate" Text="" Visibility="Hidden" HorizontalAlignment="Left" Height="24" Margin="35,219.8,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" KeyDown="AddDistance_KeyDown" RenderTransformOrigin="0.568,-0.712"/>
             <RadioButton x:Name="finishDisAndTimeUpdate" Content="סיימתי" Visibility="Hidden" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Left" Margin="41,248.8,0,0" Grid.Row="4" VerticalAlignment="Top" Height="26" Width="78" Checked="finishDisAndTimeUpdate_Checked" RenderTransformOrigin="1.303,0.496"/>

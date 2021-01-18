@@ -98,6 +98,7 @@ namespace UIWpf
         {
             DetailsGrid.Visibility = Visibility.Hidden;
             UpdateGrid.Visibility = Visibility.Visible;
+            busLineBLListView.IsEnabled = false;
             RealyUpdateBusLine.IsEnabled = false;
             UpdateGrid.DataContext = busLineBLListView.SelectedItem as BusLineBL;
             areaAtLandTextBoxUpdate.ItemsSource = Enum.GetValues(typeof(Area));
@@ -587,7 +588,7 @@ namespace UIWpf
         {
             UpdateGrid.Visibility = Visibility.Hidden;
             DetailsGrid.Visibility = Visibility.Visible;
-
+            busLineBLListView.IsEnabled = true;
             AddDistanceUpdate.Text = "";
             AddDistanceUpdate.Visibility = Visibility.Hidden;
             AddTimeUpdate.Text = "";
@@ -633,26 +634,39 @@ namespace UIWpf
                         AddTimeAndDisLableUpdate.Content = " :הכנס/י את המרחק והזמן בדקות מתחנה " + SelectedItemBusStations[indexOfDelete - 1].StationCode + " לתחנה " + SelectedItemBusStations[indexOfDelete].StationCode;
                         flag = false;
                     }
+                  
                 }
             }
             catch (KeyNotFoundException ex)
             {
                 MessageBox.Show(ex.Message, "הודעת מערכת", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            finally
+            {
+                if (busNumLineTextBoxUpdate.Text != "" && collectionOfStationListViewUpdate.Items.Count >= 2 &&
+     areaAtLandTextBoxUpdate.SelectedItem != null && frequency1.SelectedItem != null)
+                    RealyUpdateBusLine.IsEnabled = true;
+                if (busNumLineTextBoxUpdate.Text == "")
+                    RealyUpdateBusLine.IsEnabled = false;
+            }
         }
 
         private void areaAtLandTextBoxUpdate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null&&
+            if (busNumLineTextBoxUpdate.Text != "" && collectionOfStationListViewUpdate.Items.Count>=2&&
                 areaAtLandTextBoxUpdate.SelectedItem != null && frequency1.SelectedItem != null)
                 RealyUpdateBusLine.IsEnabled = true;
+            if (busNumLineTextBoxUpdate.Text == "")
+                RealyUpdateBusLine.IsEnabled = false;
         }
 
         private void busNumLineTextBoxUpdate_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && 
+            if (busNumLineTextBoxUpdate.Text != "" && collectionOfStationListViewUpdate.Items.Count>=2 && 
                 areaAtLandTextBoxUpdate.SelectedItem != null&& frequency1.SelectedItem != null)
                 RealyUpdateBusLine.IsEnabled = true;
+            if (busNumLineTextBoxUpdate.Text == "")
+                RealyUpdateBusLine.IsEnabled = false;
         }
 
         private void RealyUpdateBusLine_Click(object sender, RoutedEventArgs e)
@@ -679,7 +693,7 @@ namespace UIWpf
                 collectionOfStationListView.ItemsSource = busLineBLNew.CollectionOfStation;
                 DetailsGrid.Visibility = Visibility.Visible;
                 UpdateGrid.Visibility = Visibility.Hidden;
-                
+                busLineBLListView.IsEnabled = true;
                 MessageBox.Show("קו האוטובוס עודכן בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (KeyNotFoundException ex)
@@ -734,10 +748,12 @@ namespace UIWpf
                 DisImageUpdate.Visibility = Visibility.Hidden;
                 AllStationListBox.IsEnabled = true;
                 collectionOfStationListViewUpdate.IsEnabled = true;
-                if (busNumLineTextBoxUpdate.Text != null && collectionOfStationListViewUpdate.Items != null && areaAtLandTextBoxUpdate.SelectedItem != null)
+                if (busNumLineTextBoxUpdate.Text != "" && collectionOfStationListViewUpdate.Items.Count>=2 && areaAtLandTextBoxUpdate.SelectedItem != null
+                    && frequency1.SelectedItem != null)
                     RealyUpdateBusLine.IsEnabled = true;
                 else
                     RealyUpdateBusLine.IsEnabled = false;
+     
                 AddDistanceUpdate.Text = "";
                 AddTimeUpdate.Text = "";
                 if (helpIndex == 0 && flag == true)
@@ -776,16 +792,18 @@ namespace UIWpf
         }
         private void frequency_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 &&
+            if (busNumLineTextBox.Text != "" && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 &&
                 frequency.SelectedItem != null)
                 RealyAddBusLine.IsEnabled = true;
         }
 
         private void frequency1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (busNumLineTextBox.Text != null && areaAtLandComboBox.SelectedItem != null && busStations.Count >= 2 && 
-                frequency1.SelectedItem!=null)
-                RealyAddBusLine.IsEnabled = true;
+            if (busNumLineTextBoxUpdate.Text != "" && collectionOfStationListViewUpdate.Items.Count>=2 && areaAtLandTextBoxUpdate.SelectedItem != null
+                &&frequency1.SelectedItem!=null)
+                RealyUpdateBusLine.IsEnabled = true;
+            if (busNumLineTextBoxUpdate.Text == "")
+                RealyUpdateBusLine.IsEnabled = false;
 
         }
     }

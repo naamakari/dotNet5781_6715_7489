@@ -127,6 +127,10 @@
             <TextBox x:Name="stationNameTextBox" Grid.Column="0" HorizontalAlignment="Right" Foreground="Black" FontSize="12" FontWeight="Bold" HorizontalContentAlignment="Right" Height="23" Margin="0,8.8,2.8,13" Grid.Row="1" Text="{Binding StationName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="188" TextChanged="stationNameTextBox_TextChanged" Background="{x:Null}" BorderBrush="#FFB60000"/>
             <Button x:Name="toAdd" Content="הוספה" BorderBrush="#FFB60000" BorderThickness="2" Background="WhiteSmoke" Click="toAdd_Click" IsEnabled="False" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="5" Height="30" Margin="79,3.8,6.8,5.4"/>
         </Grid>
+        
+        
+        
+        
         <Grid x:Name="updateGrid" Visibility="Hidden" HorizontalAlignment="Left" Margin="31,27,0,0" VerticalAlignment="Top" Height="385" Width="325">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" MinWidth="192"/>
@@ -179,9 +183,17 @@
                 </ListView.ItemContainerStyle>
             </ListView>
             <Label Content=":קו רוחב" Grid.Column="1" HorizontalAlignment="Left" Margin="3,2,0,10" Grid.Row="4" VerticalAlignment="Center" Height="32" Width="81" FontSize="14" FontWeight="Bold"/>
-            <TextBox x:Name="latitudeTextBox1" Grid.Column="0"  Foreground="#FFB60000" FontSize="14" FontWeight="Bold" BorderBrush="#FFB60000" HorizontalAlignment="Right" Height="23" Margin="0,6,2,15" Grid.Row="4" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="180" TextChanged="latitudeTextBox1_TextChanged"/>
+            <TextBlock x:Name="latitudeTextBox1" Grid.Column="0"  Foreground="#FFB60000" FontSize="14" FontWeight="Bold" HorizontalAlignment="Right" Height="23" Margin="0,6,2,15" Grid.Row="4" Text="{Binding Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="180">
+                <TextBlock.ToolTip>
+                    <TextBlock  Text="לא ניתן לעדכן את קו הרוחב של התחנה" Background="WhiteSmoke" Foreground="Brown"/>
+                </TextBlock.ToolTip>
+            </TextBlock>
             <Label Content=":קו אורך" Grid.Column="1" HorizontalAlignment="Left" Margin="3,3.8,0,10" Grid.Row="3" VerticalAlignment="Center" Height="31" Width="65" FontSize="14" FontWeight="Bold"/>
-            <TextBox x:Name="longitudeTextBox1"  Foreground="#FFB60000" FontSize="14" FontWeight="Bold" BorderBrush="#FFB60000" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="0,5.8,0,16" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="182" TextChanged="longitudeTextBox1_TextChanged"/>
+            <TextBlock x:Name="longitudeTextBox1"  Foreground="#FFB60000" FontSize="14" FontWeight="Bold" Grid.Column="0" HorizontalAlignment="Right" Height="23" Margin="0,5.8,0,16" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="182">
+                <TextBlock.ToolTip>
+                    <TextBlock  Text="לא ניתן לעדכן את קו האורך של התחנה" Background="WhiteSmoke" Foreground="Brown"/>
+                </TextBlock.ToolTip>
+             </TextBlock>
             <Label Content=":קוד תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4.4" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="81" FontSize="14" FontWeight="Bold"/>
             <Label x:Name="stationCodeLabel1" Content="{Binding StationCode}" Grid.Column="0" HorizontalAlignment="Left" Margin="3,12,0,12.4" Grid.Row="0" VerticalAlignment="Center" Height="10" Width="10"/>
             <Label Content=":שם תחנה" Grid.Column="1" HorizontalAlignment="Left" Margin="3,3.6,0,14.4" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="81" FontSize="14" FontWeight="Bold"/>
