@@ -54,6 +54,7 @@ namespace APIBL
 
        void AddFollowingStations(FollowingStations following);
         FollowingStations GetFollowingStations(FollowingStations following);
+        void deleteFollowingStations(int statioCode);
 
         void DeleteStationInLine(StationInLine stationLine);
 

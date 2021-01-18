@@ -936,6 +936,11 @@ namespace BL
                 throw new BO.DalAlreayExistFollowingStationsExeption(ex.Message, ex);
             }
         }
+        public void deleteFollowingStationBy(int statioCode)
+        {
+            foreach (var item in dal.GetFollowingStationsCollectionBy(x => (x.StationCode1 == statioCode || x.StationCode2 == statioCode)))
+                dal.DeleteFollowingStations(item);
+        }
         #endregion
 
         #region method station in line
