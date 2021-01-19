@@ -6,7 +6,7 @@
     <Latitude>34.82964</Latitude>
     <Address>הנדיב 2 הרצליה</Address>
     <StationName>הנדיב/ז'בוטינסקי</StationName>
-    <IsDeleted>false</IsDeleted>
+    <IsDeleted>true</IsDeleted>
   </BusStation>
   <BusStation>
     <StationCode>1112</StationCode>

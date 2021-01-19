@@ -1,14 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfBusLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <BusLine>
-    <BusId>1111</BusId>
-    <BusNumLine>1</BusNumLine>
-    <AreaAtLand>Center</AreaAtLand>
-    <NumberFirstStation>1111</NumberFirstStation>
-    <NumberLastStation>1120</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
     <BusId>1112</BusId>
     <BusNumLine>2</BusNumLine>
     <AreaAtLand>South</AreaAtLand>
@@ -22,14 +14,6 @@
     <AreaAtLand>General</AreaAtLand>
     <NumberFirstStation>1123</NumberFirstStation>
     <NumberLastStation>1122</NumberLastStation>
-    <IsDeleted>false</IsDeleted>
-  </BusLine>
-  <BusLine>
-    <BusId>1115</BusId>
-    <BusNumLine>415</BusNumLine>
-    <AreaAtLand>General</AreaAtLand>
-    <NumberFirstStation>1111</NumberFirstStation>
-    <NumberLastStation>1123</NumberLastStation>
     <IsDeleted>false</IsDeleted>
   </BusLine>
   <BusLine>
@@ -158,6 +142,22 @@
     <AreaAtLand>General</AreaAtLand>
     <NumberFirstStation>1144</NumberFirstStation>
     <NumberLastStation>1159</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1111</BusId>
+    <BusNumLine>1</BusNumLine>
+    <AreaAtLand>Center</AreaAtLand>
+    <NumberFirstStation>1112</NumberFirstStation>
+    <NumberLastStation>1120</NumberLastStation>
+    <IsDeleted>false</IsDeleted>
+  </BusLine>
+  <BusLine>
+    <BusId>1115</BusId>
+    <BusNumLine>415</BusNumLine>
+    <AreaAtLand>General</AreaAtLand>
+    <NumberFirstStation>1112</NumberFirstStation>
+    <NumberLastStation>1123</NumberLastStation>
     <IsDeleted>false</IsDeleted>
   </BusLine>
 </ArrayOfBusLine>
